@@ -1,0 +1,18 @@
+{
+  "id": 79,
+  "title": "Passcode Derivation",
+  "titleZh": "口令推导",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "graph",
+    "topological-sort"
+  ],
+  "answer": 73162890,
+  "solvedBy": 46380,
+  "bruteForceBaselineMs": 1.2183982222222223,
+  "optimizedBaselineMs": 0.4942777777777778,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=79",
+  "fetchedAt": "2026-09-12"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 90,
+  "title": "Cube Digit Pairs",
+  "titleZh": "立方体数字对",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": [
+    "combinatorics",
+    "enumeration",
+    "digits"
+  ],
+  "answer": 1217,
+  "solvedBy": 14756,
+  "bruteForceBaselineMs": 1.94,
+  "optimizedBaselineMs": 0.722,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=90",
+  "fetchedAt": "2026-09-12"
+}

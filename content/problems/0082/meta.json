@@ -1,0 +1,19 @@
+{
+  "id": 82,
+  "title": "Path Sum: Three Ways",
+  "titleZh": "路径和：三种走法",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "dynamic-programming",
+    "graph",
+    "grid"
+  ],
+  "answer": 260324,
+  "solvedBy": 26088,
+  "bruteForceBaselineMs": 337.860472,
+  "optimizedBaselineMs": 5.728333,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=82",
+  "fetchedAt": "2026-09-12"
+}

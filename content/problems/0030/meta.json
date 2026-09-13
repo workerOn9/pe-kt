@@ -1,0 +1,19 @@
+{
+  "id": 30,
+  "title": "Digit Fifth Powers",
+  "titleZh": "各位数字的五次方",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "digits",
+    "enumeration"
+  ],
+  "answer": 443839,
+  "solvedBy": 132564,
+  "bruteForceBaselineMs": 63.509708,
+  "optimizedBaselineMs": 3.584118,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=30",
+  "fetchedAt": "2026-09-12"
+}

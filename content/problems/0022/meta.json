@@ -1,0 +1,15 @@
+{
+  "id": 22,
+  "title": "Names Scores",
+  "titleZh": "姓名分数",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": ["string", "sorting", "file-io"],
+  "answer": 871198282,
+  "solvedBy": 155829,
+  "bruteForceBaselineMs": 118.000139,
+  "optimizedBaselineMs": 1.008928,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=22",
+  "fetchedAt": "2026-09-12"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 44,
+  "title": "Pentagon Numbers",
+  "titleZh": "五边形数",
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "math",
+    "polygonal-numbers",
+    "number-theory"
+  ],
+  "answer": 5482660,
+  "solvedBy": 72837,
+  "bruteForceBaselineMs": 45.108083,
+  "optimizedBaselineMs": 10.536608,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=44",
+  "fetchedAt": "2026-09-12"
+}

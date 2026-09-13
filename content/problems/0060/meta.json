@@ -1,0 +1,20 @@
+{
+  "id": 60,
+  "title": "Prime Pair Sets",
+  "titleZh": "素数对集合",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "math",
+    "primes",
+    "graph",
+    "search"
+  ],
+  "answer": 26033,
+  "solvedBy": 34737,
+  "bruteForceBaselineMs": 2009.074,
+  "optimizedBaselineMs": 571.121,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=60",
+  "fetchedAt": "2026-09-12"
+}

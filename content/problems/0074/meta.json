@@ -1,0 +1,19 @@
+{
+  "id": 74,
+  "title": "Digit Factorial Chains",
+  "titleZh": "数位阶乘链",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "digits",
+    "memoization",
+    "cycles"
+  ],
+  "answer": 402,
+  "solvedBy": 33384,
+  "bruteForceBaselineMs": 3230.715188,
+  "optimizedBaselineMs": 31.416843,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=74",
+  "fetchedAt": "2026-09-12"
+}

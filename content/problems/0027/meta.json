@@ -1,0 +1,19 @@
+{
+  "id": 27,
+  "title": "Quadratic Primes",
+  "titleZh": "二次素数",
+  "difficulty": 3,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "primes",
+    "enumeration"
+  ],
+  "answer": -59231,
+  "solvedBy": 108081,
+  "bruteForceBaselineMs": 13.73937,
+  "optimizedBaselineMs": 5.777264,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=27",
+  "fetchedAt": "2026-09-12"
+}

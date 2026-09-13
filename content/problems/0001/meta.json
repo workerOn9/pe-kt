@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "title": "Multiples of 3 or 5",
+  "titleZh": "3 或 5 的倍数",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "inclusion-exclusion"],
+  "answer": 233168,
+  "solvedBy": 857640,
+  "bruteForceBaselineMs": 0.00103,
+  "optimizedBaselineMs": 0.00002,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=1",
+  "fetchedAt": "2026-09-12"
+}

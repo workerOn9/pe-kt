@@ -1,0 +1,15 @@
+{
+  "id": 18,
+  "title": "Maximum Path Sum I",
+  "titleZh": "最大路径和 I",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": ["dynamic-programming", "path-finding"],
+  "answer": 1074,
+  "solvedBy": 163999,
+  "bruteForceBaselineMs": 0.092883,
+  "optimizedBaselineMs": 0.005642,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=18",
+  "fetchedAt": "2026-09-12"
+}

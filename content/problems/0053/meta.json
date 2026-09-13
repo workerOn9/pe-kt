@@ -1,0 +1,19 @@
+{
+  "id": 53,
+  "title": "Combinatoric Selections",
+  "titleZh": "组合数选择",
+  "difficulty": 3,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "combinatorics",
+    "counting",
+    "big-integer"
+  ],
+  "answer": 4075,
+  "solvedBy": 71416,
+  "bruteForceBaselineMs": 0.920942,
+  "optimizedBaselineMs": 0.011481,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=53",
+  "fetchedAt": "2026-09-12"
+}

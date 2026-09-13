@@ -1,0 +1,19 @@
+{
+  "id": 72,
+  "title": "Counting Fractions",
+  "titleZh": "既约真分数计数",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "number-theory",
+    "totient",
+    "sieve"
+  ],
+  "answer": 303963552391,
+  "solvedBy": 28201,
+  "bruteForceBaselineMs": 219.339319,
+  "optimizedBaselineMs": 5.557431,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=72",
+  "fetchedAt": "2026-09-12"
+}

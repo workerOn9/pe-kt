@@ -1,0 +1,18 @@
+{
+  "id": 87,
+  "title": "Prime Power Triples",
+  "titleZh": "素数幂三元组",
+  "difficulty": 8,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "primes",
+    "enumeration"
+  ],
+  "answer": 1097343,
+  "solvedBy": 26117,
+  "bruteForceBaselineMs": 506.3034,
+  "optimizedBaselineMs": 58.775,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=87",
+  "fetchedAt": "2026-09-12"
+}

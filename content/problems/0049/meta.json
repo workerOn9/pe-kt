@@ -1,0 +1,19 @@
+{
+  "id": 49,
+  "title": "Prime Permutations",
+  "titleZh": "素数排列",
+  "difficulty": 3,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "primes",
+    "permutation"
+  ],
+  "answer": 296962999629,
+  "solvedBy": 71472,
+  "bruteForceBaselineMs": 14.926768,
+  "optimizedBaselineMs": 0.190703,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=49",
+  "fetchedAt": "2026-09-12"
+}

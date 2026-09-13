@@ -1,0 +1,19 @@
+{
+  "id": 33,
+  "title": "Digit Cancelling Fractions",
+  "titleZh": "数字约分分数",
+  "difficulty": 3,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "fractions",
+    "gcd"
+  ],
+  "answer": 100,
+  "solvedBy": 88781,
+  "bruteForceBaselineMs": 0.158947,
+  "optimizedBaselineMs": 0.004746,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=33",
+  "fetchedAt": "2026-09-12"
+}

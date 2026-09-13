@@ -1,0 +1,19 @@
+{
+  "id": 57,
+  "title": "Square Root Convergents",
+  "titleZh": "平方根的渐近分数",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "continued-fractions",
+    "big-integer"
+  ],
+  "answer": 153,
+  "solvedBy": 51717,
+  "bruteForceBaselineMs": 34.313083,
+  "optimizedBaselineMs": 3.727324,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=57",
+  "fetchedAt": "2026-09-12"
+}

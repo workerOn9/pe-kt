@@ -1,0 +1,15 @@
+{
+  "id": 16,
+  "title": "Power Digit Sum",
+  "titleZh": "幂的数字和",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["big-integer", "digit-manipulation"],
+  "answer": 1366,
+  "solvedBy": 236883,
+  "bruteForceBaselineMs": 1.204326,
+  "optimizedBaselineMs": 0.006355,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=16",
+  "fetchedAt": "2026-09-12"
+}

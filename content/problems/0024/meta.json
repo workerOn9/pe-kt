@@ -1,0 +1,15 @@
+{
+  "id": 24,
+  "title": "Lexicographic Permutations",
+  "titleZh": "字典序排列",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": ["math", "combinatorics", "factoradic"],
+  "answer": 2783915460,
+  "solvedBy": 137595,
+  "bruteForceBaselineMs": 16.921528,
+  "optimizedBaselineMs": 0.000162,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=24",
+  "fetchedAt": "2026-09-12"
+}

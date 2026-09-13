@@ -1,0 +1,19 @@
+{
+  "id": 32,
+  "title": "Pandigital Products",
+  "titleZh": "全数字乘积",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "pandigital",
+    "enumeration"
+  ],
+  "answer": 45228,
+  "solvedBy": 88950,
+  "bruteForceBaselineMs": 14.552289,
+  "optimizedBaselineMs": 0.836667,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=32",
+  "fetchedAt": "2026-09-12"
+}

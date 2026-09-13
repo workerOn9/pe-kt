@@ -1,0 +1,19 @@
+{
+  "id": 52,
+  "title": "Permuted Multiples",
+  "titleZh": "数字重排的倍数",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "digits",
+    "permutation",
+    "enumeration"
+  ],
+  "answer": 142857,
+  "solvedBy": 78805,
+  "bruteForceBaselineMs": 32.292575,
+  "optimizedBaselineMs": 0.31994,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=52",
+  "fetchedAt": "2026-09-12"
+}

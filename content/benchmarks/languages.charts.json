@@ -1,0 +1,92 @@
+{
+  "slug": "languages",
+  "title": "主流编程语言性能对比",
+  "subtitle": "同一道 Project Euler 题，写成六种语言：本机实测报告",
+  "measuredAt": "2026-09-13",
+  "machine": "Apple M 系列 8 核（4 性能核 + 4 能效核）/ 16 GB 内存 / macOS",
+  "charts": [
+    {
+      "id": "sieve",
+      "title": "基准一：埃氏筛求和（第 10 题，n = 2×10⁶）",
+      "unit": "ms",
+      "note": "对数刻度，条越短越快；Python 一行用 numpy 向量化做对照",
+      "series": [
+        { "lang": "Kotlin 2.1.21 (JVM)", "ms": 4.74 },
+        { "lang": "Java 21 (JVM)", "ms": 4.91 },
+        { "lang": "Python 3.14 + numpy", "ms": 5.22 },
+        { "lang": "C++ (clang -O2)", "ms": 5.41 },
+        { "lang": "Rust 1.98 (rustc -O)", "ms": 6.49 },
+        { "lang": "Bun 1.4 (JSC)", "ms": 7.32 },
+        { "lang": "Node 22 (V8)", "ms": 7.34 },
+        { "lang": "Python 3.14 (纯 CPython)", "ms": 143.3 }
+      ]
+    },
+    {
+      "id": "collatz-cached",
+      "title": "基准二：记忆化 Collatz 最长链（第 14 题，1..10⁶）",
+      "unit": "ms",
+      "note": "对数刻度；Kotlin 用 LongArray 栈，避免装箱",
+      "series": [
+        { "lang": "C++ (clang -O2)", "ms": 8.2 },
+        { "lang": "Java 21 (long[])", "ms": 8.26 },
+        { "lang": "Kotlin 2.1.21 (LongArray)", "ms": 8.27 },
+        { "lang": "Bun 1.4 (JSC)", "ms": 21.0 },
+        { "lang": "Node 22 (V8)", "ms": 79.0 },
+        { "lang": "Python 3.14", "ms": 327.7 }
+      ]
+    },
+    {
+      "id": "collatz-brute",
+      "title": "基准三：无缓存 Collatz 暴力解（第 14 题，1..10⁶）",
+      "unit": "ms",
+      "note": "对数刻度；奇偶分支近乎随机，是最能拉开差距的循环形态",
+      "series": [
+        { "lang": "C++ (clang -O2)", "ms": 45 },
+        { "lang": "Kotlin 2.1.21", "ms": 206 },
+        { "lang": "Java 21", "ms": 217 },
+        { "lang": "Bun 1.4 (JSC)", "ms": 473 },
+        { "lang": "Node 22 (V8)", "ms": 1819 }
+      ]
+    },
+    {
+      "id": "factorial-20000",
+      "title": "基准四：计算 20000! 的数位和（约 7.7 万位）",
+      "unit": "ms",
+      "note": "对数刻度；同一门语言里换算法/库，差距比换语言大一个量级",
+      "series": [
+        { "lang": "C++ + GMP（fac_ui，分治）", "ms": 1.82 },
+        { "lang": "Python 3.14（math.factorial）", "ms": 10.27 },
+        { "lang": "C++ + GMP（逐项相乘）", "ms": 30.69 },
+        { "lang": "Bun 1.4（BigInt 天真）", "ms": 33.29 },
+        { "lang": "Node 22（BigInt 天真）", "ms": 42.68 },
+        { "lang": "Java 21（BigInteger 天真）", "ms": 134.28 }
+      ]
+    },
+    {
+      "id": "factorial-200000",
+      "title": "基准五：计算 200000! 的数位和（约 97 万位）",
+      "unit": "ms",
+      "note": "对数刻度；Bun/JSC 的 BigInt 有硬上限，直接抛 RangeError",
+      "series": [
+        { "lang": "C++ + GMP（fac_ui，分治）", "ms": 10.86 },
+        { "lang": "Python 3.14（math.factorial）", "ms": 534.87 },
+        { "lang": "C++ + GMP（逐项相乘）", "ms": 1556.3 },
+        { "lang": "Node 22（BigInt 天真）", "ms": 8385 },
+        { "lang": "Java 21（BigInteger 天真）", "ms": 13675 },
+        { "lang": "Bun 1.4（BigInt 天真）", "error": "RangeError" }
+      ]
+    },
+    {
+      "id": "modmul",
+      "title": "基准六：10⁷ 次 64 位模乘 (a × b) mod p，p = 10⁹+7",
+      "unit": "ms",
+      "note": "对数刻度；JavaScript 没有 64 位整数，只能用 BigInt 或手写乘法模拟",
+      "series": [
+        { "lang": "C++ (uint64_t)", "ms": 25.12 },
+        { "lang": "Java 21 (long)", "ms": 34.41 },
+        { "lang": "Node 22 (BigInt)", "ms": 77.37 },
+        { "lang": "Bun 1.4 (BigInt)", "ms": 293.19 }
+      ]
+    }
+  ]
+}

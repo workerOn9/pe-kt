@@ -1,0 +1,15 @@
+{
+  "id": 8,
+  "title": "Largest Product in a Series",
+  "titleZh": "数列中的最大乘积",
+  "difficulty": 3,
+  "difficultyLevel": "Level 1",
+  "tags": ["math", "digits", "sliding-window"],
+  "answer": 23514624000,
+  "solvedBy": 331971,
+  "bruteForceBaselineMs": 0.010097,
+  "optimizedBaselineMs": 0.001291,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=8",
+  "fetchedAt": "2026-09-12"
+}

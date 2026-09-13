@@ -1,0 +1,19 @@
+{
+  "id": 91,
+  "title": "Right Triangles with Integer Coordinates",
+  "titleZh": "整数坐标直角三角形",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "geometry",
+    "counting",
+    "enumeration"
+  ],
+  "answer": 14234,
+  "solvedBy": 19692,
+  "bruteForceBaselineMs": 10.175,
+  "optimizedBaselineMs": 0.289,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=91",
+  "fetchedAt": "2026-09-12"
+}

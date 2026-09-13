@@ -1,0 +1,19 @@
+{
+  "id": 31,
+  "title": "Coin Sums",
+  "titleZh": "硬币组合",
+  "difficulty": 8,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "combinatorics",
+    "dp",
+    "coin-change"
+  ],
+  "answer": 73682,
+  "solvedBy": 104358,
+  "bruteForceBaselineMs": 7.641467,
+  "optimizedBaselineMs": 0.001083,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=31",
+  "fetchedAt": "2026-09-12"
+}

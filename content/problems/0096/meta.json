@@ -1,0 +1,15 @@
+{
+  "id": 96,
+  "title": "Su Doku",
+  "titleZh": "数独",
+  "difficulty": 8,
+  "difficultyLevel": "Level 3",
+  "tags": ["search", "backtracking", "parsing"],
+  "answer": 24702,
+  "solvedBy": 21188,
+  "bruteForceBaselineMs": 74.292275,
+  "optimizedBaselineMs": 2.731731,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=96",
+  "fetchedAt": "2026-09-12"
+}

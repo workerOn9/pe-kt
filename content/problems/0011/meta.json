@@ -1,0 +1,18 @@
+{
+  "id": 11,
+  "title": "Largest Product in a Grid",
+  "titleZh": "网格中的最大乘积",
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "grid",
+    "enumeration"
+  ],
+  "answer": 70600674,
+  "solvedBy": 237163,
+  "bruteForceBaselineMs": 0.091842,
+  "optimizedBaselineMs": 0.069984,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=11",
+  "fetchedAt": "2026-09-12"
+}

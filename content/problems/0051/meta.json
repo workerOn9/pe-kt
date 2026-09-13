@@ -1,0 +1,19 @@
+{
+  "id": 51,
+  "title": "Prime Digit Replacements",
+  "titleZh": "素数位替换",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "primes",
+    "digits",
+    "enumeration"
+  ],
+  "answer": 121313,
+  "solvedBy": 43894,
+  "bruteForceBaselineMs": 40.525433,
+  "optimizedBaselineMs": 4.158304,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=51",
+  "fetchedAt": "2026-09-12"
+}

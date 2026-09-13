@@ -1,0 +1,19 @@
+{
+  "id": 88,
+  "title": "Product-sum Numbers",
+  "titleZh": "乘积和数",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": [
+    "number-theory",
+    "factorization",
+    "enumeration"
+  ],
+  "answer": 7587457,
+  "solvedBy": 13447,
+  "bruteForceBaselineMs": 13.928,
+  "optimizedBaselineMs": 1.368,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=88",
+  "fetchedAt": "2026-09-12"
+}

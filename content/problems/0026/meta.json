@@ -1,0 +1,19 @@
+{
+  "id": 26,
+  "title": "Reciprocal Cycles",
+  "titleZh": "倒数的循环节",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "math",
+    "number-theory",
+    "modular-arithmetic"
+  ],
+  "answer": 983,
+  "solvedBy": 104574,
+  "bruteForceBaselineMs": 0.48747,
+  "optimizedBaselineMs": 0.001436,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=26",
+  "fetchedAt": "2026-09-12"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 37,
+  "title": "Truncatable Primes",
+  "titleZh": "可截断素数",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "primes",
+    "truncatable"
+  ],
+  "answer": 748317,
+  "solvedBy": 90914,
+  "bruteForceBaselineMs": 256.287416,
+  "optimizedBaselineMs": 7.895197,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=37",
+  "fetchedAt": "2026-09-12"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 93,
+  "title": "Arithmetic Expressions",
+  "titleZh": "算术表达式",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": [
+    "enumeration",
+    "search",
+    "fractions"
+  ],
+  "answer": 1258,
+  "solvedBy": 15304,
+  "bruteForceBaselineMs": 103.795,
+  "optimizedBaselineMs": 54.906,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=93",
+  "fetchedAt": "2026-09-12"
+}

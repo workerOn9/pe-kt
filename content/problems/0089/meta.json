@@ -1,0 +1,19 @@
+{
+  "id": 89,
+  "title": "Roman Numerals",
+  "titleZh": "罗马数字",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "file-io",
+    "parsing",
+    "string"
+  ],
+  "answer": 743,
+  "solvedBy": 25637,
+  "bruteForceBaselineMs": 3.597,
+  "optimizedBaselineMs": 2.015,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=89",
+  "fetchedAt": "2026-09-12"
+}

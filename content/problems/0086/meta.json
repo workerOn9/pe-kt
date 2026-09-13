@@ -1,0 +1,19 @@
+{
+  "id": 86,
+  "title": "Cuboid Route",
+  "titleZh": "长方体路径",
+  "difficulty": 11,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "geometry",
+    "number-theory",
+    "enumeration"
+  ],
+  "answer": 1818,
+  "solvedBy": 16370,
+  "bruteForceBaselineMs": 2794.201125,
+  "optimizedBaselineMs": 6.837588,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=86",
+  "fetchedAt": "2026-09-12"
+}

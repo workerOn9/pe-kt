@@ -1,0 +1,20 @@
+{
+  "id": 47,
+  "title": "Distinct Primes Factors",
+  "titleZh": "不同的质因数",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "primes",
+    "sieve",
+    "factorization"
+  ],
+  "answer": 134043,
+  "solvedBy": 71862,
+  "bruteForceBaselineMs": 14.196283,
+  "optimizedBaselineMs": 6.287573,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=47",
+  "fetchedAt": "2026-09-12"
+}

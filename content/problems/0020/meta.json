@@ -1,0 +1,15 @@
+{
+  "id": 20,
+  "title": "Factorial Digit Sum",
+  "titleZh": "阶乘的数字和",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["big-integer", "digit-manipulation"],
+  "answer": 648,
+  "solvedBy": 207006,
+  "bruteForceBaselineMs": 0.025526,
+  "optimizedBaselineMs": 0.013833,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=20",
+  "fetchedAt": "2026-09-12"
+}

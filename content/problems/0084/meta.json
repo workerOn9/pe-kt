@@ -1,0 +1,19 @@
+{
+  "id": 84,
+  "title": "Monopoly Odds",
+  "titleZh": "大富翁概率",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "markov-chain",
+    "probability",
+    "simulation"
+  ],
+  "answer": 101524,
+  "solvedBy": 16230,
+  "bruteForceBaselineMs": 3066.718084,
+  "optimizedBaselineMs": 2.5015046,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=84",
+  "fetchedAt": "2026-09-12"
+}

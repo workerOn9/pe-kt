@@ -1,0 +1,19 @@
+{
+  "id": 66,
+  "title": "Diophantine Equation",
+  "titleZh": "丢番图方程",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": [
+    "number-theory",
+    "continued-fractions",
+    "big-integer"
+  ],
+  "answer": 661,
+  "solvedBy": 25280,
+  "bruteForceBaselineMs": null,
+  "optimizedBaselineMs": 5.34712,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=66",
+  "fetchedAt": "2026-09-12"
+}

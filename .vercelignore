@@ -1,0 +1,7 @@
+# 容器服务从源码构建，本地产物与虚拟环境不进 Vercel 构建上下文。
+/.git/
+/.gradle/
+/.kotlin/
+/server/build/
+/web/dist/
+/web/node_modules/

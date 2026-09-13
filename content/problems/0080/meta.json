@@ -1,0 +1,19 @@
+{
+  "id": 80,
+  "title": "Square Root Digital Expansion",
+  "titleZh": "平方根数字展开",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "number-theory",
+    "big-integer",
+    "precision"
+  ],
+  "answer": 40886,
+  "solvedBy": 24888,
+  "bruteForceBaselineMs": 119.194833,
+  "optimizedBaselineMs": 15.033407,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=80",
+  "fetchedAt": "2026-09-12"
+}

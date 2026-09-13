@@ -1,0 +1,18 @@
+{
+  "id": 78,
+  "title": "Coin Partitions",
+  "titleZh": "硬币分拆",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "number-theory",
+    "dynamic-programming"
+  ],
+  "answer": 55374,
+  "solvedBy": 21946,
+  "bruteForceBaselineMs": 4673.7105,
+  "optimizedBaselineMs": 65.6438334,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=78",
+  "fetchedAt": "2026-09-12"
+}

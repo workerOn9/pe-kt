@@ -1,0 +1,15 @@
+{
+  "id": 2,
+  "title": "Even Fibonacci Numbers",
+  "titleZh": "偶数斐波那契数",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "fibonacci", "sequence"],
+  "answer": 4613732,
+  "solvedBy": 685481,
+  "bruteForceBaselineMs": 0.00002,
+  "optimizedBaselineMs": 0.000005,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=2",
+  "fetchedAt": "2026-09-12"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 39,
+  "title": "Integer Right Triangles",
+  "titleZh": "整数直角三角形",
+  "difficulty": 3,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "pythagorean-triplet",
+    "enumeration"
+  ],
+  "answer": 840,
+  "solvedBy": 89854,
+  "bruteForceBaselineMs": 28.752667,
+  "optimizedBaselineMs": 0.001266,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=39",
+  "fetchedAt": "2026-09-12"
+}

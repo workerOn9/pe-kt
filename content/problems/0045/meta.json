@@ -1,0 +1,19 @@
+{
+  "id": 45,
+  "title": "Triangular, Pentagonal, and Hexagonal",
+  "titleZh": "三角形数、五边形数与六边形数",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "polygonal-numbers",
+    "number-theory"
+  ],
+  "answer": 1533776805,
+  "solvedBy": 86283,
+  "bruteForceBaselineMs": 17.867792,
+  "optimizedBaselineMs": 0.105747,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=45",
+  "fetchedAt": "2026-09-12"
+}

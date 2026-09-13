@@ -1,0 +1,15 @@
+{
+  "id": 69,
+  "title": "Totient Maximum",
+  "titleZh": "最大欧拉函数比",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": ["number-theory", "primes", "optimization"],
+  "answer": 510510,
+  "solvedBy": 43572,
+  "bruteForceBaselineMs": 18.237,
+  "optimizedBaselineMs": 0.0021,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=69",
+  "fetchedAt": "2026-09-12"
+}

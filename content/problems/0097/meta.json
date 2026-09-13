@@ -1,0 +1,15 @@
+{
+  "id": 97,
+  "title": "Large Non-Mersenne Prime",
+  "titleZh": "大非梅森素数",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": ["modular-arithmetic", "big-integer"],
+  "answer": 8739992577,
+  "solvedBy": 50153,
+  "bruteForceBaselineMs": 284.467442,
+  "optimizedBaselineMs": 0.199157,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=97",
+  "fetchedAt": "2026-09-12"
+}

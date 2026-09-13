@@ -1,0 +1,19 @@
+{
+  "id": 58,
+  "title": "Spiral Primes",
+  "titleZh": "螺旋素数",
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "math",
+    "primes",
+    "spiral"
+  ],
+  "answer": 26241,
+  "solvedBy": 49690,
+  "bruteForceBaselineMs": 177.670458,
+  "optimizedBaselineMs": 5.13931,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=58",
+  "fetchedAt": "2026-09-12"
+}

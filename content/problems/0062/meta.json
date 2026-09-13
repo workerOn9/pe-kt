@@ -1,0 +1,20 @@
+{
+  "id": 62,
+  "title": "Cubic Permutations",
+  "titleZh": "立方数排列",
+  "difficulty": 6,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "number-theory",
+    "digits",
+    "hashing"
+  ],
+  "answer": 127035954683,
+  "solvedBy": 39927,
+  "bruteForceBaselineMs": 20.536,
+  "optimizedBaselineMs": 5.011,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=62",
+  "fetchedAt": "2026-09-12"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 92,
+  "title": "Square Digit Chains",
+  "titleZh": "平方数位链",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "digits",
+    "dynamic-programming",
+    "number-theory"
+  ],
+  "answer": 8581146,
+  "solvedBy": 49444,
+  "bruteForceBaselineMs": 1575.011,
+  "optimizedBaselineMs": 0.134,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=92",
+  "fetchedAt": "2026-09-12"
+}

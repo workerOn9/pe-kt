@@ -1,0 +1,6 @@
+.git
+.gradle
+/docs
+/node_modules
+/web/node_modules
+/README.md

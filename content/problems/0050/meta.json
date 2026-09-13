@@ -1,0 +1,19 @@
+{
+  "id": 50,
+  "title": "Consecutive Prime Sum",
+  "titleZh": "连续素数之和",
+  "difficulty": 3,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "math",
+    "primes",
+    "prefix-sum"
+  ],
+  "answer": 997651,
+  "solvedBy": 76566,
+  "bruteForceBaselineMs": 3.610095,
+  "optimizedBaselineMs": 3.065447,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=50",
+  "fetchedAt": "2026-09-12"
+}

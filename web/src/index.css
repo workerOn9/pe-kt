@@ -1,0 +1,1083 @@
+/* ==========================================================================
+   pe-kt 全局样式 —— 数学阅读站，排版优先
+   浅色背景 / 中文友好字体栈 / 宽松行高 / min(80vw, 1600px) 居中内容列
+   ========================================================================== */
+
+:root {
+  --font-body:
+    'Source Han Serif SC', 'Noto Serif CJK SC', 'Songti SC',
+    'Charter', 'Georgia', serif;
+  --font-ui:
+    -apple-system, 'SF Pro Text', 'Helvetica Neue', 'PingFang SC',
+    'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
+  --font-mono:
+    'SF Mono', 'JetBrains Mono', 'Menlo', 'Consolas', 'Courier New', monospace;
+
+  --color-bg: #fbfaf7;
+  --color-text: #2b2a26;
+  --color-text-muted: #6f6c64;
+  --color-accent: #1a5f7a;
+  --color-accent-soft: #e8f1f4;
+  --color-border: #e3e0d8;
+  --color-ok: #2e7d32;
+  --color-bad: #b3261e;
+
+  --content-width: min(80vw, 1600px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- 站点骨架 ---------- */
+
+.site {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--color-border);
+  padding: 28px 24px 20px;
+}
+
+.site-header__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+}
+
+.site-title {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.site-title:hover {
+  color: var(--color-accent);
+}
+
+.site-subtitle {
+  margin: 4px 0 0;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.site-main {
+  flex: 1;
+  max-width: var(--content-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 20px 24px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* 两行文字由 footer 的 padding 定上下留白，行间距单独给，避免 <p> 默认外边距撑开 */
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer p.site-footer__note {
+  margin-top: 4px;
+}
+
+/* ---------- 通用元素 ---------- */
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+a:hover {
+  border-bottom-color: var(--color-accent);
+}
+
+.loading,
+.empty {
+  font-family: var(--font-ui);
+  color: var(--color-text-muted);
+}
+
+.list-sentinel {
+  min-height: 40px;
+  padding: 18px 0 8px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.error-box {
+  border: 1px solid var(--color-bad);
+  border-left-width: 4px;
+  border-radius: 4px;
+  background: #fdf5f4;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-family: var(--font-ui);
+}
+
+.error-box__title {
+  margin: 0 0 6px;
+  font-weight: 700;
+  color: var(--color-bad);
+}
+
+.error-box__message {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+/* ---------- 题目列表 ---------- */
+
+.problem-list__summary {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+/* 列表页的「延伸阅读」入口：安静的文字链，不抢题库的视觉重心 */
+.read-more {
+  margin: 4px 0 18px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.read-more a {
+  color: var(--color-accent);
+}
+
+.problem-table {
+  width: 100%;
+  /* sticky 表头与 border-collapse: collapse 不兼容（滚动时表头边框会丢失），
+     改用 separate + border-spacing: 0，视觉与 collapse 等价 */
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+.problem-table th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-bg);
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--color-border);
+}
+
+.problem-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+.problem-table tbody tr:hover {
+  background: var(--color-accent-soft);
+}
+
+.col-id {
+  width: 56px;
+  font-variant-numeric: tabular-nums;
+}
+
+.col-difficulty {
+  width: 72px;
+}
+
+.problem-link {
+  display: block;
+  font-weight: 600;
+  font-size: 15px;
+  border-bottom: none;
+}
+
+.problem-title-en {
+  display: block;
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.difficulty-badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  padding: 1px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  padding: 1px 8px;
+  margin: 2px 4px 2px 0;
+  border-radius: 3px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+/* ---------- 题目详情 ---------- */
+
+.back-link {
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.problem-header h1 {
+  font-size: 30px;
+  line-height: 1.4;
+  margin: 8px 0 4px;
+}
+
+/* 吸顶题号栏：滚动时钉在视口顶部，右侧是上一题/下一题。
+   必须用不透明底色，否则正文会从下面透上来 */
+.problem-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+  font-family: var(--font-ui);
+}
+
+/* 零高度哨兵：滚出视口即表示题号栏已吸顶（sticky 元素自身粘住后始终可见，观测不到） */
+.problem-nav__sentinel {
+  height: 0;
+}
+
+.problem-nav__id {
+  flex: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+}
+
+/* 吸顶后接在题号后面：题目名称（此时页头大标题已滚出视野）。
+   窄屏下截断，不挤压右侧按钮 */
+.problem-nav__title {
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.problem-nav__links {
+  display: flex;
+  flex: none;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.problem-nav__link {
+  font-size: 13px;
+}
+
+.problem-header__en {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.problem-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.pe-link {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  margin-left: auto;
+}
+
+/* 题面首行的「中文意译」来源说明：正文里的引用块只有它是常驻块，字号压一档（其余引用块
+   是解析中的临时提醒，保持正文大小） */
+.problem-body .markdown > blockquote:first-child {
+  font-size: 15px;
+}
+
+/* ---------- Tab 切换 ---------- */
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin: 24px 0 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tabs--small {
+  margin-top: 12px;
+}
+
+.tab {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 8px 16px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  background: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--color-text);
+}
+
+.tab--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ---------- Markdown 正文排版 ---------- */
+
+.markdown {
+  font-size: 17px;
+}
+
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  font-family: var(--font-ui);
+  line-height: 1.5;
+  margin: 1.8em 0 0.6em;
+}
+
+.markdown h2 {
+  font-size: 22px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 6px;
+}
+
+.markdown h3 {
+  font-size: 18px;
+}
+
+.markdown p {
+  margin: 0.9em 0;
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 1.6em;
+}
+
+.markdown li {
+  margin: 0.3em 0;
+}
+
+.markdown blockquote {
+  margin: 1.2em 0;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2em 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+
+.markdown th,
+.markdown td {
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.markdown th {
+  background: var(--color-accent-soft);
+}
+
+/* 行内代码与代码块 */
+.markdown code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: #f2efe8;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.markdown pre {
+  background: #f6f4ef;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 14px 18px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.markdown pre code {
+  background: none;
+  padding: 0;
+}
+
+/* KaTeX 公式层次：块级公式留白，行内不挤压行高 */
+.markdown .katex-display {
+  margin: 1.4em 0;
+  padding: 8px 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.markdown .katex {
+  font-size: 1.06em;
+}
+
+/* ---------- 运行区 ---------- */
+
+.run-section h2,
+.timing-section h2,
+.viz-section h2,
+.code-section h2 {
+  font-family: var(--font-ui);
+  font-size: 20px;
+  margin: 2.2em 0 0.6em;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 6px;
+}
+
+.run-button {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 22px;
+  border: none;
+  border-radius: 5px;
+  background: var(--color-accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.run-button:hover:not(:disabled) {
+  background: #144d63;
+}
+
+.run-button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.run-result {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 40px;
+  margin: 18px 0 0;
+  padding: 16px 20px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  font-family: var(--font-ui);
+}
+
+.run-result--ok {
+  border-left: 4px solid var(--color-ok);
+  background: #f4f9f4;
+}
+
+.run-result--bad {
+  border-left: 4px solid var(--color-bad);
+  background: #fdf5f4;
+}
+
+.run-result div {
+  min-width: 100px;
+}
+
+.run-result dt {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  margin-bottom: 2px;
+}
+
+.run-result dd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  word-break: break-all;
+}
+
+/* ---------- 代码块（highlight.js） ---------- */
+
+.code-block {
+  margin: 12px 0 0;
+}
+
+.code-block__title {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--color-text-muted);
+  padding: 6px 14px;
+  background: #efede6;
+  border: 1px solid var(--color-border);
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 16px 18px;
+  background: #f6f4ef;
+  border: 1px solid var(--color-border);
+  border-radius: 0 0 6px 6px;
+  overflow-x: auto;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.code-block pre code {
+  font-family: var(--font-mono);
+  background: none;
+  padding: 0;
+}
+
+.code-block__title + pre {
+  border-radius: 0 0 6px 6px;
+}
+
+/* ---------- 过程可视化播放器 ---------- */
+
+.visualizer {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: #fdfcf9;
+  padding: 16px 20px 14px;
+  margin: 12px 0 0;
+  outline: none;
+}
+
+.visualizer:focus-visible {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-soft);
+}
+
+.visualizer__title {
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.visualizer__stage {
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+.viz-svg {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 单元格状态配色：idle 浅灰底 / current 强调色 / eliminated 灰掉 /
+   prime 绿色系 / considered 浅暖高亮 / onPath 强调色实底 */
+.viz-cell rect {
+  fill: #f4f2ec;
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.viz-cell__text {
+  fill: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.viz-cell--current rect {
+  fill: var(--color-accent-soft);
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+}
+
+.viz-cell--current .viz-cell__text {
+  fill: var(--color-accent);
+  font-weight: 700;
+}
+
+.viz-cell--eliminated rect {
+  fill: #edebe5;
+}
+
+.viz-cell--eliminated {
+  opacity: 0.45;
+}
+
+.viz-cell__strike {
+  stroke: var(--color-text-muted);
+  stroke-width: 1.5;
+}
+
+.viz-cell--prime rect {
+  fill: #e9f3ea;
+  stroke: var(--color-ok);
+  stroke-width: 1.5;
+}
+
+.viz-cell--prime .viz-cell__text {
+  fill: var(--color-ok);
+  font-weight: 600;
+}
+
+.viz-cell--considered rect {
+  fill: #f3ead3;
+  stroke: #d8c9a3;
+}
+
+.viz-cell--onPath rect {
+  fill: var(--color-accent);
+  stroke: #144d63;
+  stroke-width: 2;
+}
+
+.viz-cell--onPath .viz-cell__text {
+  fill: #fff;
+  font-weight: 700;
+}
+
+.viz-cell--done rect {
+  fill: #f0eee8;
+  stroke: var(--color-ok);
+  stroke-dasharray: 3 2;
+}
+
+/* 折线图（sequence） */
+.viz-axis {
+  stroke: var(--color-border);
+  stroke-width: 1;
+}
+
+.viz-axis__label,
+.viz-axis__tick {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  fill: var(--color-text-muted);
+}
+
+.viz-sequence__line {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.viz-sequence__dot {
+  fill: #fff;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.viz-sequence__dot--current {
+  fill: var(--color-accent);
+  stroke: #144d63;
+  stroke-width: 2;
+}
+
+.viz-sequence__dot--eliminated {
+  stroke: var(--color-text-muted);
+  opacity: 0.5;
+}
+
+.viz-sequence__dot--prime,
+.viz-sequence__dot--done {
+  stroke: var(--color-ok);
+}
+
+.viz-sequence__dot--onPath {
+  fill: var(--color-accent-soft);
+  stroke-width: 2;
+}
+
+.viz-sequence__dot--considered {
+  stroke: #c9a24b;
+}
+
+/* 传输控制条 */
+.visualizer__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+
+.viz-button {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  padding: 5px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.viz-button:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.viz-button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.viz-button--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+  font-weight: 600;
+}
+
+.viz-button--primary:hover:not(:disabled) {
+  background: #144d63;
+  color: #fff;
+}
+
+.visualizer__slider {
+  flex: 1;
+  min-width: 120px;
+  accent-color: var(--color-accent);
+}
+
+.visualizer__speed {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-muted);
+}
+
+.visualizer__speed select {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  padding: 3px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--color-text);
+}
+
+.visualizer__step-indicator {
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.visualizer__codeline {
+  margin: 10px 0 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--color-accent);
+}
+
+.visualizer__codeline code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--color-accent-soft);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.visualizer__caption {
+  margin: 8px 0 0;
+  min-height: 1.85em;
+  font-size: 15px;
+  color: var(--color-text);
+}
+
+/* ---------- 列表页工具条：搜索与筛选 ---------- */
+
+.list-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 10px;
+  font-family: var(--font-ui);
+}
+
+.list-toolbar__search {
+  flex: 1;
+  min-width: 220px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 7px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--color-text);
+}
+
+.list-toolbar__search:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-soft);
+}
+
+.list-toolbar__select {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  padding: 6px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--color-text);
+}
+
+.list-toolbar__select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-soft);
+}
+
+.list-toolbar__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 0 14px;
+}
+
+.filter-chip {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  padding: 2px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.filter-chip:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.filter-chip--active,
+.filter-chip--active:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #fff;
+}
+
+.empty-filter {
+  border: 1px dashed var(--color-border);
+  border-radius: 6px;
+  padding: 28px 20px;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.empty-filter p {
+  margin: 0.4em 0;
+}
+
+.empty-filter__clear {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  padding: 5px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: 5px;
+  background: #fff;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
+.empty-filter__clear:hover {
+  border-color: var(--color-accent);
+}
+
+/* ---------- 耗时对比（对数刻度条形图） ---------- */
+
+.timing-chart {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: #fdfcf9;
+  padding: 16px 20px 10px;
+  margin: 12px 0 0;
+}
+
+.timing-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.timing-chart__label {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  fill: var(--color-text);
+}
+
+.timing-chart__value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.timing-chart__speedup {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--color-accent);
+}
+
+.timing-chart__bar--brute {
+  fill: #b0aca2;
+}
+
+.timing-chart__bar--opt {
+  fill: var(--color-accent);
+}
+
+.timing-chart__note {
+  margin: 8px 0 4px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+/* ---------- 基准报告页（/benchmark）：多语言耗时对比图 ---------- */
+
+.lang-chart {
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: #fdfcf9;
+  padding: 16px 20px 10px;
+  margin: 16px 0;
+}
+
+.lang-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.lang-chart__label {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  fill: var(--color-text);
+}
+
+.lang-chart__value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  fill: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.lang-chart__bar {
+  fill: var(--color-accent);
+}
+
+.lang-chart__bar--error {
+  fill: none;
+  stroke: var(--color-bad);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+
+.lang-chart__note {
+  margin: 8px 0 4px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.lang-chart__unit {
+  margin-left: 4px;
+}
+
+/* ---------- 窄屏适配 ---------- */
+
+@media (max-width: 640px) {
+  body {
+    font-size: 16px;
+  }
+
+  .site-main {
+    padding: 24px 16px 48px;
+  }
+
+  .problem-header h1 {
+    font-size: 24px;
+  }
+
+  /* 多语言耗时图的标签较长，窄屏下横向滚动而不是等比缩小到看不清 */
+  .lang-chart {
+    overflow-x: auto;
+  }
+
+  .lang-chart svg {
+    min-width: 560px;
+  }
+
+  .col-tags {
+    display: none;
+  }
+
+  .problem-table th:nth-child(4),
+  .problem-table td:nth-child(4) {
+    display: none;
+  }
+}

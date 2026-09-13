@@ -1,0 +1,19 @@
+{
+  "id": 59,
+  "title": "XOR Decryption",
+  "titleZh": "异或解密",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "cryptography",
+    "xor",
+    "file-io"
+  ],
+  "answer": 129448,
+  "solvedBy": 49512,
+  "bruteForceBaselineMs": 1158.997347,
+  "optimizedBaselineMs": 3.474014,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=59",
+  "fetchedAt": "2026-09-12"
+}
