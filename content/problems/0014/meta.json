@@ -1,0 +1,19 @@
+{
+  "id": 14,
+  "title": "Longest Collatz Sequence",
+  "titleZh": "最长 Collatz 序列",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "memoization",
+    "collatz"
+  ],
+  "answer": 837799,
+  "solvedBy": 238610,
+  "bruteForceBaselineMs": 226.520916,
+  "optimizedBaselineMs": 21.883367,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=14",
+  "fetchedAt": "2026-09-12"
+}

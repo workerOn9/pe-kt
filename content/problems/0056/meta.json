@@ -1,0 +1,19 @@
+{
+  "id": 56,
+  "title": "Powerful Digit Sum",
+  "titleZh": "幂的数位和",
+  "difficulty": 3,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "big-integer",
+    "digits"
+  ],
+  "answer": 972,
+  "solvedBy": 70628,
+  "bruteForceBaselineMs": 46.851866,
+  "optimizedBaselineMs": 26.343486,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=56",
+  "fetchedAt": "2026-09-12"
+}

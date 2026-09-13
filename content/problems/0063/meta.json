@@ -1,0 +1,20 @@
+{
+  "id": 63,
+  "title": "Powerful Digit Counts",
+  "titleZh": "幂次方位数",
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "math",
+    "number-theory",
+    "big-integer",
+    "counting"
+  ],
+  "answer": 49,
+  "solvedBy": 52691,
+  "bruteForceBaselineMs": 1.354,
+  "optimizedBaselineMs": 0.184,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=63",
+  "fetchedAt": "2026-09-12"
+}

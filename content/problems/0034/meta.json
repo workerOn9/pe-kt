@@ -1,0 +1,19 @@
+{
+  "id": 34,
+  "title": "Digit Factorials",
+  "titleZh": "各位数字的阶乘",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "factorial",
+    "digits"
+  ],
+  "answer": 40730,
+  "solvedBy": 114940,
+  "bruteForceBaselineMs": 190.885583,
+  "optimizedBaselineMs": 29.191792,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=34",
+  "fetchedAt": "2026-09-12"
+}

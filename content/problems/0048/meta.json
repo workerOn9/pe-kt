@@ -1,0 +1,19 @@
+{
+  "id": 48,
+  "title": "Self Powers",
+  "titleZh": "自幂数",
+  "difficulty": 3,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "big-integer",
+    "modular-arithmetic"
+  ],
+  "answer": 9110846700,
+  "solvedBy": 123028,
+  "bruteForceBaselineMs": 2.786697,
+  "optimizedBaselineMs": 1.125045,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=48",
+  "fetchedAt": "2026-09-12"
+}

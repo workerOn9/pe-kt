@@ -1,0 +1,19 @@
+{
+  "id": 100,
+  "title": "Arranged Probability",
+  "titleZh": "排列概率",
+  "difficulty": 13,
+  "difficultyLevel": "Level 5",
+  "tags": [
+    "number-theory",
+    "pell-equation",
+    "diophantine"
+  ],
+  "answer": 756872327473,
+  "solvedBy": 20952,
+  "bruteForceBaselineMs": 0.1475,
+  "optimizedBaselineMs": 0.000602,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=100",
+  "fetchedAt": "2026-09-12"
+}

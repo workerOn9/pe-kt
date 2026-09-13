@@ -1,0 +1,18 @@
+{
+  "id": 85,
+  "title": "Counting Rectangles",
+  "titleZh": "矩形计数",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "combinatorics",
+    "search"
+  ],
+  "answer": 2772,
+  "solvedBy": 30474,
+  "bruteForceBaselineMs": 6.4186418,
+  "optimizedBaselineMs": 0.33195367,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=85",
+  "fetchedAt": "2026-09-12"
+}

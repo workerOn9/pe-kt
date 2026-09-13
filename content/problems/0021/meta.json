@@ -1,0 +1,15 @@
+{
+  "id": 21,
+  "title": "Amicable Numbers",
+  "titleZh": "亲和数",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": ["math", "number-theory", "sieve"],
+  "answer": 31626,
+  "solvedBy": 169091,
+  "bruteForceBaselineMs": 1.200675,
+  "optimizedBaselineMs": 0.084872,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=21",
+  "fetchedAt": "2026-09-12"
+}

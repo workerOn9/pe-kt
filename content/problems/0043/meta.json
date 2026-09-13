@@ -1,0 +1,19 @@
+{
+  "id": 43,
+  "title": "Sub-string Divisibility",
+  "titleZh": "子串可整除性",
+  "difficulty": 3,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "pandigital",
+    "backtracking"
+  ],
+  "answer": 16695334890,
+  "solvedBy": 74259,
+  "bruteForceBaselineMs": 12.296902,
+  "optimizedBaselineMs": 0.368703,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=43",
+  "fetchedAt": "2026-09-12"
+}

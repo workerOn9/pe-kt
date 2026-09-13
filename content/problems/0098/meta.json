@@ -1,0 +1,15 @@
+{
+  "id": 98,
+  "title": "Anagramic Squares",
+  "titleZh": "字母异位平方数",
+  "difficulty": 13,
+  "difficultyLevel": "Level 5",
+  "tags": ["words", "pattern-matching", "search"],
+  "answer": 18769,
+  "solvedBy": 14736,
+  "bruteForceBaselineMs": 15.655808,
+  "optimizedBaselineMs": 4.879169,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=98",
+  "fetchedAt": "2026-09-12"
+}

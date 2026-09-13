@@ -1,0 +1,19 @@
+{
+  "id": 28,
+  "title": "Number Spiral Diagonals",
+  "titleZh": "螺旋数阵的对角线",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "spiral",
+    "closed-form"
+  ],
+  "answer": 669171001,
+  "solvedBy": 126805,
+  "bruteForceBaselineMs": 1.297379,
+  "optimizedBaselineMs": 0.000213,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=28",
+  "fetchedAt": "2026-09-12"
+}

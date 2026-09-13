@@ -1,0 +1,15 @@
+{
+  "id": 68,
+  "title": "Magic 5-gon Ring",
+  "titleZh": "幻五边形环",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": ["combinatorics", "permutations", "search"],
+  "answer": 6531031914842725,
+  "solvedBy": 26153,
+  "bruteForceBaselineMs": 88.101,
+  "optimizedBaselineMs": 0.857,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=68",
+  "fetchedAt": "2026-09-12"
+}

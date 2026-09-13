@@ -1,0 +1,15 @@
+{
+  "id": 25,
+  "title": "1000-digit Fibonacci Number",
+  "titleZh": "1000 位斐波那契数",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": ["math", "fibonacci", "big-integer"],
+  "answer": 4782,
+  "solvedBy": 175340,
+  "bruteForceBaselineMs": 64.938854,
+  "optimizedBaselineMs": 0.331938,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=25",
+  "fetchedAt": "2026-09-12"
+}

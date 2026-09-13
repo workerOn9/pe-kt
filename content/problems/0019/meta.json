@@ -1,0 +1,15 @@
+{
+  "id": 19,
+  "title": "Counting Sundays",
+  "titleZh": "星期日计数",
+  "difficulty": 8,
+  "difficultyLevel": "Level 2",
+  "tags": ["calendar", "modular-arithmetic"],
+  "answer": 171,
+  "solvedBy": 153777,
+  "bruteForceBaselineMs": 0.005185,
+  "optimizedBaselineMs": 0.005384,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=19",
+  "fetchedAt": "2026-09-12"
+}

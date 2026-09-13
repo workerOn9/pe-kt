@@ -1,0 +1,19 @@
+{
+  "id": 73,
+  "title": "Counting Fractions in a Range",
+  "titleZh": "区间内的分数计数",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "number-theory",
+    "inclusion-exclusion",
+    "sieve"
+  ],
+  "answer": 7295372,
+  "solvedBy": 31066,
+  "bruteForceBaselineMs": 445.165153,
+  "optimizedBaselineMs": 1.310769,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=73",
+  "fetchedAt": "2026-09-12"
+}

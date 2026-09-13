@@ -1,0 +1,19 @@
+{
+  "id": 29,
+  "title": "Distinct Powers",
+  "titleZh": "不同的幂",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "big-integer",
+    "set"
+  ],
+  "answer": 9183,
+  "solvedBy": 127809,
+  "bruteForceBaselineMs": 2.015241,
+  "optimizedBaselineMs": 0.122131,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=29",
+  "fetchedAt": "2026-09-12"
+}

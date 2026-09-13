@@ -1,0 +1,15 @@
+{
+  "id": 3,
+  "title": "Largest Prime Factor",
+  "titleZh": "最大质因数",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "primes", "factorization"],
+  "answer": 6857,
+  "solvedBy": 516199,
+  "bruteForceBaselineMs": null,
+  "optimizedBaselineMs": 0.00185,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=3",
+  "fetchedAt": "2026-09-12"
+}

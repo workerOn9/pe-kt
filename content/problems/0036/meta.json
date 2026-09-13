@@ -1,0 +1,19 @@
+{
+  "id": 36,
+  "title": "Double-base Palindromes",
+  "titleZh": "双进制回文数",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "palindrome",
+    "binary"
+  ],
+  "answer": 872187,
+  "solvedBy": 107511,
+  "bruteForceBaselineMs": 25.048083,
+  "optimizedBaselineMs": 14.800638,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=36",
+  "fetchedAt": "2026-09-12"
+}

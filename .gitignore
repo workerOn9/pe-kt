@@ -1,0 +1,22 @@
+# Gradle
+.gradle/
+build/
+**/build/
+
+# IntelliJ / VS Code
+.idea/
+*.iml
+.vscode/
+
+# Node (web/)
+node_modules/
+web/dist/
+
+# Vercel CLI 本地状态
+.vercel/
+
+# OS
+.DS_Store
+
+# Kotlin
+.kotlin/

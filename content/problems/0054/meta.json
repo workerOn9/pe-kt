@@ -1,0 +1,19 @@
+{
+  "id": 54,
+  "title": "Poker Hands",
+  "titleZh": "扑克手牌",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "parsing",
+    "file-io",
+    "sorting"
+  ],
+  "answer": 376,
+  "solvedBy": 44658,
+  "bruteForceBaselineMs": 5.866267,
+  "optimizedBaselineMs": 2.073741,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=54",
+  "fetchedAt": "2026-09-12"
+}

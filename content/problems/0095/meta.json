@@ -1,0 +1,19 @@
+{
+  "id": 95,
+  "title": "Amicable Chains",
+  "titleZh": "亲和数链",
+  "difficulty": 8,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "number-theory",
+    "sieve",
+    "graph"
+  ],
+  "answer": 14316,
+  "solvedBy": 18532,
+  "bruteForceBaselineMs": 47620.078,
+  "optimizedBaselineMs": 146.447,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=95",
+  "fetchedAt": "2026-09-12"
+}

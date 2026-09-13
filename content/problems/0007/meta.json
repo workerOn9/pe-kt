@@ -1,0 +1,15 @@
+{
+  "id": 7,
+  "title": "10 001st Prime",
+  "titleZh": "第 10001 个素数",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "primes", "sieve"],
+  "answer": 104743,
+  "solvedBy": 390047,
+  "bruteForceBaselineMs": 1.605396,
+  "optimizedBaselineMs": 0.275105,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=7",
+  "fetchedAt": "2026-09-12"
+}

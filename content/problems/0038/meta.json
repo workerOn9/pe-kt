@@ -1,0 +1,19 @@
+{
+  "id": 38,
+  "title": "Pandigital Multiples",
+  "titleZh": "全数字倍数",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "pandigital",
+    "concatenation"
+  ],
+  "answer": 932718654,
+  "solvedBy": 78134,
+  "bruteForceBaselineMs": 4.379383,
+  "optimizedBaselineMs": 0.288626,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=38",
+  "fetchedAt": "2026-09-12"
+}

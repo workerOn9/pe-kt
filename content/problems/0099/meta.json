@@ -1,0 +1,15 @@
+{
+  "id": 99,
+  "title": "Largest Exponential",
+  "titleZh": "最大的幂",
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "tags": ["logarithms", "parsing", "floating-point"],
+  "answer": 709,
+  "solvedBy": 37309,
+  "bruteForceBaselineMs": 1.630981,
+  "optimizedBaselineMs": 1.335991,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=99",
+  "fetchedAt": "2026-09-12"
+}

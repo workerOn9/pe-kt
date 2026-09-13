@@ -1,0 +1,19 @@
+{
+  "id": 94,
+  "title": "Almost Equilateral Triangles",
+  "titleZh": "近乎等边的三角形",
+  "difficulty": 24,
+  "difficultyLevel": "Level 9",
+  "tags": [
+    "number-theory",
+    "geometry",
+    "continued-fractions"
+  ],
+  "answer": 518408346,
+  "solvedBy": 16272,
+  "bruteForceBaselineMs": 3719.327,
+  "optimizedBaselineMs": 0.004,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=94",
+  "fetchedAt": "2026-09-12"
+}

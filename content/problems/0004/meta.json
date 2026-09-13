@@ -1,0 +1,15 @@
+{
+  "id": 4,
+  "title": "Largest Palindrome Product",
+  "titleZh": "最大回文乘积",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "palindrome", "brute-force-smart"],
+  "answer": 906609,
+  "solvedBy": 456222,
+  "bruteForceBaselineMs": 1.221573,
+  "optimizedBaselineMs": 0.015066,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=4",
+  "fetchedAt": "2026-09-12"
+}

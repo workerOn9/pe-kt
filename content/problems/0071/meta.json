@@ -1,0 +1,15 @@
+{
+  "id": 71,
+  "title": "Ordered Fractions",
+  "titleZh": "有序分数",
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "tags": ["number-theory", "fractions", "modular-arithmetic"],
+  "answer": 428570,
+  "solvedBy": 36242,
+  "bruteForceBaselineMs": 0.961,
+  "optimizedBaselineMs": 0.0003,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=71",
+  "fetchedAt": "2026-09-12"
+}

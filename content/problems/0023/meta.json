@@ -1,0 +1,15 @@
+{
+  "id": 23,
+  "title": "Non-Abundant Sums",
+  "titleZh": "非盈数之和",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": ["math", "number-theory", "sieve"],
+  "answer": 4179871,
+  "solvedBy": 128427,
+  "bruteForceBaselineMs": 18.504639,
+  "optimizedBaselineMs": 12.140421,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=23",
+  "fetchedAt": "2026-09-12"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 9,
+  "title": "Special Pythagorean Triplet",
+  "titleZh": "特殊的勾股三元组",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "pythagorean-triplet", "number-theory"],
+  "answer": 31875000,
+  "solvedBy": 337570,
+  "bruteForceBaselineMs": 0.034236,
+  "optimizedBaselineMs": 0.000035,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=9",
+  "fetchedAt": "2026-09-12"
+}

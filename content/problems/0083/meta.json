@@ -1,0 +1,19 @@
+{
+  "id": 83,
+  "title": "Path Sum: Four Ways",
+  "titleZh": "路径和：四种走法",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "graph",
+    "shortest-path",
+    "grid"
+  ],
+  "answer": 425185,
+  "solvedBy": 22773,
+  "bruteForceBaselineMs": 383.175687,
+  "optimizedBaselineMs": 2.667588,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=83",
+  "fetchedAt": "2026-09-12"
+}

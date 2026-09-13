@@ -1,0 +1,19 @@
+{
+  "id": 40,
+  "title": "Champernowne's Constant",
+  "titleZh": "钱珀瑙恩常数",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "digits",
+    "champernowne"
+  ],
+  "answer": 210,
+  "solvedBy": 96921,
+  "bruteForceBaselineMs": 2.31735,
+  "optimizedBaselineMs": 1.286098,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=40",
+  "fetchedAt": "2026-09-12"
+}

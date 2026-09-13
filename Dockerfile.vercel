@@ -1,0 +1,36 @@
+# pe-kt 后端 —— Vercel 容器服务镜像
+#
+# Vercel 检测到 services.server.runtime=container 后，在 service root（仓库根）执行本文件。
+# 与本地 Dockerfile 的区别：Vercel 构建机在海外、没有本地产物可直接 COPY，因此这里从源码构建；
+# 且只产出 API 进程（/api、/health），前端静态资源由 web 服务走 CDN，不在本镜像内。
+
+# ---------- 阶段一：构建（JDK 21 + Gradle wrapper；wrapper 发行版走官方源） ----------
+FROM eclipse-temurin:21-jdk AS build
+
+WORKDIR /workspace
+
+# 先复制构建脚本与 wrapper，让依赖解析层可缓存
+COPY gradlew settings.gradle.kts build.gradle.kts ./
+COPY gradle ./gradle
+COPY server ./server
+
+# 只产出 installDist 产物，不跑测试（测试在本地门禁与 GitHub Actions 里执行）
+RUN ./gradlew :server:installDist --no-daemon
+
+# ---------- 阶段二：运行（JRE 21，只带产物与内容资产） ----------
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+COPY --from=build /workspace/server/build/install/server/ /app/
+COPY content/ /app/content/
+
+# PORT=80：Vercel 容器服务的流量默认打向 80 端口（其注入的 PORT 会覆盖本值）。
+# JAVA_HOME/PATH 显式声明：容器平台启动进程时可能重置 PATH，导致启动脚本找不到 java。
+ENV PEKT_CONTENT_DIR=/app/content \
+    PORT=80 \
+    JAVA_HOME=/opt/java/openjdk
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
+
+EXPOSE 8080
+
+ENTRYPOINT ["/app/bin/server"]

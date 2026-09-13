@@ -1,0 +1,19 @@
+{
+  "id": 55,
+  "title": "Lychrel Numbers",
+  "titleZh": "利克瑞尔数",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "big-integer",
+    "palindrome",
+    "enumeration"
+  ],
+  "answer": 249,
+  "solvedBy": 65362,
+  "bruteForceBaselineMs": 174.203892,
+  "optimizedBaselineMs": 12.789495,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=55",
+  "fetchedAt": "2026-09-12"
+}

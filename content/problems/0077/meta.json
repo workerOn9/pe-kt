@@ -1,0 +1,18 @@
+{
+  "id": 77,
+  "title": "Prime Summations",
+  "titleZh": "素数分拆",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "primes",
+    "dynamic-programming"
+  ],
+  "answer": 71,
+  "solvedBy": 24489,
+  "bruteForceBaselineMs": 2.0015416666666663,
+  "optimizedBaselineMs": 0.05283333333333333,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=77",
+  "fetchedAt": "2026-09-12"
+}

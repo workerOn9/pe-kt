@@ -1,0 +1,18 @@
+{
+  "id": 76,
+  "title": "Counting Summations",
+  "titleZh": "整数分拆计数",
+  "difficulty": 8,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "dynamic-programming",
+    "combinatorics"
+  ],
+  "answer": 190569291,
+  "solvedBy": 35098,
+  "bruteForceBaselineMs": 3267.667375,
+  "optimizedBaselineMs": 0.08970833333333333,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=76",
+  "fetchedAt": "2026-09-12"
+}

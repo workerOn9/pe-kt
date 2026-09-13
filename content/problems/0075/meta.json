@@ -1,0 +1,19 @@
+{
+  "id": 75,
+  "title": "Singular Integer Right Triangles",
+  "titleZh": "唯一整数直角三角形",
+  "difficulty": 11,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "number-theory",
+    "geometry",
+    "pythagorean"
+  ],
+  "answer": 161667,
+  "solvedBy": 23061,
+  "bruteForceBaselineMs": 561.350417,
+  "optimizedBaselineMs": 8.783602,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=75",
+  "fetchedAt": "2026-09-12"
+}

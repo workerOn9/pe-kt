@@ -1,0 +1,19 @@
+{
+  "id": 46,
+  "title": "Goldbach's Other Conjecture",
+  "titleZh": "哥德巴赫的另一个猜想",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "primes",
+    "conjecture"
+  ],
+  "answer": 5777,
+  "solvedBy": 76384,
+  "bruteForceBaselineMs": 1.913811,
+  "optimizedBaselineMs": 1.157014,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=46",
+  "fetchedAt": "2026-09-12"
+}

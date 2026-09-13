@@ -1,0 +1,19 @@
+{
+  "id": 81,
+  "title": "Path Sum: Two Ways",
+  "titleZh": "路径和：两种走法",
+  "difficulty": 8,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "dynamic-programming",
+    "graph",
+    "grid"
+  ],
+  "answer": 427337,
+  "solvedBy": 41325,
+  "bruteForceBaselineMs": 371.831483,
+  "optimizedBaselineMs": 3.323898,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=81",
+  "fetchedAt": "2026-09-12"
+}

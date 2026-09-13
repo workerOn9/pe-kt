@@ -1,0 +1,15 @@
+{
+  "id": 5,
+  "title": "Smallest Multiple",
+  "titleZh": "最小公倍数",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "gcd", "lcm"],
+  "answer": 232792560,
+  "solvedBy": 442674,
+  "bruteForceBaselineMs": 8.149153,
+  "optimizedBaselineMs": 0.000089,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=5",
+  "fetchedAt": "2026-09-12"
+}

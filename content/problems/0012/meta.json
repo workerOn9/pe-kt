@@ -1,0 +1,19 @@
+{
+  "id": 12,
+  "title": "Highly Divisible Triangular Number",
+  "titleZh": "高度可整除的三角数",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "number-theory",
+    "divisors"
+  ],
+  "answer": 76576500,
+  "solvedBy": 233484,
+  "bruteForceBaselineMs": 54.275667,
+  "optimizedBaselineMs": 3.678971,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=12",
+  "fetchedAt": "2026-09-12"
+}

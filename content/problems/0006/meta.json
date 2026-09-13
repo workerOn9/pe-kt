@@ -1,0 +1,15 @@
+{
+  "id": 6,
+  "title": "Sum Square Difference",
+  "titleZh": "平方和之差",
+  "difficulty": 1,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "summation-formula"],
+  "answer": 25164150,
+  "solvedBy": 447477,
+  "bruteForceBaselineMs": 0.000233,
+  "optimizedBaselineMs": 0.000022,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=6",
+  "fetchedAt": "2026-09-12"
+}

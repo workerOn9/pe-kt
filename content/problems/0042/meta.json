@@ -1,0 +1,20 @@
+{
+  "id": 42,
+  "title": "Coded Triangle Numbers",
+  "titleZh": "编码三角数",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "words",
+    "triangle-numbers",
+    "file-io"
+  ],
+  "answer": 162,
+  "solvedBy": 89850,
+  "bruteForceBaselineMs": 0.115498,
+  "optimizedBaselineMs": 0.11023,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=42",
+  "fetchedAt": "2026-09-12"
+}

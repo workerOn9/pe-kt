@@ -1,0 +1,19 @@
+{
+  "id": 15,
+  "title": "Lattice Paths",
+  "titleZh": "网格路径",
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "combinatorics",
+    "dp",
+    "big-integer"
+  ],
+  "answer": 137846528820,
+  "solvedBy": 202354,
+  "bruteForceBaselineMs": 0.004102,
+  "optimizedBaselineMs": 0.00106,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=15",
+  "fetchedAt": "2026-09-12"
+}

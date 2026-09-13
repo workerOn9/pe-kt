@@ -1,0 +1,15 @@
+{
+  "id": 17,
+  "title": "Number Letter Counts",
+  "titleZh": "数字的字母计数",
+  "difficulty": 8,
+  "difficultyLevel": "Level 2",
+  "tags": ["number-to-words", "counting"],
+  "answer": 21124,
+  "solvedBy": 169692,
+  "bruteForceBaselineMs": 0.003581,
+  "optimizedBaselineMs": 0.000006,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=17",
+  "fetchedAt": "2026-09-12"
+}

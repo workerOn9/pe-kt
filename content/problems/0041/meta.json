@@ -1,0 +1,19 @@
+{
+  "id": 41,
+  "title": "Pandigital Prime",
+  "titleZh": "全数字素数",
+  "difficulty": 3,
+  "difficultyLevel": "Level 0",
+  "tags": [
+    "math",
+    "primes",
+    "pandigital"
+  ],
+  "answer": 7652413,
+  "solvedBy": 84284,
+  "bruteForceBaselineMs": 6.579438,
+  "optimizedBaselineMs": 0.033544,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=41",
+  "fetchedAt": "2026-09-12"
+}

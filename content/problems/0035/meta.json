@@ -1,0 +1,19 @@
+{
+  "id": 35,
+  "title": "Circular Primes",
+  "titleZh": "循环素数",
+  "difficulty": 5,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "primes",
+    "sieve"
+  ],
+  "answer": 55,
+  "solvedBy": 102986,
+  "bruteForceBaselineMs": 14.286461,
+  "optimizedBaselineMs": 10.732908,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=35",
+  "fetchedAt": "2026-09-12"
+}

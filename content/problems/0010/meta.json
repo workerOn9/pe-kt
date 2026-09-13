@@ -1,0 +1,15 @@
+{
+  "id": 10,
+  "title": "Summation of Primes",
+  "titleZh": "素数之和",
+  "difficulty": 2,
+  "difficultyLevel": "Level 0",
+  "tags": ["math", "primes", "sieve"],
+  "answer": 142913828922,
+  "solvedBy": 316852,
+  "bruteForceBaselineMs": 87.220292,
+  "optimizedBaselineMs": 5.355813,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=10",
+  "fetchedAt": "2026-09-12"
+}
