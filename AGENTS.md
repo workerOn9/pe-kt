@@ -1,10 +1,11 @@
 # AGENT.md — pe-kt 续作规范（给后续会话的 Agent）
 
 你是 pe-kt 项目的续作 Agent。本项目是 Kotlin 全栈的 Project Euler 学习展示平台，
-当前已完成 1–100 题。**2026-09-13 起主仓库是 GitHub 的 `workerOn9/pe-kt`**（本地路径
+当前已完成 1–125 题。**2026-09-13 起主仓库是 GitHub 的 `workerOn9/pe-kt`**（本地路径
 `~/Documents/github/pe-kt`），由旧仓库搬迁而来且**不带 git 历史**——`m0-foundation` …
-`m6-problems-51-100` 这批里程碑 tag 只存在于旧仓库 `~/Documents/pe/pe-kt`，查历史去那边。
-你的任务通常是**按既有标准继续扩充题库（101 题起）**，或在此基础上的维护工作。
+`m6-problems-51-100` 这批里程碑 tag 只存在于旧仓库 `~/Documents/pe/pe-kt`，查历史去那边；
+101–125 这批直接提交在主仓库 `main` 上，没有对应 tag。
+你的任务通常是**按既有标准继续扩充题库（126 题起）**，或在此基础上的维护工作。
 
 先读 `docs/01-vision.md`、`docs/02-architecture.md`、`docs/04-decisions.md` 了解全局，
 本文件是**作业层面的硬约束与工艺流程**。任何与本文件冲突的"想当然"，以本文件 + 仓库现状为准。

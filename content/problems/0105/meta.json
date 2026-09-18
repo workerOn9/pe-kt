@@ -1,0 +1,21 @@
+{
+  "id": 105,
+  "title": "Special Subset Sums: Testing",
+  "titleZh": "特殊和集：判定",
+  "difficulty": 20,
+  "difficultyLevel": "Level 7",
+  "tags": [
+    "combinatorics",
+    "subset-sum",
+    "special-sum-set",
+    "bitmask",
+    "data-validation"
+  ],
+  "answer": 73702,
+  "solvedBy": 10467,
+  "bruteForceBaselineMs": 219.5189,
+  "optimizedBaselineMs": 0.4329,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=105",
+  "fetchedAt": "2026-09-17"
+}

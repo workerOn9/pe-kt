@@ -1,0 +1,20 @@
+{
+  "id": 117,
+  "title": "Red, Green, and Blue Tiles",
+  "titleZh": "红、绿和蓝瓷砖",
+  "difficulty": 11,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "combinatorics",
+    "recurrence",
+    "dynamic-programming",
+    "multinomial"
+  ],
+  "answer": 100808458960497,
+  "solvedBy": 13994,
+  "bruteForceBaselineMs": 0.3362,
+  "optimizedBaselineMs": 0.0003,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=117",
+  "fetchedAt": "2026-09-17"
+}

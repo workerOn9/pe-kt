@@ -1,0 +1,20 @@
+{
+  "id": 121,
+  "title": "Disc Game Prize Fund",
+  "titleZh": "圆碟游戏奖金",
+  "difficulty": 13,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "probability",
+    "dynamic-programming",
+    "exact-arithmetic",
+    "combinatorics"
+  ],
+  "answer": 2269,
+  "solvedBy": 12156,
+  "bruteForceBaselineMs": 4.7353,
+  "optimizedBaselineMs": 0.0006,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=121",
+  "fetchedAt": "2026-09-17"
+}

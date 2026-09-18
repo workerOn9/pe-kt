@@ -1,0 +1,15 @@
+{
+  "id": 111,
+  "title": "Primes with Runs",
+  "titleZh": "重复数字素数",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": ["number-theory", "primes", "digit-search", "miller-rabin"],
+  "answer": 612407567715,
+  "solvedBy": 9447,
+  "bruteForceBaselineMs": 4.5249,
+  "optimizedBaselineMs": 1.4284,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=111",
+  "fetchedAt": "2026-09-17"
+}

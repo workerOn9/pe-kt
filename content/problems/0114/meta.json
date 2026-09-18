@@ -1,0 +1,20 @@
+{
+  "id": 114,
+  "title": "Counting Block Combinations I",
+  "titleZh": "数方块组合 I",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "math",
+    "combinatorics",
+    "dynamic-programming",
+    "recurrence"
+  ],
+  "answer": 16475640049,
+  "solvedBy": 13649,
+  "bruteForceBaselineMs": 0.003506,
+  "optimizedBaselineMs": 0.000132,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=114",
+  "fetchedAt": "2026-09-17"
+}

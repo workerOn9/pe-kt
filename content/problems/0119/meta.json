@@ -1,0 +1,21 @@
+{
+  "id": 119,
+  "title": "Digit Power Sum",
+  "titleZh": "数字幂和",
+  "difficulty": 11,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "math",
+    "number-theory",
+    "digit-sum",
+    "powers",
+    "search-space"
+  ],
+  "answer": 248155780267521,
+  "solvedBy": 15316,
+  "bruteForceBaselineMs": 0.8179,
+  "optimizedBaselineMs": 0.0480,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=119",
+  "fetchedAt": "2026-09-17"
+}

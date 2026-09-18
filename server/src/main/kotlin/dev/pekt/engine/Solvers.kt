@@ -20,8 +20,8 @@ import java.math.BigInteger
  * key 为 PE 题号，value 为无参求解函数；
  * 每个函数的逻辑与 `content/problems/XXXX/solution.kt` 完全一致，
  * 素数/ gcd-lcm / 组合数 / BigInteger 扩展等通用步骤改用 dev.pekt.math 工具库。
- * 0022 需要读取 content 目录下的 names.txt，是唯一依赖外部文件的求解器
- * （内部通过 [ContentIndex.resolveContentDir] 定位 content 根，保持其余求解器无参）。
+ * 需要读数据文件的题目（如 0022 的 names.txt、0107 的 network.txt）内部通过
+ * [ContentIndex.resolveContentDir] 定位 content 根，求解器对外仍保持无参。
  * 未注册的题号由执行引擎返回 501 no_solver。
  */
 val solvers: Map<Int, () -> Long> = mapOf(
@@ -125,6 +125,31 @@ val solvers: Map<Int, () -> Long> = mapOf(
     98 to ::solve098,
     99 to ::solve099,
     100 to ::solve100,
+    101 to ::solve101,
+    102 to ::solve102,
+    103 to ::solve103,
+    104 to ::solve104,
+    105 to ::solve105,
+    106 to ::solve106,
+    107 to ::solve107,
+    108 to ::solve108,
+    109 to ::solve109,
+    110 to ::solve110,
+    111 to ::solve111,
+    112 to ::solve112,
+    113 to ::solve113,
+    114 to ::solve114,
+    115 to ::solve115,
+    116 to ::solve116,
+    117 to ::solve117,
+    118 to ::solve118,
+    119 to ::solve119,
+    120 to ::solve120,
+    121 to ::solve121,
+    122 to ::solve122,
+    123 to ::solve123,
+    124 to ::solve124,
+    125 to ::solve125,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -2974,4 +2999,1057 @@ private fun solve100(): Long {
         y = ny
     }
     return (y + 1) / 2
+}
+
+/**
+ * 差分三角右斜边滚动：下标 i 是由前 i+1 项外推的第 i+2 项，即 OP(i+1, i+2)。
+ * 等距节点下「保持最高阶差分不变」向前外推一格，等于沿次数 ≤ k−1 的插值多项式求值。
+ */
+private fun p101Predictions(terms: LongArray): LongArray {
+    val edge = LongArray(terms.size)
+    return LongArray(terms.size) { index ->
+        var difference = terms[index]
+        for (order in 0 until index) {
+            val previous = edge[order]
+            edge[order] = difference
+            difference -= previous
+        }
+        edge[index] = difference
+        edge.sum()
+    }
+}
+
+/**
+ * PE 101 — 最优多项式的 FIT 之和 = 37076114526（与 content/problems/0101/solution.kt 一致）。
+ * u_n = 1 − n + n² − … + n¹⁰ 是十次的，故 k = 1..10 全部产生 FIT，k ≥ 11 起恢复真实项。
+ */
+private fun solve101(): Long {
+    val terms = LongArray(12) { index ->
+        val n = index + 1L
+        var value = 1L
+        repeat(10) { value = 1L - n * value }
+        value
+    }
+    val predictions = p101Predictions(terms)
+    check(predictions[10] == terms[11]) { "k = 11 起应恢复真实项：${predictions[10]} != ${terms[11]}" }
+    return predictions.take(10).sum()
+}
+
+/**
+ * PE 102 — 三角形内含原点：三角形是三个内侧半平面的交集，原点严格位于内部当且仅当
+ * A×B、B×C、C×A 三个行列式全正或全负（取 0 表示原点落在边上，须排除）。
+ * triangles.txt 经 ContentIndex 定位；坐标用 Long 乘法避免溢出。答案 228。
+ */
+private fun solve102(): Long {
+    val lines = File(ContentIndex.resolveContentDir(), "problems/0102/triangles.txt")
+        .readLines().filter { it.isNotBlank() }
+    var count = 0L
+    for (line in lines) {
+        val t = line.split(',').map { it.trim().toLong() }
+        require(t.size == 6 && t.all { it in -1000L..1000L }) { "无效三角形坐标：$line" }
+        val ab = t[0] * t[3] - t[1] * t[2]
+        val bc = t[2] * t[5] - t[3] * t[4]
+        val ca = t[4] * t[1] - t[5] * t[0]
+        if ((ab > 0 && bc > 0 && ca > 0) || (ab < 0 && bc < 0 && ca < 0)) count++
+    }
+    check(lines.size == 1000) { "应有 1000 个三角形，实际 ${lines.size}" }
+    return count
+}
+
+/** 特殊和集的定义式判定（与 105 同一套定义）：枚举所有非空不相交子集对逐条比较。 */
+private fun p103IsSpecialSumSet(values: IntArray): Boolean {
+    val n = values.size
+    val total = 1 shl n
+    val sum = LongArray(total)
+    val popcount = IntArray(total)
+    for (mask in 1 until total) {
+        val lowbit = mask and -mask
+        val rest = mask xor lowbit
+        sum[mask] = sum[rest] + values[lowbit.countTrailingZeroBits()]
+        popcount[mask] = popcount[rest] + 1
+    }
+    for (b in 1 until total) for (c in b + 1 until total) {
+        if (b and c != 0) continue                                  // 只比较不相交子集对
+        when {
+            popcount[b] == popcount[c] -> if (sum[b] == sum[c]) return false
+            popcount[b] > popcount[c] -> if (sum[b] <= sum[c]) return false
+            else -> if (sum[c] <= sum[b]) return false
+        }
+    }
+    return true
+}
+
+/**
+ * PE 103 — 剪枝搜索：在总和 ≤ [cap] 的严格递增 n 元组里找最小和的特殊和集。
+ *
+ * 每放一个元素 x 就增量维护「各势子集和」位图：含 x 的 s 元子集和 = 旧 (s−1) 元子集和 + x，
+ * 与旧 s 元子集和撞车立即回溯（剪枝主力）；随后检查前缀内部的规则二、用未来元素下界估算的
+ * 规则二，以及剩余位置填满后的总和下界。
+ */
+private class P103SpecialSetSearch(private val n: Int, private val cap: Int) {
+    private val chosen = IntArray(n)
+    private val subsetSumSeen = Array(n + 1) { BooleanArray(cap + 1) }   // 各势可达子集和
+    private val sumsBySize = Array(n + 1) { IntArray(cap + 1) }          // 同上，可遍历形式
+    private val sizeCount = IntArray(n + 1)
+    private val undoLog = Array(n + 1) { IntArray(cap + 1) }
+    private val undoCount = IntArray(n + 1)
+    private val levelMark = Array(n + 1) { IntArray(n + 1) }
+    private val prefix = LongArray(n + 1)
+    private var bestSum = Long.MAX_VALUE
+    private val bestSets = mutableListOf<List<Int>>()
+
+    var visitedNodes = 0L
+        private set
+
+    init {
+        subsetSumSeen[0][0] = true
+        sumsBySize[0][0] = 0
+        sizeCount[0] = 1
+    }
+
+    private fun unwind(size: Int, keep: Int) {
+        while (undoCount[size] > keep) {
+            val value = undoLog[size][--undoCount[size]]
+            subsetSumSeen[size][value] = false
+            sizeCount[size]--
+        }
+    }
+
+    private fun undoLevel(level: Int) { for (size in 1..n) unwind(size, levelMark[level][size]) }
+
+    /** 尝试把 x 放在第 level 位；0 = 成功，1 = 冲突（换更大的 x 还有机会），2 = 单调失败（更大的 x 只会更糟）。 */
+    private fun tryPlace(level: Int, x: Int): Int {
+        for (size in 1..n) levelMark[level][size] = undoCount[size]
+        for (size in level + 1 downTo 1) {                       // 含 x 的子集：旧 (s−1) 元子集和 + x
+            val limit = sizeCount[size - 1]
+            val source = sumsBySize[size - 1]
+            for (t in 0 until limit) {
+                val value = source[t] + x
+                if (value > cap || subsetSumSeen[size][value]) {
+                    undoLevel(level)
+                    return 1
+                }
+                subsetSumSeen[size][value] = true
+                sumsBySize[size][sizeCount[size]] = value
+                sizeCount[size]++
+                undoLog[size][undoCount[size]++] = value
+            }
+        }
+        chosen[level] = x
+        prefix[level + 1] = prefix[level] + x
+        for (k in 1..level) {                                    // 前缀内部的规则二
+            if (prefix[k + 1] <= prefix[level + 1] - prefix[level + 1 - k]) {
+                undoLevel(level)
+                return 2
+            }
+        }
+        for (k in 1..minOf(level, n - 1)) {                       // 右端涉及未来元素：取下界
+            var minTop = 0L
+            for (p in n - k until n) minTop += if (p <= level) chosen[p].toLong() else (chosen[level] + (p - level)).toLong()
+            if (prefix[k + 1] <= minTop) {
+                undoLevel(level)
+                return 2
+            }
+        }
+        var minTotal = prefix[level + 1]                           // 总和下界
+        for (p in level + 1 until n) minTotal += chosen[level] + (p - level)
+        if (minTotal > cap) {
+            undoLevel(level)
+            return 2
+        }
+        return 0
+    }
+
+    private fun search(level: Int) {
+        visitedNodes++
+        if (level == n) {
+            val total = prefix[n]
+            if (total < bestSum) { bestSum = total; bestSets.clear() }
+            if (total == bestSum) bestSets.add(chosen.toList())
+            return
+        }
+        var x = if (level == 0) 1 else chosen[level - 1] + 1
+        val limit = cap - (n - 1 - level)                           // 给剩余位置留出递增空间
+        while (x <= limit) {
+            when (tryPlace(level, x)) {
+                0 -> { search(level + 1); undoLevel(level) }
+                1 -> Unit                                          // 冲突与 x 的大小无关，继续试
+                else -> return                                      // 单调失败：更大的 x 只会更差
+            }
+            x++
+        }
+    }
+
+    fun run(): Pair<Long, List<List<Int>>> { search(0); return bestSum to bestSets }
+}
+
+/**
+ * PE 103 — n = 7 的最优特殊和集（串成 20313839404245）。
+ * 先用题面给出的 n ≤ 6 最优集与递推候选做锚点复算，再证明 cap = 254 无解、cap = 255 唯一解。
+ */
+private fun solve103(): Long {
+    val expected = linkedMapOf(
+        1 to (1L to listOf(1)),
+        2 to (3L to listOf(1, 2)),
+        3 to (9L to listOf(2, 3, 4)),
+        4 to (21L to listOf(3, 5, 6, 7)),
+        5 to (51L to listOf(6, 9, 11, 12, 13)),
+        6 to (115L to listOf(11, 18, 19, 20, 22, 25)),
+    )
+    for ((size, want) in expected) {                                // 题面给出的前五个最优集 + n = 6 最优集
+        val (sum, sets) = P103SpecialSetSearch(size, want.first.toInt()).run()
+        check(sum == want.first && sets.size == 1 && sets[0] == want.second) { "n = $size 复算失败：$sum $sets" }
+        check(p103IsSpecialSumSet(sets[0].toIntArray())) { "n = $size 的搜索结果不是特殊和集" }
+    }
+    // 题面提到的「递推规则」候选：n = 5 的中间元素 11 加到各行得到 {11,17,20,22,23,24}，和 117
+    val ruleCandidate = intArrayOf(11, 17, 20, 22, 23, 24)
+    check(p103IsSpecialSumSet(ruleCandidate) && ruleCandidate.sum() == 117) { "n = 6 递推候选判定失败" }
+    check(P103SpecialSetSearch(6, 116).run().first == 115L) { "n = 6 在 cap = 116 内的最小和应是 115（优于递推候选 117）" }
+    check(P103SpecialSetSearch(7, 254).run().second.isEmpty()) { "cap = 254 时不应存在特殊和集" }
+    val (_, optimum) = P103SpecialSetSearch(7, 255).run()
+    check(optimum.size == 1 && p103IsSpecialSumSet(optimum[0].toIntArray())) { "n = 7 最优集不唯一或非特殊和集" }
+    return optimum[0].joinToString("").toLong()
+}
+
+/** 末九位是否为 1–9 全数字（除法拆位 + 位掩码，不用字符串、不数位数）。 */
+private fun p104Pandigital(value: Long): Boolean {
+    if (value !in 100_000_000L..999_999_999L) return false
+    var rest = value
+    var mask = 0
+    repeat(9) {
+        val digit = (rest % 10).toInt()
+        val bit = 1 shl digit
+        if (digit == 0 || mask and bit != 0) return false
+        mask = mask or bit
+        rest /= 10
+    }
+    return mask == 1022
+}
+
+/** Binet 公式给出的第 k 个斐波那契数的前九位。 */
+private fun p104LeadingNine(k: Int): Long {
+    val x = k * Math.log10((1 + Math.sqrt(5.0)) / 2) - Math.log10(5.0) / 2
+    return Math.pow(10.0, x - Math.floor(x) + 8).toLong()
+}
+
+/** PE 104 — 末九位用模 10^9 的递推精确维护，只对末九位全数字的候选算前九位。答案 329468。 */
+private fun solve104(): Long {
+    check(!p104Pandigital(12345678L) && p104Pandigital(123456789L) && !p104Pandigital(123456788L))
+    check(p104Pandigital(p104LeadingNine(2749)))
+    var previous = 1L
+    var current = 1L
+    var k = 2
+    while (true) {
+        val next = (previous + current) % 1_000_000_000L
+        previous = current
+        current = next
+        k++
+        if (p104Pandigital(current) && p104Pandigital(p104LeadingNine(k))) return k.toLong()
+    }
+}
+
+/** 规则二：对每个 k，最小 (k+1) 元子集和 > 最大 k 元子集和（升序集合上等价于全部情形）。 */
+private fun p105SatisfiesSizeRule(sorted: IntArray): Boolean {
+    val n = sorted.size
+    val prefix = LongArray(n + 1)
+    for (i in 1..n) prefix[i] = prefix[i - 1] + sorted[i - 1]
+    for (k in 1 until n) {
+        val smallestPlusOne = prefix[k + 1]                       // a₁+…+a_{k+1}
+        val largestK = prefix[n] - prefix[n - k]                  // a_{n−k+1}+…+a_n
+        if (smallestPlusOne <= largestK) return false
+    }
+    return true
+}
+
+/** 规则一：同一势的所有子集和互不相同（位图按势分桶，见即失败）。 */
+private fun p105SatisfiesDistinctSumRule(sorted: IntArray): Boolean {
+    val n = sorted.size
+    val total = 1 shl n
+    val sum = LongArray(total)
+    val popcount = IntArray(total)
+    val seen = Array(n + 1) { BooleanArray(sorted.sum() + 1) }
+    for (mask in 1 until total) {
+        val lowbit = mask and -mask
+        val index = lowbit.countTrailingZeroBits()
+        val rest = mask xor lowbit
+        sum[mask] = sum[rest] + sorted[index]
+        popcount[mask] = popcount[rest] + 1
+        val size = popcount[mask]
+        val value = sum[mask].toInt()
+        if (seen[size][value]) return false
+        seen[size][value] = true
+    }
+    return true
+}
+
+private fun p105IsSpecialSumSet(values: IntArray): Boolean {
+    val sorted = values.sortedArray()
+    if (sorted.distinct().size != sorted.size) return false       // 集合要求元素互异
+    return p105SatisfiesSizeRule(sorted) && p105SatisfiesDistinctSumRule(sorted)
+}
+
+/** PE 105 — 逐行判定并累加所有特殊和集之和 = 73702。sets.txt 经 ContentIndex 定位。 */
+private fun solve105(): Long {
+    // 题面给出的两个锚点：第一个不满足规则一，第二个满足两规则且 S(A) = 1286
+    val notSpecial = intArrayOf(81, 88, 75, 42, 87, 84, 86, 65)
+    val special = intArrayOf(157, 150, 164, 119, 79, 159, 161, 139, 158)
+    check(!p105IsSpecialSumSet(notSpecial)) { "反例被判为特殊集" }
+    check(p105IsSpecialSumSet(special) && special.sum() == 1286) { "题面正例判定失败" }
+    return File(ContentIndex.resolveContentDir(), "problems/0105/sets.txt").readLines()
+        .filter { it.isNotBlank() }
+        .map { line -> line.split(',').map(String::trim).map(String::toInt).toIntArray() }
+        .filter { p105IsSpecialSumSet(it) }
+        .sumOf { it.sum().toLong() }
+}
+
+/** 第 k 个 Catalan 数 C_k = (1/(k+1))·C(2k,k)（组合数用 dev.pekt.math.binomial）。 */
+private fun p106Catalan(k: Int): Long = binomial(2 * k, k).toLong() / (k + 1L)
+
+/** 从 n 元严格递增集中取出的「真正需要测相等」的等势不相交子集对数。 */
+private fun p106PairsNeedingTest(n: Int): Long =
+    (1..n / 2).sumOf { k ->
+        val union = binomial(n, 2 * k).toLong()                   // 选并集（2k 个位置）
+        val splits = binomial(2 * k, k).toLong() / 2              // 无序拆成两个 k 元子集
+        union * (splits - p106Catalan(k))                         // 减去被大小关系直接判定的（Dyson）拆法
+    }
+
+/** PE 106 — Σ C(n,2k)·(C(2k,k)/2 − Catalan_k)（n = 12）= 21384。O(n) 项求和。 */
+private fun solve106(): Long {
+    check(p106PairsNeedingTest(4) == 1L && p106PairsNeedingTest(7) == 70L) { "题面锚点不符" }
+    return p106PairsNeedingTest(12)
+}
+
+/** 并查集：parent[x] = 父节点（根为自身），rank 为按秩合并的权重。 */
+private class P107UnionFind(size: Int) {
+    private val parent = IntArray(size) { it }
+    private val rank = IntArray(size)
+
+    fun find(x: Int): Int {
+        var root = x
+        while (parent[root] != root) root = parent[root]
+        // 路径压缩
+        var cur = x
+        while (cur != root) { val next = parent[cur]; parent[cur] = root; cur = next }
+        return root
+    }
+
+    /** 合并成功返回 true，二者本就连通返回 false。 */
+    fun union(a: Int, b: Int): Boolean {
+        var ra = find(a); var rb = find(b)
+        if (ra == rb) return false
+        if (rank[ra] < rank[rb]) { val t = ra; ra = rb; rb = t }
+        parent[rb] = ra
+        if (rank[ra] == rank[rb]) rank[ra]++
+        return true
+    }
+}
+
+/** 从邻接矩阵文本读入 (u, v, weight) 边列表（只取 i < j 的上三角，`-` 视为无边）。 */
+private fun p107LoadEdges(text: String): List<Triple<Int, Int, Int>> {
+    val edges = mutableListOf<Triple<Int, Int, Int>>()
+    text.lines().forEachIndexed { i, line ->
+        line.split(',').forEachIndexed { j, cell ->
+            val w = cell.trim().toIntOrNull() ?: return@forEachIndexed
+            if (i < j) edges.add(Triple(i, j, w))
+        }
+    }
+    return edges
+}
+
+/** PE 107 — Kruskal 求最小生成树，节省 = 原总权重 − MST 权重 = 259679。network.txt 经 ContentIndex 定位。 */
+private fun solve107(): Long {
+    // 题面 7 顶点样例的自检：总权重 243，MST 权重 93，节省 150
+    val sampleEdges = p107LoadEdges(
+        listOf(
+            "-,16,12,21,-,-,-",
+            "16,-,-,17,20,-,-",
+            "12,-,-,28,-,31,-",
+            "21,17,28,-,18,19,23",
+            "-,20,-,18,-,-,11",
+            "-,-,31,19,-,-,27",
+            "-,-,-,23,11,27,-",
+        ).joinToString("\n") + "\n"
+    )
+    val sampleTotal = sampleEdges.sumOf { it.third.toLong() }
+    val sampleUf = P107UnionFind(7)
+    var sampleMst = 0L
+    for ((u, v, w) in sampleEdges.sortedBy { it.third }) if (sampleUf.union(u, v)) sampleMst += w
+    check(sampleTotal == 243L && sampleMst == 93L) { "样例自检失败：total=$sampleTotal, mst=$sampleMst" }
+
+    val edges = p107LoadEdges(File(ContentIndex.resolveContentDir(), "problems/0107/network.txt").readText())
+    check(edges.isNotEmpty()) { "network.txt 没有有效边" }
+    val vertices = edges.flatMap { listOf(it.first, it.second) }.max() + 1
+    val total = edges.sumOf { it.third.toLong() }
+    val uf = P107UnionFind(vertices)
+    var mstWeight = 0L
+    var picked = 0
+    for ((u, v, w) in edges.sortedBy { it.third }) {
+        if (uf.union(u, v)) {
+            mstWeight += w
+            if (++picked == vertices - 1) break
+        }
+    }
+    check(picked == vertices - 1) { "图不连通：只选出 $picked / ${vertices - 1} 条边" }
+    return total - mstWeight
+}
+
+/** 108/110 共用的素数池：指数按非递增顺序落在最小的这些素数上。 */
+private val p108FirstPrimes = longArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53)
+
+/**
+ * 在 ∏(2eᵢ+1) ≥ [target] 的约束下求 n = ∏pᵢ^{eᵢ} 的最小值（108/110 同一套搜索）。
+ * 贪心初值 = 前 k 个素数各取一次，随后按指数非递增枚举 + 「前缀 n ≥ 已知最优」剪枝。
+ */
+private fun searchMinimalInverseCount(target: Long): Long {
+    var best = 1L
+    var divisors = 1L
+    var index = 0
+    while (divisors < target) {
+        best *= p108FirstPrimes[index]
+        divisors *= 3L
+        index++
+    }
+
+    fun search(index: Int, maxExponent: Int, n: Long, divisorCount: Long) {
+        if (n >= best) return
+        if (divisorCount >= target) {
+            best = n
+            return
+        }
+        if (index >= p108FirstPrimes.size) return
+        val p = p108FirstPrimes[index]
+        var value = n
+        for (exponent in 1..maxExponent) {
+            if (value > best / p) return     // 再乘一次必然 ≥ best（顺带保证不溢出）
+            value *= p
+            search(index + 1, exponent, value, divisorCount * (2L * exponent + 1))
+        }
+    }
+
+    search(0, 62, 1L, 1L)
+    return best
+}
+
+/** PE 108 — 解个数 > 1000 ⟺ d(n²) ≥ 2001 的最小 n = 180180。 */
+private fun solve108(): Long = searchMinimalInverseCount(2_001L)
+
+/** PE 109 的单镖分值上界：最大区域是三倍 20。 */
+private const val P109_BOARD_MAX = 60
+
+/** 62 个计分区域的分值：先三档倍率 × 1..20，再外/内牛眼。 */
+private fun p109DartValues(): IntArray {
+    val values = IntArray(62)
+    var index = 0
+    for (multiplier in 1..3) {
+        for (number in 1..20) values[index++] = number * multiplier
+    }
+    values[index++] = 25
+    values[index] = 50
+    return values
+}
+
+/** 21 个可作末镖的双倍区域：D1..D20 与内牛眼 D25。 */
+private fun p109DoubleValues(): IntArray {
+    val values = IntArray(21)
+    for (number in 1..20) values[number - 1] = number * 2
+    values[20] = 50
+    return values
+}
+
+/** 得分严格小于 [limit] 的 checkout 方式数（前两镖按无序多重集计，末镖必须是双倍）。 */
+private fun p109CountCheckouts(limit: Int): Long {
+    val darts = p109DartValues()
+    val doubles = p109DoubleValues()
+    val counts = IntArray(P109_BOARD_MAX + 1)
+    for (value in darts) counts[value]++
+    var total = 0L
+    for (d in doubles) {
+        if (d >= limit) continue
+        total++                                             // 1 镖：末镖即 d
+        for (x in darts) if (x + d < limit) total++          // 2 镖：首镖可为任意区域
+        for (v in 1..P109_BOARD_MAX) {                       // 3 镖：前两镖的多重集
+            if (counts[v] == 0) continue
+            val rest = limit - d - v                         // 第二镖的值 w 须满足 w < rest
+            for (w in v until minOf(rest, P109_BOARD_MAX + 1)) {
+                if (counts[w] == 0) continue
+                total += if (w == v) {
+                    counts[v].toLong() * (counts[v] + 1) / 2     // 同值区域可重复取
+                } else {
+                    counts[v].toLong() * counts[w]
+                }
+            }
+        }
+    }
+    return total
+}
+
+/** PE 109 — 得分小于 100 的 checkout 数 = 38182。 */
+private fun solve109(): Long {
+    val exactly6 = p109CountCheckouts(7) - p109CountCheckouts(6)
+    check(exactly6 == 11L) { "题面锚点：得分 6 应有 11 种 checkout，实际 $exactly6" }
+    val allCheckouts = p109CountCheckouts(171)
+    check(allCheckouts == 42336L) { "题面锚点：checkout 总数应为 42336，实际 $allCheckouts" }
+    return p109CountCheckouts(100)
+}
+
+/** PE 110 — 解个数 > 4×10⁶ ⟺ d(n²) ≥ 8 000 001 的最小 n = 9350130049860600。 */
+private fun solve110(): Long = searchMinimalInverseCount(8_000_001L)
+
+/** 末位只可能是 1/3/7/9（n ≥ 2 的素数），下标即数字。 */
+private val p111PrimeLastDigits =
+    booleanArrayOf(false, true, false, true, false, false, false, true, false, true)
+
+/** 确定性 Miller–Rabin 底数：对一切 n < 3.4×10¹⁴ 无错判。 */
+private val p111MillerRabinBases = longArrayOf(2, 3, 5, 7, 11, 13, 17)
+
+/** 用 BigInteger 模幂的确定性 Miller–Rabin，覆盖 10¹⁰ 量级的候选（工具库的试除法在此太慢）。 */
+private fun p111IsPrime(candidate: Long): Boolean {
+    if (candidate < 2L) return false
+    for (base in p111MillerRabinBases) {
+        if (candidate == base) return true
+        if (candidate % base == 0L) return false
+    }
+    var oddPart = candidate - 1L
+    var powers = 0
+    while (oddPart % 2L == 0L) {
+        oddPart /= 2L
+        powers++
+    }
+    val modulus = BigInteger.valueOf(candidate)
+    val one = BigInteger.ONE
+    val minusOne = modulus - one
+    for (base in p111MillerRabinBases) {
+        if (base >= candidate) continue
+        var power = BigInteger.valueOf(base).modPow(BigInteger.valueOf(oddPart), modulus)
+        if (power == one || power == minusOne) continue
+        var witnessed = false
+        var round = 1
+        while (round < powers && !witnessed) {
+            power = power * power % modulus
+            if (power == minusOne) witnessed = true
+            round++
+        }
+        if (!witnessed) return false
+    }
+    return true
+}
+
+/**
+ * 递归生成所有「恰好含 dNeeded 个数字 d」的 n 位数，素数计入 tally[0]（个数）/tally[1]（和）。
+ * sumMod3 是已放置数位之和对 3 的余数，用于剔除必然被 3 整除的候选。
+ */
+private fun p111PlaceDigits(
+    position: Int,
+    n: Int,
+    d: Int,
+    dNeeded: Int,
+    value: Long,
+    sumMod3: Int,
+    tally: LongArray,
+) {
+    val slotsLeft = n - position - 1
+    for (digit in 0..9) {
+        if (position == 0 && digit == 0) continue
+        if (slotsLeft == 0 && !p111PrimeLastDigits[digit]) continue
+        val remainingD = if (digit == d) dNeeded - 1 else dNeeded
+        if (remainingD < 0 || remainingD > slotsLeft) continue
+        val nextValue = value * 10L + digit
+        val nextMod3 = (sumMod3 + digit) % 3
+        if (slotsLeft > 0) {
+            p111PlaceDigits(position + 1, n, d, remainingD, nextValue, nextMod3, tally)
+        } else if (nextMod3 != 0 && p111IsPrime(nextValue)) {
+            tally[0]++
+            tally[1] += nextValue
+        }
+    }
+}
+
+/** 返回 [M(n, d), N(n, d), S(n, d)]：自 m = n 下降，取第一个有素数的层。 */
+private fun p111StatsFor(n: Int, d: Int): LongArray {
+    for (m in n downTo 1) {
+        val tally = LongArray(2)
+        p111PlaceDigits(0, n, d, m, 0L, 0, tally)
+        if (tally[0] > 0L) return longArrayOf(m.toLong(), tally[0], tally[1])
+    }
+    return longArrayOf(0L, 0L, 0L)
+}
+
+/** PE 111 — Σ_d S(10, d) = 612407567715（先用题面四位素数表自检）。 */
+private fun solve111(): Long {
+    val expectedM = longArrayOf(2, 3, 3, 3, 3, 3, 3, 3, 3, 3)
+    val expectedN = longArrayOf(13, 9, 1, 12, 2, 1, 1, 9, 1, 7)
+    val expectedS = longArrayOf(67061, 22275, 2221, 46214, 8888, 5557, 6661, 57863, 8887, 48073)
+    var sampleTotal = 0L
+    for (d in 0..9) {
+        val stats = p111StatsFor(4, d)
+        check(stats[0] == expectedM[d] && stats[1] == expectedN[d] && stats[2] == expectedS[d]) {
+            "d = $d 的四位素数表不符：实际 M=${stats[0]} N=${stats[1]} S=${stats[2]}"
+        }
+        sampleTotal += stats[2]
+    }
+    check(sampleTotal == 273700L) { "四位总和应为 273700，实际 $sampleTotal" }
+    return (0..9).sumOf { p111StatsFor(10, it)[2] }
+}
+
+/**
+ * PE 112 — 首个弹跳数占比为 [percent]% 的 n。
+ * 前缀一旦同时出现上升与下降，其后缀全为弹跳数，可整块跳过；只在
+ * (100−p)·n = 100·C 且 n 落在当前块内时返回，比例比较全用 Long 整数。
+ */
+private fun p112FirstBouncyProportion(percent: Int): Long {
+    require(percent in 1..99)
+    var nonBouncy = 0L
+    val powers = LongArray(18) { 1L }
+    for (i in 1 until powers.size) powers[i] = powers[i - 1] * 10L
+
+    fun visit(prefix: Long, last: Int, remaining: Int, up: Boolean, down: Boolean): Long {
+        if (up && down) {
+            val lower = prefix * powers[remaining]
+            val upper = lower + powers[remaining] - 1
+            val numerator = 100L * nonBouncy
+            val denominator = 100 - percent
+            val candidate = numerator / denominator
+            return if (numerator % denominator == 0L && candidate in lower..upper) candidate else 0L
+        }
+        if (remaining == 0) {
+            nonBouncy++
+            return 0L
+        }
+        for (digit in 0..9) {
+            val answer = visit(prefix * 10 + digit, digit, remaining - 1, up || digit > last, down || digit < last)
+            if (answer != 0L) return answer
+        }
+        return 0L
+    }
+
+    for (digits in 1..18) {
+        for (first in 1..9) {
+            val answer = visit(first.toLong(), first, digits - 1, false, false)
+            if (answer != 0L) return answer
+        }
+    }
+    error("在支持的 18 位整数范围内未找到目标比例")
+}
+
+/** PE 112 — 弹跳数占比首次达到 99% 的 n = 1587000。 */
+private fun solve112(): Long {
+    check(p112FirstBouncyProportion(50) == 538L)
+    check(p112FirstBouncyProportion(90) == 21780L)
+    return p112FirstBouncyProportion(99)
+}
+
+/** 小于 10^digits 的非弹跳正整数个数 = C(D+9,9) + C(D+10,10) − 10D − 2。 */
+private fun p113CountNonBouncy(digits: Int): Long {
+    require(digits in 1..100)
+    return binomial(digits + 9, 9).toLong() + binomial(digits + 10, 10).toLong() - 10L * digits - 2L
+}
+
+/** PE 113 — 小于 10^100 的非弹跳数个数 = 51161058134250。 */
+private fun solve113(): Long {
+    check(p113CountNonBouncy(1) == 9L)
+    check(p113CountNonBouncy(6) == 12951L)
+    check(p113CountNonBouncy(10) == 277032L)
+    return p113CountNonBouncy(100)
+}
+
+/**
+ * 长度为 [length] 的一行、红块最短 [minLength] 时的填法数 f(length)（114 与 115 共用）。
+ * f(n) = 2f(n−1) − f(n−2) + f(n−minLength−1)（n > minLength），f(0) = 1、
+ * n < minLength 时只有全灰一种、n == minLength 再多一种整行红块。
+ */
+private fun p114FillCount(length: Int, minLength: Int): Long {
+    val f = LongArray(length + 1)
+    f[0] = 1
+    for (n in 1..length) {
+        f[n] = when {
+            n < minLength -> 1L                                   // 只有全灰
+            n == minLength -> 2L                                  // 全灰，或一块红填满整行
+            else -> 2 * f[n - 1] - f[n - 2] + f[n - minLength - 1]
+        }
+    }
+    return f[length]
+}
+
+/** PE 114 — 长度 50、红块最短 3 的填法数 = 16475640049。 */
+private fun solve114(): Long {
+    // 题面样例锚点：长度 7 有 17 种填法；长度 8 可混用块长
+    check(p114FillCount(7, 3) == 17L) { "题面样例（7, 3 → 17）不符：${p114FillCount(7, 3)}" }
+    check(p114FillCount(8, 3) == 27L) { "长度 8 的填法数不符：${p114FillCount(8, 3)}" }
+    return p114FillCount(50, 3)
+}
+
+/**
+ * 使 F(minLength, n) > [threshold] 的最小 n：沿 114 的递推单向递增扫描，
+ * 第一次越过阈值的 n 就是最小解；表长未知，按容量翻倍兜住（F 指数增长，实际一次就够）。
+ */
+private fun p115LeastRowLength(minLength: Int, threshold: Long): Int {
+    require(minLength >= 1) { "最短块长必须为正" }
+    var capacity = 2 * minLength + 8
+    while (true) {
+        val f = LongArray(capacity)
+        f[0] = 1                                        // 空行记一种
+        for (n in 1 until capacity) {
+            f[n] = when {
+                n < minLength -> 1L                     // 放不下任何红块，只有全黑
+                n == minLength -> 2L                    // 全黑，或一块红填满整行
+                else -> 2 * f[n - 1] - f[n - 2] + f[n - minLength - 1]
+            }
+            if (f[n] > threshold) return n              // 递增扫描，首个越阈值即最小 n
+        }
+        capacity *= 2
+    }
+}
+
+/** PE 115 — F(50, n) > 10⁶ 的最小 n = 168（题面 m = 3 → 30、m = 10 → 57 两个锚点自检）。 */
+private fun solve115(): Long {
+    check(p114FillCount(29, 3) == 673_135L && p114FillCount(30, 3) == 1_089_155L) {
+        "m = 3 锚点不符：${p114FillCount(29, 3)} / ${p114FillCount(30, 3)}"
+    }
+    check(p115LeastRowLength(3, 1_000_000L) == 30) { "m = 3 的答案应为 30" }
+    check(p114FillCount(56, 10) == 880_711L && p114FillCount(57, 10) == 1_148_904L) {
+        "m = 10 锚点不符：${p114FillCount(56, 10)} / ${p114FillCount(57, 10)}"
+    }
+    check(p115LeastRowLength(10, 1_000_000L) == 57) { "m = 10 的答案应为 57" }
+    return p115LeastRowLength(50, 1_000_000L).toLong()
+}
+
+/** 只用一种长度 tileLength 的彩色砖时，铺满长 rowLength 的一行且至少用一块彩色砖的方案数。 */
+private fun p116WaysWithSingleColour(rowLength: Int, tileLength: Int): Long {
+    val ways = LongArray(rowLength + 1)
+    ways[0] = 1
+    for (i in 1..rowLength) {
+        var total = ways[i - 1]                                // 最右端是一块灰砖
+        if (i >= tileLength) total += ways[i - tileLength]      // 最右端是一块彩色砖
+        ways[i] = total
+    }
+    return ways[rowLength] - 1                                  // 去掉全灰方案
+}
+
+/** PE 116 — 红/绿/蓝三色各自独立计数（长 50）= 20492570929。 */
+private fun solve116(): Long {
+    val sample = (2..4).map { p116WaysWithSingleColour(5, it) }
+    check(sample == listOf(7L, 3L, 2L)) { "题面长度 5 的样例不符：$sample" }
+    return (2..4).sumOf { p116WaysWithSingleColour(50, it) }
+}
+
+/** 用长 1（灰）、2（红）、3（绿）、4（蓝）四种砖铺满长度 rowLength 的方案数（含全灰）。 */
+private fun p117TilingWays(rowLength: Int): Long {
+    val ways = LongArray(rowLength + 1)
+    ways[0] = 1
+    for (i in 1..rowLength) {
+        var total = 0L
+        for (length in 1..4) {
+            if (i >= length) total += ways[i - length]
+        }
+        ways[i] = total
+    }
+    return ways[rowLength]
+}
+
+/** PE 117 — 长度 50 的混色铺法数（四那契数）= 100808458960497。 */
+private fun solve117(): Long {
+    // 题面样例锚点：长度 5 恰有 15 种铺法
+    val sample = p117TilingWays(5)
+    check(sample == 15L) { "题面长度 5 的样例不符：$sample" }
+    return p117TilingWays(50)
+}
+
+/**
+ * PE 118 — 枚举无重复数字的整数并用素数试除建表，再按数字掩码做记忆化计数
+ * （每次只选含最小数字的块，消除块顺序重复）。答案 44680。
+ */
+private fun solve118(): Long {
+    val limit = 31623
+    val isP = sieve(limit)
+    val primes = ArrayList<Int>()
+    for (p in 2..limit) if (isP[p]) primes.add(p)
+    fun isPrimeValue(value: Int): Boolean {
+        if (value < 2) return false
+        for (p in primes) {
+            if (p > value / p) return true
+            if (value % p == 0) return false
+        }
+        return true
+    }
+    val counts = IntArray(512)
+    fun extend(value: Int, used: Int, sum: Int) {
+        if (value < 10) {
+            if (isPrimeValue(value)) counts[used]++
+        } else if (value % 2 != 0 && value % 5 != 0 && sum % 3 != 0 && isPrimeValue(value)) {
+            counts[used]++
+        }
+        for (digit in 1..9) {
+            val bit = 1 shl (digit - 1)
+            if (used and bit == 0) extend(value * 10 + digit, used or bit, sum + digit)
+        }
+    }
+    extend(0, 0, 0)
+    val memo = LongArray(512) { -1L }
+    fun count(remaining: Int): Long {
+        if (remaining == 0) return 1L
+        if (memo[remaining] >= 0) return memo[remaining]
+        val lowest = remaining and -remaining
+        var total = 0L
+        var block = remaining
+        while (block != 0) {
+            if (block and lowest != 0 && counts[block] != 0) {
+                total += counts[block].toLong() * count(remaining xor block)
+            }
+            block = (block - 1) and remaining
+        }
+        memo[remaining] = total
+        return total
+    }
+    check(count(7) == 2L)
+    check(count(1 shl 2) == 1L)
+    return count(511)
+}
+
+/** 十进制各位数字之和（整数除法与取模，不经过字符串、不数位数）。 */
+private fun p119DigitSum(value: Long): Int {
+    var rest = value
+    var sum = 0
+    while (rest > 0) {
+        sum += (rest % 10L).toInt()
+        rest /= 10L
+    }
+    return sum
+}
+
+/** limit 以内、形如 s^k（s ≥ 2、k ≥ 2）且数字和恰为 s 的全部数，升序去重。 */
+private fun p119DigitPowerSums(limit: Long, maxBase: Int): List<Long> {
+    val found = sortedSetOf<Long>()
+    for (base in 2..maxBase) {
+        var power = base.toLong() * base
+        while (power < limit) {
+            if (p119DigitSum(power) == base) found.add(power)
+            power *= base
+        }
+    }
+    return found.toList()
+}
+
+/** PE 119 — 第 30 项 a₃₀ = 63⁸ = 248155780267521（前 30 项与上界选取无关，做旁证）。 */
+private fun solve119(): Long {
+    val terms = p119DigitPowerSums(1_000_000_000_000_000L, 200)
+    check(terms[1] == 512L) { "题面给出 a₂ = 512，实际 ${terms[1]}" }
+    check(terms[9] == 614656L) { "题面给出 a₁₀ = 614656，实际 ${terms[9]}" }
+    val tighter = p119DigitPowerSums(400_000_000_000_000L, 200)
+    check(tighter.size >= 30 && tighter.take(30) == terms.take(30)) {
+        "前 30 项应当与 limit 的选取无关"
+    }
+    val thirty = terms[29]
+    var powerOfSixtyThree = 1L
+    repeat(8) { powerOfSixtyThree *= 63L }
+    check(p119DigitSum(thirty) == 63 && powerOfSixtyThree == thirty) {
+        "末项旁证失败：a₃₀ = $thirty 应为 63⁸ 且数字和为 63"
+    }
+    return thirty
+}
+
+/** 闭式：a 为奇数时 r_max = a(a−1)，a 为偶数时 r_max = a(a−2)。 */
+private fun p120MaxRemainder(a: Long): Long = if (a % 2L != 0L) a * (a - 1L) else a * (a - 2L)
+
+/**
+ * 直接枚举：对每个 n = 1..nBound 累乘出 (a−1)^n、(a+1)^n 模 a²，取余数最大值。
+ * 只用于小范围的独立复核，不作为主算法。
+ */
+private fun p120DirectMaxRemainder(a: Long, nBound: Long): Long {
+    val modulus = a * a
+    var powerMinus = 1L
+    var powerPlus = 1L
+    var best = 0L
+    for (n in 1..nBound) {
+        powerMinus = powerMinus * ((a - 1L) % modulus) % modulus
+        powerPlus = powerPlus * ((a + 1L) % modulus) % modulus
+        val remainder = (powerMinus + powerPlus) % modulus
+        if (remainder > best) best = remainder
+    }
+    return best
+}
+
+/** PE 120 — Σ_{a=3}^{1000} r_max(a) = 333082500（a = 3..60 用直接枚举复核闭式）。 */
+private fun solve120(): Long {
+    check(p120MaxRemainder(7L) == 42L) { "题面给出 a = 7 时 r_max = 42，实际 ${p120MaxRemainder(7L)}" }
+    for (a in 3L..60L) {
+        val direct = p120DirectMaxRemainder(a, 4L * a)
+        check(direct == p120MaxRemainder(a)) { "a = $a：直接枚举 $direct ≠ 闭式 ${p120MaxRemainder(a)}" }
+    }
+    return (3L..1000L).sumOf { p120MaxRemainder(it) }
+}
+
+/** 获胜概率的精确分数 W/D，两者都是整数（分母为 (turns+1)!）。 */
+private fun p121WinningFraction(turns: Int): Pair<Long, Long> {
+    var denominator = 1L
+    for (k in 1..turns) denominator *= (k + 1)                  // D = (turns+1)!
+    var counts = LongArray(turns + 1)
+    counts[0] = denominator                                      // 0 轮后 0 次蓝碟，概率 1
+    for (turn in 1..turns) {
+        val next = LongArray(turns + 1)
+        for (blue in 0..turn) {
+            var numerator = 0L
+            if (blue <= turn - 1) numerator += counts[blue] * turn          // 本轮抽到红碟
+            if (blue >= 1) numerator += counts[blue - 1]                     // 本轮抽到蓝碟
+            next[blue] = numerator / (turn + 1)
+        }
+        counts = next
+    }
+    var winning = 0L
+    for (blue in 0..turns) if (blue > turns - blue) winning += counts[blue]
+    return winning to denominator
+}
+
+/** 游戏进行 turns 轮时，庄家应为单场游戏预留的最大奖金基金（整数英镑，含本金）。 */
+private fun p121PrizeFund(turns: Int): Long {
+    val (winning, denominator) = p121WinningFraction(turns)
+    return denominator / winning
+}
+
+/** PE 121 — 15 轮游戏的奖金 = 2269（题面 4 轮 → 11/120、£10 的锚点自检）。 */
+private fun solve121(): Long {
+    val (numerator4, denominator4) = p121WinningFraction(4)
+    check(120L * numerator4 == 11L * denominator4) {
+        "题面锚点：4 轮获胜概率应为 11/120，实际 $numerator4/$denominator4"
+    }
+    check(p121PrizeFund(4) == 10L) { "题面锚点：4 轮奖金应为 £10，实际 ${p121PrizeFund(4)}" }
+    return p121PrizeFund(15)
+}
+
+/** 计算 n^target 所需的最少乘法次数 m(target)：迭代加深 DFS 求最短加法链。 */
+private fun p122MinMultiplications(target: Int): Int {
+    if (target == 1) return 0
+    val chain = IntArray(32)
+    chain[0] = 1
+
+    fun search(size: Int, limit: Int): Boolean {
+        val last = chain[size - 1]
+        if (last == target) return true
+        val remaining = limit - (size - 1)                 // 还允许做几次乘法
+        if (remaining <= 0) return false
+        if (last.toLong() shl remaining < target) return false   // 每步至多翻倍
+        for (i in size - 1 downTo 0) {
+            // 即使下一步取 chain[i] + chain[i]，其后全翻倍也到不了 target 就可以收手
+            if ((chain[i] + chain[i]).toLong() shl (remaining - 1) < target) break
+            for (j in i downTo 0) {
+                val candidate = chain[i] + chain[j]
+                if (candidate <= last || candidate > target) continue
+                if (candidate.toLong() shl (remaining - 1) < target) break
+                chain[size] = candidate
+                if (search(size + 1, limit)) return true
+            }
+        }
+        return false
+    }
+
+    var limit = 1
+    while (!search(1, limit)) limit++
+    return limit
+}
+
+/**
+ * PE 122 — Σ_{k=1}^{200} m(k)。m(15) = 5、m(191) = 11 两个锚点在题面/推导中给出，一并自检。
+ */
+private fun solve122(): Long {
+    check(p122MinMultiplications(15) == 5) { "题面锚点：m(15) 应为 5，实际 ${p122MinMultiplications(15)}" }
+    check(p122MinMultiplications(1) == 0 && p122MinMultiplications(2) == 1) { "小值锚点失败" }
+    check(p122MinMultiplications(191) == 11) { "m(191) 应为 11，实际 ${p122MinMultiplications(191)}" }
+    return (1..200).sumOf { p122MinMultiplications(it).toLong() }
+}
+
+/** 第 index 个素数为 prime 时的余数 r（index 从 1 开始）：偶数下标恒为 2，奇数下标为 2n·p mod p²。 */
+private fun p123RemainderAt(index: Int, prime: Long): Long =
+    if (index % 2 == 0) 2L else 2L * index * prime % (prime * prime)
+
+/** 使余数首次超过 threshold 的最小下标；素数表不够长时抛错而不是给出错误答案。 */
+private fun p123FirstIndexExceeding(threshold: Long): Long {
+    val isP = sieve(300_000)
+    var index = 0
+    for (p in 2..300_000) {
+        if (!isP[p]) continue
+        index++
+        if (p123RemainderAt(index, p.toLong()) > threshold) return index.toLong()
+    }
+    error("素数筛上界不足，无法覆盖阈值 $threshold")
+}
+
+/** PE 123 — 余数首次超过 10¹⁰ 的下标 = 21035（题面 n = 3 → 5、超过 10⁹ → 7037 两个锚点自检）。 */
+private fun solve123(): Long {
+    check(p123RemainderAt(3, 5L) == 5L) { "题面样例 n = 3 应得余数 5，实际 ${p123RemainderAt(3, 5L)}" }
+    check(p123FirstIndexExceeding(1_000_000_000L) == 7037L) { "题面锚点：超过 10⁹ 的最小 n 应为 7037" }
+    return p123FirstIndexExceeding(10_000_000_000L)
+}
+
+/** PE 124 — 根基排序：筛出 rad(n) 后按根基计数排序，取第 10000 项 = 21417。O(N log log N)。 */
+private fun solve124(): Long {
+    val limit = 100_000
+    val radicals = IntArray(limit + 1) { 1 }
+    for (p in 2..limit) {
+        if (radicals[p] == 1) {
+            for (multiple in p..limit step p) radicals[multiple] *= p
+        }
+    }
+    val next = IntArray(limit + 1)
+    for (n in 1..limit) next[radicals[n]]++
+    var offset = 0
+    for (r in 1..limit) {
+        val count = next[r]
+        next[r] = offset
+        offset += count
+    }
+    val ordered = IntArray(limit)
+    for (n in 1..limit) ordered[next[radicals[n]]++] = n
+    return ordered[9_999].toLong()
+}
+
+/** 数字反转：12321 → 12321、120 → 21（不经过字符串）。 */
+private fun p125ReverseDigits(value: Long): Long {
+    var rest = value
+    var reversed = 0L
+    while (rest > 0) {
+        reversed = reversed * 10 + rest % 10
+        rest /= 10
+    }
+    return reversed
+}
+
+private fun p125IsPalindromic(value: Long): Boolean = value > 0 && p125ReverseDigits(value) == value
+
+/**
+ * 平方前缀和 P(0..maxBase)，P(k) = 1² + … + k²。上界取「单个平方数仍小于 limit」：
+ * 区间和 P(b) − P(a−1) ≥ b²，所以 b² ≥ limit 的区间必然全部超限，可以安全截断。
+ */
+private fun p125SquarePrefixSums(limit: Long): LongArray {
+    val sums = ArrayList<Long>(10_000)
+    sums.add(0L)
+    var base = 1L
+    while (base * base < limit) {
+        sums.add(sums[sums.size - 1] + base * base)
+        base++
+    }
+    return sums.toLongArray()
+}
+
+/** 小于 limit 的「回文 + 至少 minTerms 项连续正整数平方和」之和（同一数只计一次）。 */
+private fun p125Sum(limit: Long, minTerms: Int): Long {
+    val prefix = p125SquarePrefixSums(limit)
+    val palindromes = HashSet<Long>()
+    var firstValid = 0                               // 最小的 start，使 P(end) − P(start) < limit
+    for (end in 1 until prefix.size) {
+        while (firstValid < end && prefix[end] - prefix[firstValid] >= limit) firstValid++
+        for (start in firstValid until end) {        // 区间是 (start+1)² … end²，共 end−start 项
+            if (end - start < minTerms) break        // 项数随 start 递增而减少 → 可以 break
+            val sum = prefix[end] - prefix[start]    // start ≥ firstValid ⇒ sum 必 < limit
+            if (p125IsPalindromic(sum)) palindromes.add(sum)
+        }
+    }
+    return palindromes.sum()
+}
+
+/** PE 125 — 10⁸ 以内可写成连续平方和（至少两项）的回文数之和 = 2906969179。 */
+private fun solve125(): Long {
+    check(p125Sum(1000L, 2) == 4164L)                // 题面样例：1000 以内 11 个回文，和 4164
+    check(p125Sum(5L, 2) == 0L && p125Sum(6L, 2) == 5L)   // 边界：5 = 1² + 2² 只在 limit > 5 时计入
+    val prefix = p125SquarePrefixSums(100_000_000L)
+    check(prefix[12] - prefix[5] == 595L)            // 题面例子：595 = 6² + 7² + … + 12²
+    return p125Sum(100_000_000L, 2)
 }

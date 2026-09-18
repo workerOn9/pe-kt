@@ -1,0 +1,20 @@
+{
+  "id": 101,
+  "title": "Optimum Polynomial",
+  "titleZh": "最优多项式",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "math",
+    "sequence",
+    "interpolation",
+    "finite-differences"
+  ],
+  "answer": 37076114526,
+  "solvedBy": 15129,
+  "bruteForceBaselineMs": 0.1553,
+  "optimizedBaselineMs": 0.0011,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=101",
+  "fetchedAt": "2026-09-17"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 103,
+  "title": "Special Subset Sums: Optimum",
+  "titleZh": "特殊和集：最优",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": [
+    "combinatorics",
+    "subset-sum",
+    "special-sum-set",
+    "branch-and-bound",
+    "search"
+  ],
+  "answer": 20313839404245,
+  "solvedBy": 10567,
+  "bruteForceBaselineMs": 234.0349,
+  "optimizedBaselineMs": 19.4721,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=103",
+  "fetchedAt": "2026-09-17"
+}

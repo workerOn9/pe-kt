@@ -1,0 +1,21 @@
+{
+  "id": 113,
+  "title": "Non-bouncy Numbers",
+  "titleZh": "非弹跳数",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "math",
+    "combinatorics",
+    "counting",
+    "stars-and-bars",
+    "dynamic-programming"
+  ],
+  "answer": 51161058134250,
+  "solvedBy": 13715,
+  "bruteForceBaselineMs": 0.0409,
+  "optimizedBaselineMs": 0.0001,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=113",
+  "fetchedAt": "2026-09-17"
+}

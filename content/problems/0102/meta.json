@@ -1,0 +1,19 @@
+{
+  "id": 102,
+  "title": "Triangle Containment",
+  "titleZh": "三角形内含原点",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "geometry",
+    "cross-product",
+    "barycentric-coordinates"
+  ],
+  "answer": 228,
+  "solvedBy": 26753,
+  "bruteForceBaselineMs": 0.3546,
+  "optimizedBaselineMs": 0.3575,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=102",
+  "fetchedAt": "2026-09-17"
+}

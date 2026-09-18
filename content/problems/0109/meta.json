@@ -1,0 +1,20 @@
+{
+  "id": 109,
+  "title": "Darts",
+  "titleZh": "飞镖 checkout 计数",
+  "difficulty": 13,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "combinatorics",
+    "counting",
+    "enumeration",
+    "multiset"
+  ],
+  "answer": 38182,
+  "solvedBy": 10501,
+  "bruteForceBaselineMs": 0.9405,
+  "optimizedBaselineMs": 0.0333,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=109",
+  "fetchedAt": "2026-09-17"
+}

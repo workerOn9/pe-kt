@@ -1,0 +1,20 @@
+{
+  "id": 107,
+  "title": "Minimal Network",
+  "titleZh": "最小网络",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "graph",
+    "minimum-spanning-tree",
+    "kruskal",
+    "union-find"
+  ],
+  "answer": 259679,
+  "solvedBy": 13592,
+  "bruteForceBaselineMs": 0.3254,
+  "optimizedBaselineMs": 0.4536,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=107",
+  "fetchedAt": "2026-09-17"
+}

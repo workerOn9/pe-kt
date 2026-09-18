@@ -1,0 +1,21 @@
+{
+  "id": 112,
+  "title": "Bouncy Numbers",
+  "titleZh": "弹跳数",
+  "difficulty": 4,
+  "difficultyLevel": "Level 1",
+  "tags": [
+    "math",
+    "digits",
+    "combinatorics",
+    "backtracking",
+    "counting"
+  ],
+  "answer": 1587000,
+  "solvedBy": 30039,
+  "bruteForceBaselineMs": 8.1103,
+  "optimizedBaselineMs": 0.3575,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=112",
+  "fetchedAt": "2026-09-17"
+}
