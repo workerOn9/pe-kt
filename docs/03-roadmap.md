@@ -59,6 +59,19 @@
 
 **出口标准**：`./gradlew :server:test`（含 100 题答案实跑比对）与 `cd web && npm run build` 全绿，Docker 单端口实测通过。
 
+## Phase 6：题库扩充至 125 题
+
+- [x] 101–125 共 25 题内容资产：每题 statement（中/英底稿）、solution.kt、brute-force.kt、
+  analysis.md、applications.md、meta.json，以及 Solvers.kt 注册的 `solveNNN`（102–125）
+- [x] 每题的独立验证：solution.kt 与 brute-force.kt 双算法实跑（本机 kotlinc shim）答案一致，
+  且与官方难度页数据、题面锚点交叉校验
+- [x] 3 道题的外部资源文件入库（triangles.txt / sets.txt / network.txt）
+- [x] 修正上一批遗留缺陷：0107 brute-force 的缺失边被当成 −1 累加；0118 brute-force 的
+  「数字和是 3 的倍数」剪枝误伤单数字掩码 `{3}`（详见各题 analysis.md 的关键教训）
+
+**出口标准**：`./gradlew :server:test`（含 125 题答案实跑比对）、`cd web && npm run check:math`、
+`cd web && npm run build` 全绿，Docker 单端口实测通过（2026-09-18 达成）。
+
 ## 里程碑总结
 
 | 里程碑 | 内容 | 验收 |
@@ -70,3 +83,4 @@
 | M4 | 打磨 | 搜索 + 对比图 + CI + 单端口部署 |
 | M5 | 题库扩充 | 26–50 题内容 + 求解器全量注册 |
 | M6 | 题库扩充 | 51–100 题内容 + 求解器全量注册 |
+| M7 | 题库扩充 | 101–125 题内容 + 求解器全量注册 |

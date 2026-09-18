@@ -1,0 +1,21 @@
+{
+  "id": 108,
+  "title": "Diophantine Reciprocals I",
+  "titleZh": "丢番图倒数 I",
+  "difficulty": 13,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "math",
+    "number-theory",
+    "divisors",
+    "diophantine-equation",
+    "branch-and-bound"
+  ],
+  "answer": 180180,
+  "solvedBy": 15757,
+  "bruteForceBaselineMs": 11.6768,
+  "optimizedBaselineMs": 0.000458,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=108",
+  "fetchedAt": "2026-09-17"
+}

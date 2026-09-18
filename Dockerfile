@@ -11,7 +11,7 @@ WORKDIR /app
 COPY server/build/install/server/ /app/
 # 前端静态产物（Vite build 输出，由 Ktor 通配路由托管）
 COPY web/dist/ /app/web-dist/
-# 题目内容资产（100 题 statement/solution/meta）
+# 题目内容资产（各题 statement/analysis/applications/solution/meta 与数据文件）
 COPY content/ /app/content/
 
 ENV PEKT_CONTENT_DIR=/app/content \

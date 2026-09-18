@@ -1,0 +1,21 @@
+{
+  "id": 106,
+  "title": "Special Subset Sums: Meta-testing",
+  "titleZh": "特殊和集：元测试",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": [
+    "combinatorics",
+    "counting",
+    "catalan",
+    "binomial-coefficients",
+    "special-sum-set"
+  ],
+  "answer": 21384,
+  "solvedBy": 8438,
+  "bruteForceBaselineMs": 87.8337,
+  "optimizedBaselineMs": 0.0001,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=106",
+  "fetchedAt": "2026-09-17"
+}

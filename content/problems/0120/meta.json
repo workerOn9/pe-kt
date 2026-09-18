@@ -1,0 +1,20 @@
+{
+  "id": 120,
+  "title": "Square Remainders",
+  "titleZh": "平方剩余",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": [
+    "math",
+    "number-theory",
+    "modular-arithmetic",
+    "binomial-expansion"
+  ],
+  "answer": 333082500,
+  "solvedBy": 16978,
+  "bruteForceBaselineMs": 9.8978,
+  "optimizedBaselineMs": 0.0064,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=120",
+  "fetchedAt": "2026-09-17"
+}

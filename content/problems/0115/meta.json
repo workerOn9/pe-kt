@@ -1,0 +1,20 @@
+{
+  "id": 115,
+  "title": "Counting Block Combinations II",
+  "titleZh": "数方块组合 II",
+  "difficulty": 11,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "math",
+    "combinatorics",
+    "dynamic-programming",
+    "recurrence"
+  ],
+  "answer": 168,
+  "solvedBy": 12501,
+  "bruteForceBaselineMs": 0.014517,
+  "optimizedBaselineMs": 0.000499,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=115",
+  "fetchedAt": "2026-09-17"
+}

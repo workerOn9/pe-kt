@@ -1,0 +1,21 @@
+{
+  "id": 118,
+  "title": "Pandigital Prime Sets",
+  "titleZh": "全数字素数集合",
+  "difficulty": 23,
+  "difficultyLevel": "Level 9",
+  "tags": [
+    "primes",
+    "combinatorics",
+    "set-partition",
+    "bitmask",
+    "memoization"
+  ],
+  "answer": 44680,
+  "solvedBy": 9096,
+  "bruteForceBaselineMs": 507.573,
+  "optimizedBaselineMs": 56.4081,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=118",
+  "fetchedAt": "2026-09-17"
+}

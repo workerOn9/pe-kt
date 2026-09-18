@@ -1,0 +1,15 @@
+{
+  "id": 125,
+  "title": "Palindromic Sums",
+  "titleZh": "回文平方和",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": ["palindromes", "prefix-sums", "two-pointers", "squares"],
+  "answer": 2906969179,
+  "solvedBy": 16643,
+  "bruteForceBaselineMs": 112.9831,
+  "optimizedBaselineMs": 4.0063,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=125",
+  "fetchedAt": "2026-09-17"
+}

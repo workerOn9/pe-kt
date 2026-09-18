@@ -1,0 +1,20 @@
+{
+  "id": 116,
+  "title": "Red, Green or Blue Tiles",
+  "titleZh": "红、绿或蓝瓷砖",
+  "difficulty": 11,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "combinatorics",
+    "recurrence",
+    "dynamic-programming",
+    "fibonacci"
+  ],
+  "answer": 20492570929,
+  "solvedBy": 15071,
+  "bruteForceBaselineMs": 0.0557,
+  "optimizedBaselineMs": 0.0004,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=116",
+  "fetchedAt": "2026-09-17"
+}

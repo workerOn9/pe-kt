@@ -1,0 +1,21 @@
+{
+  "id": 123,
+  "title": "Prime Square Remainders",
+  "titleZh": "素数平方剩余",
+  "difficulty": 11,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "math",
+    "number-theory",
+    "primes",
+    "modular-arithmetic",
+    "binomial-expansion"
+  ],
+  "answer": 21035,
+  "solvedBy": 14208,
+  "bruteForceBaselineMs": 25.3924,
+  "optimizedBaselineMs": 0.9165,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=123",
+  "fetchedAt": "2026-09-17"
+}

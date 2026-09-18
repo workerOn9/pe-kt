@@ -1,0 +1,21 @@
+{
+  "id": 122,
+  "title": "Efficient Exponentiation",
+  "titleZh": "高效幂运算",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": [
+    "addition-chain",
+    "search",
+    "iterative-deepening",
+    "bfs",
+    "pruning"
+  ],
+  "answer": 1582,
+  "solvedBy": 9923,
+  "bruteForceBaselineMs": 24538.348,
+  "optimizedBaselineMs": 1.749,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=122",
+  "fetchedAt": "2026-09-17"
+}

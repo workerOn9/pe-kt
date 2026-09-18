@@ -1,0 +1,21 @@
+{
+  "id": 104,
+  "title": "Pandigital Fibonacci Ends",
+  "titleZh": "首尾全数字的斐波那契数",
+  "difficulty": 7,
+  "difficultyLevel": "Level 2",
+  "tags": [
+    "math",
+    "fibonacci",
+    "modular-arithmetic",
+    "logarithms",
+    "pandigital"
+  ],
+  "answer": 329468,
+  "solvedBy": 19972,
+  "bruteForceBaselineMs": 10938.9778,
+  "optimizedBaselineMs": 6.0411,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=104",
+  "fetchedAt": "2026-09-17"
+}

@@ -22,3 +22,5 @@
 - 2026-09-12：同法抓取 051–100 题面原文与官方难度/解题人数，并按题下载 9 个资源文件
   （poker/cipher/triangle/keylog/matrix/roman/sudoku/words/base_exp）。批量抓取用 `navigate` + 读 DOM，
   每题间隔 3.5s；**不要用页面内 `fetch()` 批量拉取**，会被 PE 反爬整体 403。
+- 2026-09-17：同法抓取 101–125 题面原文与官方难度/解题人数，并按题下载 3 个资源文件
+  （triangles.txt / sets.txt / network.txt）。批量抓取仍用 `navigate` + 读 DOM，每题间隔 3.5s。
