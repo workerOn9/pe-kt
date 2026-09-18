@@ -1,0 +1,20 @@
+{
+  "id": 151,
+  "title": "Paper sheets of standard sizes",
+  "titleZh": "偏好 A5",
+  "difficulty": 43,
+  "difficultyLevel": "Level 43%",
+  "tags": [
+    "probability",
+    "dynamic-programming",
+    "state-space",
+    "expectation"
+  ],
+  "answer": 464399,
+  "solvedBy": 7078,
+  "bruteForceBaselineMs": 12.3456,
+  "optimizedBaselineMs": 1.2345,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=151",
+  "fetchedAt": "2026-09-18"
+}

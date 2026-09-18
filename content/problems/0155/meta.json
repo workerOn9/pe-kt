@@ -1,0 +1,20 @@
+{
+  "id": 155,
+  "title": "Counting Capacitor Circuits",
+  "titleZh": "计算电容器电路",
+  "difficulty": 45,
+  "difficultyLevel": "Level 45%",
+  "tags": [
+    "dynamic-programming",
+    "fraction-arithmetic",
+    "combinatorial-generation",
+    "circuit-theory"
+  ],
+  "answer": 3857447,
+  "solvedBy": 4749,
+  "bruteForceBaselineMs": 120.0,
+  "optimizedBaselineMs": 85.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=155",
+  "fetchedAt": "2026-09-18"
+}
