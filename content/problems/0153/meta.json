@@ -1,0 +1,20 @@
+{
+  "id": 153,
+  "title": "Investigating Gaussian Integers",
+  "titleZh": "探究高斯整数",
+  "difficulty": 38,
+  "difficultyLevel": "Level 38%",
+  "tags": [
+    "number-theory",
+    "gaussian-integers",
+    "dirichlet-convolution",
+    "sum-of-squares"
+  ],
+  "answer": 1741426579868,
+  "solvedBy": 3590,
+  "bruteForceBaselineMs": 8500.0,
+  "optimizedBaselineMs": 280.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=153",
+  "fetchedAt": "2026-09-18"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 154,
+  "title": "Exploring Pascal's Pyramid",
+  "titleZh": "探索帕斯卡金字塔",
+  "difficulty": 44,
+  "difficultyLevel": "Level 44%",
+  "tags": [
+    "combinatorics",
+    "pascal-pyramid",
+    "trinomial-coefficient",
+    "p-adic-valuation",
+    "number-theory"
+  ],
+  "answer": 105477136,
+  "solvedBy": 3561,
+  "bruteForceBaselineMs": 2500.0,
+  "optimizedBaselineMs": 1200.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=154",
+  "fetchedAt": "2026-09-18"
+}

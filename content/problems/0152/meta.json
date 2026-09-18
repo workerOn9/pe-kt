@@ -1,0 +1,21 @@
+{
+  "id": 152,
+  "title": "Sums of Square Reciprocals",
+  "titleZh": "平方倒数之和",
+  "difficulty": 55,
+  "difficultyLevel": "Level 55%",
+  "tags": [
+    "math",
+    "subset-sum",
+    "backtracking",
+    "exact-arithmetic",
+    "number-theory"
+  ],
+  "answer": 301,
+  "solvedBy": 3679,
+  "bruteForceBaselineMs": 2500.0,
+  "optimizedBaselineMs": 85.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=152",
+  "fetchedAt": "2026-09-18"
+}
