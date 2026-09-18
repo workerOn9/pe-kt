@@ -1,0 +1,15 @@
+{
+  "id": 142,
+  "title": "Perfect Square Collection",
+  "titleZh": "完全平方数集合",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": ["number-theory", "pythagorean-triplet", "diophantine-equation", "enumeration", "squares"],
+  "answer": 1006193,
+  "solvedBy": 7371,
+  "bruteForceBaselineMs": 692.2868,
+  "optimizedBaselineMs": 0.0726,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=142",
+  "fetchedAt": "2026-09-18"
+}

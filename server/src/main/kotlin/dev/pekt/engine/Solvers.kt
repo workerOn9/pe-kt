@@ -7,6 +7,7 @@ import dev.pekt.math.factorial
 import dev.pekt.math.gcd
 import dev.pekt.math.isPrime
 import dev.pekt.math.lcm
+import dev.pekt.math.modInverse
 import dev.pekt.math.modPow
 import dev.pekt.math.nthPrime
 import dev.pekt.math.primesUpTo
@@ -150,6 +151,31 @@ val solvers: Map<Int, () -> Long> = mapOf(
     123 to ::solve123,
     124 to ::solve124,
     125 to ::solve125,
+    126 to ::solve126,
+    127 to ::solve127,
+    128 to ::solve128,
+    129 to ::solve129,
+    130 to ::solve130,
+    131 to ::solve131,
+    132 to ::solve132,
+    133 to ::solve133,
+    134 to ::solve134,
+    135 to ::solve135,
+    136 to ::solve136,
+    137 to ::solve137,
+    138 to ::solve138,
+    139 to ::solve139,
+    140 to ::solve140,
+    141 to ::solve141,
+    142 to ::solve142,
+    143 to ::solve143,
+    144 to ::solve144,
+    145 to ::solve145,
+    146 to ::solve146,
+    147 to ::solve147,
+    148 to ::solve148,
+    149 to ::solve149,
+    150 to ::solve150,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -4052,4 +4078,2985 @@ private fun solve125(): Long {
     val prefix = p125SquarePrefixSums(100_000_000L)
     check(prefix[12] - prefix[5] == 595L)            // 题面例子：595 = 6² + 7² + … + 12²
     return p125Sum(100_000_000L, 2)
+}
+
+// ===== PE 126–150：由 .solver_frag/0126.kt … 0150.kt 按题号顺序拼接 =====
+
+// ---------- PE 126 ----------
+/**
+ * PE 126 — Cuboid Layers（立方体分层）
+ *
+ * a×b×c 长方体第 k 层所需单位立方体数
+ *   f(a,b,c,k) = 2(ab+ac+bc) + 4(a+b+c)(k−1) + 4(k−1)(k−2)，
+ * 首项是表面积（第一层给每个可见单位面贴一个立方体），其后两项分别是 12 条棱上的斜带与 8 个角上的
+ * 阶梯三角面。相邻两层之差 f(k+1) − f(k) = 4(a+b+c) + 8(k−1) 是公差恒为 8 的等差数列，故遍历时
+ * 只需一次加法与一次增量即可推层。C(n) 统计的是 (长方体, 层) 对的数量，长方体按 a ≤ b ≤ c 规范化。
+ * 剪枝由 f ≥ 2(ab+ac+bc) 推出：6a² ≤ limit、4ab+2b² ≤ limit、c 随底面积单调递增可跳出。
+ * 上界从 1000 起倍增直到扫出 C(n) = 1000，避免预设答案量级。答案 = 18522。
+ */
+
+/** 第 k 层立方体个数的闭式（k ≥ 1）。用 Long 计算，防止 a、b、c 较大时乘积溢出。 */
+private fun p126LayerCount(a: Long, b: Long, c: Long, k: Long): Long =
+    2L * (a * b + a * c + b * c) + 4L * (a + b + c) * (k - 1) + 4L * (k - 1) * (k - 2)
+
+/**
+ * 枚举全部 a ≤ b ≤ c 的长方体及其各层，把 f ≤ limit 的层累加进 cnt。
+ * cnt 长度至少 limit + 1，下标即层内立方体个数。
+ */
+private fun p126CountLayers(limit: Int, cnt: IntArray) {
+    var a = 1
+    while (6L * a * a <= limit) {                      // 底面积 ≥ 6a²（取 b = c = a）
+        val aL = a.toLong()
+        var b = a
+        while (4L * aL * b + 2L * b * b <= limit) {     // 固定 (a,b) 时 c = b 让底面积最小
+            val bL = b.toLong()
+            var c = b
+            while (true) {
+                val base = 2L * (aL * bL + aL * c + bL * c)
+                if (base > limit) break                // 底面积随 c 严格递增，可安全退出
+                var f = base.toInt()                   // 第 1 层；limit < 2³¹，内层用 Int 更快
+                var stride = 4 * (a + b + c)           // f(2) − f(1)
+                while (f <= limit) {
+                    cnt[f]++
+                    f += stride
+                    stride += 8                       // f(k+1) − f(k) 的公差
+                }
+                c++
+            }
+            b++
+        }
+        a++
+    }
+}
+
+/** 在给定上界内统计 C(n)，返回最小的满足 C(n) == target 的 n；找不到返回 -1。 */
+private fun p126LeastWithCount(target: Int, limit: Int): Int {
+    val cnt = IntArray(limit + 1)
+    p126CountLayers(limit, cnt)
+    for (n in 1..limit) if (cnt[n] == target) return n
+    return -1
+}
+
+/** PE 126 — 求最小的使 C(n) = 1000 的 n = 18522。上界倍增到 32000，空间 O(limit)。 */
+private fun solve126(): Long {
+    // 题面第一组：3×2×1 的第 1..4 层
+    check(p126LayerCount(3, 2, 1, 1) == 22L) { "题面样例：3×2×1 第一层应为 22" }
+    check(p126LayerCount(3, 2, 1, 2) == 46L) { "题面样例：3×2×1 第二层应为 46" }
+    check(p126LayerCount(3, 2, 1, 3) == 78L) { "题面样例：3×2×1 第三层应为 78" }
+    check(p126LayerCount(3, 2, 1, 4) == 118L) { "题面样例：3×2×1 第四层应为 118" }
+
+    // 题面第二组：其它长方体的第一层
+    check(p126LayerCount(5, 1, 1, 1) == 22L) { "题面样例：5×1×1 第一层应为 22" }
+    check(p126LayerCount(5, 3, 1, 1) == 46L) { "题面样例：5×3×1 第一层应为 46" }
+    check(p126LayerCount(7, 2, 1, 1) == 46L) { "题面样例：7×2×1 第一层应为 46" }
+    check(p126LayerCount(11, 1, 1, 1) == 46L) { "题面样例：11×1×1 第一层应为 46" }
+
+    // 题面 C(n) 的四个值（上界取得够大，保证这些小 n 的计数完整）
+    val cnt = IntArray(2000)
+    p126CountLayers(1999, cnt)
+    check(cnt[22] == 2) { "题面样例：C(22) 应为 2，实测 ${cnt[22]}" }
+    check(cnt[46] == 4) { "题面样例：C(46) 应为 4，实测 ${cnt[46]}" }
+    check(cnt[78] == 5) { "题面样例：C(78) 应为 5，实测 ${cnt[78]}" }
+    check(cnt[118] == 8) { "题面样例：C(118) 应为 8，实测 ${cnt[118]}" }
+
+    // 题面：154 是最小的使 C(n) == 10 的 n
+    check(p126LeastWithCount(10, 2000) == 154) { "题面样例：最小 C(n) = 10 的 n 应为 154" }
+
+    // 上界从 1000 起倍增直到扫出结果；答案必须严格小于最后使用的上界，贴着上界说明计数不完整
+    var limit = 1000
+    while (true) {
+        val n = p126LeastWithCount(1000, limit)
+        if (n > 0) {
+            check(n.toLong() < 32_000L) { "答案应严格小于最后使用的上界，实测 $n" }
+            return n.toLong()
+        }
+        limit *= 2
+    }
+}
+
+// ---------- PE 127 ----------
+/**
+ * PE 127 — abc-hits（abc 三元组）
+ *
+ * rad(n) 是 n 的不同素因子之积。题目要求 a < b、a + b = c，且三对 gcd 全为 1。
+ * 因为 c = a + b，gcd(a,c) = gcd(a,a+b) = gcd(a,b)，gcd(b,c) = gcd(b,a)，
+ * 三个条件等价于 gcd(a,b) = 1；两两互素又保证 rad(abc) = rad(a)·rad(b)·rad(c)，
+ * 于是判据化为对称形式 rad(a)·rad(b)·rad(c) < a + b。
+ *
+ * 剪枝：c ≥ 3 时 rad(c) ≥ 2，而 c = a + b ≤ limit−1，故任何合法对必须满足
+ * 2·rad(a)·rad(b) ≤ limit−2  （关于 a、b 对称的必要条件）。
+ * 把 1…limit−1 按 rad 值计数排序后，对位置 i 只需向后扫描
+ * rad ≤ (limit−2)/(2·radList[i]) 的连续前缀；条件对称 ⇒ 每个无序对恰好被处理一次。
+ * 当 (limit−2)/(2·rad(x)) < 2 时只剩 y = 1（已在 i = 0 那轮扫过），外循环可直接 break。
+ *
+ * 复杂度：rad 筛 O(limit·log log limit)，计数排序与前缀数组 O(limit)，
+ * 候选检查 15 847 083 次（按定义枚举是 limit²/4 ≈ 3.6×10⁹ 对），空间 O(limit)。
+ * 三元积最坏约 7.2×10⁹ 超出 Int，用 Long 相乘。
+ */
+private fun p127Radicals(limit: Int): IntArray {
+    val rad = IntArray(limit) { 1 }
+    val isPrime = sieve(limit - 1)
+    for (p in 2 until limit) {
+        if (!isPrime[p]) continue            // 只对素数筛倍数，每个素因子恰好乘一次
+        var m = p
+        while (m < limit) {
+            rad[m] *= p
+            m += p
+        }
+    }
+    return rad
+}
+
+/** 返回 [命中个数, Σc]，统计所有 c < limit 的 abc-hit（逻辑与 solution.kt 一致）。 */
+private fun p127Hits(limit: Int): LongArray {
+    if (limit < 4) return longArrayOf(0L, 0L)      // c = a+b ≥ 3
+    val rad = p127Radicals(limit)
+    val n = limit - 1
+
+    val hist = IntArray(limit)                     // hist[r] = #{v : rad[v] == r}
+    for (v in 1 until limit) hist[rad[v]]++
+    val cursor = IntArray(limit)
+    var acc = 0
+    for (r in 1 until limit) {
+        cursor[r] = acc
+        acc += hist[r]
+    }
+    val valueList = IntArray(n)                    // 按 rad 升序装桶（计数排序）
+    val radList = IntArray(n)
+    for (v in 1 until limit) {
+        val slot = cursor[rad[v]]++
+        valueList[slot] = v
+        radList[slot] = rad[v]
+    }
+
+    var count = 0L
+    var total = 0L
+    for (i in 0 until n) {
+        val x = valueList[i]
+        val rx = radList[i]
+        val bound = (limit - 2) / (2 * rx)         // 必要条件：rad(y) ≤ bound
+        if (bound < 2) break                       // rad 已升序，后面只会更小
+        var j = i + 1
+        while (j < n) {
+            val ry = radList[j]
+            if (ry > bound) break                  // 前缀到此为止：rx·ry ≤ limit−2 已不成立
+            val c = x + valueList[j]
+            j++
+            if (c >= limit) continue
+            // rx·ry ≤ (limit−2)/2 < 2³¹，二元积先用 Int 乘，再升 Long 与 rad(c) 相乘
+            val pairProduct = rx * ry
+            if (pairProduct.toLong() * rad[c] < c &&
+                gcd(x.toLong(), (c - x).toLong()) == 1L
+            ) {
+                count++
+                total += c
+            }
+        }
+    }
+    return longArrayOf(count, total)
+}
+
+/** PE 127 — c < 120000 的全部 abc-hit 的 c 之和 = 18407904（c < 1000 有 31 个、Σc = 12523 自检）。 */
+private fun solve127(): Long {
+    val rad = p127Radicals(505)
+    check(gcd(5L, 27L) == 1L && gcd(5L, 32L) == 1L &&
+        gcd(27L, 32L) == 1L) { "题面例子：(5,27,32) 的三对 gcd 应全为 1" }
+    check(rad[504] == 42) { "题面例子：rad(504) 应为 42，实际 ${rad[504]}" }   // 504 = 2³·3²·7
+    check(rad[5] * rad[27] * rad[32] == 30) { "题面例子：rad(5·27·32) 应为 30" }
+    check(p127Hits(10).contentEquals(longArrayOf(1L, 9L))) { "c < 10 只应有 (1,8,9)" }
+    // 题面锚点：c < 1000 恰有 31 个 abc-hit，Σc = 12523
+    val small = p127Hits(1_000)
+    check(small[0] == 31L && small[1] == 12523L) {
+        "题面锚点：c < 1000 应为 31 个、Σc = 12523，实际 ${small.toList()}"
+    }
+    check(p127Hits(4)[1] == 0L) { "边界：c < 4 不应有 abc-hit" }
+    return p127Hits(120_000)[1]
+}
+
+// ---------- PE 128 ----------
+/**
+ * PE 128 — 六边形地砖的差值：地砖按六边形螺旋编号，第 k 环为 [3k²−3k+2, 3k²+3k+1]。
+ * 非缝砖的六差里必有两个偶数且 ≥ 6（必为合数），故 PD ≤ 2，PD = 3 只可能出现在两类缝砖上：
+ * 环起始砖 ⟺ 6k−1、6k+1、12k+5 全为素数，环结束砖 ⟺ 6k−1、6k+5、12k−7 全为素数。
+ * 模 5 剪枝后只需考虑 k ≡ 2,3 与 k ≡ 2,3,4 的环，逐环数到第 2000 项即为答案。
+ * 复杂度 O(L log log L + K)，L 为覆盖 12k+5 的筛上界，K 为第 2000 项所在环号。
+ */
+
+/** 环 k 起始砖的编号：3k² − 3k + 2。 */
+private fun p128RingStart(k: Int): Long = 3L * k * k - 3L * k + 2L
+
+/** 环 k 结束砖的编号：3k² + 3k + 1。 */
+private fun p128RingEnd(k: Int): Long = 3L * k * k + 3L * k + 1L
+
+/**
+ * 序列中第 nth 块 PD = 3 的砖。筛上界自适应倍增：候选值最大为 12k+5，
+ * 若扫描越过当前筛上界而项数还不够，就把上界翻倍重来（重来一次的代价有界）。
+ */
+private fun p128NthTerm(nth: Int): Long {
+    if (nth <= 2) return if (nth == 1) 1L else 2L         // 前两块特例：1 与 2
+    var limit = 1 shl 12                                  // 从 4096 起，够跑小规模样例
+    while (true) {
+        val isPrime = sieve(limit)          // 索引 0…limit 都有效
+        var count = 2
+        var k = 2
+        while (12L * k + 5L <= limit) {
+            if (k % 5 == 2 || k % 5 == 3) {
+                if (isPrime[6 * k - 1] && isPrime[6 * k + 1] && isPrime[12 * k + 5]) {
+                    count++
+                    if (count == nth) return p128RingStart(k)
+                }
+            }
+            if (k % 5 >= 2) {                             // 2、3、4
+                if (isPrime[6 * k - 1] && isPrime[6 * k + 5] && isPrime[12 * k - 7]) {
+                    count++
+                    if (count == nth) return p128RingEnd(k)
+                }
+            }
+            k++
+        }
+        limit *= 2                                        // 上界不足，翻倍重扫
+    }
+}
+
+/**
+ * 按定义算 PD(n)：把环 ≤ 4（砖 1…61）的六边形网格建成「坐标 → 编号」表，
+ * 取 n 的六个邻居编号作差，数其中素数的个数。只用于复现题面的手工样例。
+ */
+private fun p128PdByDefinition(n: Int): Int {
+    val dirs = listOf(0 to -1, -1 to 0, -1 to 1, 0 to 1, 1 to 0, 1 to -1)
+    val corners = { k: Int -> listOf(0 to -k, -k to 0, -k to k, 0 to k, k to 0, k to -k) }
+    val step = listOf(-1 to 1, 0 to 1, 1 to 0, 1 to -1, 0 to -1, -1 to 0)
+    val pos = HashMap<Pair<Int, Int>, Int>()
+    pos[0 to 0] = 1
+    for (k in 1..4) {
+        for (q in 0..5) {
+            val c = corners(k)[q]
+            val d = step[q]
+            for (r in 0 until k) {
+                pos[(c.first + r * d.first) to (c.second + r * d.second)] =
+                    p128RingStart(k).toInt() + q * k + r
+            }
+        }
+    }
+    val isPrime = sieve(200)
+    var here = 0 to 0
+    for ((p, v) in pos) if (v == n) here = p
+    var count = 0
+    for ((dx, dy) in dirs) {
+        val other = pos[(here.first + dx) to (here.second + dy)] ?: continue
+        val diff = Math.abs(other - n)
+        if (diff >= 2 && isPrime[diff]) count++
+    }
+    return count
+}
+
+/** PE 128 — 六边形地砖差值序列中第 2000 块 PD = 3 的地砖 = 14516824220。 */
+private fun solve128(): Long {
+    check(p128PdByDefinition(8) == 3) { "题面样例：PD(8) 应为 3，实得 ${p128PdByDefinition(8)}" }
+    check(p128PdByDefinition(17) == 2) { "题面样例：PD(17) 应为 2，实得 ${p128PdByDefinition(17)}" }
+    check(p128PdByDefinition(1) == 3) { "特例砖：中心砖 1 的 PD 应为 3，实得 ${p128PdByDefinition(1)}" }
+    check(p128PdByDefinition(2) == 3) { "特例砖：第 1 环起始砖 2 的 PD 应为 3，实得 ${p128PdByDefinition(2)}" }
+    check(p128PdByDefinition(19) == 3) { "第 4 项 19 的 PD 应为 3，实得 ${p128PdByDefinition(19)}" }
+    check(p128NthTerm(10) == 271L) { "题面样例：第 10 块砖应为 271，实得 ${p128NthTerm(10)}" }
+    check(p128NthTerm(1) == 1L && p128NthTerm(2) == 2L && p128NthTerm(3) == 8L) {
+        "序列前三项应为 1、2、8，实得 ${p128NthTerm(1)}、${p128NthTerm(2)}、${p128NthTerm(3)}"
+    }
+    check(p128NthTerm(4) == 19L && p128NthTerm(5) == 20L && p128NthTerm(6) == 37L) {
+        "序列第 4…6 项应为 19、20、37，实得 ${p128NthTerm(4)}、${p128NthTerm(5)}、${p128NthTerm(6)}"
+    }
+    return p128NthTerm(2000)
+}
+
+// ---------- PE 129 ----------
+/**
+ * PE 129 — Repunit Divisibility：最小的 n 使 A(n) > 10⁶ = 1000023。
+ *
+ * 循环单位数 R(k) = (10^k − 1)/9，故 n | R(k) ⟺ 9n | 10^k − 1 ⟺ 10^k ≡ 1 (mod 9n)，
+ * A(n) 即 10 模 9n 的乘法阶。写 n = 3^a·m（3 ∤ m），由 CRT 与 LTE（v_3(10^k − 1) = 2 + v_3(k)）
+ * 得 A(n) = lcm(3^a, ord_m(10))。搜索下界不靠阶论：x ↦ (10x + 1) mod n 是双射，
+ * 余数序列纯周期且只占 n 个剩余类，故 A(n) ≤ n，从 10⁶ + 1 起搜即可。
+ * 求 ord_m(10) 时先由质因子分解算出 λ(m)，再对 λ(m) 的质因子逐个用模幂回除。
+ */
+
+/** x ≥ 1 的质因子分解：质因子 → 指数。 */
+private fun p129Factorize(x0: Long): Map<Long, Int> {
+    val factors = LinkedHashMap<Long, Int>()
+    var rest = x0
+    var d = 2L
+    while (d * d <= rest) {
+        if (rest % d == 0L) {
+            var e = 0
+            while (rest % d == 0L) {
+                rest /= d
+                e++
+            }
+            factors[d] = e
+        }
+        d += if (d == 2L) 1L else 2L
+    }
+    if (rest > 1L) factors[rest] = 1
+    return factors
+}
+
+/** base^exp（整数幂，避免用浮点的 Math.pow）。 */
+private fun p129IntPow(base: Long, exp: Int): Long {
+    var result = 1L
+    repeat(exp) { result *= base }
+    return result
+}
+
+/** Carmichael 函数 λ(m)：使所有 gcd(a, m) = 1 的 a 都满足 a^λ(m) ≡ 1 (mod m) 的最小正指数。 */
+private fun p129Carmichael(m: Long): Long {
+    var lambda = 1L
+    for ((p, e) in p129Factorize(m)) {
+        val primePart = when {
+            p == 2L && e == 1 -> 1L
+            p == 2L && e == 2 -> 2L
+            p == 2L -> 1L shl (e - 2)                    // 2^(e−2)，e ≥ 3
+            else -> (p - 1) * p129IntPow(p, e - 1)       // φ(p^e)，p 为奇素数
+        }
+        lambda = lcm(lambda, primePart)
+    }
+    return lambda
+}
+
+/** ord_m(10)：10 模 m 的乘法阶（要求 gcd(m, 10) = 1）。 */
+private fun p129OrderOfTenMod(m: Long): Long {
+    if (m == 1L) return 1L
+    var order = p129Carmichael(m)
+    // 先把 λ(m) 的质因子集合取出来，再在循环里把 order 除小
+    for (p in p129Factorize(order).keys) {
+        while (order % p == 0L && modPow(10L, order / p, m) == 1L) order /= p
+    }
+    return order
+}
+
+/** A(n)：最小的 k 使 n | R(k)（要求 gcd(n, 10) = 1），用阶公式求。 */
+private fun p129RepunitLength(n: Long): Long {
+    var m = n
+    var threePower = 1L
+    while (m % 3L == 0L) {
+        m /= 3L
+        threePower *= 3L
+    }
+    return lcm(threePower, p129OrderOfTenMod(m))
+}
+
+/** A(n) 的定义式算法：递推 R(k) mod n，首次为 0 的 k（仅供断言交叉验证）。 */
+private fun p129RepunitLengthByDefinition(n: Long): Long {
+    var r = 0L
+    var k = 0L
+    while (true) {
+        r = (r * 10L + 1L) % n
+        k++
+        if (r == 0L) return k
+    }
+}
+
+/** 最小的 n 使 A(n) > threshold；由 A(n) ≤ n 知只需从 threshold + 1 起找。 */
+private fun p129LeastNWithLengthAbove(threshold: Long): Long {
+    var n = threshold + 1L
+    while (true) {
+        if (n % 2L != 0L && n % 5L != 0L && p129RepunitLength(n) > threshold) return n
+        n++
+    }
+}
+
+private fun solve129(): Long {
+    // 题面样例
+    check(p129RepunitLength(7L) == 6L) { "题面样例：A(7) 应为 6" }
+    check(p129RepunitLength(41L) == 5L) { "题面样例：A(41) 应为 5" }
+    check(41L * 271L == 11111L) { "题面样例：R(5) = 11111 = 41 × 271" }
+    check(p129LeastNWithLengthAbove(10L) == 17L) { "题面边界：A(n) > 10 的最小 n 应为 17" }
+    check(p129RepunitLength(17L) == 16L) { "A(17) 应为 16" }
+    // A(n) ≤ n 的等号情形（n 为 3 的幂）
+    check(p129RepunitLength(3L) == 3L) { "A(3) 应为 3" }
+    check(p129RepunitLength(9L) == 9L) { "A(9) 应为 9" }
+    // 阶公式与定义式在样例点上互证（全范围互证在 solution.kt / brute-force.kt 里做）
+    for (n in longArrayOf(3L, 7L, 9L, 17L, 41L, 63L, 369L)) {
+        val byFormula = p129RepunitLength(n)
+        val byDefinition = p129RepunitLengthByDefinition(n)
+        check(byFormula == byDefinition) { "n=$n：阶公式 $byFormula ≠ 定义枚举 $byDefinition" }
+    }
+    return p129LeastNWithLengthAbove(1_000_000L)
+}
+
+// ---------- PE 130 ----------
+/**
+ * PE 130 — Composites with Prime Repunit Property（具有素数循环单位数性质的合数）。
+ *
+ * R(k) = (10^k − 1)/9，故 n | R(k) ⟺ 10^k ≡ 1 (mod 9n)，即 A(n) = ord_{9n}(10)；
+ * 3 ∤ n 时 ord_{9n}(10) = lcm(ord_9(10), ord_n(10)) = ord_n(10)（10 ≡ 1 mod 9）。
+ * 3 | n 时 27 | 9n 迫使 3 | A(n)（因为 3 | R(k) ⟺ 3 | k），而 n − 1 ≡ 2 (mod 3)，
+ * 故这类候选永不合格，候选只剩与 30 互素的合数。
+ * 求 ord_n(10)：n = ∏ p^e 分解成素数幂，各分量取 ord_{p^e}(10)（从 φ(p^e) 出发对 φ 的每个
+ * 素因子反复做「能除就除」的下降）再取 lcm，判定 A(n) | n − 1。
+ */
+
+/** 最小素因子筛：spf[x] = x 的最小素因子，spf[1] = 1。 */
+private fun p130SmallestPrimeFactors(limit: Int): IntArray {
+    val spf = IntArray(limit + 1) { it }
+    var i = 2
+    while (i.toLong() * i <= limit) {
+        if (spf[i] == i) {
+            var j = i * i
+            while (j <= limit) {
+                if (spf[j] == j) spf[j] = i
+                j += i
+            }
+        }
+        i++
+    }
+    return spf
+}
+
+/** x 的所有互异素因子（x ≥ 1，需 spf 覆盖到 x）。 */
+private fun p130DistinctPrimeFactors(x: Int, spf: IntArray): List<Int> {
+    val out = ArrayList<Int>()
+    var y = x
+    while (y > 1) {
+        val p = spf[y]
+        out.add(p)
+        while (y % p == 0) y /= p
+    }
+    return out
+}
+
+/**
+ * ord_{p^e}(10)（要求 gcd(10, p) = 1）。d ← φ(p^e) = p^(e−1)(p − 1)，
+ * 对 φ(p^e) 的每个互异素因子 q 反复尝试 d ← d/q（缩小后仍 ≡ 1 就接受），试尽即最小指数。
+ */
+private fun p130OrderModPrimePower(p: Long, pe: Long, spf: IntArray): Long {
+    var d = pe / p * (p - 1)
+    for (q in p130DistinctPrimeFactors(d.toInt(), spf)) {
+        while (d % q == 0L && modPow(10L, d / q, pe) == 1L) d /= q
+    }
+    return d
+}
+
+/** ord_m(10)（要求 gcd(m, 10) = 1）：分解为素数幂后各分量的阶取 lcm。 */
+private fun p130OrderOf10(m: Int, spf: IntArray): Long {
+    var x = m
+    var ord = 1L
+    while (x > 1) {
+        val p = spf[x].toLong()
+        var pe = 1L
+        while (x % p.toInt() == 0) {
+            x /= p.toInt()
+            pe *= p
+        }
+        val part = p130OrderModPrimePower(p, pe, spf)
+        ord = ord / gcd(ord, part) * part
+    }
+    return ord
+}
+
+/** 按定义直接算 A(n)：r ← (10r + 1) mod n 迭代到余数为 0（仅用于校验）。 */
+private fun p130AByDefinition(n: Int): Int {
+    var r = 0L
+    var k = 0
+    do {
+        r = (r * 10 + 1) % n
+        k++
+    } while (r != 0L)
+    return k
+}
+
+/** 与 30 互素的合数中满足 A(n) | n − 1 的 n 的升序列表（仅用于校验）。 */
+private fun p130QualifyingBelow(limit: Int, spf: IntArray): List<Int> {
+    val out = ArrayList<Int>()
+    for (n in 7..limit) {
+        if (n % 2 != 0 && n % 3 != 0 && n % 5 != 0 && spf[n] != n &&
+            (n - 1) % p130OrderOf10(n, spf) == 0L
+        ) out.add(n)
+    }
+    return out
+}
+
+/** 第三条判据 A(n) | n − 1 ⟺ 10^(n−1) ≡ 1 (mod 9n) 给出的同一张列表（仅用于校验）。 */
+private fun p130FermatBelow(limit: Int, spf: IntArray): List<Int> {
+    val out = ArrayList<Int>()
+    for (n in 7..limit) {
+        if (n % 2 != 0 && n % 3 != 0 && n % 5 != 0 && spf[n] != n &&
+            modPow(10L, (n - 1).toLong(), 9L * n) == 1L
+        ) out.add(n)
+    }
+    return out
+}
+
+/** m 是否无平方因子（m ≥ 2）。 */
+private fun p130SquareFree(m: Int, spf: IntArray): Boolean {
+    var x = m
+    while (x > 1) {
+        val p = spf[x]
+        var e = 0
+        while (x % p == 0) {
+            x /= p
+            e++
+        }
+        if (e > 1) return false
+    }
+    return true
+}
+
+/**
+ * 扫描 [2, limit]，返回前 target 个「gcd(n, 30) = 1 的合数且 A(n) | n − 1」的 n 之和；
+ * 不足 target 个时返回 null（由调用方放大 limit）。
+ */
+private fun p130ScanSums(limit: Int, target: Int): Long? {
+    val spf = p130SmallestPrimeFactors(limit)
+    val isPrime = sieve(limit)
+    var count = 0
+    var sum = 0L
+    var n = 7                                          // 最小候选：合数且与 30 互素
+    while (n <= limit) {
+        if (n % 2 != 0 && n % 3 != 0 && n % 5 != 0 && !isPrime[n]) {
+            val a = p130OrderOf10(n, spf)
+            if ((n - 1) % a == 0L) {
+                count++
+                sum += n
+                if (count == target) return sum
+            }
+        }
+        n++
+    }
+    return null
+}
+
+/** 规模倍增：先扫 5·10⁴，不够就翻倍，直到凑满 25 个候选。 */
+private fun p130Sum(target: Int = 25): Long {
+    var limit = 50_000
+    while (true) {
+        val sum = p130ScanSums(limit, target)
+        if (sum != null) return sum
+        limit *= 2
+    }
+}
+
+/** PE 130 — 前 25 个「与 10 互素的合数且 n − 1 被 A(n) 整除」的 n 之和 = 149253。 */
+private fun solve130(): Long {
+    val spf = p130SmallestPrimeFactors(100_000)
+    check(p130OrderOf10(7, spf) == 6L) { "题面样例：A(7) 应为 6，实际 ${p130OrderOf10(7, spf)}" }
+    check(p130OrderOf10(41, spf) == 5L) { "题面样例：A(41) 应为 5，实际 ${p130OrderOf10(41, spf)}" }
+    check(p130AByDefinition(7) == 6 && p130AByDefinition(41) == 5) { "题面样例：按定义迭代应得 A(7) = 6、A(41) = 5" }
+    // 定义式与求阶公式在 7..2000 上必须一致（两条路径的交叉校验）
+    for (m in 7..2000) if (m % 2 != 0 && m % 5 != 0 && m % 3 != 0) {
+        check(p130AByDefinition(m).toLong() == p130OrderOf10(m, spf)) { "A($m) 两条路径不一致" }
+    }
+    // 题面样例：素数 p > 5 满足 A(p) | p − 1
+    for (m in 7..2000) if (spf[m] == m && m > 5) {
+        check((m - 1) % p130OrderOf10(m, spf) == 0L) { "题面样例：素数 $m 违反 A(p) | p − 1" }
+    }
+    // 题面样例：前五个合数 91/259/451/481/703，和为 1985
+    check(p130ScanSums(1000, 5) == 1985L) { "题面样例：前五个合数应为 91/259/451/481/703" }
+    // 平方因子 p² | n 会强制 p | A(n)（p 非 base-10 Wieferich 时 ord_{p²}(10) = p·ord_p(10)），
+    // 于是 A(n) | n − 1 会推出 p | n − 1，与 p | n 矛盾 —— 合格值必无平方因子。
+    check(p130OrderOf10(113 * 113, spf) == 113L * 112L) { "A(113²) 应为 113·112 = 12656" }
+    val qualifying = p130QualifyingBelow(30_000, spf)
+    check(qualifying.all { p130SquareFree(it, spf) }) { "合格集内出现含平方因子的数" }
+    check(qualifying.subList(0, 5) == listOf(91, 259, 451, 481, 703)) { "前五个合格值应为 91/259/451/481/703" }
+    // 第三条独立路径：费马式判据（一次模幂）的合格集与求阶判据逐项一致
+    check(p130FermatBelow(30_000, spf) == qualifying) { "两种判据的合格集不一致" }
+    // 3 | n 永远不合格：A(n) = ord_{9n}(10) 是 3 的倍数，而 n − 1 ≡ 2 (mod 3)
+    for (n in 3..3000 step 3) {
+        if (n % 2 == 0 || n % 5 == 0) continue
+        val a = p130OrderOf10(9 * n, spf)
+        check(a % 3 == 0L && (n - 1) % a != 0L) { "3 | $n 竟合格" }
+    }
+    // 由 n | R(k) ⟺ 10^k ≡ 1 (mod 9n) 得到的求阶判据依赖 R(k) = (10^k − 1)/9 这条闭式；一并断言
+    var rep = 0L
+    var ten = 1L
+    for (k in 1..12) {
+        rep = rep * 10 + 1
+        ten *= 10
+        check(rep == (ten - 1) / 9) { "R($k) 与 (10^k − 1)/9 不符" }
+        check(rep % 2 == 1L && rep % 5 == 1L) { "R($k) 末位应为 1" }
+    }
+    // 第 25 个合格值恰好是 14701：上限 14700 只凑到 24 个，抬到 14701 才凑满
+    check(p130ScanSums(14_700, 25) == null) { "14700 以内不该凑满 25 个" }
+    check(p130ScanSums(14_701, 25) == 149253L) { "14701 以内前 25 个之和应为 149253" }
+    return p130Sum()
+}
+
+// ---------- PE 131 ----------
+/**
+ * PE 131 — 素数立方伙伴：小于 10⁶ 的素数中「存在正整数 n 使 n³ + n²p 为完全立方数」
+ * 的个数 = 173。
+ *
+ * 推导：n²(n + p) = m³，g = gcd(n, n + p) = gcd(n, p) ∈ {1, p}。
+ *   · g = 1：n² 与 n + p 互素，各自为立方数 ⇒ n = a³、n + p = b³，
+ *     p = b³ − a³ = (b − a)(b² + ab + a²)；p 素 ⇒ b − a = 1 ⇒ p = 3a² + 3a + 1，n = a³ 唯一。
+ *   · p | n：n = pk ⇒ (m/p)³ = k²(k + 1)，k = j³ 且 j³ + 1 为立方数，无解。
+ * 故只需统计形如 3a² + 3a + 1（a ≥ 1）的素数，a ≤ 576（3a² + 3a + 1 < 10⁶）。
+ */
+
+/** 小于 limit 的素数中形如 3a² + 3a + 1（a ≥ 1）的个数。 */
+private fun p131CountPartners(limit: Int): Long {
+    val isPrime = sieve(limit)
+    var count = 0L
+    var a = 1
+    while (true) {
+        val p = 3 * a * a + 3 * a + 1
+        if (p >= limit) break
+        if (isPrime[p]) count++
+        a++
+    }
+    return count
+}
+
+/**
+ * 定义级核验：对每个被计数的素数 p = 3a² + 3a + 1 还原出唯解 n = a³，
+ * 用 BigInteger 直接验算 n³ + n²p = (a²(a + 1))³ —— 不复用推导结论之外的任何捷径。
+ */
+private fun p131VerifyDefinitionally(limit: Int) {
+    val isPrime = sieve(limit)
+    val checked = ArrayList<Int>()
+    var a = 1
+    while (true) {
+        val p = 3 * a * a + 3 * a + 1
+        if (p >= limit) break
+        if (isPrime[p]) {
+            checked.add(p)
+            val bigA = java.math.BigInteger.valueOf(a.toLong())
+            val n = bigA.pow(3)                                                        // n = a³
+            val lhs = n.pow(3).add(n.pow(2).multiply(java.math.BigInteger.valueOf(p.toLong())))
+            val m = bigA.pow(2).multiply(java.math.BigInteger.valueOf(a.toLong() + 1L)) // m = a²(a + 1)
+            check(m.pow(3) == lhs) { "p = $p 的定义级验证失败" }
+        }
+        a++
+    }
+    check(checked.subList(0, 4) == listOf(7, 19, 37, 61)) { "一百以内的四个应为 7, 19, 37, 61：$checked" }
+}
+
+private fun solve131(): Long {
+    check(p131CountPartners(100) == 4L) { "题面样例：一百以内应有 4 个，实得 ${p131CountPartners(100)}" }
+    check(8L * 8 * 8 + 8L * 8 * 19 == 12L * 12 * 12) { "题面例子：8³ + 8² × 19 应为 12³" }
+    p131VerifyDefinitionally(1_000_000)
+    return p131CountPartners(1_000_000)
+}
+
+// ---------- PE 132 ----------
+/**
+ * 素数 p 是否整除循环单位数 R(n)：p = 3 走数位和规则（R(n) 的各位数字之和恰为 n，
+ * 故 3 | R(n) ⟺ 3 | n），p = 2、5 因 10ⁿ ≡ 0 (mod p) 自动出局，其余用
+ * 10^gcd(n, p−1) ≡ 1 (mod p) —— 由 ord_p(10) | p−1 与 ord_p(10) | n 合并而来。
+ */
+private fun p132DividesRepunit(p: Int, n: Long): Boolean = when {
+    p == 3 -> n % 3L == 0L
+    p == 2 || p == 5 -> false
+    else -> modPow(10L, gcd(n, p - 1L), p.toLong()) == 1L
+}
+
+/**
+ * 素数升序枚举，取前 count 个整除 R(n) 的素数求和；凑不满就报错，绝不返回偏小的和。
+ * 升序枚举保证拿到的是最小的若干素因子，无需排序或去重。
+ */
+private fun p132Sum(n: Long, count: Int, limit: Int): Long {
+    val isPrime = sieve(limit)
+    var sum = 0L
+    var found = 0
+    for (p in 2..limit) {
+        if (!isPrime[p]) continue
+        if (p132DividesRepunit(p, n)) {
+            sum += p
+            if (++found == count) return sum
+        }
+    }
+    throw IllegalStateException("上界 $limit 内只找到 $found 个素因子，需提高 limit")
+}
+
+/** 对 R(n) 直接试除法分解（BigInteger），完全绕开阶与同余判据，用来锚定题面样例。 */
+private fun p132RepunitPrimeFactors(n: Int): List<Int> {
+    var rest = (java.math.BigInteger.TEN.pow(n) - java.math.BigInteger.ONE) / java.math.BigInteger.valueOf(9L)
+    val factors = ArrayList<Int>()
+    var d = java.math.BigInteger.TWO
+    while (d * d <= rest) {
+        while (rest % d == java.math.BigInteger.ZERO) { factors.add(d.toInt()); rest /= d }
+        d += java.math.BigInteger.ONE
+    }
+    if (rest > java.math.BigInteger.ONE) factors.add(rest.toInt())
+    return factors
+}
+
+/**
+ * PE 132 — 大循环单位数的素因子：R(k) = (10^k − 1)/9。对素数 p ≠ 3，9 在模 p 下可逆，
+ * 故 p | R(k) ⟺ 10^k ≡ 1 (mod p) ⟺ ord_p(10) | k；又 ord_p(10) | p − 1，两个约束合并成
+ * 10^gcd(k, p−1) ≡ 1 (mod p)，指数从 10⁹ 降到其 2-5 光滑约数（实测均值仅 63）。
+ * p = 3 是唯一例外（9 ≡ 0 mod 3，求逆失效），改用数位和规则；k = 10⁹ ≡ 1 (mod 3)，故 3 不是因子。
+ * 上界取 200000（第 40 个素因子是 160001），答案 843296。
+ * 复杂度 O(B log log B + π(B) log k)，空间 O(B)。
+ */
+private fun solve132(): Long {
+    // 题面样例：R(10) = 1111111111 = 11 × 41 × 271 × 9091，素因子和 9414
+    val factors = p132RepunitPrimeFactors(10)
+    check(factors == listOf(11, 41, 271, 9091)) { "R(10) 的素因子应为 11, 41, 271, 9091，实得 $factors" }
+    check(factors.sumOf { it.toLong() } == 9414L) { "R(10) 的素因子和应为 9414，实得 ${factors.sumOf { it.toLong() }}" }
+    check(11L * 41 * 271 * 9091 == 1_111_111_111L) { "题面样例的因子乘积应还原出 R(10)" }
+    check(p132Sum(10L, 4, 20_000) == 9414L) { "R(10) 的最小四个素因子之和应为 9414" }
+    // 另一条独立锚点：BigInteger 分解出 R(20) = 11·41·101·271·3541·9091·27961，最小的四个和 424
+    check(p132RepunitPrimeFactors(20) == listOf(11, 41, 101, 271, 3541, 9091, 27961)) {
+        "R(20) 的素因子分解不符：${p132RepunitPrimeFactors(20)}"
+    }
+    check(p132Sum(20L, 4, 20_000) == 424L) { "R(20) 最小四个素因子之和应为 424" }
+    // 3 必须特判的理由：10ⁿ ≡ 1 (mod 3) 恒真，照搬同余判据会把 3 算进 R(10)，而题面样例里没有 3
+    check(modPow(10L, 10L, 3L) == 1L && !factors.contains(3))
+    check(!p132DividesRepunit(3, 1_000_000_000L)) { "10⁹ 的数位和 10⁹ ≡ 1 (mod 3)，3 不是 R(10⁹) 的因子" }
+    check(1_000_000_000L % 3L == 1L)
+    // gcd 降幂与原始指数等价：20000 以内每个素数上两条判据必须给出同一结论
+    val smallPrimes = sieve(20_000)
+    check((2..20_000).all { p ->
+        !smallPrimes[p] ||
+            (modPow(10L, 1_000_000_000L, p.toLong()) == 1L) ==
+            (modPow(10L, gcd(1_000_000_000L, p - 1L), p.toLong()) == 1L)
+    }) { "gcd 降幂改变了判据结果" }
+    // 最小素因子是 11（ord₁₁(10) = 2 | 10⁹），前两个之和 11 + 17 = 28
+    check(p132Sum(1_000_000_000L, 1, 20_000) == 11L) { "R(10⁹) 的最小素因子应为 11" }
+    check(p132Sum(1_000_000_000L, 2, 20_000) == 28L) { "R(10⁹) 最小的两个素因子之和应为 28" }
+    return p132Sum(1_000_000_000L, 40, 200_000)
+}
+
+// ---------- PE 133 ----------
+/**
+ * PE 133 — Repunit Nonfactors：十万以内「永远不是 R(10^n) 因子」的素数之和 = 453647705。
+ *
+ * 思路：R(k) = (10^k − 1)/9，故对素数 p
+ *     p | R(k) ⟺ 9p | 10^k − 1 ⟺ 10^k ≡ 1 (mod 9p)。
+ * 模数必须带 9：p = 3 时模 27 的阶是 3（3 | R(k) ⟺ 3 | k），只看模 p 会把 3 误判成可整除。
+ * 记 d = ord_{9p}(10)，则 ∃n ≥ 1, p | R(10^n) ⟺ d | 10^n = 2^n5^n ⟺ d = 2^a·5^b
+ * （此时取 n = max(a,b)）；d 只要含 2、5 以外的素因子就永远不是因子。
+ * gcd(10, 9p) > 1（p = 2, 5）时同余式无解，同样归入非因子。
+ *
+ * 阶的求法：d0 = lcm(6, p − 1) 是阶的倍数（p ≠ 3 时即 λ(9p) = lcm(λ(9), λ(p))，p = 3 时阶 3 也整除 6），
+ * 把 d0 试除分解，对每个素因子 q 反复试降 d ← d/q（只要 10^(d/q) ≡ 1），收敛即真正的阶。
+ *
+ * 复杂度：素数筛 O(N log log N)，N = 10^5；每个素数再做试除分解与常数次模幂，
+ * 总计约 O(N log log N + π(N)·π(√d0))，空间 O(N)。中间量 < 9·10^5，模乘用 Long 足够。
+ */
+private fun p133OrderOf10(p: Long, primes: List<Long>): Long {
+    val m = 9L * p
+    var d = 6L * (p - 1L) / gcd(6L, p - 1L)
+    var rest = d
+    for (q in primes) {
+        if (q * q > rest) break
+        if (rest % q == 0L) {
+            while (rest % q == 0L) rest /= q
+            while (d % q == 0L && modPow(10L, d / q, m) == 1L) d /= q
+        }
+    }
+    if (rest > 1L) {                                 // 试除后剩下的必是素因子
+        while (d % rest == 0L && modPow(10L, d / rest, m) == 1L) d /= rest
+    }
+    return d
+}
+
+/** 素数 p 是否永远不可能整除任何 R(10^n)。 */
+private fun p133IsNonfactor(p: Long, primes: List<Long>): Boolean {
+    if (gcd(10L, 9L * p) != 1L) return true     // p = 2, 5：R(k) 是末位为 1 的奇数
+    var d = p133OrderOf10(p, primes)
+    while (d % 2L == 0L) d /= 2L
+    while (d % 5L == 0L) d /= 5L
+    return d != 1L
+}
+
+/** 小于 limit 的素数中「永远不是 R(10^n) 因子」的那些之和。 */
+private fun p133SumNonfactors(limit: Int): Long {
+    val primes = primesUpTo(limit)
+    var sum = 0L
+    for (p in primes) if (p133IsNonfactor(p, primes)) sum += p
+    return sum
+}
+
+/** R(len) = 111…1（len 个 1）。 */
+private fun p133Repunit(len: Int): java.math.BigInteger =
+    java.math.BigInteger.TEN.pow(len)
+        .subtract(java.math.BigInteger.ONE)
+        .divide(java.math.BigInteger.valueOf(9L))
+
+private fun solve133(): Long {
+    val smallPrimes = primesUpTo(1000)
+
+    // 题面样例：一百以内「能成为某个 R(10^n) 的因子」的素数只有 11、17、41、73
+    val canBeFactor = primesUpTo(100).filterNot { p133IsNonfactor(it, smallPrimes) }
+    check(canBeFactor == listOf(11L, 17L, 41L, 73L)) {
+        "题面样例：一百以内应为 [11, 17, 41, 73]，实际 $canBeFactor"
+    }
+
+    // 题面样例：R(10)、R(100)、R(1000) 都不被 17 整除，而 R(10000) 被 17 整除
+    val seventeen = java.math.BigInteger.valueOf(17L)
+    check(p133Repunit(10).mod(seventeen) != java.math.BigInteger.ZERO) { "题面样例：17 不该整除 R(10)" }
+    check(p133Repunit(100).mod(seventeen) != java.math.BigInteger.ZERO) { "题面样例：17 不该整除 R(100)" }
+    check(p133Repunit(1000).mod(seventeen) != java.math.BigInteger.ZERO) { "题面样例：17 不该整除 R(1000)" }
+    check(p133Repunit(10_000).mod(seventeen) == java.math.BigInteger.ZERO) { "题面样例：17 应整除 R(10000)" }
+
+    // 这四个可整除者的阶都是 2^a·5^b：2、16、5、8
+    check(p133OrderOf10(11L, smallPrimes) == 2L) { "ord_11(10) 应为 2" }
+    check(p133OrderOf10(17L, smallPrimes) == 16L) { "ord_17(10) 应为 16" }
+    check(p133OrderOf10(41L, smallPrimes) == 5L) { "ord_41(10) 应为 5" }
+    check(p133OrderOf10(73L, smallPrimes) == 8L) { "ord_73(10) 应为 8" }
+
+    // 题面样例：19 永远不是因子。依据 ord_19(10) = 18 = 2·3² 含素因子 3
+    check(p133OrderOf10(19L, smallPrimes) == 18L) { "ord_19(10) 应为 18" }
+    // 按定义逐点复核：n = 1…18 时 10^(10^n) ≢ 1 (mod 9·19 = 171)（指数取到 10^18 是不越 Long 的上限）
+    var exponent = 10L
+    for (n in 1..18) {
+        check(modPow(10L, exponent, 171L) != 1L) { "19 不该整除 R(10^$n)" }
+        exponent *= 10L
+    }
+
+    // 3：3 | R(k) ⟺ 27 | 10^k − 1 ⟺ 3 | k，而 3 ∤ 10^n；2、5 与所有 repunit 互素
+    check(p133IsNonfactor(2L, smallPrimes) && p133IsNonfactor(3L, smallPrimes) && p133IsNonfactor(5L, smallPrimes)) {
+        "2、3、5 都该是非因子"
+    }
+    check(p133OrderOf10(3L, smallPrimes) == 3L) { "ord_27(10) 应为 3" }
+
+    // 最小规模上的可见答案：2+3 = 5（limit = 4）；再加 5 得 10；再加 7 得 17（11 是因子）
+    check(p133SumNonfactors(4) == 5L) { "limit = 4 应为 5" }
+    check(p133SumNonfactors(6) == 10L) { "limit = 6 应为 10" }
+    check(p133SumNonfactors(11) == 17L) { "limit = 11 应为 17" }
+
+    return p133SumNonfactors(100_000)
+}
+
+// ---------- PE 134 ----------
+/**
+ * PE 134 — Prime Pair Connection（素数对连接）
+ *
+ * 设 p1 有 d 位十进制数字、M = 10^d，则「末 d 位恰为 p1」的候选恰构成等差数列
+ *   n = p1 + k·M，k = 0, 1, 2, …
+ * 再要求 p2 | n，即 k·M ≡ −p1 (mod p2)。p1 ≥ 5 时 p2 > p1 ≥ 5 与 10 互素，M = 10^d 可逆，
+ * 取最小非负剩余 k0 ∈ [0, p2) 得 S = p1 + k0·M；n 关于 k 严格递增，故 k0 即最小者
+ * （k0 = 0 要求 p1 ≡ 0 (mod p2)，与 0 < p1 < p2 矛盾，故 S > p1）。
+ * 题面排除的 (p1, p2) = (3, 5) 正是 gcd(10^d, p2) = 1 唯一失效处：候选恒 ≡ 3 (mod 5)，无解。
+ *
+ * 规模：筛到 10^6 + 20（p1 = 999983 的搭档是 1000003），共 π(10^6) − 2 = 78496 对；
+ * 单项 < 1.01×10^12、总和 18613426663617118，全程 Long。
+ * 通用步骤换成工具库：筛用 primesUpTo，模逆元用 modInverse。
+ */
+
+/** 10^exp，用乘法累加（不经过字符串）。 */
+private fun p134Pow10(exp: Int): Long {
+    var result = 1L
+    repeat(exp) { result *= 10 }
+    return result
+}
+
+/** v 的十进制位数：阈值比较，禁止用 toString() 数位数。 */
+private fun p134DigitCount(v: Long): Int {
+    var digits = 1
+    var threshold = 10L
+    while (v >= threshold) {
+        digits++
+        threshold *= 10
+    }
+    return digits
+}
+
+/** 相邻素数对 (p1, p2) 的最小连接数 S：末 d 位为 p1 且被 p2 整除的最小 n。 */
+private fun p134Connection(p1: Long, p2: Long): Long {
+    val modulus = p134Pow10(p134DigitCount(p1))                     // 10^d
+    val inverse = modInverse(modulus % p2, p2)        // (10^d)^(−1) mod p2
+    val k = (p2 - (p1 % p2) * inverse % p2) % p2                    // 最小非负剩余：−p1·inv mod p2
+    return p1 + k * modulus
+}
+
+/** 用定义复核：末 d 位为 p1、被 p2 整除、且等差数列中前一项不被 p2 整除（最小性）。 */
+private fun p134CheckByDefinition(p1: Long, p2: Long, n: Long) {
+    val modulus = p134Pow10(p134DigitCount(p1))
+    check(n % modulus == p1 % modulus) { "($p1, $p2)：$n 末位不是 $p1" }
+    check(n % p2 == 0L) { "($p1, $p2)：$n 不被 $p2 整除" }
+    check(n < p1 + modulus || (n - modulus) % p2 != 0L) { "($p1, $p2)：$n 之前还有更小的候选" }
+}
+
+/** 所有 5 ≤ p1 ≤ limit 的相邻素数对的 S 之和。 */
+private fun p134Sum(limit: Long): Long {
+    val primes = primesUpTo((limit + 20).toInt())     // 上限外还要取到 p1 的下一个素数
+    var sum = 0L
+    for (i in primes.indices) {
+        val p1 = primes[i]
+        if (p1 < 5L) continue
+        if (p1 > limit) break
+        sum += p134Connection(p1, primes[i + 1])
+    }
+    return sum
+}
+
+/** PE 134 — 基线：题面样例 (19, 23) → 1219，求和上界 10^6，答案 18613426663617118。 */
+private fun solve134(): Long {
+    check(p134Connection(19L, 23L) == 1219L) { "题面样例：(19, 23) 应为 1219" }
+    p134CheckByDefinition(19L, 23L, 1219L)
+
+    val expected = mapOf(
+        5L to 7L to 35L,        // 末位 5、被 7 整除：35
+        7L to 11L to 77L,       // 末位 7、被 11 整除：77
+        11L to 13L to 611L,     // 末两位 11、被 13 整除：611
+        13L to 17L to 1513L,    // 末两位 13、被 17 整除：1513
+        17L to 19L to 817L,     // 末两位 17、被 19 整除：817
+        19L to 23L to 1219L,
+        23L to 29L to 2523L,    // 末两位 23、被 29 整除：2523
+    )
+    for ((key, value) in expected) {
+        val (p1, p2) = key
+        check(p134Connection(p1, p2) == value) { "($p1, $p2) 最小连接数应为 $value" }
+        p134CheckByDefinition(p1, p2, value)
+    }
+
+    // 累加范围含端点：limit = 19 时把 (19, 23) 计入，limit = 17 时不计入
+    check(p134Sum(13L) == 35L + 77L + 611L + 1513L) { "limit = 13 应累加 4 对" }
+    check(p134Sum(17L) == 35L + 77L + 611L + 1513L + 817L) { "limit = 17 应累加 5 对" }
+    check(p134Sum(19L) == 35L + 77L + 611L + 1513L + 817L + 1219L) { "limit = 19 应累加 6 对" }
+    check(p134Sum(23L) == 35L + 77L + 611L + 1513L + 817L + 1219L + 2523L) { "limit = 23 应累加 7 对" }
+
+    // 题面点名的例外 (3, 5)：候选 n = 3 + 10k 恒 ≡ 3 (mod 5)，无解
+    for (k in 0L until 5L) check((3L + 10L * k) % 5L != 0L) { "候选 (3, 5) 不应有解" }
+
+    return p134Sum(1_000_000L)
+}
+
+// ---------- PE 135 ----------
+/**
+ * PE 135 — Same Differences：小于 10⁶ 的 n 中「方程 x² − y² − z² = n（x, y, z 为等差数列连续三项）
+ * 恰有十个解」的个数 = 4989。
+ *
+ * 推导：n > 0 迫使公差为负，三项唯一写成 x = k + t, y = k, z = k − t（t ≥ 1，z > 0 ⇒ k > t），
+ *   n = (k + t)² − k² − (k − t)² = 4kt − k² = k(4t − k)。
+ * 令 u = k、v = 4t − k，则 n = uv，而约束全部落在 (u, v) 上：
+ *   u + v ≡ 0 (mod 4)（保证 t 为整数）、3u > v（等价于 k > t）、v > 0（等价于 n > 0）。
+ * 反向由 (u, v) 取 t = (u + v)/4 还原出唯一三元组，故解数 = 满足上述条件的有序因子对数。
+ * 因 3u > v 只约束 u 一侧而 uv 对调不变，按无序因子对 a ≤ b（a + b ≡ 0 mod 4）分类一次算清：
+ * b 当中间项永远合法（a ≤ b ⇒ 3b > a）；a 当中间项合法当且仅当 b < 3a；a = b 时两者重合。
+ * 计数规则 cnt[a·b] += 1（a = b 或 b ≥ 3a）否则 2，既不重不漏，也自动消掉 u ↔ v 的重复解。
+ */
+
+/** 统计每个 n（下标即 n）的解数：枚举无序因子对 a ≤ b，b 走 b ≡ −a (mod 4) 的同余类。 */
+private fun p135SolutionCounts(limit: Int): IntArray {
+    val counts = IntArray(limit)
+    var a = 1
+    while (a.toLong() * a < limit) {                 // a ≤ b 且 ab < limit ⇒ a ≤ √limit
+        var b = a
+        while ((a + b) % 4 != 0) b++                 // 最小的可行 b：a + b ≡ 0 (mod 4)
+        while (a.toLong() * b < limit) {
+            counts[a * b] += if (a == b || b >= 3 * a) 1 else 2
+            b += 4
+        }
+        a++
+    }
+    return counts
+}
+
+private fun p135Solve(limit: Int, target: Int): Int =
+    p135SolutionCounts(limit).count { it == target }
+
+/**
+ * 定义级核验：按题面直接枚举最小项 z 与公差 d（三元组 (z + 2d, z + d, z)），
+ * 收集 n = (z + 2d)² − (z + d)² − z² 的全部解 —— 不做任何因子分解。
+ * 边界依据：解满足 k ≤ n（因 n = k·v ≥ k）且 z < k、d < k，故 z、d 都 ≤ n。
+ */
+private fun p135DefinitionalTriples(n: Int): List<Triple<Int, Int, Int>> {
+    val out = ArrayList<Triple<Int, Int, Int>>()
+    for (z in 1..n) {
+        for (d in 1..n) {
+            val x = z + 2 * d
+            val y = z + d
+            if (x.toLong() * x - y.toLong() * y - z.toLong() * z == n.toLong()) {
+                out.add(Triple(x, y, z))
+            }
+        }
+    }
+    return out
+}
+
+/** PE 135 — 小于 10⁶ 的 n 中恰有十个解的个数 = 4989。 */
+private fun solve135(): Long {
+    // 题面样例：n = 27 恰有两个解，正是题面给的两组数，且 27 是最小的「恰两解」值
+    check(p135DefinitionalTriples(27).toSet() == setOf(Triple(34, 27, 20), Triple(12, 9, 6))) {
+        "题面样例：n = 27 的解应为 (34, 27, 20) 与 (12, 9, 6)，实得 ${p135DefinitionalTriples(27)}"
+    }
+    check(34L * 34 - 27L * 27 - 20L * 20 == 27L && 12L * 12 - 9L * 9 - 6L * 6 == 27L) {
+        "题面样例：两组的平方差都应等于 27"
+    }
+    val small = p135SolutionCounts(1156)
+    check(small[27] == 2) { "题面样例：n = 27 应恰有 2 个解，实得 ${small[27]}" }
+    check((1 until 27).none { small[it] == 2 }) { "题面样例：27 应是最小的恰有两解的值" }
+
+    // 题面样例：n = 1155 恰有十个解，且是最小的「恰十解」值
+    check(p135DefinitionalTriples(1155).size == 10) {
+        "题面样例：n = 1155 应恰有 10 个解，实得 ${p135DefinitionalTriples(1155).size}"
+    }
+    check(small[1155] == 10) { "题面样例：n = 1155 应恰有 10 个解，因子法实得 ${small[1155]}" }
+    check((1 until 1155).none { small[it] == 10 }) { "题面样例：1155 应是最小的恰有十解的值" }
+
+    // 因子法与定义法在 n ≤ 250 上逐个数比对，确认「一对因子记 1 或 2」不漏不重
+    val cross = p135SolutionCounts(251)
+    for (n in 1..250) {
+        val byDefinition = p135DefinitionalTriples(n).size
+        check(cross[n] == byDefinition) { "自检：n = $n 的因子法解数 ${cross[n]} ≠ 定义法 $byDefinition" }
+    }
+    return p135Solve(1_000_000, 10).toLong()
+}
+
+// ---------- PE 136 ----------
+/**
+ * PE 136 — Singleton Difference（唯一的差）
+ *
+ * 逻辑与 `content/problems/0136/solution.kt` 完全一致，只是通用步骤改用 `dev.pekt.math`：
+ * 段内基素数来自 `primesUpTo(...)`，小规模对照筛用 `sieve(...)`。
+ * 唯一保留的自备辅助函数是分段位筛 [p136SegmentedStats]——工具库只提供全区间布尔筛
+ * （`sieve(5×10⁷)` 需要两个 5×10⁷ 元素的布尔数组、且大素数跨步标记撞缓存），
+ * 分段位筛用 8 KB 段内位图替代，是本题 baseline 的来源。
+ *
+ * 推导（详见 content/problems/0136/analysis.md）：
+ *   x = a + d、y = a、z = a − d（a ≥ d + 1）⇒ n = a(4d − a)。令 u = a、v = 4d − a，
+ *   则解数 R(n) = #{(u,v) : uv = n, u + v ≡ 0 (mod 4), 3u − v ≥ 4}。
+ *   写 n = 2^s·m（m 为奇数）可得合格因子对数 F(n) = τ(m)·g(s)，其中 g(2) = 1、g(3) = 0、
+ *   g(s) = s − 3（s ≥ 4）。再把因子对折半成 C(n) 并单独数「另一方向也合法」的个数 D(n)，
+ *   则 R(n) = C(n) + D(n)。枚举 C(n) = 1 并核对 D(n) 后，恰有一个解的 n 正好是
+ *       {≡ 3 (mod 4) 的素数} ∪ {4, 16} ∪ {4p, 16p : p 为奇素数}（n = 32 因 D(32) = 1 被排除）。
+ *   故只需数出这三族在 n < N 内的元素个数：π₃(N) + π(⌊(N−1)/4⌋) + π(⌊(N−1)/16⌋)
+ *   （N > 32 时 {4,16} 两项恰与 π 里 p = 2 的两次多算抵消）。
+ */
+
+/** 整数平方根（向下取整）。 */
+private fun p136Isqrt(n: Long): Long {
+    var r = kotlin.math.sqrt(n.toDouble()).toLong()
+    while (r > 0 && r * r > n) r--
+    while ((r + 1) * (r + 1) <= n) r++
+    return r
+}
+
+/** 清除位图第 b 位的掩码。 */
+private val p136ClearBit = LongArray(64) { (1L shl it).inv() }
+
+/**
+ * 分段埃氏筛（只处理奇数，段内位图 8 KB）。
+ * 返回 [c3, c1, c2]：c3 = 小于 limit 且 ≡ 3 (mod 4) 的素数个数；
+ * c1、c2 = 不超过 t1、t2 的奇素数个数（调用方保证 t1 ≤ t2 < limit）。
+ */
+private fun p136SegmentedStats(limit: Int, t1: Int, t2: Int): LongArray {
+    val segBits = 1 shl 16                               // 每段 65536 个奇数
+    val bits = LongArray(segBits ushr 6)
+
+    val root = p136Isqrt(limit.toLong()).toInt() + 1
+    // 位图只存奇数，基素数必须剔除 2（p = 2 的标记下标不是整数步长，会把奇数误标为合数）
+    val basePrimes = primesUpTo(root).filter { it > 2L }.map { it.toInt() }
+
+    var c3 = 0L
+    var c1 = 0L
+    var c2 = 0L
+    val kEnd = limit / 2                                 // 奇数 2k + 1 < limit ⟺ k < kEnd
+    var kLo = 0
+    while (kLo < kEnd) {
+        var kHi = kLo + segBits
+        if (kHi > kEnd) kHi = kEnd
+        val n = kHi - kLo
+
+        bits.fill(-1L)                                   // 先当作全是素数
+        val rem = n and 63
+        if (rem != 0) bits[n ushr 6] = (1L shl rem) - 1L // 尾字只保留有效的低位
+        if (kLo == 0) bits[0] = bits[0] and p136ClearBit[0]   // 1 不是素数
+        val lastNum = 2 * kHi - 1                        // 本段最大的奇数
+
+        for (p in basePrimes) {
+            if (p.toLong() * p > lastNum) break          // p² 已越出本段，无需标记
+            val pl = p.toLong()
+            var q = (2L * kLo + 1 + pl - 1) / pl         // ⌈(2kLo + 1) / p⌉：本段第一个 p 的倍数
+            if (q < pl) q = pl                           // 从 p² 起标，别把 p 自己划掉
+            if ((q and 1L) == 0L) q++                    // 只标奇倍数
+            var i = ((pl * q - 1) / 2 - kLo).toInt()     // 对应的段内奇数下标
+            while (i < n) {
+                bits[i ushr 6] = bits[i ushr 6] and p136ClearBit[i and 63]
+                i += p
+            }
+        }
+
+        val words = (n + 63) ushr 6
+        var total = 0
+        for (w in 0 until words) total += bits[w].countOneBits()
+        // k 为奇数 ⟺ 2k + 1 ≡ 3 (mod 4)；kLo 为偶数时奇数下标记在奇位
+        val mask = if ((kLo and 1) == 0) -0x5555555555555556L else 0x5555555555555555L
+        var t3 = 0
+        for (w in 0 until words) t3 += (bits[w] and mask).countOneBits()
+
+        val segMin = 2 * kLo + 1
+        c3 += t3
+        if (lastNum <= t1) c1 += total
+        else if (segMin <= t1) {
+            var k = kLo
+            while (2 * k + 1 <= t1) {
+                val i = k - kLo
+                if ((bits[i ushr 6] ushr (i and 63)) and 1L == 1L) c1++
+                k++
+            }
+        }
+        if (lastNum <= t2) c2 += total
+        else if (segMin <= t2) {
+            var k = kLo
+            while (2 * k + 1 <= t2) {
+                val i = k - kLo
+                if ((bits[i ushr 6] ushr (i and 63)) and 1L == 1L) c2++
+                k++
+            }
+        }
+        kLo = kHi
+    }
+    return longArrayOf(c3, c1, c2)
+}
+
+/** 用工具库的全区间筛算同样的三个量，用于核对分段位筛。 */
+private fun p136SieveStats(limit: Int, t1: Int, t2: Int): LongArray {
+    val isPrime = sieve(limit)
+    var c3 = 0L
+    var c1 = 0L
+    var c2 = 0L
+    for (p in 3 until limit step 2) {
+        if (!isPrime[p]) continue
+        if (p % 4 == 3) c3++
+        if (p <= t1) c1++
+        if (p <= t2) c2++
+    }
+    return longArrayOf(c3, c1, c2)
+}
+
+private fun p136Count(limit: Int): Long {
+    val t4 = (limit - 1) / 4                             // 4p < limit ⟺ p ≤ (limit − 1)/4
+    val t16 = (limit - 1) / 16
+    val stats = p136SegmentedStats(limit, t4, t16)
+    var count = stats[0]
+    if (limit > 4) count += 1 + stats[1]
+    if (limit > 16) count += 1 + stats[2]
+    return count
+}
+
+/**
+ * 按定义枚举：解 (x, y, z) = (a + d, a, a − d)，d ≥ 1、d + 1 ≤ a ≤ 4d − 1，
+ * 把 n = a(4d − a) < limit 逐个计数，返回解数恰为 1 的 n（升序）。只用于小规模自查。
+ */
+private fun p136ByDefinition(limit: Int): List<Int> {
+    val cnt = IntArray(limit)
+    var d = 1
+    while (4 * d - 1 < limit) {
+        var a = d + 1
+        while (a < 4 * d) {
+            val n = a * (4 * d - a)
+            if (n < limit && cnt[n] < 2) cnt[n]++
+            a++
+        }
+        d++
+    }
+    return (1 until limit).filter { cnt[it] == 1 }
+}
+
+/** 上面那个集合形式，只用于与按定义枚举的结果对比。 */
+private fun p136ByCharacterization(limit: Int): List<Int> {
+    val isPrime = sieve(limit)
+    val out = sortedSetOf<Int>()
+    for (p in 3 until limit step 2) {
+        if (isPrime[p] && p % 4 == 3) out.add(p)
+    }
+    if (4 < limit) out.add(4)
+    if (16 < limit) out.add(16)
+    var p = 3
+    while (4L * p < limit) {
+        if (isPrime[p]) out.add(4 * p)
+        p += 2
+    }
+    p = 3
+    while (16L * p < limit) {
+        if (isPrime[p]) out.add(16 * p)
+        p += 2
+    }
+    return out.toList()
+}
+
+/** PE 136 — 小于五千万且使 x² − y² − z² = n 恰有一个解的 n 的个数 = 2544559。 */
+private fun solve136(): Long {
+    // 题面样例：n = 20 恰有一个解，就是 13² − 10² − 7²（a = 10、d = 3）
+    check(13L * 13 - 10L * 10 - 7L * 7 == 20L) { "题面样例：13² − 10² − 7² 应为 20" }
+    check(10 * (4 * 3 - 10) == 20) { "题面样例：a = 10、d = 3 应给出 n = 20" }
+    check(p136ByDefinition(21).filter { it == 20 } == listOf(20)) { "题面样例：n = 20 应恰有一个解" }
+
+    // 题面样例：一百以内恰有二十五个 n 有唯一解
+    check(p136Count(100) == 25L) { "题面样例：一百以内应为 25 个，实得 ${p136Count(100)}" }
+    check(p136ByDefinition(100).size == 25) { "题面样例：按定义枚举一百以内也应为 25 个" }
+    check(p136Count(1000) == 158L) { "一千以内应为 158 个，实得 ${p136Count(1000)}" }
+
+    // 边界：小于 4 时只有 n = 3（4² − 3² − 2²），小于 5 时正是 n = 3 与 n = 4
+    check(p136Count(3) == 0L && p136Count(4) == 1L && p136Count(5) == 2L) { "小于 4/5 的边界计数不对" }
+    check(4L * 4 - 3L * 3 - 2L * 2 == 3L && 3L * 3 - 2L * 2 - 1L * 1 == 4L) { "n = 3、4 的样例解不对" }
+    // n = 32 是唯一被扣掉的反例：因子对 {4, 8} 两个方向都合法，解数为 2
+    check(!p136ByDefinition(33).contains(32)) { "n = 32 解数为 2，不应出现在唯一解集合里" }
+
+    // 刻画与按定义枚举在中小规模上必须给出完全相同的集合
+    for (limit in intArrayOf(100, 1000, 10_000)) {
+        check(p136ByCharacterization(limit) == p136ByDefinition(limit)) {
+            "limit = $limit 处刻画与定义枚举不一致"
+        }
+    }
+    // 分段位筛在多档规模上与工具库的全区间筛逐项一致
+    for (limit in intArrayOf(100, 1000, 10_000, 100_000, 1_000_000)) {
+        val t1 = (limit - 1) / 4
+        val t2 = (limit - 1) / 16
+        check(p136SegmentedStats(limit, t1, t2).contentEquals(p136SieveStats(limit, t1, t2))) {
+            "limit = $limit 处分段位筛与全区间筛不一致：${p136SegmentedStats(limit, t1, t2).toList()}" +
+                " vs ${p136SieveStats(limit, t1, t2).toList()}"
+        }
+    }
+
+    return p136Count(50_000_000)
+}
+
+// ---------- PE 137 ----------
+/**
+ * PE 137 — Fibonacci Golden Nuggets（斐波那契金块）：第 15 个金块 = 1120149658760。
+ *
+ * 推导：
+ * 1) A_F(x) = Σ_{k≥1} F_k x^k 满足 A_F = x + x·A_F + x²·A_F ⇒ A_F(x) = x / (1 − x − x²)，
+ *    收敛半径 1/φ ≈ 0.618（分母的根为 1/φ 与 −φ）。
+ * 2) A_F(x) = n ∈ ℤ⁺ ⇒ n x² + (n+1) x − n = 0 ⇒ x = (√(5n² + 2n + 1) − n − 1) / (2n)；
+ *    负根模长 ≥ φ 超出收敛半径，必须显式舍去。于是
+ *      x 有理 ⟺ 5n² + 2n + 1 是完全平方数。
+ * 3) 乘 5 并令 u = 5n + 1：5m² = u² + 4 ⇒ u² − 5m² = −4（Pell 型），另有 u ≡ 1 (mod 5)。
+ * 4) 解即 (u, m) = (L_k, F_k)（Lucas 恒等式 L_k² − 5F_k² = 4(−1)^k，k 为奇数）；
+ *    Lucas 数模 5 以 4 为周期 ⇒ L_k ≡ 1 (mod 5) ⟺ k ≡ 1 (mod 4)（自动蕴含 k 为奇数）。
+ *    故 k = 4j + 1，n_j = (L_{4j+1} − 1) / 5（j ≥ 1；j = 0 给出 n = 0，非正整数）。
+ * 5) 乘 α⁴ 得 L_{k+4} = 7L_k − L_{k−4}，于是 u_{j+1} = 7u_j − u_{j−1}，
+ *    u_0 = L_1 = 1，u_1 = L_5 = 11；n_j = (u_j − 1)/5 = F_{2j}F_{2j+1}。
+ *    第 15 个 = (L_61 − 1)/5 = F_30 F_31 = 832040 × 1346269。
+ * 复杂度：O(K) 次 Long 加减，空间 O(1)。
+ */
+
+/** 整数平方根（向下取整）：整数回验，不依赖浮点 sqrt 的边界判断。 */
+private fun p137Isqrt(n: Long): Long {
+    require(n >= 0) { "p137Isqrt 只接受非负整数" }
+    var r = java.lang.Math.sqrt(n.toDouble()).toLong()
+    while (r > 0 && r * r > n) r--
+    while ((r + 1) * (r + 1) <= n) r++
+    return r
+}
+
+/** 按定义判定 n 是否为金块（Long 快路径）：5n² + 2n + 1 必须恰是完全平方数。 */
+private fun p137IsGoldenNugget(n: Long): Boolean {
+    val d = 5 * n * n + 2 * n + 1
+    val r = p137Isqrt(d)
+    return r * r == d
+}
+
+/** 同上，但用 BigInteger 精确计算：n ≥ 1.36×10⁹ 起 5n² 会溢出 Long。 */
+private fun p137IsGoldenNuggetExact(n: Long): Boolean {
+    val bn = java.math.BigInteger.valueOf(n)
+    val five = java.math.BigInteger.valueOf(5L)
+    val d = bn.multiply(bn).multiply(five).add(bn).add(bn).add(java.math.BigInteger.ONE)
+    val r = d.sqrt()
+    return r.multiply(r) == d
+}
+
+/**
+ * n 为金块时给出对应 x = (√(5n² + 2n + 1) − n − 1) / (2n) 的既约形式 (分子, 分母)；
+ * n 不是金块时返回的分子分母不保证满足 q² − pq − p² = 1，调用方需自行判定。
+ */
+private fun p137XForNugget(n: Long): Pair<Long, Long> {
+    val bn = java.math.BigInteger.valueOf(n)
+    val five = java.math.BigInteger.valueOf(5L)
+    val m = bn.multiply(bn).multiply(five).add(bn).add(bn).add(java.math.BigInteger.ONE).sqrt()
+    val p = m.subtract(bn).subtract(java.math.BigInteger.ONE)
+    val q = bn.multiply(java.math.BigInteger.valueOf(2L))
+    val g = p.gcd(q)
+    return p.divide(g).longValueExact() to q.divide(g).longValueExact()
+}
+
+/** 按定义朴素扫描：返回不超过 limit 的全部金块（升序）。 */
+private fun p137NuggetsByDefinition(limit: Long): List<Long> {
+    val out = ArrayList<Long>()
+    var n = 1L
+    while (n <= limit) {
+        if (p137IsGoldenNugget(n)) out.add(n)
+        n++
+    }
+    return out
+}
+
+/** 第 count 个金块：u_j = L_{4j+1} 由 u_{j+1} = 7u_j − u_{j−1} 生成，n_j = (u_j − 1) / 5。 */
+private fun p137NthNugget(count: Int): Long {
+    require(count >= 1) { "名次从 1 开始" }
+    var prev = 1L                      // u_0 = L_1，对应 n = 0（不算金块）
+    var cur = 11L                      // u_1 = L_5，对应第 1 个金块 2
+    var j = 1
+    while (j < count) {
+        val next = 7 * cur - prev
+        prev = cur
+        cur = next
+        j++
+    }
+    check((cur - 1) % 5 == 0L) { "u_j 必须 ≡ 1 (mod 5)，实测 $cur" }
+    return (cur - 1) / 5
+}
+
+/** 第 count 个斐波那契数（F_1 = F_2 = 1），用于交叉验证闭式 n_j = F_{2j}F_{2j+1}。 */
+private fun p137Fib(count: Int): Long {
+    var a = 1L
+    var b = 1L
+    repeat(count - 1) {
+        val t = a + b
+        a = b
+        b = t
+    }
+    return a
+}
+
+private fun solve137(): Long {
+    // 题面样例：前五个自然数中只有 2 是金块（5n²+2n+1 = 25 = 5²），它对应 x = 1/2
+    check(p137XForNugget(2) == (1L to 2L)) { "题面样例：n = 2 应对应 x = 1/2" }
+    for (n in listOf(1L, 3L, 4L, 5L)) {
+        check(!p137IsGoldenNugget(n)) { "题面样例：n = $n 不该是金块（5n²+2n+1 不是完全平方）" }
+    }
+    // 题面表格：n = 2..5 的无理 x 值，用闭式 A_F(x) = x/(1−x−x²) 复核
+    val table = listOf(
+        2L to 0.5,
+        3L to (java.lang.Math.sqrt(13.0) - 2) / 3,
+        4L to (java.lang.Math.sqrt(89.0) - 5) / 8,
+        5L to (java.lang.Math.sqrt(34.0) - 3) / 5,
+    )
+    for ((n, x) in table) {
+        val byClosedForm = x / (1 - x - x * x)
+        check(kotlin.math.abs(byClosedForm - n) < 1e-9) { "题面表格：x = $x 时闭式和应为 $n，实测 $byClosedForm" }
+    }
+    // 题面剧透：第 10 个金块是 74049690
+    check(p137NthNugget(10) == 74049690L) { "题面样例：第 10 个金块应为 74049690，实测 ${p137NthNugget(10)}" }
+
+    // 递推给出的前五个金块
+    val firstFive = (1..5).map { p137NthNugget(it) }
+    check(firstFive == listOf(2L, 15L, 104L, 714L, 4895L)) { "前五个金块应为 2, 15, 104, 714, 4895，实测 $firstFive" }
+
+    // 交叉恒等式 n_j = F_{2j}F_{2j+1}
+    for (j in 1..15) {
+        check(p137NthNugget(j) == p137Fib(2 * j) * p137Fib(2 * j + 1)) { "n_$j 与 F_{2j}F_{2j+1} 不符" }
+    }
+
+    // 每个金块都必须满足原始定义与 x 的既约形式约束 q² − pq − p² = 1
+    for (j in 1..15) {
+        val n = p137NthNugget(j)
+        check(p137IsGoldenNuggetExact(n)) { "n_$j = $n 不满足定义（5n²+2n+1 非完全平方）" }
+        val (p, q) = p137XForNugget(n)
+        check(q * q - p * q - p * p == 1L) { "n_$j 的 x = $p/$q 应满足 q² − pq − p² = 1" }
+        check(p < q) { "n_$j 的 x = $p/$q 必须小于 1" }
+    }
+
+    // 溢出边界：n_12 = 3478759200 时 5n² ≈ 6.1×10¹⁹ 已越过 Long 上限 9.2×10¹⁸，
+    // Long 版判定必须在此失真，改用 BigInteger 后才正确——留着这条断言防回归。
+    check(!p137IsGoldenNugget(p137NthNugget(12))) { "Long 版在 n_12 处本该溢出失真，说明溢出点变了" }
+    check(p137IsGoldenNuggetExact(p137NthNugget(12))) { "n_12 必须满足定义（BigInteger 判定）" }
+
+    // 定义式暴力扫描（独立于 Pell 递推）：扫到 7.4×10⁷ 恰好得到前 10 个金块，
+    // 即第 10 个金块不仅「是」金块，而且正好排第 10
+    check(p137NuggetsByDefinition(74_049_690L) == (1..10).map { p137NthNugget(it) }) {
+        "按定义扫描的前 10 个金块与递推不一致：${p137NuggetsByDefinition(74_049_690L)}"
+    }
+
+    // 闭式和本身：x = 1/2 的级数部分和收敛到 2
+    var sum = 0.0
+    var pow = 0.5                      // x^k，x = 1/2
+    var fPrev = 0.0                    // F_0 = 0
+    var fCur = 1.0                     // F_1 = 1
+    for (k in 1..120) {
+        sum += pow * fCur
+        pow *= 0.5
+        val next = fPrev + fCur
+        fPrev = fCur
+        fCur = next
+    }
+    check(kotlin.math.abs(sum - 2.0) < 1e-6) { "Σ (1/2)^k F_k 应趋近 2，实测 $sum" }
+
+    return p137NthNugget(15)
+}
+
+// ---------- PE 138 ----------
+/**
+ * PE 138 — Special Isosceles Triangles：满足 h = b ± 1 的等腰三角形中最小十二个的 ΣL
+ * = 1118049290473932。
+ *
+ * 推导：等腰三角形的高垂直平分底边，故「半底边、高、腰」满足 h² + (b/2)² = L²。
+ *   · b 必为偶数：b 奇 ⇒ h = b ± 1 为偶，乘 4 得 4L² = 4h² + b²，左端 ≡ 0 而右端 ≡ 1 (mod 4)，矛盾。
+ *   · 设 b = 2x（x ≥ 1），代入 h = 2x ± 1 得 5x² ± 4x + 1 = L²；乘 5 配方成
+ *     (5x ± 2)² = 5L² − 1，即 Pell 方程 u² − 5L² = −1（u = 5x ± 2）。
+ *   · 反向：任何正解满足 u² ≡ −1 ≡ 4 (mod 5)，故 u ≡ ±2 (mod 5)、x = (u ∓ 2)/5 为整数；
+ *     u ≡ 2 给 h = b + 1，u ≡ 3 给 h = b − 1。于是「h = b ± 1 的等腰三角形」与
+ *     「u² − 5L² = −1 的正解」一一对应。
+ *   · 全部正解为 (2 + √5)^(2k+1)（k ≥ 0），相邻解相差因子 (2 + √5)² = 9 + 4√5，展开得整数递推
+ *     u' = 9u + 20L、L' = 4u + 9L；比值 9 + 4√5 > 1 保证 u、L、b 严格递增，
+ *     故沿解链取前 12 个即前 12 小的三角形。
+ *   · 首解 (2, 1) 给 x = 0（b = 0 退化）需跳过；此后 h 在 b − 1 与 b + 1 间交替。
+ *
+ * 复杂度：O(count) 次 Long 乘加，空间 O(count)；第 12 个 L ≈ 1.056×10^15，中间量 ≈ 2.4×10^15，
+ * Long 安全。与 content/problems/0138/solution.kt 逻辑一致（片段里不含计时循环）。
+ */
+
+/**
+ * 由 Pell 解 (u, L) 还原三角形 [底边, 腰, 高]。
+ * u mod 5 = 2 对应 h = b + 1，u mod 5 = 3 对应 h = b − 1；
+ * 退化解 x = 0（即 u = 2、L = 1）返回 null。
+ */
+private fun p138FromPell(u: Long, leg: Long): LongArray? {
+    if (leg <= 0L) return null
+    val plusOne = u % 5 == 2L
+    val halfBase = if (plusOne) (u - 2) / 5 else (u + 2) / 5
+    if (halfBase == 0L) return null
+    val base = 2 * halfBase
+    return longArrayOf(base, leg, if (plusOne) base + 1 else base - 1)
+}
+
+/** 前 count 个满足 h = b ± 1 的等腰三角形，按底边升序，元素为 [底边, 腰, 高]。 */
+private fun p138SpecialTriangles(count: Int): List<LongArray> {
+    require(count >= 1) { "count 必须为正整数：$count" }
+    val result = ArrayList<LongArray>(count)
+    var u = 2L                       // u + L√5 = (2 + √5)^1：最小正解（4 − 5 = −1）
+    var leg = 1L
+    while (result.size < count) {
+        val nextU = 9 * u + 20 * leg
+        val nextLeg = 4 * u + 9 * leg
+        u = nextU
+        leg = nextLeg
+        p138FromPell(u, leg)?.let { result.add(it) }
+    }
+    return result
+}
+
+private fun solve138(): Long {
+    val triangles = p138SpecialTriangles(12)
+    check(triangles.size == 12) { "应给出 12 个三角形，实得 ${triangles.size}" }
+
+    // 题面样例：(b, L, h) = (16, 17, 15) 与 (272, 305, 273)
+    val first = triangles[0]
+    check(first[0] == 16L && first[1] == 17L && first[2] == 15L) { "题面样例一应为 (16, 17, 15)：${first.toList()}" }
+    val second = triangles[1]
+    check(second[0] == 272L && second[1] == 305L && second[2] == 273L) { "题面样例二应为 (272, 305, 273)：${second.toList()}" }
+
+    for (index in triangles.indices) {
+        val base = triangles[index][0]
+        val leg = triangles[index][1]
+        val height = triangles[index][2]
+        check(base > 0L && leg > 0L && height > 0L) { "边长必须为正：$base $leg $height" }
+        check(base % 2 == 0L) { "底边必须为偶数：$base" }
+        val half = base / 2
+        check(leg * leg == half * half + height * height) { "勾股关系不成立：$base $leg $height" }
+        check(leg > height) { "腰必须是最长边：$base $leg $height" }
+        check(height == base + 1 || height == base - 1) { "高必须与底边相差 1：$base $height" }
+        // h 在 b − 1（奇数位）与 b + 1（偶数位）之间交替
+        check(if (index % 2 == 0) height == base - 1 else height == base + 1) { "符号未交替：$base $height" }
+        if (index > 0) check(base > triangles[index - 1][0]) { "底边必须严格递增：$base" }
+        // 解链的横向不变量：L_k 是 (2 + √5)^(2k+1) 的线性组合 ⇒ L_{k+1} = 18L_k − L_{k−1}
+        if (index > 1) {
+            check(leg == 18 * triangles[index - 1][1] - triangles[index - 2][1]) {
+                "腰长应满足 L_{k+1} = 18L_k − L_{k−1}：${triangles.map { it.toList() }}"
+            }
+        }
+    }
+
+    // 题面「(272, 305, 273) 是第二小的」：前两个的腰长之和
+    check(triangles[0][1] + triangles[1][1] == 322L) { "前两个腰长之和应为 322" }
+
+    return triangles.sumOf { it[1] }
+}
+
+// ---------- PE 139 ----------
+/**
+ * PE 139 — 毕达哥拉斯地砖：周长小于 10⁸ 的勾股三角形中，四块拼成的外正方形能被
+ * 「洞尺寸」的方砖铺满（即 d = |b − a| 整除斜边 c）的个数 = 10057761。
+ *
+ * 推导：四块全等直角三角形围成边长 c 的正方形，中央洞边长 d = |b − a|
+ * （面积守恒：4·(ab/2) + (b − a)² = c²）。铺砖可行 ⟺ d | c。
+ * 每个三角形是 k 倍本原组，而 k·d | k·c ⟺ d | c，故条件与缩放无关，只需研究本原组。
+ * 本原组中 gcd(d, a) = gcd(b − a, a) = gcd(b, a) = 1，同理 gcd(d, b) = 1，
+ * 又 c² ≡ 2ab (mod d)，由 d | c 得 d | 2ab ⇒ d | 2；d = 2 要求两腿同奇偶，
+ * 而本原组两腿一奇一偶（全奇则 c² ≡ 2 (mod 4) 无解，全偶则不本原），故 d = 1：
+ * 合法三角形恰为「两腿相差 1」的本原组 (x, x+1, c) 的整数倍。
+ * 由 2x² + 2x + 1 = c² 令 u = 2x + 1 得负 Pell 方程 u² − 2c² = −1，其解由 (3 + 2√2) 递推给出：
+ *   u' = 3u + 4c，c' = 2u + 3c，
+ * 周长 = x + (x+1) + c = u + c，每族贡献 floor((limit − 1)/(u + c)) 个倍数。
+ * u + c < 10⁸ 的本原族只有 10 个（首项 (7,5) 即 (3,4,5)，末项周长 93222358 只贡献 1 个）。
+ * 复杂度 O(log limit)、空间 O(1)，全程 Long（中间量最大约 3.2×10⁸）。
+ */
+
+/** 铺砖条件：洞边长 d = |b − a| 必须整除外正方形边长 c。 */
+private fun p139Tiles(a: Long, b: Long, c: Long): Boolean {
+    val d = if (a > b) a - b else b - a
+    return c % d == 0L
+}
+
+/**
+ * 周长严格小于 limit、可铺砖的勾股三角形个数：沿负 Pell 递推枚举「两腿相差 1」的本原族，
+ * 每族累加其倍数中周长严格小于 limit 的个数。
+ */
+private fun p139Solve(limit: Long): Long {
+    var count = 0L
+    var u = 7L
+    var c = 5L                                   // 对应 (3, 4, 5)：u = 2·3 + 1 = 7
+    while (u + c < limit) {
+        count += (limit - 1) / (u + c)           // 严格小于 limit，故用 limit - 1
+        val nextU = 3 * u + 4 * c
+        val nextC = 2 * u + 3 * c
+        u = nextU
+        c = nextC
+    }
+    return count
+}
+
+/**
+ * 小范围穷举参照：直接扫 a < b，用整数开方判 c，逐条检查铺砖条件。
+ * 只用于断言互证推导正确性，不参与最终计数。
+ */
+private fun p139CountByEnumeration(limit: Long): Long {
+    var count = 0L
+    var a = 1L
+    while (3 * a + 2 < limit) {                  // 周长 > 3a ⇒ a 更大时无解
+        var b = a + 1
+        while (a + 2 * b < limit) {              // c > b ⇒ 周长 > a + 2b
+            val s = a * a + b * b
+            var c = Math.sqrt(s.toDouble()).toLong()
+            while (c * c > s) c--
+            while ((c + 1) * (c + 1) <= s) c++
+            if (c * c == s && a + b + c < limit && p139Tiles(a, b, c)) count++
+            b++
+        }
+        a++
+    }
+    return count
+}
+
+private fun solve139(): Long {
+    // 题面样例：(3,4,5) 的洞 1×1，5×5 用 25 = (5/1)² 块铺满；反例 (5,12,13) 的洞 7×7，7 ∤ 13
+    check(p139Tiles(3, 4, 5)) { "题面样例：(3,4,5) 应可铺砖" }
+    check(!p139Tiles(5, 12, 13)) { "题面反例：(5,12,13) 的中洞 7×7，7 ∤ 13，不应可铺砖" }
+    // 严格小于 limit 的边界：12 排除 (3,4,5) 本身，13 恰有一个；71 是 5 个倍数加 (20,21,29)
+    check(p139Solve(12L) == 0L) { "limit=12 应为 0，实得 ${p139Solve(12L)}" }
+    check(p139Solve(13L) == 1L) { "limit=13 应为 1，实得 ${p139Solve(13L)}" }
+    check(p139Solve(71L) == 6L) { "limit=71 应为 6，实得 ${p139Solve(71L)}" }
+    // 与直接枚举 a < b < c 的穷举逐一对齐，钉死「铺砖 ⟺ d | c」这条题意解读
+    for (lim in longArrayOf(13L, 100L, 1000L, 3000L, 10_000L)) {
+        check(p139Solve(lim) == p139CountByEnumeration(lim)) {
+            "limit=$lim：Pell 递推 ${p139Solve(lim)} 与直接穷举 ${p139CountByEnumeration(lim)} 不一致"
+        }
+    }
+    return p139Solve(100_000_000L)
+}
+
+// ---------- PE 140 ----------
+/**
+ * PE 140 — 修改版斐波那契金块（Modified Fibonacci Golden Nuggets）
+ *
+ * 逻辑与 content/problems/0140/solution.kt 一致：
+ * A_G(x) = (x + 3x²)/(1 − x − x²)，令 A_G(x) = n 得 (n+3)x² + (n+1)x − n = 0，
+ * 判别式 D(n) = 5n² + 14n + 1 为完全平方 ⟺ x 有理；配方后 (5n+7)² − 5m² = 44。
+ * 记 u = 5n + 7，解链由基本单位 ε = 9 + 4√5 相邻，金块落在链的每隔一项上，
+ * 两条子列各满足 u_{k+1} = 7u_k − u_{k−1}（种子 u = 7,17 与 7,32），
+ * 换算到 n 即 n_{k+1} = 7n_k − n_{k−1} + 7，归并去重后取前 30 项求和。
+ */
+
+/** 判别式 D(n) = 5n² + 14n + 1；第 30 个金块 n ≈ 3.2×10¹² 时 5n² 已超 Long，故用 BigInteger。 */
+private fun p140Discriminant(n: Long): java.math.BigInteger {
+    val big = java.math.BigInteger.valueOf(n)
+    return big * big * java.math.BigInteger.valueOf(5) + big * java.math.BigInteger.valueOf(14) +
+        java.math.BigInteger.ONE
+}
+
+/** n 是金块 ⟺ D(n) 为完全平方数；是则返回 m = √D(n)，否则返回 null。 */
+private fun p140GoldenRoot(n: Long): java.math.BigInteger? {
+    val d = p140Discriminant(n)
+    val m = d.sqrt()
+    return if (m * m == d) m else null
+}
+
+/** 沿 u_{k+1} = 7u_k − u_{k−1} 生成一条子列的 n（u = 5n + 7），直到 u 超过 limit。 */
+private fun p140Subsequence(first: Long, second: Long, limit: Long): List<Long> {
+    val nuggets = ArrayList<Long>()
+    var prev = first
+    var cur = second
+    while (cur <= limit) {
+        val n = (cur - 7) / 5
+        if (n >= 1L) nuggets.add(n)              // n = 0 对应 x = 0，不是正整数，排除
+        val next = 7L * cur - prev
+        prev = cur
+        cur = next
+    }
+    return nuggets
+}
+
+/** 升序的前 count 个金块：两条子列（种子 u = 7,17 与 u = 7,32）归并去重。 */
+private fun p140GoldenNuggets(count: Int, limit: Long): List<Long> =
+    (p140Subsequence(7L, 17L, limit) + p140Subsequence(7L, 32L, limit)).sorted().take(count)
+
+/** PE 140 — 前三十个金块之和 = 5673835352990。 */
+private fun solve140(): Long {
+    // ── 题面表格：A_G(x) = 1…5 的判别式依次为 20, 49, 88, 137, 196，只有后两者中的 49、196 是完全平方
+    val discs = (1L..5L).map { p140Discriminant(it).toLong() }
+    check(discs == listOf(20L, 49L, 88L, 137L, 196L)) { "判别式应为 20,49,88,137,196，实际 $discs" }
+    check(p140GoldenRoot(2L) == java.math.BigInteger.valueOf(7L)) { "n = 2 应为金块（D = 49 = 7²）" }
+    check(p140GoldenRoot(5L) == java.math.BigInteger.valueOf(14L)) { "n = 5 应为金块（D = 196 = 14²）" }
+    for (n in listOf(1L, 3L, 4L)) {
+        check(p140GoldenRoot(n) == null) { "n = $n 的 x 应是无理数（判别式不是完全平方数）" }
+    }
+
+    // ── 题面锚点：第 20 个金块必须是 211345365
+    val nuggets = p140GoldenNuggets(30, 100_000_000_000_000L)
+    check(nuggets.size == 30) { "应得 30 个金块，实际 ${nuggets.size}" }
+    check(nuggets[19] == 211_345_365L) { "第 20 个金块应为 211345365，实际 ${nuggets[19]}" }
+    check(nuggets.zipWithNext().all { (a, b) -> a < b }) { "金块必须严格递增" }
+
+    // ── 逐项回到定义：(5n+7)² − 5m² = 44
+    for (n in nuggets) {
+        val m = p140GoldenRoot(n) ?: error("$n 不是金块")
+        val u = java.math.BigInteger.valueOf(n) * java.math.BigInteger.valueOf(5L) +
+            java.math.BigInteger.valueOf(7L)
+        check(u * u - m * m * java.math.BigInteger.valueOf(5L) == java.math.BigInteger.valueOf(44L)) {
+            "n = $n 不满足 Pell 方程 (5n+7)² − 5m² = 44"
+        }
+    }
+    return nuggets.sum()
+}
+
+// ---------- PE 141 ----------
+/**
+ * PE 141 — 平方递进数（Square Progressive Numbers）
+ *
+ * n = d·q + r（0 < r < d），且 {d, q, r} 是某个等比数列的连续三项（顺序不限）。
+ * 三项排序成 A < B < C 后有 A·C = B²；把公比写成最简分数 p/q（p > q ≥ 1, gcd(p,q) = 1），
+ * 则 A = c·q², B = c·p·q, C = c·p²。六种排列里满足 r < d 的有三组，其中两组给出同一个
+ * n = C·B + A，第三组给出 n = B² + B —— 而 B² < B² + B < (B+1)²，永非完全平方数，整支丢弃。
+ * 于是平方递进数恰好是 n = c·q·(c·p³ + q)（p > q ≥ 1 互素，c ≥ 1），枚举并去重求和。
+ *
+ * 复杂度：约 7.3×10⁶ 个候选，每个一次乘法 + 一次整数开方；空间 O(H)（H 为解的个数）。
+ */
+
+/** 整数平方根（向下取整）：浮点估计后用整数乘法回验靠拢，规避 sqrt 的舍入误差。 */
+private fun p141Isqrt(n: Long): Long {
+    var r = Math.sqrt(n.toDouble()).toLong()
+    while (r > 0L && r * r > n) r--
+    while ((r + 1) * (r + 1) <= n) r++
+    return r
+}
+
+/** n 是否为完全平方数。 */
+private fun p141IsSquare(n: Long): Boolean {
+    val r = p141Isqrt(n)
+    return r * r == n
+}
+
+/** 按题面定义逐项检验：枚举除数 d，取真实商与余数，看三项排序后是否成等比（中项平方 = 两侧之积）。 */
+private fun p141IsProgressive(n: Long): Boolean {
+    var d = 1L
+    while (d <= n) {
+        val q = n / d
+        val r = n % d
+        if (r > 0L && r < d) {
+            val t = longArrayOf(d, q, r).sortedArray()
+            if (t[0] * t[2] == t[1] * t[1]) return true
+        }
+        d++
+    }
+    return false
+}
+
+/** 小于 limit 的全部平方递进数，升序、去重。 */
+private fun p141SolveSet(limit: Long): List<Long> {
+    val hits = HashSet<Long>()
+    var p = 2L
+    while (p * p * p + 1 < limit) {                  // q = 1, c = 1 时 n = p³ + 1，再大的 p 无解
+        val p3 = p * p * p
+        var q = 1L
+        while (q < p) {
+            if (q * (p3 + q) >= limit) break         // c ≥ 1 时 n ≥ q(p³ + q)，关于 q 单调递增
+            if (gcd(p, q) == 1L) {
+                var c = 1L
+                while (true) {
+                    val n = c * q * (c * p3 + q)
+                    if (n >= limit) break
+                    if (p141IsSquare(n)) hits.add(n)
+                    c++
+                }
+            }
+            q++
+        }
+        p++
+    }
+    return hits.sorted()
+}
+
+/** 小于 limit 的全部平方递进数之和。 */
+private fun p141Sum(limit: Long): Long = p141SolveSet(limit).sum()
+
+/** PE 141 — 10¹² 以内「递进的完全平方数」之和 = 878454337159。 */
+private fun solve141(): Long {
+    // 题面例子：58 ÷ 6 → 商 9 余 4，且 4, 6, 9 是公比 3/2 的等比数列连续三项
+    check(58L / 6 == 9L && 58L % 6 == 4L) { "题面例子：58 ÷ 6 的商应为 9、余数应为 4" }
+    check(4L * 9L == 6L * 6L) { "题面例子：4, 6, 9 应成等比数列" }
+    // 题面点名的两个平方递进数：9 与 10404 = 102²（按题面原始定义逐项复核）
+    check(p141IsProgressive(9L)) { "题面点名：9 应是递进数" }
+    check(p141IsProgressive(10404L)) { "题面点名：10404 应是递进数" }
+    check(p141IsSquare(9L) && p141IsSquare(10404L)) { "题面点名：9 与 10404 都应是完全平方数" }
+    // 十万以内的四个平方递进数，和必须等于题面给出的 124657
+    val below100k = p141SolveSet(100_000L)
+    check(below100k == listOf(9L, 10404L, 16900L, 97344L)) { "十万以内应为 9,10404,16900,97344，实得 $below100k" }
+    for (n in below100k) check(p141IsProgressive(n)) { "$n 不是递进数" }
+    check(p141Sum(100_000L) == 124657L) { "题面样例：十万以内之和应为 124657，实得 ${p141Sum(100_000L)}" }
+    // 严格上界：小于 9 时无解
+    check(p141Sum(9L) == 0L) { "严格上界：小于 9 时不应有解" }
+    return p141Sum(1_000_000_000_000L)
+}
+
+// ---------- PE 142 ----------
+/**
+ * PE 142 — Perfect Square Collection（完全平方数集合）
+ *
+ * 把六个平方数写成
+ *   x + y = a²,  x − y = b²,  x + z = c²,  x − z = d²,  y + z = e²,  y − z = f²。
+ * 三组相减立刻给出三个勾股关系：
+ *   d² = (x − z) = (x − y) + (y − z) = b² + f²
+ *   c² = (x + z) = (x − y) + (y + z) = b² + e²
+ *   a² = (x + y) = (x − z) + (y + z) = b² + e² + f²
+ * 反过来，取 b ≥ 1、e > f ≥ 1、e ≡ f (mod 2)，只要 b² + e²、b² + f²、b² + e² + f²
+ * 三者全是完全平方数，就由
+ *   y = (e² + f²)/2,  z = (e² − f²)/2,  x = b² + y
+ * 唯一还原出整数三重 (x, y, z)：六个式子逐一成立，且 x > y > z > 0 自动满足
+ * （b ≥ 1、e > f）。于是问题化为「勾股三元组的腿之间做配对」：对每条腿 b，取其全部
+ * 配对腿 o（b² + o² 为平方），在配对腿内部挑同奇偶的一对 (e, f)，再验第三个条件。
+ * 目标 x + y + z = b² + 2y + z = b² + (3e² + f²)/2。
+ *
+ * 搜索边界：任一解满足 S = x + y + z > b²，故 b < √S；又 S > (3/2)e² > (3/2)f²，
+ * 故 e ≤ √(2S/3)，f < e。取腿长上界 B = 2048 先求最小 S，再断言 B² > S 与 B² > 2S/3：
+ * 任何更小的解其全部腿长必然小于 B，已被完整枚举，故所得即全局最小。
+ *
+ * 复杂度：Euclid 参数化生成腿长 ≤ B 的三元组 O(B log B)（m ≤ √(2B)），配对表用 CSR
+ * 存两遍计数 + 填充；之后对每条腿的配对表两两组合 O(B·d²)（d 为单条腿的配对数，
+ * 实测 ≤ 10），每对含一次整数开方。空间 O(B + E)。答案 = 1006193。
+ */
+
+private const val P142_BOUND = 2048
+
+/** 解的三重与它的化简参数：b² = x − y、e² = y + z、f² = y − z。 */
+private class p142Solution(
+    val x: Long,
+    val y: Long,
+    val z: Long,
+    val b: Long,
+    val e: Long,
+    val f: Long,
+) {
+    val sum: Long get() = x + y + z
+}
+
+/** 勾股配对表的 CSR 形式：与腿 v 配对的腿是 data[start[v] until start[v+1]]。 */
+private class p142PartnerTable(private val start: IntArray, private val data: IntArray) {
+    fun begin(v: Int): Int = start[v]
+    fun end(v: Int): Int = start[v + 1]
+    fun leg(v: Int, i: Int): Int = data[i]
+}
+
+/** 整数开方（向下取整）：浮点估值后用整数回退校准，不依赖浮点边界。 */
+private fun p142Isqrt(n: Long): Long {
+    if (n <= 0L) return 0L
+    var r = Math.sqrt(n.toDouble()).toLong()
+    while (r > 0L && r * r > n) r--
+    while ((r + 1L) * (r + 1L) <= n) r++
+    return r
+}
+
+private fun p142IsSquare(n: Long): Boolean {
+    if (n < 0L) return false
+    val r = p142Isqrt(n)
+    return r * r == n
+}
+
+/**
+ * 枚举腿长 ≤ bound 的全部勾股三元组，按 (u, v) 两条腿回调。
+ * Euclid 参数化：m > n ≥ 1、m − n 奇、gcd(m, n) = 1 给出本原三元组，再乘 k 覆盖其整数倍。
+ */
+private inline fun p142ForEachTripleLeg(bound: Int, action: (Int, Int) -> Unit) {
+    var m = 2L
+    while (m * m - 1 <= bound) {
+        var n = 1L
+        while (n < m) {
+            if (((m - n) and 1L) == 1L && gcd(m, n) == 1L) {
+                val u0 = (m * m - n * n).toInt()
+                val v0 = (2 * m * n).toInt()
+                var k = 1L
+                while (k * u0 <= bound && k * v0 <= bound) {
+                    action((k * u0).toInt(), (k * v0).toInt())
+                    k++
+                }
+            }
+            n++
+        }
+        m++
+    }
+}
+
+/** 腿长 ≤ bound 的勾股配对表：partners 中列出所有 o 使 v² + o² 为完全平方数。 */
+private fun p142BuildPartners(bound: Int): p142PartnerTable {
+    val deg = IntArray(bound + 2)
+    p142ForEachTripleLeg(bound) { u, v ->
+        deg[u]++
+        deg[v]++
+    }
+    val start = IntArray(bound + 2)
+    for (v in 0..bound) start[v + 1] = start[v] + deg[v]
+    val cursor = start.copyOf()
+    val data = IntArray(start[bound + 1])
+    p142ForEachTripleLeg(bound) { u, v ->
+        data[cursor[u]++] = v
+        data[cursor[v]++] = u
+    }
+    return p142PartnerTable(start, data)
+}
+
+/** 在腿长 ≤ bound 的范围内求 x + y + z 最小的解，无解返回 null。 */
+private fun p142Solve(bound: Int): p142Solution? {
+    val table = p142BuildPartners(bound)
+    var best: p142Solution? = null
+    for (b in 1..bound) {
+        val from = table.begin(b)
+        val to = table.end(b)
+        if (to - from < 2) continue
+        val b2 = b.toLong() * b
+        for (i in from until to) {
+            for (j in i + 1 until to) {
+                val e = maxOf(table.leg(b, i), table.leg(b, j)).toLong()   // 需要 e > f（即 z > 0）
+                val f = minOf(table.leg(b, i), table.leg(b, j)).toLong()
+                if (((e - f) and 1L) != 0L) continue                       // y、z 为整数 ⇒ 同奇偶
+                if (!p142IsSquare(b2 + e * e + f * f)) continue
+                val sum = b2 + (3 * e * e + f * f) / 2
+                if (best == null || sum < best.sum) {
+                    val y = (e * e + f * f) / 2
+                    val z = (e * e - f * f) / 2
+                    best = p142Solution(b2 + y, y, z, b.toLong(), e, f)
+                }
+            }
+        }
+    }
+    return best
+}
+
+/**
+ * 独立路径（另一套参数化）：枚举 y、z 使 y ± z 均为平方，再由 (c − d)(c + d) = 2z 的因子对
+ * 反解 x = z + d²，最后只查 x ± y 是否为平方。用于在小范围内确认没有更小的解。
+ * 返回 true 表示在 y ≤ yMax 且 x + y + z < sumCap 的范围内确实无解。
+ */
+private fun p142NoSmallerByDefinition(yMax: Long, sumCap: Long): Boolean {
+    var e = 2L
+    while ((e * e + 1L) / 2 <= yMax) {
+        var f = 1L
+        while (f < e) {
+            if (((e - f) and 1L) == 0L) {
+                val y = (e * e + f * f) / 2
+                if (y <= yMax) {
+                    val z = (e * e - f * f) / 2
+                    if (z > 0L && z < y) {
+                        val t = 2 * z
+                        var p = 1L
+                        while (p * p <= t) {
+                            if (t % p == 0L) {
+                                val q = t / p
+                                if (((q - p) and 1L) == 0L) {              // c、d 必须是整数
+                                    val d = (q - p) / 2
+                                    val x = z + d * d
+                                    if (x > y && x + y + z < sumCap &&
+                                        p142IsSquare(x - y) && p142IsSquare(x + y)
+                                    ) {
+                                        return false
+                                    }
+                                }
+                            }
+                            p++
+                        }
+                    }
+                }
+            }
+            f++
+        }
+        e++
+    }
+    return true
+}
+
+/** PE 142 — 求满足六个完全平方条件的最小 x + y + z = 1006193。 */
+private fun solve142(): Long {
+    val sol = p142Solve(P142_BOUND) ?: error("B = $P142_BOUND 范围内未找到解")
+
+    // 1. 直接按定义回验六个式子（不看推导，只算 x、y、z 本身）
+    check(sol.x > sol.y && sol.y > sol.z && sol.z > 0L) { "142：需要 x > y > z > 0，实测 $sol" }
+    val six = longArrayOf(
+        sol.x + sol.y, sol.x - sol.y, sol.x + sol.z,
+        sol.x - sol.z, sol.y + sol.z, sol.y - sol.z,
+    )
+    check(six.all { p142IsSquare(it) }) { "142：六个式子必须全为完全平方数，实测 ${six.toList()}" }
+
+    // 2. 化简条件自洽：b² + e²、b² + f²、b² + e² + f² 皆为平方，且与 x、y、z 的等式对齐
+    val b2 = sol.b * sol.b
+    check(sol.b * sol.b == sol.x - sol.y && sol.e * sol.e == sol.y + sol.z && sol.f * sol.f == sol.y - sol.z) {
+        "142：b、e、f 与 x、y、z 的对应关系不符"
+    }
+    check(p142IsSquare(b2 + sol.e * sol.e)) { "142：x + z 应为完全平方数" }
+    check(p142IsSquare(b2 + sol.f * sol.f)) { "142：x − z 应为完全平方数" }
+    check(p142IsSquare(b2 + sol.e * sol.e + sol.f * sol.f)) { "142：x + y 应为完全平方数" }
+    check(sol.sum == b2 + (3 * sol.e * sol.e + sol.f * sol.f) / 2) { "142：闭式求和公式不符" }
+
+    // 3. 搜索完备性：任何更小的解必有 b < √S、e ≤ √(2S/3) < B，故已被枚举
+    check(P142_BOUND.toLong() * P142_BOUND > sol.sum) { "142：B 必须大于 √(x + y + z)" }
+    check(P142_BOUND.toLong() * P142_BOUND > 2 * sol.sum / 3) { "142：B 必须大于 √(2S/3)" }
+    // 腿长上界收缩到 800（756、520、117 都仍在范围内）答案不变，说明结论不靠放大 B 得来
+    check(p142Solve(800)?.sum == sol.sum) { "142：B = 800 时答案应相同" }
+
+    // 4. 小范围独立穷举：y ≤ 50000 时不存在更小的解
+    check(p142NoSmallerByDefinition(50_000L, sol.sum)) { "142：y ≤ 50000 的范围内不应存在更小的解" }
+
+    return sol.sum
+}
+
+// ---------- PE 143 ----------
+/**
+ * PE 143 — Torricelli Triangles：所有托里拆利三角形（各内角 < 120°、费马点到三顶点
+ * 的距离 p, q, r 全为整数）中，不同的 p + q + r ≤ 120000 之和 = 30758397。
+ *
+ * 推导：费马点 T 处三条连线两两成 120°，对三角形 ATB、BTC、CTA 各用一次余弦定理
+ * （cos 120° = −1/2，平方项与交叉项同号相加）得
+ *
+ *   a² = q² + qr + r²,   b² = p² + pq + q²,   c² = p² + pr + r²。
+ *
+ * 反之，若 p, q, r > 0 且三式都成立，就把三段以 120° 夹角拼起来得到合法三角形 ABC
+ * （T 在其内部，各内角 < 120°；和函数凸、最小值点落在钝角顶点上，故内角 < 120° 是必要条件）。
+ * 于是问题化为「以正整数为顶点、使 x² + xy + y² 为完全平方的数对为边，找 p + q + r ≤ 120000
+ * 的 3-团，对不同的和去重求和」。
+ *
+ * 120° 对由图论之外的一条捷径全部造出（艾森斯坦整数范数下本原解必为平方，含单位）：
+ *
+ *   x = k(m² − n²),  y = k(2mn + n²),  x² + xy + y² = [k(m² + mn + n²)]²,  x + y = k·m(m + 2n)
+ *
+ * （m > n > 0，k ≥ 1）。固定 (m, n) 后倍数只有 ⌊L / (m(m+2n))⌋ 个，故边数远小于 L²。
+ * 建图只存「比自己大的邻居」的 CSR 上邻接表（和 ≤ L 的团里任两数之和必 ≤ L，截断不丢解），
+ * 三角形则对每条边 (a, b) 求 adj(a) ∩ adj(b) 的有序交集，命中即把和记进集合。
+ *
+ * 本题不需要 dev.pekt.math 里的任何工具（没有「平方判定」类原语），只用到
+ * java.util.Arrays.sort 做边数组排序去重。
+ */
+
+/** x² + xy + y² 若为完全平方数则返回其平方根，否则返回 −1（整数阈值比较，不用浮点下结论）。 */
+private fun p143SqrtIfSquare(x: Long, y: Long): Long {
+    val v = x * x + x * y + y * y
+    var r = Math.sqrt(v.toDouble()).toLong()
+    while (r > 0 && r * r > v) r--
+    while ((r + 1) * (r + 1) <= v) r++
+    return if (r * r == v) r else -1L
+}
+
+/** 把 {x, y}（x ≠ y，均 < 2²⁰）编码成一个 Long，编码序与 x < y 的字典序一致。 */
+private fun p143EdgeKey(x: Int, y: Int): Long =
+    if (x < y) (x.toLong() shl 20) or y.toLong() else (y.toLong() shl 20) or x.toLong()
+
+/** 参数化枚举全部满足 x + y ≤ limit 的 120° 对，返回编码数组（含重复，未排序）。 */
+private fun p143EncodeEdges(limit: Int): LongArray {
+    var cap = 1 shl 18
+    var arr = LongArray(cap)
+    var n = 0
+    var m = 2
+    while (m.toLong() * m <= limit) {                    // x + y = m(m + 2n) ≥ m²
+        var nn = 1
+        while (nn < m && m.toLong() * m + 2L * m * nn <= limit) {
+            val base = m * m + 2 * m * nn                 // (m, nn) 基元的 x + y
+            val x0 = m * m - nn * nn
+            val y0 = 2 * m * nn + nn * nn
+            var k = 1
+            while (k.toLong() * base <= limit) {
+                if (n == cap) {
+                    cap *= 2
+                    arr = arr.copyOf(cap)
+                }
+                arr[n++] = p143EdgeKey(k * x0, k * y0)
+                k++
+            }
+            nn++
+        }
+        m++
+    }
+    return arr.copyOf(n)
+}
+
+/**
+ * CSR 形式的**上邻接表**：只保留顶点 v → 比 v 大的邻居（升序）。
+ * 返回长度 limit + 2 的前缀数组 start，adj 为邻居序列，顶点 v 的邻居是 adj[start[v]..<start[v+1])。
+ */
+private fun p143BuildUpperAdjacency(limit: Int): Pair<IntArray, IntArray> {
+    val edges = p143EncodeEdges(limit)
+    java.util.Arrays.sort(edges)                          // 按 (小, 大) 字典序，顺带完成去重
+    var e = 0
+    for (i in edges.indices) {
+        if (i == 0 || edges[i] != edges[i - 1]) edges[e++] = edges[i]
+    }
+    val deg = IntArray(limit + 1)
+    for (i in 0 until e) deg[(edges[i] ushr 20).toInt()]++
+    val start = IntArray(limit + 2)
+    for (v in 1..limit) start[v + 1] = start[v] + deg[v]
+    val fill = start.copyOf()
+    val adj = IntArray(e)
+    for (i in 0 until e) {
+        val lo = (edges[i] ushr 20).toInt()
+        val hi = (edges[i] and 0xFFFFFL).toInt()
+        adj[fill[lo]++] = hi                              // edges 有序 ⇒ 每个 lo 段升序
+    }
+    return Pair(start, adj)
+}
+
+/** 所有满足 p + q + r ≤ limit 的托里拆利三角形的**不同**和。 */
+private fun p143TriangleSums(limit: Int): HashSet<Int> {
+    val (start, adj) = p143BuildUpperAdjacency(limit)
+    val sums = HashSet<Int>()
+    for (a in 1 until limit) {
+        val as0 = start[a]
+        val ae = start[a + 1]
+        if (as0 == ae) continue
+        for (ia in as0 until ae) {
+            val b = adj[ia]
+            var i = as0
+            var j = start[b]
+            val be = start[b + 1]
+            while (i < ae && j < be) {                    // 两条升序链求交
+                val u = adj[i]
+                val v = adj[j]
+                when {
+                    u < v -> i++
+                    u > v -> j++
+                    else -> {                             // u 是 a、b 的公共邻居，且 u > b > a
+                        if (a + b + u > limit) break      // u 随 i 单调不减
+                        sums.add(a + b + u)
+                        i++
+                        j++
+                    }
+                }
+            }
+        }
+    }
+    return sums
+}
+
+private fun p143Solve(limit: Int): Long {
+    var total = 0L
+    for (s in p143TriangleSums(limit)) total += s
+    return total
+}
+
+private fun solve143(): Long {
+    // 题面样例：a = 399、b = 455、c = 511，对应的费马点距离是 p = 195、q = 264、r = 325。
+    check(p143SqrtIfSquare(195, 264) == 399L) { "题面样例：195/264 应给出 399" }
+    check(p143SqrtIfSquare(195, 325) == 455L) { "题面样例：195/325 应给出 455" }
+    check(p143SqrtIfSquare(264, 325) == 511L) { "题面样例：264/325 应给出 511" }
+    check(195L + 264 + 325 == 784L) { "题面样例：三段距离之和应为 784" }
+    // 该三元组能被搜索到；784 是全局最小和，故上限压到 783 时应无解
+    check(p143TriangleSums(784).contains(784)) { "上限 784 时应能找到和 784" }
+    check(p143TriangleSums(783).isEmpty()) { "上限 783 时应无解（784 为最小和）" }
+    // 边界：x = y 时 3x² 不是平方；(1,2) 不是 120° 对；(3,5) 是（3² + 15 + 5² = 7²）
+    check(p143SqrtIfSquare(1, 1) == -1L) { "1/1 不是 120° 对" }
+    check(p143SqrtIfSquare(1, 2) == -1L) { "1/2 不是 120° 对" }
+    check(p143SqrtIfSquare(3, 5) == 7L) { "3/5 应给出 7" }
+    return p143Solve(120_000)
+}
+
+// ---------- PE 144 ----------
+/**
+ * PE 144 — 激光束反射：「白室」是椭圆 4x² + y² = 100，顶部 |x| ≤ 0.01 缺一小段作为进出口。
+ * 光束从 (0, 10.1) 射入、第一击为 (1.4, −9.6)，按反射定律在腔内来回弹射，直到从缺口穿出。
+ * 问穿出前命中内壁多少次 = 354。
+ *
+ * 推导：f(x, y) = 4x² + y² − 100 的梯度 (8x, 2y) ∝ (4x, y) 即入射点外法向，题面给的切线斜率
+ * m = −4x/y 就是隐函数求导 8x + 2yy' = 0。反射用 d ← d − 2(d·n)/(n·n)·n（对 n 的伸缩不变，
+ * 故取未归一化的 n，全程无开方、无三角函数）。下一条弦：把 P + t·d 代回椭圆，P 已在椭圆上
+ * ⇒ 常数项为零 ⇒ t(At + 2B) = 0，A = 4dx² + dy²、B = 4x·dx + y·dy，另一根 t = −2B/A 即弦长参数。
+ * 出口判据：交点满足 y > 0 且 |x| ≤ 0.01（椭圆底部也有 |x| ≤ 0.01 的一段，只查横坐标会误判），
+ * 该交点不计入命中，于是命中次数 = 边界交点数 − 1。
+ * 物理自检：椭圆台球可积，所有弦切于同一条与腔体共焦的二次曲线，共焦不变量
+ * λ = (25dy² + 100dx² − (dx·y1 − dy·x1)²)/L² 全程恒为 24.8642748366（相对漂移 ~1e-14），
+ * 这既验证反射算对，也说明误差不随反射次数放大，双精度足够。
+ */
+
+/** 顶部缺口半宽：椭圆上 |x| ≤ 0.01 的那一段缺失。 */
+private const val P144_HOLE = 0.01
+
+/** 椭圆的隐函数 f(x, y) = 4x² + y² − 100：腔外为正、腔内为负、边界为零。 */
+private fun p144Ellipse(x: Double, y: Double): Double = 4.0 * x * x + y * y - 100.0
+
+/** 椭圆下支 y(x) = −√(100 − 4x²)，用于数值微分核对题面给的切线斜率。 */
+private fun p144LowerBranch(x: Double): Double = -java.lang.Math.sqrt(100.0 - 4.0 * x * x)
+
+/**
+ * 逐次反射模拟。返回 [x0, y0, x1, y1, …]：依次是每次命中内壁的位置，
+ * 最后两个数是光束穿出缺口的那个边界交点（它不算命中）。
+ */
+private fun p144Trajectory(): DoubleArray {
+    var x = 1.4                                   // 第一击点 (1.4, −9.6)
+    var y = -9.6
+    var dx = 1.4 - 0.0                            // 入射方向：起点 (0, 10.1) → (1.4, −9.6)
+    var dy = -9.6 - 10.1
+    val out = ArrayList<Double>(2 * 360)
+    out.add(x); out.add(y)
+    while (true) {
+        val nx = 4.0 * x                          // 法向 ∝ (4x, y)，无需归一化
+        val ny = y
+        val k = 2.0 * (dx * nx + dy * ny) / (nx * nx + ny * ny)
+        dx -= k * nx                              // d' = d − 2(d·n)/(n·n)·n
+        dy -= k * ny
+        val t = -2.0 * (4.0 * x * dx + y * dy) / (4.0 * dx * dx + dy * dy)
+        x += t * dx                               // 下一交点：t = 0 是当前点，另一根才是下一个
+        y += t * dy
+        out.add(x); out.add(y)
+        if (y > 0.0 && kotlin.math.abs(x) <= P144_HOLE) break   // 从缺口穿出，不计命中
+    }
+    return out.toDoubleArray()
+}
+
+/** 第 i 条弦（points[2i] → points[2i+2]）所切的那条共焦二次曲线的不变量 λ。 */
+private fun p144Caustic(points: DoubleArray, i: Int): Double {
+    val x1 = points[2 * i]; val y1 = points[2 * i + 1]
+    val dx = points[2 * i + 2] - x1; val dy = points[2 * i + 3] - y1
+    val l2 = dx * dx + dy * dy
+    return (25.0 * dy * dy + 100.0 * dx * dx - (dx * y1 - dy * x1) * (dx * y1 - dy * x1)) / l2
+}
+
+/** PE 144 — 激光束反射：穿出缺口前命中内壁的次数 = 354。 */
+private fun solve144(): Long {
+    // 题面锚点一：第一个命中点 (1.4, −9.6) 落在椭圆上
+    check(kotlin.math.abs(p144Ellipse(1.4, -9.6)) < 1e-12) { "题面：第一击点 (1.4, −9.6) 应在椭圆上" }
+    // 题面锚点二：切线斜率 m = −4x/y，用隐函数求导的数值微分核对
+    val h = 1e-6
+    val fd = (p144LowerBranch(1.4 + h) - p144LowerBranch(1.4 - h)) / (2 * h)
+    check(kotlin.math.abs(fd - (-4.0 * 1.4 / -9.6)) < 1e-9) { "题面：切线斜率 m = −4x/y 不符，实得 $fd" }
+    // 题面锚点三：起点在腔外，光束自顶部缺口 (|x| ≤ 0.01) 射入
+    val sTop = (10.1 - 10.0) / 19.7
+    check(kotlin.math.abs(1.4 * sTop) <= P144_HOLE) { "题面：入射点应在缺口内，实得 x = ${1.4 * sTop}" }
+    check(p144Ellipse(0.0, 10.1) > 0.0) { "题面：起点 (0, 10.1) 应在腔外" }
+    // 题面锚点四：第一次反射满足反射定律——入射、反射方向与法向夹角相等
+    val nx = 4.0 * 1.4; val ny = -9.6
+    val dx = 1.4 - 0.0; val dy = -9.6 - 10.1
+    val rdx = dx - 2.0 * (dx * nx + dy * ny) / (nx * nx + ny * ny) * nx
+    val rdy = dy - 2.0 * (dx * nx + dy * ny) / (nx * nx + ny * ny) * ny
+    val cin = (dx * nx + dy * ny) / (java.lang.Math.hypot(dx, dy) * java.lang.Math.hypot(nx, ny))
+    val cout = (rdx * nx + rdy * ny) / (java.lang.Math.hypot(rdx, rdy) * java.lang.Math.hypot(nx, ny))
+    check(cin > 0.0) { "入射方向应由腔内指向壁面（沿外法向）：$cin" }
+    check(kotlin.math.abs(cin + cout) < 1e-12) { "题面：入射角应等于反射角，$cin vs $cout" }
+
+    // 轨迹的物理自检：每个命中点都在椭圆上、出口在小孔内、共焦不变量守恒
+    val pts = p144Trajectory()
+    for (i in 0 until pts.size / 2) {
+        check(kotlin.math.abs(p144Ellipse(pts[2 * i], pts[2 * i + 1])) < 1e-9) { "第 $i 个命中点偏离椭圆" }
+    }
+    val ex = pts[pts.size - 2]; val ey = pts[pts.size - 1]
+    check(ey > 0.0 && kotlin.math.abs(ex) <= P144_HOLE) { "出口点应落在缺口内：($ex, $ey)" }
+    var lo = Double.MAX_VALUE
+    var hi = -Double.MAX_VALUE
+    for (i in 0 until pts.size / 2 - 1) {
+        val lam = p144Caustic(pts, i)
+        lo = minOf(lo, lam); hi = maxOf(hi, lam)
+    }
+    check(lo > 0.0 && hi < 25.0) { "焦散线应是共焦椭圆（0 < λ < 25）：[$lo, $hi]" }
+    check((hi - lo) / lo < 1e-11) { "共焦不变量漂移过大：${hi - lo}" }
+
+    check(pts.size / 2 - 1 == 354) { "命中次数应为 354（与 brute-force.kt 互证），实得 ${pts.size / 2 - 1}" }
+    return pts.size / 2L - 1L
+}
+
+// ---------- PE 145 ----------
+/**
+ * PE 145 — 可逆数：小于 10⁹ 的「n + reverse(n) 的十进制各位全为奇数」的正整数个数 = 608720。
+ *
+ * 推导：按位数 d 分类，n 的数位为 a_{d-1}…a_0（a_{d-1} ≥ 1 使 n 恰有 d 位，a_0 ≥ 1 使
+ * reverse(n) 无前导零）。第 i 位与第 d-1-i 位用的是同一对数位，故只需看数位对的和
+ * t_i = a_i + a_{d-1-i} ∈ [0, 18]，且 t_{d-1-i} = t_i。设 c_i ∈ {0,1} 为第 i 位的进位，
+ * 第 i 位的数位是 (t_i + c_i) mod 10，进位 c_{i+1} = ⌊(t_i + c_i)/10⌋。
+ * 题面要求每一位都是奇数，配上 t_i ≤ 18 得两条规则：
+ *   · c_{i+1} = 1 ⟺ t_i ≥ 10（t_i ≥ 10 时 x_i ≥ 10；t_i ≤ 9 时 x_i ≤ 10 又须为奇数 ⇒ x_i ≤ 9）；
+ *   · 第 i 位与第 d-1-i 位同和，两处进位同奇偶 ⇒ c_i = c_{d-1-i}。
+ * 两式复合给出低半区的周期 2：c_{i+1} = c_{i-1}（i = 1…m-1，m = ⌊d/2⌋）。于是
+ *   · d = 2m 偶数位：所有进位恒为 0，各层独立。最外层（a_0、a_{d-1} 都非零）t 取 {3,5,7,9}
+ *     共 2+4+6+8 = 20 种；其余层 t 取 {1,3,5,7,9} 共 2+4+6+8+10 = 30 种 ⇒ 20·30^(m-1)。
+ *   · d = 2m+1 奇数位：中间位 x_m = 2a_m + c_m 在 c_m = 0 时是偶数，必须 c_m = 1。
+ *     m 偶数（d = 4k+1）时 c_m = 1 落在恒为 0 的偶数下标进位族里 ⇒ 一个都没有；
+ *     m 奇数（d = 4k+3）时是「奇数下标全 1、偶数下标全 0」的交替模式：20 种层与 25 种层
+ *     交替出现，中间位需 c_{m+1} = 0 即 a_m ≤ 4 共 5 种 ⇒ 5·20^(k+1)·25^k。
+ * 分位数：0, 20, 100, 600, 0, 18000, 50000, 540000, 0（d = 1…9），累计 608720。
+ * 九位数一个都没有，故小于 10⁸ 的累计已是最终答案（本题答案为 608720）。
+ *
+ * 复杂度：m ≤ 4 层、每层 2 × 19 × 2 × 2 次内层查表，9 个长度合计约 3000 次迭代，
+ * 即 O(d²) 次常数运算、空间 O(1)；不枚举任何候选数。
+ */
+
+/** 通用数位对：x + y = t，x, y ∈ 0…9 的 (x, y) 有序对个数。 */
+private val p145PairWays = IntArray(19) { t -> if (t <= 9) t + 1 else 19 - t }
+
+/** 端点数位对：x + y = t，x, y ∈ 1…9（首位与末位都不允许为 0）的有序对个数。 */
+private val p145EndPairWays = IntArray(19) { t -> (1..9).count { x -> t - x in 1..9 } }
+
+/** 数位 x 的十进制个位是奇数。x ≤ 19，只需看个位。 */
+private fun p145OddDigit(x: Int): Boolean = x % 10 % 2 == 1
+
+/** 在 inner 之外再包一层数位对，数位对的和按 ways 计数。 */
+private fun p145WrapLayer(ways: IntArray, inner: Array<LongArray>): Array<LongArray> {
+    val out = Array(2) { LongArray(2) }
+    for (low in 0..1) {
+        for (t in 0..18) {
+            val w = ways[t]
+            if (w == 0 || !p145OddDigit(t + low)) continue
+            val nextLow = (t + low) / 10                        // 本层低位送出的进位
+            for (high in 0..1) {
+                var acc = 0L
+                for (exit in 0..1) {                            // 本层高位收到的进位，由更内层送出
+                    if (!p145OddDigit(t + exit)) continue
+                    if ((t + exit) / 10 != high) continue
+                    acc += inner[nextLow][exit]
+                }
+                out[low][high] += w * acc
+            }
+        }
+    }
+    return out
+}
+
+/** 恰有 d 位的可逆数个数。 */
+private fun p145CountByLength(d: Int): Long {
+    if (d <= 1) return 0L
+    val m = d / 2
+    var inner: Array<LongArray> = if (d % 2 == 0) {
+        arrayOf(longArrayOf(1, 0), longArrayOf(0, 1))           // 偶数位：内外进位相同
+    } else {
+        arrayOf(longArrayOf(0, 0), longArrayOf(5, 5))           // 奇数位：中间位要求进位为 1
+    }
+    repeat(m - 1) { inner = p145WrapLayer(p145PairWays, inner) } // 1…m-1 层是通用数位对
+    val outer = p145WrapLayer(p145EndPairWays, inner)            // 第 0 层首尾都不能为 0
+    return outer[0][0] + outer[0][1]
+}
+
+/** 小于 10^maxDigits 的可逆数个数（数位长度 1…maxDigits 之和）。 */
+private fun p145CountBelow(maxDigits: Int): Long {
+    var total = 0L
+    for (d in 1..maxDigits) total += p145CountByLength(d)
+    return total
+}
+
+/** value 的十进制各位是否全为奇数（不经过字符串）。 */
+private fun p145AllDigitsOdd(value: Long): Boolean {
+    if (value <= 0) return false
+    var rest = value
+    while (rest > 0) {
+        if (rest % 10 % 2 == 0L) return false
+        rest /= 10
+    }
+    return true
+}
+
+/** 按定义判断 n 是否可逆（末位为 0 时 reverse(n) 会带前导零，题面不允许）。 */
+private fun p145ReversibleByDefinition(n: Long): Boolean {
+    if (n <= 0 || n % 10 == 0L) return false
+    var rest = n
+    var reversed = 0L
+    while (rest > 0) {
+        reversed = reversed * 10 + rest % 10
+        rest /= 10
+    }
+    return p145AllDigitsOdd(n + reversed)
+}
+
+/** 定义级核验：逐个枚举 [1, limit)，数出可逆数个数（与 DP 路径无关）。 */
+private fun p145CountByDefinitionBelow(limit: Long): Long {
+    var count = 0L
+    for (n in 1 until limit) if (p145ReversibleByDefinition(n)) count++
+    return count
+}
+
+private fun solve145(): Long {
+    check(p145AllDigitsOdd(36 + 63) && p145AllDigitsOdd(409L + 904)) { "题面例子：99 与 1313 的每一位都应为奇数" }
+    check(listOf(36L, 63L, 409L, 904L).all { p145ReversibleByDefinition(it) }) { "题面例子：36/63/409/904 应当都可逆" }
+    check(!p145ReversibleByDefinition(10L)) { "10 + 1 = 11 每位奇数，但 reverse(10) 带前导零，不算" }
+    check(!p145ReversibleByDefinition(11L)) { "11 + 11 = 22 不是可逆数" }
+    check(p145CountByLength(1) == 0L) { "一位数：2n 个位必为偶数，应为 0" }
+    // 题面锚点：一千以内恰有 120 个可逆数
+    check(p145CountBelow(3) == 120L) { "题面样例：一千以内应有 120 个，实得 ${p145CountBelow(3)}" }
+    // 10^5 与数位长度边界对齐（1…5 位），用定义法逐个枚举复核整段 DP
+    check(p145CountBelow(5) == p145CountByDefinitionBelow(100_000L)) { "10^5 以内 DP 与定义枚举不一致" }
+
+    // 闭式解：偶数位 d = 2m 有 20·30^(m-1) 个，d = 4k+3 有 5·20^(k+1)·25^k 个，d = 4k+1 恒为 0
+    var pow30 = 1L
+    for (m in 1..5) {
+        check(p145CountByLength(2 * m) == 20L * pow30) { "d=${2 * m} 与闭式 20·30^(m-1) 不符" }
+        pow30 *= 30L
+    }
+    var pow20 = 20L
+    var pow25 = 1L
+    for (k in 0..3) {
+        check(p145CountByLength(4 * k + 3) == 5L * pow20 * pow25) { "d=${4 * k + 3} 与闭式 5·20^(k+1)·25^k 不符" }
+        pow20 *= 20L
+        pow25 *= 25L
+        check(p145CountByLength(4 * k + 1) == 0L) { "d=${4 * k + 1} 应为 0" }
+    }
+
+    return p145CountBelow(9)                                     // 小于 10⁹ = 数位长度 1…9 之和
+}
+
+// ---------- PE 146 ----------
+/**
+ * PE 146 — Investigating a Prime Pattern（探究一种素数模式）：小于 1.5×10⁸ 的所有 n 之和 = 676333270。
+ *
+ * 要求 n²+1, n²+3, n²+7, n²+9, n²+13, n²+27 恰为六个连续素数，等价于
+ *   C = {1, 3, 7, 9, 13, 27} 对应的六个数全为素数，
+ *   D = {5, 11, 15, 17, 19, 21, 23, 25} 对应的八个数全为合数（「连续」的必要条件）。
+ *
+ * 一、小素数剩余类筛选（轮筛）。若素数 p | n²+c（c ∈ C）且 n²+c > p，则 n²+c 是合数，矛盾。
+ * n ≥ 10 时 n²+1 ≥ 101，故对 p ≤ 97（上界必须 ≤ 97：p = 101 时 10²+1 = 101 恰等于 p，
+ * 而它是素数不是合数，取 p ≤ 101 会误杀真解 n = 10）的每个素数，n mod p 只能落在
+ * 「使六个 n²+c 都不被 p 整除」的剩余类里。例如 p = 5 迫使 5 | n，p = 7 迫使 n ≡ ±3 (mod 7)。
+ * 用 CRT 逐素数合并（模数 ≥ limit 后把步长钉成 limit，避免累乘溢出 Int），
+ * 1.5×10⁸ 以内只剩 43030 个候选，密度 2.9×10⁻⁴。
+ *
+ * 二、候选上的直接判定。先用 101..997 的素数试除六个要求值——且只试除「可能整除」的素数
+ * （x² ≡ −c (mod p) 需有解，否则 p 永远除不尽 n²+c）；六个值都通过试除的再用确定性
+ * Miller–Rabin（基 2..37，对 n < 3.317×10²³ 已被证明有效，这里 n²+27 < 2.3×10¹⁶）；
+ * 最后确认八个中间值全为合数。
+ *
+ * 模乘是性能关口：a, b < m < 2⁵⁵ 时 ab < 2¹¹⁰ 超出 Long，用 Math.multiplyHigh 取 128 位积的
+ * 高 64 位 h，再由 h·2⁶⁴ ≡ h·(2⁶⁴ mod m) 反复折算（h 每轮缩小 ≥ 2⁹ 倍，约 5 轮归零）；
+ * 朴素的 55 轮「移位 + 条件加」写法正确但慢约 60 倍。
+ *
+ * 复杂度 O(N_c·d̄ + M log³v)，N_c = 43030、M = 4419，实测约 33 ms。
+ */
+
+/** 必须为素数的六个偏移。 */
+private val p146Req = intArrayOf(1, 3, 7, 9, 13, 27)
+
+/** 必须为合数的八个中间奇数偏移。 */
+private val p146Mid = intArrayOf(5, 11, 15, 17, 19, 21, 23, 25)
+
+/** 轮筛用的小素数：必须满足 n²+c > p 恒成立，故上界为 97（见文件头）。 */
+private val p146WheelPrimes = intArrayOf(
+    2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73,
+    79, 83, 89, 97
+)
+
+/** 试除阶段的素数：97 < p < 1000。 */
+private val p146TrialPrimes: IntArray = run {
+    val isP = sieve(1000)
+    val out = ArrayList<Int>()
+    for (p in 101 until 1000) if (isP[p]) out.add(p)
+    out.toIntArray()
+}
+
+/** x² ≡ −c (mod p) 有解时 p 才可能整除某个 n²+c，此时该素数值得试除。 */
+private fun p146CouldDivide(c: Int, p: Int): Boolean {
+    var r = 0
+    while (r < p) {
+        if ((r * r + c) % p == 0) return true
+        r++
+    }
+    return false
+}
+
+/** 六个要求偏移各自的试除素数表。 */
+private val p146TrialByOffset: Array<IntArray> =
+    Array(p146Req.size) { i -> p146TrialPrimes.filter { p146CouldDivide(p146Req[i], it) }.toIntArray() }
+
+/** 确定性 Miller–Rabin 的基：对 n < 3.317×10²³ 这十二个基全部有效。 */
+private val p146MrBases = intArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
+
+/**
+ * 逐个小素数筛出候选 n：先把 mod 下的余数 r 扩张成 mod·p 下的 p 个代表元 r + k·mod，
+ * 保留可行的；mod ≥ limit 后 k ≥ 1 的扩张必然越界，于是退化为「逐个素数过滤」。
+ */
+private fun p146BuildCandidates(limit: Int): IntArray {
+    var cur = IntArray(1)                     // 余数表，初始只有 0（mod 1）
+    var size = 1
+    var mod = 1                               // 当前模数；一旦 ≥ limit 就钉在 limit（防累乘溢出）
+    for (p in p146WheelPrimes) {
+        val feasible = BooleanArray(p) { r ->
+            val r2 = (r.toLong() * r) % p
+            var ok = true
+            for (c in p146Req) {
+                if ((r2 + c) % p == 0L) {
+                    ok = false
+                    break
+                }
+            }
+            ok
+        }
+        var next = IntArray(size + 16)
+        var n = 0
+        for (j in 0 until size) {
+            val r = cur[j]
+            var x = r
+            var k = 0
+            while (k < p && x < limit) {
+                if (feasible[x % p]) {
+                    if (n == next.size) next = next.copyOf(n * 2)
+                    next[n++] = x
+                }
+                x += mod
+                k++
+            }
+        }
+        cur = next
+        size = n
+        val grown = mod.toLong() * p
+        mod = if (grown > limit.toLong()) limit else grown.toInt()
+        if (size == 0) return IntArray(0)
+    }
+    var keep = 0
+    for (j in 0 until size) if (cur[j] >= 10) keep++
+    val out = IntArray(keep)
+    var w = 0
+    for (j in 0 until size) if (cur[j] >= 10) out[w++] = cur[j]
+    return out
+}
+
+/** 2⁶⁴ mod m：64 次「翻倍 + 条件减」，省去为每次 MR 调 BigInteger。 */
+private fun p146TwoPow64Mod(m: Long): Long {
+    var x = 1L % m
+    repeat(64) {
+        x += x
+        if (x >= m) x -= m
+    }
+    return x
+}
+
+/** 模乘：a, b < m < 2⁵⁵，用 128 位积的高低位拆分与 2⁶⁴ mod m 反复折算，避免溢出 Long。 */
+private fun p146MulMod(a: Long, b: Long, m: Long, c: Long): Long {
+    var h = Math.multiplyHigh(a, b)
+    var res = (a * b).toULong().mod(m.toULong()).toLong()
+    while (h != 0L) {
+        val low = h * c
+        res += low.toULong().mod(m.toULong()).toLong()
+        if (res >= m) res -= m
+        h = Math.multiplyHigh(h, c)
+    }
+    return res
+}
+
+private fun p146PowMod(a: Long, e: Long, m: Long, c: Long): Long {
+    var result = 1L
+    var base = a % m
+    var exp = e
+    while (exp > 0L) {
+        if (exp and 1L == 1L) result = p146MulMod(result, base, m, c)
+        base = p146MulMod(base, base, m, c)
+        exp = exp shr 1
+    }
+    return result
+}
+
+/** 确定性 Miller–Rabin（不可用 isPrime：那是试除法，扛不住 2.25×10¹⁶）。 */
+private fun p146MillerRabin(v: Long): Boolean {
+    if (v < 2L) return false
+    if (v % 2L == 0L) return v == 2L
+    var d = v - 1
+    var s = 0
+    while (d and 1L == 0L) {
+        d = d shr 1
+        s++
+    }
+    val c = p146TwoPow64Mod(v)
+    for (b in p146MrBases) {
+        val a = b.toLong() % v
+        if (a == 0L) continue
+        var x = p146PowMod(a, d, v, c)
+        if (x == 1L || x == v - 1) continue
+        var witness = true
+        for (i in 1 until s) {
+            x = p146MulMod(x, x, v, c)
+            if (x == v - 1) {
+                witness = false
+                break
+            }
+        }
+        if (witness) return false
+    }
+    return true
+}
+
+/** 用给定的素数表试除；返回 true 表示没找到小因子（可能是素数，也可能是大因子合数）。 */
+private fun p146PassesTrial(v: Long, primes: IntArray): Boolean {
+    for (p in primes) {
+        if (v % p == 0L) return v == p.toLong()
+    }
+    return true
+}
+
+/** 完整素性判定：定向试除 + 确定性 Miller–Rabin。 */
+private fun p146IsPrime(v: Long): Boolean =
+    p146PassesTrial(v, p146TrialPrimes) && p146MillerRabin(v)
+
+/** 按定义判定单个 n：六个要求值为素数，八个中间值为合数。 */
+private fun p146IsPattern(n: Long): Boolean {
+    val n2 = n * n
+    for (i in p146Req.indices) if (!p146PassesTrial(n2 + p146Req[i], p146TrialByOffset[i])) return false
+    for (c in p146Req) if (!p146MillerRabin(n2 + c)) return false
+    for (c in p146Mid) if (p146IsPrime(n2 + c)) return false
+    return true
+}
+
+/** 累加所有满足条件的 n < limit（n 必为 10 的正倍数，故候选从 10 起）。 */
+private fun p146Sum(limit: Int): Long {
+    val candidates = p146BuildCandidates(limit)
+    var sum = 0L
+    for (n in candidates) {
+        val v = n.toLong()
+        if (p146IsPattern(v)) sum += v
+    }
+    return sum
+}
+
+private fun solve146(): Long {
+    // 题面样例：n = 10 时六个数是 101, 103, 107, 109, 113, 127
+    val six = p146Req.map { 10L * 10 + it }
+    check(six == listOf(101L, 103L, 107L, 109L, 113L, 127L)) { "n = 10 处应有 101,103,107,109,113,127，实得 $six" }
+    check(p146IsPattern(10L)) { "题面样例：n = 10 必须是最小的解" }
+    for (n in 1L..9L) check(!p146IsPattern(n)) { "n = $n 不该是解" }
+    // 题面样例：一百万以内所有这样的 n 之和为 1242490
+    val belowMillion = p146Sum(1_000_000)
+    check(belowMillion == 1_242_490L) { "题面样例：10⁶ 以内之和应为 1242490，实得 $belowMillion" }
+    return p146Sum(150_000_000)
+}
+
+// ---------- PE 147 ----------
+/**
+ * PE 147 — Rectangles in Cross-hatched Grids：47×43 及其所有更小交叉阴影网格中的
+ * 矩形总数 = 846910284（轴对齐 261436560 + 45° 倾斜 585473724）。
+ *
+ * 与 content/problems/0147/solution.kt 的推导一致。m×n 交叉阴影网格（m 行 n 列）的全部墨迹
+ * 只有四族支撑直线：水平 y = j（0 ≤ j ≤ m）、竖直 x = i（0 ≤ i ≤ n）、
+ * 斜率 +1 的 y = x + c（c = j−i ∈ [−(n−1), m−1]）、斜率 −1 的 y = −x + d（d = i+j+1 ∈ [1, n+m−1]），
+ * 两族斜线各 m+n−1 条。关键引理：直线 y = x + c 只在 j−i = c 的方格内与该格对角线重合，而这些
+ * 方格沿对角方向依次共角，故"墨迹"恰为直线与网格区域的交集。矩形的相邻边必须垂直，四族中
+ * 互相垂直的搭配只有 (水平, 竖直) 与 (斜率 +1, 斜率 −1)，于是
+ *
+ *   N(m,n) = A(m,n) + T(m,n)
+ *   A(m,n) = C(m+1,2)·C(n+1,2) = m(m+1)n(n+1)/4                                  —— 轴对齐
+ *   T(m,n) = Σ_{a,b≥1} #{(s,t) : s ≡ t (2), 0 ≤ s ≤ 2m−a−b, a ≤ t ≤ 2n−b}       —— 45° 倾斜
+ *
+ * 倾斜部分里 a = c2−c1、b = d2−d1 是两族斜线的间距，s = d1+c1、t = d1−c1；四个交点
+ * ((d−c)/2, (d+c)/2) 全在网格内等价于那两条区间约束，而 s ≡ t (mod 2) 保证 c1、d1 为整数
+ * （交点落在格心同样合法）。按 a+b 的奇偶闭式求和，单网格 O(min(m,n)²)。
+ *
+ * 本题的通用步骤只有组合数乘积 C(m+1,2)·C(n+1,2)，直接写整数闭式即可，
+ * 不需要 dev.pekt.math 的工具（无素数、gcd、大数运算）。
+ */
+
+/** 轴对齐矩形数：m+1 条水平线选 2 条、n+1 条竖直线选 2 条，即 C(m+1,2)·C(n+1,2)。 */
+private fun p147AxisAligned(rows: Int, cols: Int): Long {
+    val h = rows.toLong() * (rows + 1) / 2
+    val v = cols.toLong() * (cols + 1) / 2
+    return h * v
+}
+
+/**
+ * 45° 倾斜矩形数：按 (a,b) = 两族斜线间距枚举，数出配对 (s,t) 的合法取值个数。
+ * rows 为竖直方向格数 m，cols 为水平方向格数 n。
+ */
+private fun p147Tilted(rows: Int, cols: Int): Long {
+    val lim = 2 * minOf(rows, cols)          // a + b ≤ 2·min(m,n) 是两条区间约束的交
+    var total = 0L
+    for (a in 1..lim) {
+        val bMax = lim - a
+        for (b in 1..bMax) {
+            val sSpan = 2 * rows - a - b      // s ∈ [0, sSpan]
+            val tHi = 2 * cols - b            // t ∈ [a, tHi]
+            val cnt = (tHi - a + 1).toLong()  // t 的取值个数
+            total += if ((a + b) % 2 == 0) {
+                val evens = (tHi / 2).toLong() - ((a - 1) / 2).toLong()   // [a,tHi] 内偶数个数
+                cnt * (sSpan / 2) + evens
+            } else {
+                cnt * ((sSpan + 1) / 2)
+            }
+        }
+    }
+    return total
+}
+
+/** 单个 rows×cols 交叉阴影网格里的矩形总数。 */
+private fun p147RectanglesIn(rows: Int, cols: Int): Long =
+    p147AxisAligned(rows, cols) + p147Tilted(rows, cols)
+
+/** 所有 rows ≤ maxRows、cols ≤ maxCols 的网格里的矩形总数。 */
+private fun p147Total(maxRows: Int, maxCols: Int): Long {
+    var total = 0L
+    for (rows in 1..maxRows) {
+        for (cols in 1..maxCols) total += p147RectanglesIn(rows, cols)
+    }
+    return total
+}
+
+private fun solve147(): Long {
+    // 题面样例：3×2 网格（2 行 3 列）内 37 个矩形
+    check(p147RectanglesIn(2, 3) == 37L) { "题面样例：3×2 网格应为 37，实得 ${p147RectanglesIn(2, 3)}" }
+    check(p147AxisAligned(2, 3) == 18L) { "题面样例：3×2 的轴对齐部分应为 18" }
+    check(p147Tilted(2, 3) == 19L) { "题面样例：3×2 的 45° 倾斜部分应为 19" }
+    // 题面样例：更小的五个网格（长宽有别：2×1 即 1 行 2 列，1×2 即 2 行 1 列）
+    check(p147RectanglesIn(1, 1) == 1L) { "题面样例：1×1 应为 1，实得 ${p147RectanglesIn(1, 1)}" }
+    check(p147RectanglesIn(1, 2) == 4L) { "题面样例：2×1 应为 4，实得 ${p147RectanglesIn(1, 2)}" }
+    check(p147RectanglesIn(1, 3) == 8L) { "题面样例：3×1 应为 8，实得 ${p147RectanglesIn(1, 3)}" }
+    check(p147RectanglesIn(2, 1) == 4L) { "题面样例：1×2 应为 4，实得 ${p147RectanglesIn(2, 1)}" }
+    check(p147RectanglesIn(2, 2) == 18L) { "题面样例：2×2 应为 18，实得 ${p147RectanglesIn(2, 2)}" }
+    // 题面样例：3×2 及更小网格累计 72
+    check(p147Total(2, 3) == 72L) { "题面样例：3×2 及更小网格应累计 72，实得 ${p147Total(2, 3)}" }
+    // 推导自检：旋转 90° 不改变矩形数（轴对齐与倾斜部分都应各自对称）
+    for (m in 1..12) {
+        for (n in 1..12) {
+            check(p147Tilted(m, n) == p147Tilted(n, m)) { "倾斜数应关于行列对称：$m×$n" }
+            check(p147AxisAligned(m, n) == p147AxisAligned(n, m)) { "轴对齐数应关于行列对称：$m×$n" }
+        }
+    }
+    // 推导自检：单行网格 1×n 里斜置方框只有"一格宽"这一种，倾斜数恰为 n−1
+    for (n in 1..20) {
+        check(p147Tilted(1, n) == (n - 1).toLong()) { "1×$n 的倾斜数应为 ${n - 1}" }
+    }
+    // 推导自检：2×4（与 4×2）的倾斜数为 29，与几何枚举一致
+    check(p147Tilted(2, 4) == 29L && p147Tilted(4, 2) == 29L) { "2×4 的倾斜数应为 29" }
+    return p147Total(43, 47)
+}
+
+// ---------- PE 148 ----------
+/**
+ * PE 148 — Exploring Pascal's Triangle（探究帕斯卡三角形）
+ *
+ * 由库默尔（Kummer）定理，素数 p 在 C(n,k) 中的指数等于「k + (n−k) 在 p 进制下相加时的进位次数」。
+ * 于是 C(n,k) 不被 p 整除 ⟺ 该加法完全不进位 ⟺ k 在 p 进制的每一位都不超过 n 的对应位。
+ * 固定行 n（p 进制数位记为 d_0, d_1, …），第 i 位的 k 可取 0..d_i 共 d_i + 1 种，各位彼此独立，故
+ *
+ *     A(n) = ∏_i (d_i + 1)            （p = 7）
+ *
+ * 题目求的是前十亿行的总和 F(N) = Σ_{n<N} A(n)，N = 10⁹。把 n 的 7 进制数位看成位置做数位 DP：
+ * 自最高位扫到最低位，扫到第 i 位时更高位已与 N 一致（贡献乘子 cur = ∏_{j<i}(d_j + 1)），
+ * 若这一位取 x < d_i 则低位完全自由，而长度 L 的自由低位对 ∏(digit+1) 的求和为
+ *
+ *     Σ_{digits} ∏(d_j + 1) = (Σ_{x=0}^{6}(x+1))^L = 28^L
+ *
+ * 于是
+ *
+ *     F(N) = Σ_i cur_i · (d_i(d_i+1)/2) · 28^{m−1−i},   cur_i = ∏_{j<i}(d_j + 1)
+ *
+ * 其中 d_i(d_i+1)/2 = Σ_{x=0}^{d_i−1}(x+1) 是当前位取值小于 d_i 时所有乘积之和。
+ *
+ * 复杂度：时间 O(log_7 N)（N = 10⁹ 只有 11 位），空间 O(log_7 N)。结果上界 28^{11} ≈ 8.29×10^15，
+ * 远低于 Long 上限，中间量无溢出。答案 = 2129970655314432。
+ */
+
+/** 行 n 中不被 7 整除的项数 A(n) = ∏(7 进制数位 + 1)。 */
+private fun p148RowCount(n: Long): Long {
+    var x = n
+    var product = 1L
+    while (x > 0) {
+        product *= x % 7 + 1                      // 当前最低位 + 1
+        x /= 7
+    }
+    return product
+}
+
+/** 前 rows 行（第 0 行到第 rows−1 行）中不被 7 整除的项数。 */
+private fun p148CountNonDivisible(rows: Long): Long {
+    if (rows <= 0L) return 0L
+    val digits = IntArray(32)                     // 7 进制数位，低位在前（Long 在 7 进制下最多 23 位）
+    var len = 0
+    var x = rows
+    while (x > 0) {
+        digits[len++] = (x % 7).toInt()
+        x /= 7
+    }
+
+    var lowerWays = 1L                            // 28^(当前位之下还剩几位)
+    for (i in 1 until len) lowerWays *= 28
+
+    var total = 0L
+    var prefixProduct = 1L                        // cur = ∏(已定高位 + 1)
+    for (i in len - 1 downTo 0) {                 // 自最高位向最低位扫
+        val d = digits[i]
+        total += prefixProduct * (d.toLong() * (d + 1) / 2) * lowerWays
+        prefixProduct *= d + 1
+        lowerWays /= 28
+    }
+    return total
+}
+
+/** 用最朴素的递推把帕斯卡三角形前 rows 行逐行建出来（模 7），数出非零项个数。仅用于断言标定。 */
+private fun p148LiteralCount(rows: Int): Long {
+    var row = LongArray(1) { 1L }
+    var count = 0L
+    for (n in 0 until rows) {
+        for (v in row) if (v % 7L != 0L) count++
+        val next = LongArray(row.size + 1)
+        for (k in next.indices) {
+            var v = 0L
+            if (k > 0) v += row[k - 1]
+            if (k < row.size) v += row[k]
+            next[k] = v % 7
+        }
+        row = next
+    }
+    return count
+}
+
+private fun solve148(): Long {
+    // 题面：前七行无一项被 7 整除，共 1+2+…+7 = 28 项
+    check(p148CountNonDivisible(7) == 28L) { "题面样例：前七行应为 28 项，实得 ${p148CountNonDivisible(7)}" }
+    // 题面：前一百行共 100·101/2 = 5050 项，其中 2361 项不被 7 整除
+    check(100L * 101 / 2 == 5050L) { "题面样例：前一百行应有 5050 项" }
+    check(p148CountNonDivisible(100) == 2361L) {
+        "题面样例：前一百行应有 2361 项，实得 ${p148CountNonDivisible(100)}"
+    }
+    // 边界：零行没有项；只有第一行时 1 项
+    check(p148CountNonDivisible(0) == 0L) { "边界：零行应为 0 项" }
+    check(p148CountNonDivisible(1) == 1L) { "边界：第一行应为 1 项" }
+    // 由 ∏(数位+1)：第 6 行是 7 项，第 7 行（7 进制 10）只剩 2 项，第 8 行（11）是 4 项
+    check(p148RowCount(6) == 7L) { "第 6 行应为 7 项" }
+    check(p148RowCount(7) == 2L) { "第 7 行应为 2 项" }
+    check(p148RowCount(8) == 4L) { "第 8 行应为 4 项" }
+    // 与「逐行建三角形」的朴素定义对拍前 60 行
+    for (rows in 0..60) {
+        check(p148LiteralCount(rows) == p148CountNonDivisible(rows.toLong())) {
+            "第 $rows 行规模下公式与逐行递推不符：${p148CountNonDivisible(rows.toLong())} vs ${p148LiteralCount(rows)}"
+        }
+    }
+    return p148CountNonDivisible(1_000_000_000L)
+}
+
+// ---------- PE 149 ----------
+/**
+ * PE 149 — 最大和子序列：2000×2000 表格四个方向上的最大连续和 = 52852124。
+ *
+ * 推导：四种方向互不相干，问题拆成「每条直线上的最大连续子段和」再取最大。直线共
+ * n 行 + n 列 + (2n−1) 主对角线 + (2n−1) 副对角线 = 6n − 2 条，元素总数 4n² = 1.6×10⁷。
+ * 一维用 Kadane：cur = max(x, cur + x)（续上前一段或从 x 重新开始），best = max(best, cur)。
+ * 这里必须写成 max(x, ·) 而非 max(0, ·)，否则全负数线段会返回 0 而不是最大单元素——
+ * 题面要求至少取一个相邻格子。
+ *
+ * 生成器：两个分支统一为「先取模到 [0, 10⁶)，再减 500000」，s_k ∈ [−500000, 499999]。
+ * 第一分支的 300007k³ 在 k = 55 时约 5.0×10¹⁰，必须走 Long（Int 会静默回绕）；
+ * 第二分支 s_{k−24} + s_{k−55} + 10⁶ ∈ [0, 2×10⁶)，先加常数保证非负再取模。
+ * 落表按行优先，与生成顺序一致，于是同一个数组既是数列 s 又是表格（s_k = g[k−1]），不必搬运。
+ *
+ * 直线用「起点 + 步长」在表上直走，不逐条抄数组。行是顺序访存，列与两条对角线跨行跳步
+ * （步长约 8 KB），所以耗时由访存主导；四族分开计时可见行扫描最快、对角线最慢。
+ *
+ * 复杂度：生成 O(N²)，扫描 O(N²) 时间、O(N²) 空间（整表 4×10⁶ 个 Int = 16 MB）。
+ */
+
+private const val P149_SIZE = 2000
+private const val P149_COUNT = P149_SIZE * P149_SIZE
+
+/** 滞后斐波那契生成器：返回长度 count 的数组，g[i] = s_{i+1}（按行优先即表格）。 */
+private fun p149LaggedFibonacci(count: Int): IntArray {
+    val g = IntArray(count)
+    for (k in 1..55) {
+        val v = 100003L - 200_003L * k + 300_007L * k * k * k
+        g[k - 1] = (java.lang.Math.floorMod(v, 1_000_000L) - 500_000L).toInt()
+    }
+    for (k in 56..count) {
+        g[k - 1] = ((g[k - 25].toLong() + g[k - 56] + 1_000_000L) % 1_000_000L - 500_000L).toInt()
+    }
+    return g
+}
+
+/** s 的前 n² 项即 n×n 表格（行优先）——与生成器落地顺序天然一致。 */
+private fun p149BuildGrid(n: Int): IntArray = p149LaggedFibonacci(n * n)
+
+/**
+ * 从 (r0, c0) 出发、沿 (dr, dc) 前进的整条直线上的最大连续子段和；
+ * 越出 n×n 边界即停，直线至少含一个元素。
+ */
+private fun p149KadaneLine(g: IntArray, n: Int, r0: Int, c0: Int, dr: Int, dc: Int): Long {
+    var best = Long.MIN_VALUE
+    var cur = 0L
+    var r = r0
+    var c = c0
+    while (r in 0 until n && c in 0 until n) {
+        val x = g[r * n + c]
+        cur = if (cur > 0L) cur + x else x.toLong()
+        if (cur > best) best = cur
+        r += dr
+        c += dc
+    }
+    return best
+}
+
+/** 表格 g（边长 n）在四个方向上的最大连续和。 */
+private fun p149MaxSubsequence(g: IntArray, n: Int): Long {
+    var best = Long.MIN_VALUE
+
+    for (i in 0 until n)                                    // 行：从左到右
+        best = maxOf(best, p149KadaneLine(g, n, i, 0, 0, 1))
+    for (j in 0 until n)                                    // 列：从上到下
+        best = maxOf(best, p149KadaneLine(g, n, 0, j, 1, 0))
+    for (d in 0 until 2 * n - 1) {                          // 主对角线（r − c 恒定）：左上 → 右下
+        val r0 = if (d < n) 0 else d - n + 1
+        val c0 = if (d < n) d else 0
+        best = maxOf(best, p149KadaneLine(g, n, r0, c0, 1, 1))
+    }
+    for (d in 0 until 2 * n - 1) {                          // 副对角线（r + c 恒定）：右上 → 左下
+        val r0 = if (d < n) 0 else d - n + 1
+        val c0 = if (d < n) n - 1 - d else n - 1
+        best = maxOf(best, p149KadaneLine(g, n, r0, c0, 1, -1))
+    }
+    return best
+}
+
+private fun solve149(): Long {
+    val s = p149LaggedFibonacci(P149_COUNT)
+    check(s[9] == -393027) { "题面样例：s₁₀ 应为 −393027，实际 ${s[9]}" }
+    check(s[99] == 86613) { "题面样例：s₁₀₀ 应为 86613，实际 ${s[99]}" }
+    var min = Int.MAX_VALUE
+    var max = Int.MIN_VALUE
+    for (v in s) {
+        if (v < min) min = v
+        if (v > max) max = v
+    }
+    check(min >= -500_000 && max <= 499_999) { "生成值越界：[${min}, ${max}]" }
+
+    // 题面 4×4 样例表，四个方向上的最大和为 16 = 8 + 7 + 1（副对角线 (3,1)→(2,2)→(1,3)）
+    val sample = intArrayOf(-2, 5, 3, 2, 9, -6, 5, 1, 3, 2, 7, 3, -1, 8, -4, 8)
+    check(p149MaxSubsequence(sample, 4) == 16L) { "题面样例：4×4 表最大和应为 16，实际 ${p149MaxSubsequence(sample, 4)}" }
+    check(p149KadaneLine(sample, 4, 0, 3, 1, -1) == 9L) { "样例副对角线 2,5,2,−1 的最优子段应为 9" }
+    check(p149KadaneLine(sample, 4, 3, 1, -1, 1) == 16L) { "样例副对角线反方向 8,7,1 应为 16" }
+    check(p149KadaneLine(sample, 4, 1, 3, 1, -1) == 16L) { "样例副对角线 1,7,8 应为 16" }
+    check(p149KadaneLine(sample, 4, 3, 0, 0, 1) == 12L) { "样例第 4 行 8 − 4 + 8 应为 12" }
+    check(p149KadaneLine(sample, 4, 0, 0, 1, 1) == 15L) { "样例主对角线 −2,−6,7,8 应为 15" }
+    check(p149KadaneLine(sample, 4, 2, 0, 0, 1) == 15L) { "样例第 3 行 3 + 2 + 7 + 3 应为 15" }
+    check(p149KadaneLine(intArrayOf(-3, -7, -1, -9), 4, 0, 0, 0, 1) == -1L) { "全负数线段应取单个最大值 −1" }
+    check(p149KadaneLine(intArrayOf(0, 0), 2, 0, 0, 0, 1) == 0L) { "全零线段应为 0" }
+
+    return p149MaxSubsequence(p149BuildGrid(P149_SIZE), P149_SIZE)
+}
+
+// ---------- PE 150 ----------
+/**
+ * PE 150 — Sub-triangle Sums（子三角形求和）：一千行三角数组（元素由题面 LCG 生成）中
+ * 最小的子三角形和 = -271248680。
+ *
+ * 记号：a(r,c) 为第 r 行第 c 个元素（行 r 有 r+1 个），题面下标 k = r(r+1)/2 + c + 1 对应 s_k。
+ * 顶点 (r,c)、高 h 的子三角形为 {(r+i, c+j) : 0 ≤ j ≤ i ≤ h-1}。
+ *
+ * 递推：把三角形沿对角线劈成两半——
+ *   对角线部分 D(r,c,h) = a(r,c) + a(r+1,c+1) + … + a(r+h-1,c+h-1)；
+ *   其余部分 {(r+i,c+j) : j < i} 令 i' = i-1、j' = j 后正是「顶点 (r+1,c)、高 h-1」的三角形。
+ * 于是
+ *   T(r,c,h) = T(r+1,c,h-1) + D(r,c,h)，  D(r,c,h) = D(r,c,h-1) + a(r+h-1, c+h-1)。
+ * 注意层间传递的必须是对角线，不能是「本行那一段」：父三角形在每行都比子三角形多取最右
+ * 一个元素，少掉的部分连起来正是那条对角线。
+ *
+ * 实现：自底向上逐行分层 DP，第 r 行处理时第 r+1 行的「按高度向量」还在缓冲里，每个状态
+ * 只需 2 次加法；一层规模 (r+1)(n-r)，n = 1000 时最大 250500 个 Long，两块缓冲互换复用。
+ * 原数组按对角线连续存放（对角线 dd 起点 dd·n − dd(dd−1)/2），内层三处访存全部连续。
+ *
+ * 复杂度：候选子三角形 Σ_r (r+1)(n-r) = n(n+1)(n+2)/6 = 167167000 个，每个常数时间，
+ * 时间 O(n³)，空间 O(n²)。整三角和最大约 500500 × 2¹⁹ ≈ 2.6×10¹¹，必须用 Long。
+ */
+
+private const val P150_N = 1000
+
+/** 行 r 起始下标（行主序三角数组）。 */
+private fun p150RowOff(r: Int): Int = r * (r + 1) / 2
+
+/** 对角线 dd 的起始下标：前面 dd 条对角线依次长 n, n-1, ..., n-dd+1。 */
+private fun p150DiagOff(n: Int, dd: Int): Int = dd * n - dd * (dd - 1) / 2
+
+/** 题面 LCG：t ← (615949 t + 797807) mod 2²⁰，s_k = t − 2¹⁹，按行主序铺成三角数组。 */
+private fun p150Generate(n: Int): LongArray {
+    val a = LongArray(n * (n + 1) / 2)
+    var t = 0L
+    for (r in 0 until n) {
+        val base = p150RowOff(r)
+        for (c in 0..r) {
+            t = (615949L * t + 797807L) % (1L shl 20)
+            a[base + c] = t - (1L shl 19)
+        }
+    }
+    return a
+}
+
+/** 行主序三角数组 → 对角线连续布局：元素 (r,c) 落在对角线 r-c 的第 c 个位置。 */
+private fun p150ToDiagonalMajor(a: LongArray, n: Int): LongArray {
+    val d = LongArray(a.size)
+    for (r in 0 until n) {
+        val base = p150RowOff(r)
+        for (c in 0..r) d[p150DiagOff(n, r - c) + c] = a[base + c]
+    }
+    return d
+}
+
+/** 分层 DP：层缓冲按 [顶点列 c × stride + 高度下标 m] 排布（m = 高 − 1），stride = n-r。 */
+private fun p150MinSubTriangle(a: LongArray, n: Int): Long {
+    val d = p150ToDiagonalMajor(a, n)
+    val maxLayer = (n + 1) * (n + 1) / 4 + n + 4
+    var prev = LongArray(maxLayer)            // 第 r+1 行的层
+    var cur = LongArray(maxLayer)             // 第 r 行的层
+    var stridePrev = 0                        // 最后一行之下没有层
+    var best = Long.MAX_VALUE
+    for (r in n - 1 downTo 0) {
+        val strideCur = n - r                 // 顶点在第 r 行时，高度可取 1 .. n-r
+        for (c in 0..r) {
+            val curBase = c * strideCur
+            val prevBase = c * stridePrev
+            var i = p150DiagOff(n, r - c) + c // 对角线 r-c 上第 c 项，即元素 (r,c)
+            var diag = d[i]                   // 高 1：只剩对角线上的自己
+            cur[curBase] = diag
+            if (diag < best) best = diag
+            i++
+            for (m in 1 until strideCur) {
+                diag += d[i]                                  // D(r,c,m+1)
+                val v = diag + prev[prevBase + m - 1]         // + T(r+1,c,m)
+                cur[curBase + m] = v
+                if (v < best) best = v
+                i++
+            }
+        }
+        val tmp = prev
+        prev = cur
+        cur = tmp
+        stridePrev = strideCur
+    }
+    return best
+}
+
+private fun p150MinSubTriangleDefinitional(a: LongArray, n: Int): Long {
+    var best = Long.MAX_VALUE
+    for (r in 0 until n) {
+        for (c in 0..r) {
+            for (h in 1..n - r) {
+                var s = 0L
+                for (i in 0 until h) for (j in 0..i) s += a[p150RowOff(r + i) + c + j]
+                if (s < best) best = s
+            }
+        }
+    }
+    return best
+}
+
+private fun solve150(): Long {
+    val a = p150Generate(P150_N)
+
+    // 题面给出的前三项随机数：s1 = 273519, s2 = -153582, s3 = 450905
+    check(a[0] == 273519L) { "题面样例：s1 应为 273519，实得 ${a[0]}" }
+    check(a[1] == -153582L) { "题面样例：s2 应为 -153582，实得 ${a[1]}" }
+    check(a[2] == 450905L) { "题面样例：s3 应为 450905，实得 ${a[2]}" }
+
+    // 总数 500500 = 1000·1001/2，取值落在 ±2¹⁹ 内
+    check(a.size == 500500) { "题面：元素个数应为 500500，实得 ${a.size}" }
+    check(a.min() >= -524288L && a.max() <= 524287L) { "题面：取值必须落在 ±2¹⁹ 内" }
+
+    // 题面图示的六行小三角形（图为配图，此处按图示排成文字）：最小子三角形和为 −42
+    val rows = arrayOf(
+        longArrayOf(15),
+        longArrayOf(-14, -7),
+        longArrayOf(20, -13, -5),
+        longArrayOf(-3, 8, 23, -26),
+        longArrayOf(1, -4, -5, -18, 5),
+        longArrayOf(-16, 31, 2, 9, 28, 3),
+    )
+    val flat = LongArray(21)
+    for (r in rows.indices) for (c in rows[r].indices) flat[p150RowOff(r) + c] = rows[r][c]
+    check(p150MinSubTriangle(flat, 6) == -42L) { "题面示例：最小和应为 −42，实得 ${p150MinSubTriangle(flat, 6)}" }
+
+    // 与逐元素求和的定义式在 n = 64 上交叉验证（覆盖浅顶点、深层顶点、首末列等边界）
+    val small = p150Generate(64)
+    val direct = p150MinSubTriangleDefinitional(small, 64)
+    val viaDp = p150MinSubTriangle(small, 64)
+    check(direct == viaDp) { "n = 64 交叉验证：定义式 $direct != 分层 DP $viaDp" }
+
+    return p150MinSubTriangle(a, P150_N)
 }

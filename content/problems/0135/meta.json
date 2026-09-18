@@ -1,0 +1,15 @@
+{
+  "id": 135,
+  "title": "Same Differences",
+  "titleZh": "相同的差",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": ["number-theory", "diophantine-equation", "divisor-enumeration", "arithmetic-progression", "counting"],
+  "answer": 4989,
+  "solvedBy": 8263,
+  "bruteForceBaselineMs": 5.3104,
+  "optimizedBaselineMs": 3.0905,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=135",
+  "fetchedAt": "2026-09-18"
+}

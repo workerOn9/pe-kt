@@ -1,0 +1,15 @@
+{
+  "id": 146,
+  "title": "Investigating a Prime Pattern",
+  "titleZh": "探究一种素数模式",
+  "difficulty": 29,
+  "difficultyLevel": "Level 11",
+  "tags": ["primes", "wheel-factorization", "miller-rabin", "primality-testing", "quadratic-residues"],
+  "answer": 676333270,
+  "solvedBy": 6679,
+  "bruteForceBaselineMs": 623.9773,
+  "optimizedBaselineMs": 32.9800,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=146",
+  "fetchedAt": "2026-09-18"
+}

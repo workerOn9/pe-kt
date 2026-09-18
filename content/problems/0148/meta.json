@@ -1,0 +1,15 @@
+{
+  "id": 148,
+  "title": "Exploring Pascal's Triangle",
+  "titleZh": "探究帕斯卡三角形",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": ["pascal-triangle", "lucas-theorem", "digit-dp", "combinatorics", "self-similarity"],
+  "answer": 2129970655314432,
+  "solvedBy": 6565,
+  "bruteForceBaselineMs": 48.6940,
+  "optimizedBaselineMs": 0.0003,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=148",
+  "fetchedAt": "2026-09-18"
+}

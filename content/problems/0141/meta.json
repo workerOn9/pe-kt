@@ -1,0 +1,15 @@
+{
+  "id": 141,
+  "title": "Square Progressive Numbers",
+  "titleZh": "平方递进数",
+  "difficulty": 38,
+  "difficultyLevel": "Level 15",
+  "tags": ["number-theory", "geometric-progression", "perfect-squares", "divisors", "enumeration"],
+  "answer": 878454337159,
+  "solvedBy": 5334,
+  "bruteForceBaselineMs": 43.2358,
+  "optimizedBaselineMs": 30.6385,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=141",
+  "fetchedAt": "2026-09-18"
+}

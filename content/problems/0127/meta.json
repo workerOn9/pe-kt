@@ -1,0 +1,15 @@
+{
+  "id": 127,
+  "title": "abc-hits",
+  "titleZh": "abc 三元组",
+  "difficulty": 23,
+  "difficultyLevel": "Level 8",
+  "tags": ["number-theory", "sieve", "gcd", "counting-sort", "pruning"],
+  "answer": 18407904,
+  "solvedBy": 8139,
+  "bruteForceBaselineMs": 3315.7432,
+  "optimizedBaselineMs": 22.7455,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=127",
+  "fetchedAt": "2026-09-18"
+}

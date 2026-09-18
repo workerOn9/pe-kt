@@ -1,0 +1,15 @@
+{
+  "id": 138,
+  "title": "Special Isosceles Triangles",
+  "titleZh": "特殊的等腰三角形",
+  "difficulty": 26,
+  "difficultyLevel": "Level 9",
+  "tags": ["number-theory", "pell-equation", "pythagorean-triplet", "continued-fractions", "linear-recurrence"],
+  "answer": 1118049290473932,
+  "solvedBy": 7485,
+  "bruteForceBaselineMs": 19.7160,
+  "optimizedBaselineMs": 0.0003,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=138",
+  "fetchedAt": "2026-09-18"
+}

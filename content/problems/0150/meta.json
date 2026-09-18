@@ -1,0 +1,15 @@
+{
+  "id": 150,
+  "title": "Sub-triangle Sums",
+  "titleZh": "子三角形求和",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": ["dynamic-programming", "prefix-sums", "triangular-array", "enumeration"],
+  "answer": -271248680,
+  "solvedBy": 5138,
+  "bruteForceBaselineMs": 266.3857,
+  "optimizedBaselineMs": 150.0586,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=150",
+  "fetchedAt": "2026-09-18"
+}
