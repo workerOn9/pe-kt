@@ -1,0 +1,15 @@
+{
+  "id": 131,
+  "title": "Prime Cube Partnership",
+  "titleZh": "素数立方伙伴",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": ["primes", "sieve", "diophantine-equation", "number-theory", "powers"],
+  "answer": 173,
+  "solvedBy": 9381,
+  "bruteForceBaselineMs": 3.6461,
+  "optimizedBaselineMs": 1.2478,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=131",
+  "fetchedAt": "2026-09-18"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 144,
+  "title": "Laser Beam Reflections",
+  "titleZh": "激光束反射",
+  "difficulty": 24,
+  "difficultyLevel": "Level 9",
+  "tags": ["geometry", "reflection", "ellipse", "billiards", "simulation"],
+  "answer": 354,
+  "solvedBy": 7966,
+  "bruteForceBaselineMs": 14.2993,
+  "optimizedBaselineMs": 0.0931,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=144",
+  "fetchedAt": "2026-09-18"
+}

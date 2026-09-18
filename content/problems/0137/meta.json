@@ -1,0 +1,15 @@
+{
+  "id": 137,
+  "title": "Fibonacci Golden Nuggets",
+  "titleZh": "斐波那契金块",
+  "difficulty": 33,
+  "difficultyLevel": "Level 13",
+  "tags": ["number-theory", "diophantine-equation", "fibonacci", "recurrence", "enumeration"],
+  "answer": 1120149658760,
+  "solvedBy": 7323,
+  "bruteForceBaselineMs": 2.6049,
+  "optimizedBaselineMs": 0.0048,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=137",
+  "fetchedAt": "2026-09-18"
+}

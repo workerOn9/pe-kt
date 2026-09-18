@@ -1,0 +1,15 @@
+{
+  "id": 132,
+  "title": "Large Repunit Factors",
+  "titleZh": "大循环单位数的素因子",
+  "difficulty": 16,
+  "difficultyLevel": "Level 6",
+  "tags": ["number-theory", "primes", "modular-arithmetic", "multiplicative-order", "sieve"],
+  "answer": 843296,
+  "solvedBy": 8139,
+  "bruteForceBaselineMs": 2954.8608,
+  "optimizedBaselineMs": 1.3954,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=132",
+  "fetchedAt": "2026-09-18"
+}

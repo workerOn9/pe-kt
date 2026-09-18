@@ -24,3 +24,6 @@
   每题间隔 3.5s；**不要用页面内 `fetch()` 批量拉取**，会被 PE 反爬整体 403。
 - 2026-09-17：同法抓取 101–125 题面原文与官方难度/解题人数，并按题下载 3 个资源文件
   （triangles.txt / sets.txt / network.txt）。批量抓取仍用 `navigate` + 读 DOM，每题间隔 3.5s。
+- 2026-09-18：同法抓取 126–150 题面原文与官方难度/解题人数（这 25 题不需要额外资源文件）。
+  批量抓取仍用 `navigate` + 读 DOM，每题间隔 3.5s；官方难度与解题人数取自含 `Published on`
+  的 `.tooltiptext_right` 节点（`innerText` 取不到，须用 `textContent`）。

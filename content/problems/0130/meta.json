@@ -1,0 +1,15 @@
+{
+  "id": 130,
+  "title": "Composites with Prime Repunit Property",
+  "titleZh": "具有素数循环单位数性质的合数",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": ["repunit", "multiplicative-order", "pseudoprimes", "modular-arithmetic", "sieve"],
+  "answer": 149253,
+  "solvedBy": 7591,
+  "bruteForceBaselineMs": 13.8133,
+  "optimizedBaselineMs": 0.4911,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=130",
+  "fetchedAt": "2026-09-18"
+}

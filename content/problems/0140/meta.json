@@ -1,0 +1,21 @@
+{
+  "id": 140,
+  "title": "Modified Fibonacci Golden Nuggets",
+  "titleZh": "修改版斐波那契金块",
+  "difficulty": 36,
+  "difficultyLevel": "Level 14",
+  "tags": [
+    "number-theory",
+    "pell-equation",
+    "generating-functions",
+    "linear-recurrence",
+    "big-integer"
+  ],
+  "answer": 5673835352990,
+  "solvedBy": 5780,
+  "bruteForceBaselineMs": 0.0649,
+  "optimizedBaselineMs": 0.0346,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=140",
+  "fetchedAt": "2026-09-18"
+}

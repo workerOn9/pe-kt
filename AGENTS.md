@@ -1,11 +1,11 @@
 # AGENT.md — pe-kt 续作规范（给后续会话的 Agent）
 
 你是 pe-kt 项目的续作 Agent。本项目是 Kotlin 全栈的 Project Euler 学习展示平台，
-当前已完成 1–125 题。**2026-09-13 起主仓库是 GitHub 的 `workerOn9/pe-kt`**（本地路径
+当前已完成 1–150 题。**2026-09-13 起主仓库是 GitHub 的 `workerOn9/pe-kt`**（本地路径
 `~/Documents/github/pe-kt`），由旧仓库搬迁而来且**不带 git 历史**——`m0-foundation` …
 `m6-problems-51-100` 这批里程碑 tag 只存在于旧仓库 `~/Documents/pe/pe-kt`，查历史去那边；
-101–125 这批直接提交在主仓库 `main` 上，没有对应 tag。
-你的任务通常是**按既有标准继续扩充题库（126 题起）**，或在此基础上的维护工作。
+101–150 这批直接提交在主仓库的分支上，没有对应 tag。
+你的任务通常是**按既有标准继续扩充题库（151 题起）**，或在此基础上的维护工作。
 
 先读 `docs/01-vision.md`、`docs/02-architecture.md`、`docs/04-decisions.md` 了解全局，
 本文件是**作业层面的硬约束与工艺流程**。任何与本文件冲突的"想当然"，以本文件 + 仓库现状为准。
@@ -114,6 +114,11 @@ curl -s localhost:8080/health
   当 classpath 跑 `org.jetbrains.kotlin.cli.jvm.K2JVMCompiler`，编译时加 `-no-stdlib -classpath <stdlib>`
   输出到目录，再 `java -cp <outdir>:<stdlib> <文件名>Kt` 运行。**不要用 `-include-runtime`**（找不到
   kotlin-home 会报 `Couldn't find kotlin-stdlib`）。
+  编译器自己的 classpath 还缺两样东西，不加会分别报错，记得一起带上：
+  `trove4j-*.jar`（`org.jetbrains.intellij.deps/trove4j`，否则 `NoClassDefFoundError: gnu/trove/TObjectHashingStrategy`）
+  与 `annotations-*.jar`（`org.jetbrains/annotations`，否则 codegen 阶段 `NoClassDefFoundError: org/jetbrains/annotations/NotNull`）。
+  另注意 **JVM facade 类名会把文件名里的 `-` mangle 成 `_`**：`brute-force.kt` 生成的是 `Brute_forceKt` 而不是
+  `Brute-forceKt`，用 `java -cp` 启动时类名要写对。编译阶段给 JVM `-Xmx768m` 就够，不需要更大的堆。
 
 ## 已知坑（踩过的，别再踩）
 

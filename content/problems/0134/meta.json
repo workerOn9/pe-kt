@@ -1,0 +1,21 @@
+{
+  "id": 134,
+  "title": "Prime Pair Connection",
+  "titleZh": "素数对连接",
+  "difficulty": 13,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "primes",
+    "sieve",
+    "modular-arithmetic",
+    "modular-inverse",
+    "digits"
+  ],
+  "answer": 18613426663617118,
+  "solvedBy": 9023,
+  "bruteForceBaselineMs": 9540.7088,
+  "optimizedBaselineMs": 8.4837,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=134",
+  "fetchedAt": "2026-09-18"
+}

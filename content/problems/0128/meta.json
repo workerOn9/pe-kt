@@ -1,0 +1,15 @@
+{
+  "id": 128,
+  "title": "Hexagonal Tile Differences",
+  "titleZh": "六边形地砖的差值",
+  "difficulty": 23,
+  "difficultyLevel": "Level 9",
+  "tags": ["hexagonal-grid", "primes", "sieve", "spiral-traversal"],
+  "answer": 14516824220,
+  "solvedBy": 6551,
+  "bruteForceBaselineMs": 20.1302,
+  "optimizedBaselineMs": 3.6923,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=128",
+  "fetchedAt": "2026-09-18"
+}

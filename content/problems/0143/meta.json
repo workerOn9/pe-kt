@@ -1,0 +1,15 @@
+{
+  "id": 143,
+  "title": "Torricelli Triangles",
+  "titleZh": "托里拆利三角形",
+  "difficulty": 41,
+  "difficultyLevel": "Level 16",
+  "tags": ["geometry", "number-theory", "diophantine-equation", "squares", "graph"],
+  "answer": 30758397,
+  "solvedBy": 3801,
+  "bruteForceBaselineMs": 187.6677,
+  "optimizedBaselineMs": 23.5309,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=143",
+  "fetchedAt": "2026-09-18"
+}

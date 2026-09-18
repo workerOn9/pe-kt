@@ -1,0 +1,20 @@
+{
+  "id": 139,
+  "title": "Pythagorean Tiles",
+  "titleZh": "毕达哥拉斯地砖",
+  "difficulty": 24,
+  "difficultyLevel": "Level 9",
+  "tags": [
+    "number-theory",
+    "pythagorean-triples",
+    "pell-equation",
+    "diophantine"
+  ],
+  "answer": 10057761,
+  "solvedBy": 7325,
+  "bruteForceBaselineMs": 612.6960,
+  "optimizedBaselineMs": 0.000013,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=139",
+  "fetchedAt": "2026-09-18"
+}

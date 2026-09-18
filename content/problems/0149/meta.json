@@ -1,0 +1,21 @@
+{
+  "id": 149,
+  "title": "Maximum-sum Subsequence",
+  "titleZh": "最大和子序列",
+  "difficulty": 27,
+  "difficultyLevel": "Level 10",
+  "tags": [
+    "maximum-subarray",
+    "kadane",
+    "dynamic-programming",
+    "grid",
+    "pseudo-random-generator"
+  ],
+  "answer": 52852124,
+  "solvedBy": 6208,
+  "bruteForceBaselineMs": 444.9716,
+  "optimizedBaselineMs": 41.2423,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=149",
+  "fetchedAt": "2026-09-18"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 136,
+  "title": "Singleton Difference",
+  "titleZh": "唯一的差",
+  "difficulty": 23,
+  "difficultyLevel": "Level 9",
+  "tags": ["number-theory", "divisors", "sieve", "modular-arithmetic", "counting"],
+  "answer": 2544559,
+  "solvedBy": 7369,
+  "bruteForceBaselineMs": 535.5708,
+  "optimizedBaselineMs": 78.1512,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=136",
+  "fetchedAt": "2026-09-18"
+}

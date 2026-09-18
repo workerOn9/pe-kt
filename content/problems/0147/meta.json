@@ -1,0 +1,15 @@
+{
+  "id": 147,
+  "title": "Rectangles in Cross-hatched Grids",
+  "titleZh": "交叉阴影网格中的矩形",
+  "difficulty": 41,
+  "difficultyLevel": "Level 16",
+  "tags": ["geometry", "counting", "coordinate-transform", "closed-form", "enumeration"],
+  "answer": 846910284,
+  "solvedBy": 4083,
+  "bruteForceBaselineMs": 42.9638,
+  "optimizedBaselineMs": 2.4712,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=147",
+  "fetchedAt": "2026-09-18"
+}

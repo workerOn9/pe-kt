@@ -1,0 +1,15 @@
+{
+  "id": 129,
+  "title": "Repunit Divisibility",
+  "titleZh": "循环单位数整除性",
+  "difficulty": 28,
+  "difficultyLevel": "Level 11",
+  "tags": ["repunit", "multiplicative-order", "carmichael-function", "modular-arithmetic"],
+  "answer": 1000023,
+  "solvedBy": 8078,
+  "bruteForceBaselineMs": 9.7780,
+  "optimizedBaselineMs": 0.0100,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=129",
+  "fetchedAt": "2026-09-18"
+}

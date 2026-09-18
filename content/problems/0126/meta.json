@@ -1,0 +1,15 @@
+{
+  "id": 126,
+  "title": "Cuboid Layers",
+  "titleZh": "立方体分层",
+  "difficulty": 29,
+  "difficultyLevel": "Level 11",
+  "tags": ["geometry", "counting", "search", "pruning"],
+  "answer": 18522,
+  "solvedBy": 6282,
+  "bruteForceBaselineMs": 16.9642,
+  "optimizedBaselineMs": 9.5405,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=126",
+  "fetchedAt": "2026-09-18"
+}

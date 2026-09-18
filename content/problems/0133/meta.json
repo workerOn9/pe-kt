@@ -1,0 +1,15 @@
+{
+  "id": 133,
+  "title": "Repunit Nonfactors",
+  "titleZh": "非循环单位数因子的素数",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": ["number-theory", "primes", "repunit", "multiplicative-order", "sieve"],
+  "answer": 453647705,
+  "solvedBy": 7192,
+  "bruteForceBaselineMs": 140.3130,
+  "optimizedBaselineMs": 3.2366,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=133",
+  "fetchedAt": "2026-09-18"
+}

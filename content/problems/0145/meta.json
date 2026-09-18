@@ -1,0 +1,15 @@
+{
+  "id": 145,
+  "title": "Reversible Numbers",
+  "titleZh": "可逆数",
+  "difficulty": 9,
+  "difficultyLevel": "Level 3",
+  "tags": ["digit-dp", "carry-propagation", "combinatorics", "closed-form"],
+  "answer": 608720,
+  "solvedBy": 20015,
+  "bruteForceBaselineMs": 1572.3825,
+  "optimizedBaselineMs": 0.0243,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=145",
+  "fetchedAt": "2026-09-18"
+}
