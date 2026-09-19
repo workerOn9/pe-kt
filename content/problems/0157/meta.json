@@ -1,0 +1,15 @@
+{
+  "id": 157,
+  "title": "Base-10 Diophantine Reciprocal",
+  "titleZh": "十进制倒数丢番图",
+  "difficulty": 16,
+  "difficultyLevel": "Level 16",
+  "tags": ["diophantine", "number-theory", "factoring"],
+  "answer": 53490,
+  "solvedBy": 3660,
+  "bruteForceBaselineMs": 600.0,
+  "optimizedBaselineMs": 4.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=157",
+  "fetchedAt": "2026-09-19"
+}

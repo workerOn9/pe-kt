@@ -1,0 +1,15 @@
+{
+  "id": 156,
+  "title": "Counting Digits",
+  "titleZh": "统计数字",
+  "difficulty": 20,
+  "difficultyLevel": "Level 20",
+  "tags": ["digit-counting", "number-theory", "combinatorics", "fixed-points"],
+  "answer": 21295121502550,
+  "solvedBy": 3385,
+  "bruteForceBaselineMs": 8.5,
+  "optimizedBaselineMs": 1.2,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=156",
+  "fetchedAt": "2026-09-19"
+}
