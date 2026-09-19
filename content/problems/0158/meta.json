@@ -1,0 +1,15 @@
+{
+  "id": 158,
+  "title": "Exploring strings for which lower three ASCII characters are in alphabetical order",
+  "titleZh": "探索左三字符按字典序排列的字符串",
+  "difficulty": 10,
+  "difficultyLevel": "Level 10",
+  "tags": ["combinatorics", "strings", "binomial"],
+  "answer": 409511334375,
+  "solvedBy": 4748,
+  "bruteForceBaselineMs": 1.0,
+  "optimizedBaselineMs": 0.05,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=158",
+  "fetchedAt": "2026-09-19"
+}

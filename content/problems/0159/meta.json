@@ -1,0 +1,15 @@
+{
+  "id": 159,
+  "title": "Digital root sums of factorisations",
+  "titleZh": "数字根因子和",
+  "difficulty": 15,
+  "difficultyLevel": "Level 15",
+  "tags": ["number-theory", "digit-manipulation", "factorization"],
+  "answer": 14489159,
+  "solvedBy": 4343,
+  "bruteForceBaselineMs": 500.0,
+  "optimizedBaselineMs": 120.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=159",
+  "fetchedAt": "2026-09-19"
+}

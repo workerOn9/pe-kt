@@ -1,0 +1,15 @@
+{
+  "id": 164,
+  "title": "Numbers with consecutive digit constraints",
+  "titleZh": "无连续三位超过 9 的数字",
+  "difficulty": 5,
+  "difficultyLevel": "Level 5",
+  "tags": ["digit-dp", "combinatorics"],
+  "answer": 344454791613368,
+  "solvedBy": 7353,
+  "bruteForceBaselineMs": 1000.0,
+  "optimizedBaselineMs": 5.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=164",
+  "fetchedAt": "2026-09-19"
+}

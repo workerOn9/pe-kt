@@ -1,0 +1,15 @@
+{
+  "id": 165,
+  "title": "Intersections of line segments",
+  "titleZh": "线段交点",
+  "difficulty": 19,
+  "difficultyLevel": "Level 19",
+  "tags": ["computational-geometry", "bbs", "sweep-line"],
+  "answer": 2807841,
+  "solvedBy": 3540,
+  "bruteForceBaselineMs": 5000.0,
+  "optimizedBaselineMs": 200.0,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=165",
+  "fetchedAt": "2026-09-19"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 161,
+  "title": "Triominoes",
+  "titleZh": "三联骨牌",
+  "difficulty": 16,
+  "difficultyLevel": "Level 16",
+  "tags": ["tiling", "combinatorics", "exact-cover", "dfs"],
+  "answer": 20574308184277971,
+  "solvedBy": 2973,
+  "bruteForceBaselineMs": 10000.0,
+  "optimizedBaselineMs": 580.0,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=161",
+  "fetchedAt": "2026-09-19"
+}

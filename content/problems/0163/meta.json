@@ -1,0 +1,15 @@
+{
+  "id": 163,
+  "title": "Counting triangles in cross-hatched triangles",
+  "titleZh": "数交叉斜线三角网格中的三角形",
+  "difficulty": 17,
+  "difficultyLevel": "Level 17",
+  "tags": ["geometry", "combinatorics", "polynomial", "closed-form"],
+  "answer": 1164536,
+  "solvedBy": 2570,
+  "bruteForceBaselineMs": 5000.0,
+  "optimizedBaselineMs": 0.001,
+  "hasVisualization": true,
+  "sourceUrl": "https://projecteuler.net/problem=163",
+  "fetchedAt": "2026-09-19"
+}

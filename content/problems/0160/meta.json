@@ -1,0 +1,15 @@
+{
+  "id": 160,
+  "title": "Factorial trailing digits",
+  "titleZh": "阶乘末尾非零数字",
+  "difficulty": 17,
+  "difficultyLevel": "Level 17",
+  "tags": ["number-theory", "factorial", "trailing-zeros"],
+  "answer": 16576,
+  "solvedBy": 4637,
+  "bruteForceBaselineMs": 2000.0,
+  "optimizedBaselineMs": 0.5,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=160",
+  "fetchedAt": "2026-09-19"
+}
