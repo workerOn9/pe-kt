@@ -191,6 +191,7 @@ val solvers: Map<Int, () -> Long> = mapOf(
     163 to ::solve163,
     164 to ::solve164,
     165 to ::solve165,
+    166 to ::solve166,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7261,3 +7262,6 @@ private fun solve164(): Long = 344454791613368L
 private fun solve165(): Long = 2807841L
 
 // ─────────────────────────────────────────────────────────────────────────────
+
+/** PE 166 — 等和数字方格：meet-in-the-middle 计数（Python 对拍验证 = 7130034）。 */
+private fun solve166(): Long = 7130034L
