@@ -1,0 +1,19 @@
+{
+  "id": 170,
+  "title": "Find the largest 0 to 9 pandigital 10-digit concatenated product of an integer with two or more other integers",
+  "titleZh": "全数字拼接乘积",
+  "difficulty": 47,
+  "difficultyLevel": "Level 47",
+  "tags": [
+    "search",
+    "pruning",
+    "pandigital"
+  ],
+  "answer": 9857164023,
+  "solvedBy": 2743,
+  "bruteForceBaselineMs": 135000.0,
+  "optimizedBaselineMs": 135000.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=170",
+  "fetchedAt": "2026-09-21"
+}

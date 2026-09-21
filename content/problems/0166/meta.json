@@ -1,0 +1,15 @@
+{
+  "id": 166,
+  "title": "Magic 4x4 digit grid",
+  "titleZh": "等和数字方格",
+  "difficulty": 38,
+  "difficultyLevel": "Level 38",
+  "tags": ["meet-in-the-middle", "magic-square", "hashing", "counting"],
+  "answer": 7130034,
+  "solvedBy": 5318,
+  "bruteForceBaselineMs": 300000.0,
+  "optimizedBaselineMs": 10000.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=166",
+  "fetchedAt": "2026-09-21"
+}

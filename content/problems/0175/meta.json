@@ -1,0 +1,20 @@
+{
+  "id": 175,
+  "title": "Fractions involving the number of different ways a number can be expressed as a sum of powers of 2",
+  "titleZh": "二进制的缩短展开",
+  "difficulty": 49,
+  "difficultyLevel": "Level 49",
+  "tags": [
+    "calkin-wilf",
+    "continued-fraction",
+    "hyperbinary",
+    "run-length"
+  ],
+  "answer": 1137174208,
+  "solvedBy": 2517,
+  "bruteForceBaselineMs": 2100.0,
+  "optimizedBaselineMs": 0.3,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=175",
+  "fetchedAt": "2026-09-21"
+}

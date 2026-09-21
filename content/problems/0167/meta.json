@@ -1,0 +1,19 @@
+{
+  "id": 167,
+  "title": "Investigating Ulam sequences",
+  "titleZh": "Ulam 序列",
+  "difficulty": 61,
+  "difficultyLevel": "Level 61",
+  "tags": [
+    "ulam-sequence",
+    "periodicity",
+    "extrapolation"
+  ],
+  "answer": 3916160068885,
+  "solvedBy": 2412,
+  "bruteForceBaselineMs": 60000.0,
+  "optimizedBaselineMs": 90000.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=167",
+  "fetchedAt": "2026-09-21"
+}
