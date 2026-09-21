@@ -1,0 +1,20 @@
+{
+  "id": 169,
+  "title": "Exploring the number of different ways a number can be expressed as a sum of powers of 2",
+  "titleZh": "二的幂之和表示",
+  "difficulty": 28,
+  "difficultyLevel": "Level 28",
+  "tags": [
+    "recursion",
+    "memoization",
+    "hyperbinary",
+    "powers-of-two"
+  ],
+  "answer": 178653872807,
+  "solvedBy": 6529,
+  "bruteForceBaselineMs": 1200.0,
+  "optimizedBaselineMs": 0.4,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=169",
+  "fetchedAt": "2026-09-21"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 173,
+  "title": "Using up to one million tiles how many different \"hollow\" square laminae can be formed?",
+  "titleZh": "正方形薄片",
+  "difficulty": 11,
+  "difficultyLevel": "Level 11",
+  "tags": [
+    "counting",
+    "number-theory",
+    "square-difference"
+  ],
+  "answer": 1572729,
+  "solvedBy": 11133,
+  "bruteForceBaselineMs": 1237500.0,
+  "optimizedBaselineMs": 105.9,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=173",
+  "fetchedAt": "2026-09-21"
+}

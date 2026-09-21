@@ -1,0 +1,19 @@
+{
+  "id": 168,
+  "title": "Number Rotations",
+  "titleZh": "旋转数",
+  "difficulty": 60,
+  "difficultyLevel": "Level 60",
+  "tags": [
+    "number-theory",
+    "biginteger",
+    "digit-manipulation"
+  ],
+  "answer": 59206,
+  "solvedBy": 3537,
+  "bruteForceBaselineMs": 4200.0,
+  "optimizedBaselineMs": 1.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=168",
+  "fetchedAt": "2026-09-21"
+}

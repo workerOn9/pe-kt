@@ -1,0 +1,19 @@
+{
+  "id": 172,
+  "title": "Investigating numbers with few repeated digits",
+  "titleZh": "数字出现次数受限的 18 位数",
+  "difficulty": 29,
+  "difficultyLevel": "Level 29",
+  "tags": [
+    "combinatorics",
+    "multinomial",
+    "counting"
+  ],
+  "answer": 227485267000992000,
+  "solvedBy": 4961,
+  "bruteForceBaselineMs": 5900.0,
+  "optimizedBaselineMs": 0.3,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=172",
+  "fetchedAt": "2026-09-21"
+}

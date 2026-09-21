@@ -1,0 +1,19 @@
+{
+  "id": 171,
+  "title": "Finding numbers for which the sum of the squares of the digits is a square",
+  "titleZh": "数位平方和为完全平方数",
+  "difficulty": 44,
+  "difficultyLevel": "Level 44",
+  "tags": [
+    "digit-dp",
+    "modular-arithmetic",
+    "counting"
+  ],
+  "answer": 142989277,
+  "solvedBy": 3754,
+  "bruteForceBaselineMs": 900.0,
+  "optimizedBaselineMs": 8.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=171",
+  "fetchedAt": "2026-09-21"
+}

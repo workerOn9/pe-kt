@@ -1,0 +1,19 @@
+{
+  "id": 174,
+  "title": "Counting the number of \"hollow\" square laminae that can form one, two, three, ... distinct arrangements",
+  "titleZh": "正方形薄片的拼法计数",
+  "difficulty": 13,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "counting",
+    "bucket-sort",
+    "square-difference"
+  ],
+  "answer": 209566,
+  "solvedBy": 7431,
+  "bruteForceBaselineMs": 400.0,
+  "optimizedBaselineMs": 400.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=174",
+  "fetchedAt": "2026-09-21"
+}
