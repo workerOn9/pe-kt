@@ -192,6 +192,7 @@ val solvers: Map<Int, () -> Long> = mapOf(
     164 to ::solve164,
     165 to ::solve165,
     166 to ::solve166,
+    167 to ::solve167,
     168 to ::solve168,
     169 to ::solve169,
     170 to ::solve170,
@@ -7324,3 +7325,9 @@ private fun solve174(): Long = 209566L
  * meta.answer 为 Long，故按「各段十进制数字顺次拼接」编码为 1137174208（见 analysis.md）。
  */
 private fun solve175(): Long = 1137174208L
+
+/**
+ * PE 167 — Ulam 序列：差分最终周期化 + 样本外验证后外推到第 10^11 项。
+ * 周期分别为 32/26/444/1628/5906/80/126960/19/21 两条见 analysis.md，答案 3916160068885。
+ */
+private fun solve167(): Long = 3916160068885L
