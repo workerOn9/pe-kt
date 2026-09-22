@@ -211,6 +211,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     183 to ::solve183,
     184 to ::solve184,
     185 to ::solve185,
+    186 to ::solve186,
+    187 to ::solve187,
+    188 to ::solve188,
+    189 to ::solve189,
+    190 to ::solve190,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7464,3 +7469,19 @@ private fun solve185(): Long = 4640261571849533L
  * 周期分别为 32/26/444/1628/5906/80/126960/19/21 两条见 analysis.md，答案 3916160068885。
  */
 private fun solve167(): Long = 3916160068885L
+
+/** PE 186 — 网络连通性：LFG 环形缓冲区 + 并查集维护连通块大小，当首相达到 99% 时返回成功通话数。 */
+private fun solve186(): Long = solve186Impl()
+
+/** PE 187 — 半素数：BitSet 奇数素数筛 + 二分查找统计 p * q < 10^8 的双素数对数量。 */
+private fun solve187(): Long = solve187Impl()
+
+/** PE 188 — 超乘方：扩展欧拉定理与模数阶梯式衰减求 a ^^ b mod 10^8。 */
+private fun solve188(): Long = solve188Impl()
+
+/** PE 189 — 三角网格的三染色：轮廓线动态规划与三进制状态压缩。 */
+private fun solve189(): Long = solve189Impl()
+
+/** PE 190 — 加权乘积最大化：拉格朗日乘子法解析解 x_i = 2i/(m+1)，BigDecimal 精度求和。 */
+private fun solve190(): Long = solve190Impl()
+

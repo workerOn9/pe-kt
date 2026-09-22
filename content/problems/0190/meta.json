@@ -1,0 +1,15 @@
+{
+  "id": 190,
+  "title": "Maximising a Weighted Product",
+  "titleZh": "加权乘积最大化",
+  "difficulty": 22,
+  "difficultyLevel": "Level 9",
+  "tags": ["lagrange-multipliers", "calculus", "optimization", "math"],
+  "answer": 371048281,
+  "solvedBy": 5290,
+  "bruteForceBaselineMs": 0.4,
+  "optimizedBaselineMs": 0.8,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=190",
+  "fetchedAt": "2026-09-22"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 187,
+  "title": "Semiprimes",
+  "titleZh": "半素数",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": ["prime-sieve", "number-theory", "binary-search"],
+  "answer": 17427258,
+  "solvedBy": 13463,
+  "bruteForceBaselineMs": 710.0,
+  "optimizedBaselineMs": 420.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=187",
+  "fetchedAt": "2026-09-22"
+}
