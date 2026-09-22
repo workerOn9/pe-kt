@@ -1,0 +1,15 @@
+{
+  "id": 182,
+  "title": "RSA Encryption",
+  "titleZh": "RSA 加密与未隐藏明文",
+  "difficulty": 39,
+  "difficultyLevel": "Level 15",
+  "tags": ["cryptography", "rsa", "chinese-remainder-theorem", "number-theory"],
+  "answer": 399788195976,
+  "solvedBy": 3528,
+  "bruteForceBaselineMs": 0.5,
+  "optimizedBaselineMs": 45.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=182",
+  "fetchedAt": "2026-09-22"
+}

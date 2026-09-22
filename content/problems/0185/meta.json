@@ -1,0 +1,15 @@
+{
+  "id": 185,
+  "title": "Number Mind",
+  "titleZh": "数字猜谜",
+  "difficulty": 38,
+  "difficultyLevel": "Level 14",
+  "tags": ["constraint-satisfaction", "backtracking", "constraint-propagation", "search"],
+  "answer": 4640261571849533,
+  "solvedBy": 4066,
+  "bruteForceBaselineMs": 420000.0,
+  "optimizedBaselineMs": 116000.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=185",
+  "fetchedAt": "2026-09-22"
+}

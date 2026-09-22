@@ -1,0 +1,15 @@
+{
+  "id": 179,
+  "title": "Consecutive Positive Divisors",
+  "titleZh": "相邻同约数个数的整数",
+  "difficulty": 10,
+  "difficultyLevel": "Level 3",
+  "tags": ["divisor-function", "sieve", "harmonic-series"],
+  "answer": 986262,
+  "solvedBy": 13636,
+  "bruteForceBaselineMs": 120.0,
+  "optimizedBaselineMs": 420.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=179",
+  "fetchedAt": "2026-09-22"
+}

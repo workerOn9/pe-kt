@@ -1,0 +1,15 @@
+{
+  "id": 177,
+  "title": "Integer Angled Quadrilaterals",
+  "titleZh": "整数角四边形",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": ["geometry", "trigonometry", "dihedral-group", "search"],
+  "answer": 129281,
+  "solvedBy": 1906,
+  "bruteForceBaselineMs": 350.0,
+  "optimizedBaselineMs": 0.3,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=177",
+  "fetchedAt": "2026-09-22"
+}

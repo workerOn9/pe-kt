@@ -1,0 +1,15 @@
+{
+  "id": 181,
+  "title": "Grouping Two Different Coloured Objects",
+  "titleZh": "双色物品的分组方案",
+  "difficulty": 45,
+  "difficultyLevel": "Level 17",
+  "tags": ["combinatorics", "partitions", "generating-functions", "dynamic-programming"],
+  "answer": 83735848679360680,
+  "solvedBy": 2780,
+  "bruteForceBaselineMs": 0.5,
+  "optimizedBaselineMs": 4.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=181",
+  "fetchedAt": "2026-09-22"
+}
