@@ -216,6 +216,7 @@ val solvers: Map<Int, () -> Long> = mapOf(
     188 to ::solve188,
     189 to ::solve189,
     190 to ::solve190,
+    191 to ::solve191,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7484,4 +7485,24 @@ private fun solve189(): Long = solve189Impl()
 
 /** PE 190 — 加权乘积最大化：拉格朗日乘子法解析解 x_i = 2i/(m+1)，BigDecimal 精度求和。 */
 private fun solve190(): Long = solve190Impl()
+
+/** PE 191 — Prize Strings：六状态 DP（连续缺席 0..2 × 迟到 0..1），n=30 获奖串计数，答案 1918080160。 */
+private fun solve191(): Long {
+    val n = 30
+    // dp[c][l]：连续缺席 c 天、已迟到 l 次的合法前缀数
+    var dp = Array(3) { LongArray(2) }
+    dp[0][0] = 1
+    repeat(n) {
+        val nd = Array(3) { LongArray(2) }
+        for (c in 0..2) for (l in 0..1) {
+            val cur = dp[c][l]
+            if (cur == 0L) continue
+            nd[0][l] += cur                      // O：准时，连续缺席清零
+            if (l == 0) nd[0][1] += cur          // L：迟到（最多一次）
+            if (c < 2) nd[c + 1][l] += cur       // A：缺席（连续不能到 3）
+        }
+        dp = nd
+    }
+    return dp.fold(0L) { acc, row -> acc + row.sum() }
+}
 
