@@ -1,0 +1,15 @@
+{
+  "id": 176,
+  "title": "Common Cathetus Right-angled Triangles",
+  "titleZh": "最小公直角边",
+  "difficulty": 41,
+  "difficultyLevel": "Level 16",
+  "tags": ["pythagorean-triple", "divisor-function", "factorization", "search"],
+  "answer": 96818198400000,
+  "solvedBy": 2622,
+  "bruteForceBaselineMs": 2100.0,
+  "optimizedBaselineMs": 0.3,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=176",
+  "fetchedAt": "2026-09-22"
+}

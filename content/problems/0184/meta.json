@@ -1,0 +1,15 @@
+{
+  "id": 184,
+  "title": "Triangles Containing the Origin",
+  "titleZh": "包含原点的三角形",
+  "difficulty": 41,
+  "difficultyLevel": "Level 16",
+  "tags": ["computational-geometry", "lattice-points", "counting", "two-pointer"],
+  "answer": 1725323624056,
+  "solvedBy": 2315,
+  "bruteForceBaselineMs": 300.0,
+  "optimizedBaselineMs": 8.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=184",
+  "fetchedAt": "2026-09-22"
+}

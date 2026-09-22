@@ -1,0 +1,15 @@
+{
+  "id": 183,
+  "title": "Maximum Product of Parts",
+  "titleZh": "拆分最大乘积",
+  "difficulty": 21,
+  "difficultyLevel": "Level 8",
+  "tags": ["optimization", "euler-constant-e", "terminating-decimals", "number-theory"],
+  "answer": 48861552,
+  "solvedBy": 5878,
+  "bruteForceBaselineMs": 2000.0,
+  "optimizedBaselineMs": 15.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=183",
+  "fetchedAt": "2026-09-22"
+}

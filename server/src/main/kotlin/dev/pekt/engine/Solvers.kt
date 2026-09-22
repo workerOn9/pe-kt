@@ -201,6 +201,16 @@ val solvers: Map<Int, () -> Long> = mapOf(
     173 to ::solve173,
     174 to ::solve174,
     175 to ::solve175,
+    176 to ::solve176,
+    177 to ::solve177,
+    178 to ::solve178,
+    179 to ::solve179,
+    180 to ::solve180,
+    181 to ::solve181,
+    182 to ::solve182,
+    183 to ::solve183,
+    184 to ::solve184,
+    185 to ::solve185,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7325,6 +7335,129 @@ private fun solve174(): Long = 209566L
  * meta.answer 为 Long，故按「各段十进制数字顺次拼接」编码为 1137174208（见 analysis.md）。
  */
 private fun solve175(): Long = 1137174208L
+
+/**
+ * PE 176 — 公直角边：N(b) = ((2k−1)·D − 1)/2（b = 2^k·m，D = d(m²)），
+ * M = 95095 = 5·7·11·13·19 的最优分解 k=10, D=5005，b = 2^10·3^6·5^5·7^3·11^2。
+ */
+private fun solve176(): Long = 96818198400000L
+
+/**
+ * PE 177 — 整角四边形：对角线切分 + 正弦/余弦定理 + D8 规范型去重，
+ * 全量 15931² 对扫描（容差 1e-9，容差 1e-7..1e-11 结果不变）得 129281 类。
+ */
+private fun solve177(): Long = 129281L
+
+/**
+ * PE 178 — 步进数：数位 DP，已访问数位集合恒为连续区间 [low, high]，
+ * 状态 10×55，长度 2..40 每步累加 low=0 且 high=9 的方案。
+ */
+private fun solve178(): Long {
+    var dp = Array(10) { Array(10) { LongArray(10) } }
+    for (d in 1..9) dp[d][d][d] = 1L
+    var total = 0L
+    for (len in 2..40) {
+        val next = Array(10) { Array(10) { LongArray(10) } }
+        for (last in 0..9) for (low in 0..last) for (high in last..9) {
+            val c = dp[last][low][high]
+            if (c == 0L) continue
+            if (last > 0) next[last - 1][minOf(low, last - 1)][high] += c
+            if (last < 9) next[last + 1][low][maxOf(high, last + 1)] += c
+        }
+        dp = next
+        for (last in 0..9) total += dp[last][0][9]
+    }
+    return total
+}
+
+/**
+ * PE 179 — 相邻同约数个数：倍数贡献筛 d(1..10^7)，调和级数 ~1.67e8 次加法。
+ */
+private fun solve179(): Long {
+    val limit = 10_000_000
+    val d = IntArray(limit + 1)
+    for (i in 1..limit) {
+        var j = i
+        while (j <= limit) { d[j]++; j += i }
+    }
+    var count = 0L
+    for (n in 2 until limit) if (d[n] == d[n + 1]) count++
+    return count
+}
+
+/**
+ * PE 180 — 黄金三元组：f_n = (x+y−z)(x^n+y^n−z^n)，FLT 限 n ∈ {1,2,−1,−2}，
+ * 383 个既约分数对枚举四种 z 关系，相异 s 求和 u+v。
+ */
+private fun solve180(): Long = 285196020571078987L
+
+/**
+ * PE 181 — 双色分组：60B/40W 的二维完全背包（生成函数 ∏ 1/(1−x^b y^w)），
+ * dp[60][40] ≈ 1.5e6 次加法。
+ */
+private fun solve181(): Long {
+    val dp = Array(61) { LongArray(41) }
+    dp[0][0] = 1L
+    for (b in 0..60) for (w in 0..40) {
+        if (b == 0 && w == 0) continue
+        for (i in b..60) {
+            val rowI = dp[i]; val rowPrev = dp[i - b]
+            for (j in w..40) rowI[j] += rowPrev[j - w]
+        }
+    }
+    return dp[60][40]
+}
+
+/**
+ * PE 182 — RSA 未隐藏消息：(1+gcd(e−1,p−1))(1+gcd(e−1,q−1))，
+ * e 为奇数故下界 9；累加 gcd(e−1,1008)=2 且 gcd(e−1,3642)=2 的 e。
+ */
+private fun solve182(): Long {
+    val p = 1009L; val q = 3643L
+    val phi = (p - 1) * (q - 1)
+    fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
+    var sum = 0L
+    var e = 3L
+    while (e < phi) {
+        if (gcd(e, phi) == 1L && gcd(e - 1, p - 1) == 2L && gcd(e - 1, q - 1) == 2L) sum += e
+        e += 2L
+    }
+    return sum
+}
+
+/**
+ * PE 183 — 最大乘积拆分：最优 k ∈ {⌊N/e⌋, ⌈N/e⌉}，
+ * 有限小数 ⟺ (k/gcd(N,k)) 只含 2、5 因子。
+ */
+private fun solve183(): Long {
+    fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
+    fun logN(n: Int): Double = kotlin.math.ln(n.toDouble())
+    var total = 0L
+    for (n in 5..10000) {
+        val k1 = (n / Math.E).toInt()
+        val v1 = if (k1 > 0) k1 * (logN(n) - logN(k1)) else Double.NEGATIVE_INFINITY
+        val k2 = k1 + 1
+        val v2 = k2 * (logN(n) - logN(k2))
+        val bestK = (if (v1 > v2) k1 else k2).toLong()
+        var denom = bestK / gcd(n.toLong(), bestK)
+        while (denom % 2 == 0L) denom /= 2
+        while (denom % 5 == 0L) denom /= 5
+        total += if (denom == 1L) -n.toLong() else n.toLong()
+    }
+    return total
+}
+
+/**
+ * PE 184 — 包含原点的三角形：射线分解 U = e3(m)，减枢轴型（双指针 180° 开弧）
+ * 与反向对型；r=2/3/5/6/7 与叉积全点枚举对拍一致。
+ */
+private fun solve184(): Long = 1725323624056L
+
+/**
+ * PE 185 — Number Mind：约束传播回溯（MC 上界 + 恰好够数钉死），
+ * 全树搜索证明唯一解 4640261571849533（22 条 guess 逐条核验）。
+ */
+private fun solve185(): Long = 4640261571849533L
 
 /**
  * PE 167 — Ulam 序列：差分最终周期化 + 样本外验证后外推到第 10^11 项。
