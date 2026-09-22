@@ -1,0 +1,15 @@
+{
+  "id": 189,
+  "title": "Tri-colouring a Triangular Grid",
+  "titleZh": "三角网格的三染色",
+  "difficulty": 44,
+  "difficultyLevel": "Level 17",
+  "tags": ["dynamic-programming", "graph-coloring", "combinatorics"],
+  "answer": 10834893628237824,
+  "solvedBy": 2827,
+  "bruteForceBaselineMs": 185.0,
+  "optimizedBaselineMs": 28.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=189",
+  "fetchedAt": "2026-09-22"
+}

@@ -1,0 +1,15 @@
+{
+  "id": 188,
+  "title": "Hyperexponentiation",
+  "titleZh": "超乘方",
+  "difficulty": 14,
+  "difficultyLevel": "Level 4",
+  "tags": ["modular-arithmetic", "euler-totient", "recursion"],
+  "answer": 95962097,
+  "solvedBy": 7916,
+  "bruteForceBaselineMs": 3.5,
+  "optimizedBaselineMs": 0.2,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=188",
+  "fetchedAt": "2026-09-22"
+}
