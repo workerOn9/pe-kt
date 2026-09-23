@@ -5,10 +5,10 @@
   "difficulty": 33,
   "difficultyLevel": "Level 12",
   "tags": ["number-theory", "prime-sieve", "triangular-array", "neighbor-counting"],
-  "answer": 1071463494007955,
+  "answer": 322303240771079935,
   "solvedBy": 3466,
-  "bruteForceBaselineMs": null,
-  "optimizedBaselineMs": null,
+  "bruteForceBaselineMs": 100.0,
+  "optimizedBaselineMs": 1120.0,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=196",
   "fetchedAt": "2026-09-23"

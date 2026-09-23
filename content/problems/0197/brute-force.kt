@@ -7,7 +7,7 @@ package dev.pekt.problems
 fun bruteForce197(steps: Int = 100): List<Double> {
     var u = -1.0
     val history = mutableListOf(u)
-    for (_ in 1..steps) {
+    for (step in 1..steps) {
         u = f(u)
         history.add(u)
     }
