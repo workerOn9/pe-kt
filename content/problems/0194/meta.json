@@ -1,0 +1,15 @@
+{
+  "id": 194,
+  "title": "Coloured Configurations",
+  "titleZh": "染色配置计数",
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "tags": ["graph-theory", "chromatic-polynomial", "counting", "combinatorics"],
+  "answer": 61190912,
+  "solvedBy": 2028,
+  "bruteForceBaselineMs": null,
+  "optimizedBaselineMs": 0.1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=194",
+  "fetchedAt": "2026-09-23"
+}

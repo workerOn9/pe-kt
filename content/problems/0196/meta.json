@@ -1,0 +1,15 @@
+{
+  "id": 196,
+  "title": "Prime Triplets",
+  "titleZh": "素三元组",
+  "difficulty": 33,
+  "difficultyLevel": "Level 12",
+  "tags": ["number-theory", "prime-sieve", "triangular-array", "neighbor-counting"],
+  "answer": 1071463494007955,
+  "solvedBy": 3466,
+  "bruteForceBaselineMs": null,
+  "optimizedBaselineMs": null,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=196",
+  "fetchedAt": "2026-09-23"
+}

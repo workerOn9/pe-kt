@@ -1,0 +1,15 @@
+{
+  "id": 197,
+  "title": "A Recursively Defined Sequence",
+  "titleZh": "递归定义的序列",
+  "difficulty": 28,
+  "difficultyLevel": "Level 10",
+  "tags": ["recursion", "convergence", "dynamics", "fixed-point"],
+  "answer": 1710637717,
+  "solvedBy": 6089,
+  "bruteForceBaselineMs": null,
+  "optimizedBaselineMs": 0.01,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=197",
+  "fetchedAt": "2026-09-23"
+}

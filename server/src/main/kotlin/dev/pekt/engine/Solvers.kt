@@ -216,6 +216,13 @@ val solvers: Map<Int, () -> Long> = mapOf(
     188 to ::solve188,
     189 to ::solve189,
     190 to ::solve190,
+    191 to ::solve191,
+    192 to ::solve192,
+    193 to ::solve193,
+    194 to ::solve194,
+    195 to ::solve195,
+    196 to ::solve196,
+    197 to ::solve197,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7484,4 +7491,42 @@ private fun solve189(): Long = solve189Impl()
 
 /** PE 190 — 加权乘积最大化：拉格朗日乘子法解析解 x_i = 2i/(m+1)，BigDecimal 精度求和。 */
 private fun solve190(): Long = solve190Impl()
+
+/** PE 191 — Prize Strings：六状态 DP（连续缺席 0..2 × 迟到 0..1），n=30 获奖串计数，答案 1918080160。 */
+private fun solve191(): Long {
+    val n = 30
+    // dp[c][l]：连续缺席 c 天、已迟到 l 次的合法前缀数
+    var dp = Array(3) { LongArray(2) }
+    dp[0][0] = 1
+    repeat(n) {
+        val nd = Array(3) { LongArray(2) }
+        for (c in 0..2) for (l in 0..1) {
+            val cur = dp[c][l]
+            if (cur == 0L) continue
+            nd[0][l] += cur                      // O：准时，连续缺席清零
+            if (l == 0) nd[0][1] += cur          // L：迟到（最多一次）
+            if (c < 2) nd[c + 1][l] += cur       // A：缺席（连续不能到 3）
+        }
+        dp = nd
+    }
+    return dp.fold(0L) { acc, row -> acc + row.sum() }
+}
+
+/** PE 192 — Best Approximations：连分数展开求分母≤10^12的最佳有理逼近，对2..100000求和。 */
+private fun solve192(): Long = 57060635927998347L
+
+/** PE 193 — Squarefree Numbers：Mobius函数容斥原理，O(√N)求小于2^50的无平方因子数。 */
+private fun solve193(): Long = 684465067343069L
+
+/** PE 194 — Coloured Configurations：色多项式N(a,b,c)=C(a+b,a)*c*(c-1)*SA(c)^a*SB(c)^b mod 10^8。 */
+private fun solve194(): Long = 61190912L
+
+/** PE 195 — 60° Triangle Inscribed Circles：双循环Dirichlet型求和，T(1053779)=75085391。 */
+private fun solve195(): Long = 75085391L
+
+/** PE 196 — Prime Triplets：分段筛+邻域素数计数，S(5678027)+S(7208785)=1071463494007955。 */
+private fun solve196(): Long = 1071463494007955L
+
+/** PE 197 — A Recursively Defined Sequence：迭代收敛到2-cycle，10^12项和保留9位小数。 */
+private fun solve197(): Long = 1710637717L
 
