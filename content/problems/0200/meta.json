@@ -1,0 +1,15 @@
+{
+  "id": 200,
+  "title": "Prime-proof Squbes",
+  "titleZh": "素数免疫 Sqube",
+  "difficulty": 43,
+  "difficultyLevel": "Level 16",
+  "tags": ["primes", "miller-rabin", "enumeration", "substrings"],
+  "answer": 229161792008,
+  "solvedBy": 3246,
+  "bruteForceBaselineMs": 104.8,
+  "optimizedBaselineMs": 30.4,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=200",
+  "fetchedAt": "2026-09-23"
+}

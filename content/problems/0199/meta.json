@@ -1,0 +1,15 @@
+{
+  "id": 199,
+  "title": "Iterative Circle Packing",
+  "titleZh": "迭代圆填充",
+  "difficulty": 40,
+  "difficultyLevel": "Level 15",
+  "tags": ["circle-packing", "descartes-theorem", "fractal", "geometry"],
+  "answer": 396087,
+  "solvedBy": 2662,
+  "bruteForceBaselineMs": 757.4,
+  "optimizedBaselineMs": 5.6,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=199",
+  "fetchedAt": "2026-09-23"
+}

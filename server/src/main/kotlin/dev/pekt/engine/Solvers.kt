@@ -223,6 +223,9 @@ val solvers: Map<Int, () -> Long> = mapOf(
     195 to ::solve195,
     196 to ::solve196,
     197 to ::solve197,
+    198 to ::solve198,
+    199 to ::solve199,
+    200 to ::solve200,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7733,5 +7736,125 @@ private fun solve197(): Long {
         steps++
     }
     return Math.round((u + v) * 1e9)
+}
+
+/** PE 198 — Ambiguous Numbers：歧义数 ⟺ Farey 邻居中点，Stern-Brocot 树 DFS + 左端剪枝。 */
+private fun solve198(): Long {
+    val d = 100_000_000L
+    var stack = IntArray(1 shl 12)
+    var sp = 0
+    fun push(h: Int, k: Int, H: Int, K: Int) {
+        if (sp + 4 > stack.size) stack = stack.copyOf(stack.size * 2)
+        stack[sp++] = h; stack[sp++] = k; stack[sp++] = H; stack[sp++] = K
+    }
+    push(0, 1, 1, 1)
+    var count = 0L
+    while (sp > 0) {
+        val K = stack[--sp]
+        val H = stack[--sp]
+        val k = stack[--sp]
+        val h = stack[--sp]
+        val q = 2L * k * K                       // 中点的既约分母
+        val p = h.toLong() * K + H.toLong() * k  // 中点分子（恒奇，自动既约）
+        if (p * 100 < q) count++                 // 0 < x < 1/100
+        val medNum = h + H
+        val medDen = k + K
+        if (2L * K * medDen <= d && medNum.toLong() * 100 < medDen) push(medNum, medDen, H, K)
+        if (2L * k * medDen <= d && h.toLong() * 100 < k) push(h, k, medNum, medDen)
+    }
+    return count
+}
+
+/** PE 199 空隙四元组：(a, b, c) 三相切圆 + 已知「对侧圆」曲率 across。 */
+private class P199Gap(val a: Double, val b: Double, val c: Double, val across: Double)
+
+/** PE 199 — Iterative Circle Packing：带符号曲率笛卡尔定理填隙，F = 1 - Σ1/k²（放大 10^8）。 */
+private fun solve199(): Long {
+    val kIn = 1.0 / (2 * Math.sqrt(3.0) - 3)
+    val kOut = -1.0
+    var gaps = ArrayList<P199Gap>(64)
+    repeat(3) { gaps.add(P199Gap(kOut, kIn, kIn, kIn)) }
+    gaps.add(P199Gap(kIn, kIn, kIn, kOut))
+    var area = 3.0 / (kIn * kIn)
+    for (iter in 0 until 10) {
+        val next = ArrayList<P199Gap>(gaps.size * 3)
+        for (g in gaps) {
+            val s = g.a + g.b + g.c
+            val sq = Math.sqrt(g.a * g.b + g.b * g.c + g.c * g.a)
+            val kp = s + 2 * sq
+            val km = s - 2 * sq
+            val n = if (Math.abs(kp - g.across) > Math.abs(km - g.across)) kp else km
+            area += 1.0 / (n * n)
+            next.add(P199Gap(g.a, g.b, n, g.c))
+            next.add(P199Gap(g.b, g.c, n, g.a))
+            next.add(P199Gap(g.c, g.a, n, g.b))
+        }
+        gaps = next
+    }
+    return Math.round((1.0 - area) * 1e8)
+}
+
+/** PE 200 判素：Miller-Rabin，12 个基在 n < 3.3e17 内确定性。 */
+private fun p200IsPrime(n: Long): Boolean {
+    if (n < 2) return false
+    for (p in intArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)) {
+        if (n % p == 0L) return n == p.toLong()
+    }
+    var d = n - 1
+    var s = 0
+    while (d and 1L == 0L) { d = d shr 1; s++ }
+    val nb = BigInteger.valueOf(n)
+    val nMinus1 = nb.subtract(BigInteger.ONE)
+    for (a in intArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)) {
+        var x = BigInteger.valueOf(a.toLong()).modPow(BigInteger.valueOf(d), nb)
+        if (x == BigInteger.ONE || x == nMinus1) continue
+        var passes = 0
+        repeat(s - 1) {
+            x = x.multiply(x).mod(nb)
+            if (x == nMinus1) { passes = -1; return@repeat }
+        }
+        if (passes == 0) return false
+    }
+    return true
+}
+
+/** PE 200 素数免疫：改动任意一位（首位可改 0，按整数解释）都得不到素数。 */
+private fun p200IsPrimeProof(n: Long): Boolean {
+    val s = n.toString()
+    for (i in s.indices) {
+        val cur = s[i] - '0'
+        for (d in 0..9) {
+            if (d == cur) continue
+            val t = s.substring(0, i) + d + s.substring(i + 1)
+            if (p200IsPrime(t.toLong())) return false
+        }
+    }
+    return true
+}
+
+/** PE 200 — Prime-proof Squbes：枚举 p²q³ ≤ 1e13 → 子串 "200" 粗筛 → 免疫检测第 200 个。 */
+private fun solve200(): Long {
+    val limit = 10_000_000_000_000L
+    val primes = primesUpTo(1_118_034)           // sqrt(1e13/8)
+    val cands = ArrayList<Long>(4096)
+    for (q in primes) {
+        val q3 = q * q * q
+        if (q3 > limit / 4) break
+        for (p in primes) {
+            val n = p * p * q3
+            if (n > limit) break
+            if (p == q) continue
+            if (n.toString().contains("200")) cands.add(n)
+        }
+    }
+    cands.sort()
+    var hit = 0
+    for (n in cands) {
+        if (p200IsPrimeProof(n)) {
+            hit++
+            if (hit == 200) return n
+        }
+    }
+    error("only $hit prime-proof candidates")
 }
 
