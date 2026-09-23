@@ -26,7 +26,8 @@ fun bruteForce193(N: Int = 10000): Int {
 private fun sievePrimes(n: Int): List<Int> {
     if (n < 2) return emptyList()
     val isPrime = BooleanArray(n + 1) { true }
-    isPrime[0] = isPrime[1] = false
+    isPrime[0] = false
+    isPrime[1] = false
     for (i in 2..Math.sqrt(n.toDouble()).toInt()) {
         if (isPrime[i]) {
             for (j in i * i..n step i) isPrime[j] = false
