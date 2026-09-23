@@ -1,0 +1,15 @@
+{
+  "id": 198,
+  "title": "Ambiguous Numbers",
+  "titleZh": "歧义数",
+  "difficulty": 63,
+  "difficultyLevel": "Level 24",
+  "tags": ["farey-sequences", "fractions", "approximation", "number-theory"],
+  "answer": 52374425,
+  "solvedBy": 1707,
+  "bruteForceBaselineMs": 38.5,
+  "optimizedBaselineMs": 272.2,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=198",
+  "fetchedAt": "2026-09-23"
+}
