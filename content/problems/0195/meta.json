@@ -7,8 +7,8 @@
   "tags": ["geometry", "number-theory", "parametrization", "diophantine"],
   "answer": 75085391,
   "solvedBy": 2067,
-  "bruteForceBaselineMs": null,
-  "optimizedBaselineMs": 1.0,
+  "bruteForceBaselineMs": 210.0,
+  "optimizedBaselineMs": 25.0,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=195",
   "fetchedAt": "2026-09-23"

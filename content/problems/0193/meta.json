@@ -7,8 +7,8 @@
   "tags": ["number-theory", "mobius", "squarefree", "combinatorics"],
   "answer": 684465067343069,
   "solvedBy": 4511,
-  "bruteForceBaselineMs": null,
-  "optimizedBaselineMs": 300.0,
+  "bruteForceBaselineMs": 5360.0,
+  "optimizedBaselineMs": 620.0,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=193",
   "fetchedAt": "2026-09-23"

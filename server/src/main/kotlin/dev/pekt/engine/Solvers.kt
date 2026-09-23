@@ -7515,18 +7515,223 @@ private fun solve191(): Long {
 /** PE 192 — Best Approximations：连分数展开求分母≤10^12的最佳有理逼近，对2..100000求和。 */
 private fun solve192(): Long = 57060635927998347L
 
-/** PE 193 — Squarefree Numbers：Mobius函数容斥原理，O(√N)求小于2^50的无平方因子数。 */
-private fun solve193(): Long = 684465067343069L
+/**
+ * PE 193 — Squarefree Numbers：Möbius 容斥 Q(N) = Σ_{d≤√(N-1)} μ(d)·⌊(N-1)/d²⌋。
+ * 与 content/problems/0193/solution.kt 一致（线性/倍长筛求 μ，d ≤ 2^25 - 1）；答案 684465067343069。
+ */
+private fun solve193(): Long {
+    val n = 1L shl 50                       // 统计严格小于 2^50 的数
+    val limit = p193Isqrt(n - 1).toInt()
+    val comp = BooleanArray(limit + 1)
+    var i = 2
+    while (i.toLong() * i <= limit) {
+        if (!comp[i]) {
+            var j = i * i
+            while (j <= limit) { comp[j] = true; j += i }
+        }
+        i++
+    }
+    val mu = ByteArray(limit + 1) { 1.toByte() }
+    mu[0] = 0
+    for (p in 2..limit) {                   // μ 的符号：每个素因子翻转一次
+        if (comp[p]) continue
+        var j = p
+        while (j <= limit) { mu[j] = (-mu[j].toInt()).toByte(); j += p }
+    }
+    for (p in 2..limit) {                   // 含素因子平方的 μ 归零
+        if (comp[p]) continue
+        val pp = p.toLong() * p
+        if (pp > limit) break
+        var j = pp.toInt()
+        while (j <= limit) { mu[j] = 0; j += pp.toInt() }
+    }
+    var q = 0L
+    for (d in 1..limit) {
+        val m = mu[d].toInt()
+        if (m == 0) continue
+        q += m.toLong() * ((n - 1) / (d.toLong() * d))
+    }
+    return q
+}
 
-/** PE 194 — Coloured Configurations：色多项式N(a,b,c)=C(a+b,a)*c*(c-1)*SA(c)^a*SB(c)^b mod 10^8。 */
-private fun solve194(): Long = 61190912L
+private fun p193Isqrt(n: Long): Long {
+    var x = Math.sqrt(n.toDouble()).toLong()
+    while ((x + 1) * (x + 1) <= n) x++
+    while (x * x > n) x--
+    return x
+}
 
-/** PE 195 — 60° Triangle Inscribed Circles：双循环Dirichlet型求和，T(1053779)=75085391。 */
-private fun solve195(): Long = 75085391L
+/**
+ * PE 194 — Coloured Configurations：N(a,b,c) = C(a+b,a)·c(c-1)·X_A(c)^a·X_B(c)^b，
+ * 其中 X_A(c) = c^5-9c^4+34c^3-69c^2+77c-38、X_B(c) = c^5-8c^4+27c^3-50c^2+52c-24
+ * 是两个 7 顶点单元在固定共用竖直边两端颜色时的合法扩展数（取自题面插图，
+ * 已用 content/problems/0194/brute-force.kt 逐顶点回溯染色核对）。取末 8 位：61190912。
+ */
+private fun solve194(): Long {
+    val mod = 100_000_000L
+    val c = 1984L
+    fun poly(coef: LongArray): Long {
+        var r = 0L
+        for (k in coef.size - 1 downTo 0) r = (((r * c + coef[k]) % mod) + mod) % mod
+        return r
+    }
+    val sa = poly(longArrayOf(-38L, 77L, -69L, 34L, -9L, 1L))
+    val sb = poly(longArrayOf(-24L, 52L, -50L, 27L, -8L, 1L))
+    val binom = binomial(100, 25).mod(BigInteger.valueOf(mod)).toLong()
+    var r = binom * (c % mod) % mod
+    r = r * ((c - 1) % mod) % mod
+    r = r * modPow(sa, 25L, mod) % mod
+    r = r * modPow(sb, 75L, mod) % mod
+    return r
+}
 
-/** PE 196 — Prime Triplets：分段筛+邻域素数计数，S(5678027)+S(7208785)=1071463494007955。 */
-private fun solve196(): Long = 1071463494007955L
+/**
+ * PE 195 — 60° Triangle Inscribed Circles：本原 60° 三角形 (m²-n², 2mn-n², m²-mn+n²)
+ * 的内切圆半径 r = √3·n(m-n)/2，比例因子 k 的个数为 ⌊n/r⌋，按两类本原对求和
+ * （阈值 M1 = ⌊2n/√3⌋、M2 = ⌊6n/√3⌋）。与 0195/solution.kt 一致；答案 75085391。
+ */
+private fun solve195(): Long {
+    val n = 1053779L
+    val m1 = p195Isqrt(4 * n * n / 3)
+    val m2 = p195Isqrt(12 * n * n)
+    var res = 0L
+    var q = 1L
+    while (q * q <= m1) {
+        var p = q + 1
+        while (p * q <= m1) {
+            if ((p - q) % 3 != 0L && gcd(p, q) == 1L) res += m1 / (p * q)
+            p++
+        }
+        q++
+    }
+    q = 1L
+    while (q * q <= m2) {
+        var p = q + 3
+        while (p * q <= m2) {
+            if (gcd(p, q) == 1L) res += m2 / (p * q)
+            p += 3
+        }
+        q++
+    }
+    return res
+}
 
-/** PE 197 — A Recursively Defined Sequence：迭代收敛到2-cycle，10^12项和保留9位小数。 */
-private fun solve197(): Long = 1710637717L
+private fun p195Isqrt(n: Long): Long {
+    var x = Math.sqrt(n.toDouble()).toLong()
+    while ((x + 1) * (x + 1) <= n) x++
+    while (x * x > n) x--
+    return x
+}
+
+/**
+ * PE 196 — Prime Triplets：分段筛出第 n-2..n+2 行的素性，先标记「素数邻居数 ≥ 2」的素数，
+ * 再统计第 n 行中自身或某素数邻居属于该集合的素数之和。与 0196/solution.kt 一致；
+ * S(8)=60、S(9)=37、S(10000)=950007619 均与题面吻合，答案 322303240771079935。
+ */
+private fun solve196(): Long = p196RowSum(5678027L) + p196RowSum(7208785L)
+
+private fun p196Tri(k: Long): Long = k * (k + 1) / 2
+
+private fun p196Isqrt(n: Long): Long {
+    var x = Math.sqrt(n.toDouble()).toLong()
+    while ((x + 1) * (x + 1) <= n) x++
+    while (x * x > n) x--
+    return x
+}
+
+/** S(n)：第 n 行中所有属于某个素三元组的素数之和 */
+private fun p196RowSum(n: Long): Long {
+    val lo = p196Tri(n - 3) + 1             // 第 n-2 行起点
+    val hi = p196Tri(n + 2)                 // 第 n+2 行终点
+    val w = (hi - lo + 1).toInt()
+    val comp = BooleanArray(w)
+    val root = p196Isqrt(hi).toInt() + 1
+    val baseComp = BooleanArray(root + 1)
+    var i = 2
+    while (i.toLong() * i <= root) {
+        if (!baseComp[i]) {
+            var j = i * i
+            while (j <= root) { baseComp[j] = true; j += i }
+        }
+        i++
+    }
+    for (p in 2..root) {
+        if (baseComp[p]) continue
+        val pp = p.toLong() * p
+        if (pp > hi) break
+        var start = ((p - lo % p) % p).toInt()
+        if (lo + start < pp) {
+            val step = ((pp - lo - start + p - 1) / p).toInt()
+            start += step * p
+        }
+        var idx = start
+        while (idx < w) { comp[idx] = true; idx += p }
+    }
+
+    fun isP(v: Long): Boolean = v in lo..hi && !comp[(v - lo).toInt()]
+    fun neighbours(y: Long, x: Long): Int {
+        var cnt = 0
+        for (dy in -1L..1L) {
+            val yy = y + dy
+            if (yy < 1) continue
+            for (dx in -1L..1L) {
+                if (dy == 0L && dx == 0L) continue
+                val xx = x + dx
+                if (xx < 1 || xx > yy) continue
+                if (isP(p196Tri(yy - 1) + xx)) cnt++
+            }
+        }
+        return cnt
+    }
+
+    val good = HashSet<Long>()
+    for (y in (n - 1)..(n + 1)) {
+        var x = 1L
+        while (x <= y) {
+            val v = p196Tri(y - 1) + x
+            if (isP(v) && neighbours(y, x) >= 2) good.add(v)
+            x++
+        }
+    }
+    var sum = 0L
+    var x = 1L
+    while (x <= n) {
+        val v = p196Tri(n - 1) + x
+        if (isP(v)) {
+            var ok = good.contains(v)
+            if (!ok) {
+                for (dy in -1L..1L) {
+                    val yy = n + dy
+                    if (yy < 1) continue
+                    for (dx in -1L..1L) {
+                        if (dy == 0L && dx == 0L) continue
+                        val xx = x + dx
+                        if (xx < 1 || xx > yy) continue
+                        val u = p196Tri(yy - 1) + xx
+                        if (isP(u) && good.contains(u)) ok = true
+                    }
+                }
+            }
+            if (ok) sum += v
+        }
+        x++
+    }
+    return sum
+}
+
+/** PE 197 — A Recursively Defined Sequence：迭代 f(x)=⌊2^(30.403243784-x²)⌋·10⁻⁹ 至 2-循环，取 u_n+u_{n+1}（放大 10⁹）。 */
+private fun solve197(): Long {
+    fun f(x: Double): Double = Math.floor(Math.pow(2.0, 30.403243784 - x * x)) * 1e-9
+    var u = -1.0
+    var v = f(u)
+    var steps = 0
+    while (steps < 10000) {
+        val w = f(v)
+        if (w == u) break                   // 进入 2-循环（双精度下精确相等）
+        u = v
+        v = w
+        steps++
+    }
+    return Math.round((u + v) * 1e9)
+}
 
