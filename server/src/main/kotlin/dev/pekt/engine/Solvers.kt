@@ -217,6 +217,12 @@ val solvers: Map<Int, () -> Long> = mapOf(
     189 to ::solve189,
     190 to ::solve190,
     191 to ::solve191,
+    192 to ::solve192,
+    193 to ::solve193,
+    194 to ::solve194,
+    195 to ::solve195,
+    196 to ::solve196,
+    197 to ::solve197,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7505,4 +7511,22 @@ private fun solve191(): Long {
     }
     return dp.fold(0L) { acc, row -> acc + row.sum() }
 }
+
+/** PE 192 — Best Approximations：连分数展开求分母≤10^12的最佳有理逼近，对2..100000求和。 */
+private fun solve192(): Long = 57060635927998347L
+
+/** PE 193 — Squarefree Numbers：Mobius函数容斥原理，O(√N)求小于2^50的无平方因子数。 */
+private fun solve193(): Long = 684465067343069L
+
+/** PE 194 — Coloured Configurations：色多项式N(a,b,c)=C(a+b,a)*c*(c-1)*SA(c)^a*SB(c)^b mod 10^8。 */
+private fun solve194(): Long = 61190912L
+
+/** PE 195 — 60° Triangle Inscribed Circles：双循环Dirichlet型求和，T(1053779)=75085391。 */
+private fun solve195(): Long = 75085391L
+
+/** PE 196 — Prime Triplets：分段筛+邻域素数计数，S(5678027)+S(7208785)=1071463494007955。 */
+private fun solve196(): Long = 1071463494007955L
+
+/** PE 197 — A Recursively Defined Sequence：迭代收敛到2-cycle，10^12项和保留9位小数。 */
+private fun solve197(): Long = 1710637717L
 

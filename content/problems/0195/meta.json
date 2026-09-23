@@ -1,0 +1,15 @@
+{
+  "id": 195,
+  "title": "$60$-degree Triangle Inscribed Circles",
+  "titleZh": "60度三角形内切圆",
+  "difficulty": 42,
+  "difficultyLevel": "Level 16",
+  "tags": ["geometry", "number-theory", "parametrization", "diophantine"],
+  "answer": 75085391,
+  "solvedBy": 2067,
+  "bruteForceBaselineMs": null,
+  "optimizedBaselineMs": 1.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=195",
+  "fetchedAt": "2026-09-23"
+}
