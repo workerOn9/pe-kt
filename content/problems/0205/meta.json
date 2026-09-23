@@ -1,0 +1,1 @@
+{"answer": 5731441, "bruteForceBaselineMs": 2, "difficulty": 10, "difficultyLevel": "Level 3", "fetchedAt": "2026-09-24", "hasVisualization": false, "id": 205, "optimizedBaselineMs": 1, "solvedBy": 17659, "sourceUrl": "https://projecteuler.net/problem=205", "tags": ["probability", "dynamic-programming", "convolution", "exact-arithmetic"], "title": "Dice Game", "titleZh": "骰子游戏"}

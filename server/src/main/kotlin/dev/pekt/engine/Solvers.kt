@@ -226,6 +226,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     198 to ::solve198,
     199 to ::solve199,
     200 to ::solve200,
+    201 to ::solve201,
+    202 to ::solve202,
+    203 to ::solve203,
+    204 to ::solve204,
+    205 to ::solve205,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -7856,5 +7861,148 @@ private fun solve200(): Long {
         }
     }
     error("only $hit prime-proof candidates")
+}
+
+/** PE 201 — Subsets with a Unique Sum：0/1 背包式计 d[k][s]，返回恰出现一次的 50 元子集和之总和。 */
+private fun solve201(): Long {
+    val n = 100
+    val k = 50
+    val maxS = n * (n + 1) / 2
+    // 饱和计数：≥2 后单调不可逆，截断为 2 即可区分「唯一」与「非唯一」
+    var dp = Array(k + 1) { LongArray(maxS + 1) }
+    dp[0][0] = 1
+    for (v in 1..n) {
+        for (kk in minOf(k, v) downTo 1) {
+            val cur = dp[kk]
+            val prev = dp[kk - 1]
+            for (s in 0..(maxS - v)) {
+                val c = prev[s]
+                if (c > 0) {
+                    val t = cur[s + v] + c
+                    cur[s + v] = if (t > 2) 2 else t
+                }
+            }
+        }
+    }
+    var ans = 0L
+    val d50 = dp[k]
+    for (s in 0..maxS) if (d50[s] == 1L) ans += s
+    return ans
+}
+
+/** PE 202 — Laserbeam：展开法 + 三角格子 3-染色子类计数，分解 S=(N+3)/2 后容斥。 */
+private fun solve202(): Long {
+    val n = 12017639147L
+    val s = (n + 3) / 2
+    if (s % 3 == 0L) return 0
+    val primes = mutableListOf<Long>()
+    var rem = s
+    var d = 2L
+    while (d * d <= rem) {
+        if (rem % d == 0L) {
+            primes.add(d)
+            while (rem % d == 0L) rem /= d
+        }
+        d = if (d == 2L) 3L else d + 2
+    }
+    if (rem > 1) primes.add(rem)
+    val target = (2 * (s % 3)) % 3
+    val m = s - 1
+    var total = 0L
+    val k = primes.size
+    for (mask in 0 until (1 shl k)) {
+        var dd = 1L
+        var bits = 0
+        for (i in 0 until k) if ((mask shr i and 1) == 1) { dd *= primes[i]; bits++ }
+        val q = m / dd
+        val cj = (target * when (dd % 3) { 1L -> 1L; else -> 2L }) % 3
+        val first = if (cj >= 1) cj else 3
+        val cnt = if (first > q) 0 else 1 + (q - first) / 3
+        total += if (bits % 2 == 0) cnt else -cnt
+    }
+    return total
+}
+
+/** PE 203 — Squarefree Binomial Coefficients：前 51 行帕斯卡三角形去重后筛无平方因子数求和。 */
+private fun solve203(): Long {
+    val n = 51
+    var prev = longArrayOf(1)
+    val values = HashSet<Long>()
+    values.add(1)
+    for (row in 1 until n) {
+        val cur = LongArray(row + 1)
+        cur[0] = 1; cur[row] = 1
+        for (k in 1 until row) cur[k] = prev[k - 1] + prev[k]
+        for (v in cur) values.add(v)
+        prev = cur
+    }
+    val maxV = values.max()
+    val lim = Math.sqrt(maxV.toDouble()).toInt() + 1
+    val sieve = BooleanArray(lim + 1) { true }
+    sieve[0] = false; sieve[1] = false
+    var i = 2
+    while (i * i <= lim) {
+        if (sieve[i]) { var j = i * i; while (j <= lim) { sieve[j] = false; j += i } }
+        i++
+    }
+    val primes = (2..lim).filter { sieve[it] }
+    fun isSquarefree(x0: Long): Boolean {
+        var v = x0
+        for (p in primes) {
+            val pl = p.toLong()
+            if (pl * pl > v) return true
+            if (v % pl == 0L) {
+                if (v % (pl * pl) == 0L) return false
+                v /= pl
+            }
+        }
+        return true
+    }
+    return values.filter { isSquarefree(it) }.sum()
+}
+
+/** PE 204 — Generalised Hamming Numbers：25 个素数维度递归计 ≤1e9 的 100-光滑数。 */
+private fun solve204(): Long {
+    val limit = 1_000_000_000L
+    val primes = (2..100).filter { p -> (2 until p).all { p % it != 0 } }
+    fun f(i: Int, l: Long): Long {
+        if (i == primes.size) return 1
+        var total = 0L
+        var rem = l
+        val p = primes[i].toLong()
+        while (rem >= 1) {
+            total += f(i + 1, rem)
+            rem /= p
+        }
+        return total
+    }
+    return f(0, limit)
+}
+
+/** PE 205 — Dice Game：DP 精确计数 9d4 与 6d6 的点数分布，整数运算求 P(A>B)×10^7 四舍五入。 */
+private fun solve205(): Long {
+    fun dist(n: Int, faces: Int): LongArray {
+        var dp = LongArray(n * faces + 1)
+        dp[0] = 1
+        repeat(n) {
+            val nd = LongArray(n * faces + 1)
+            for (s in dp.indices) {
+                if (dp[s] == 0L) continue
+                for (f in 1..faces) nd[s + f] += dp[s]
+            }
+            dp = nd
+        }
+        return dp
+    }
+    val A = dist(9, 4)
+    val B = dist(6, 6)
+    val tot = A.sum() * B.sum()
+    var prefB = 0L
+    var win = 0L
+    for (a in A.indices) {
+        win += A[a] * prefB
+        prefB += B[a]
+    }
+    return (win * 10_000_000L * 2 + tot) / (2 * tot)
 }
 

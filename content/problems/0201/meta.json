@@ -1,0 +1,1 @@
+{"answer": 10100, "bruteForceBaselineMs": 2100, "difficulty": 37, "difficultyLevel": "Level 14", "fetchedAt": "2026-09-24", "hasVisualization": false, "id": 201, "optimizedBaselineMs": 140, "solvedBy": 3186, "sourceUrl": "https://projecteuler.net/problem=201", "tags": ["combinatorics", "counting", "subsets"], "title": "Subsets with a Unique Sum", "titleZh": "唯一子集和"}
