@@ -1,0 +1,20 @@
+{
+  "answer": 1922364685,
+  "bruteForceBaselineMs": 61,
+  "difficulty": 28,
+  "difficultyLevel": "Level 11",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 211,
+  "optimizedBaselineMs": 1758,
+  "solvedBy": 5348,
+  "sourceUrl": "https://projecteuler.net/problem=211",
+  "tags": [
+    "number-theory",
+    "divisor-sum",
+    "perfect-square",
+    "sieve"
+  ],
+  "title": "Divisor Square Sum",
+  "titleZh": "因数平方和"
+}
