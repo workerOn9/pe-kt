@@ -1,0 +1,15 @@
+{
+  "answer": 44043947822,
+  "bruteForceBaselineMs": 50,
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "fetchedAt": "2026-09-24",
+  "hasVisualization": false,
+  "id": 207,
+  "optimizedBaselineMs": 5,
+  "solvedBy": 5782,
+  "sourceUrl": "https://projecteuler.net/problem=207",
+  "tags": ["number-theory", "exponential-equation", "substitution", "rational-inequality"],
+  "title": "Integer Partition Equations",
+  "titleZh": "整数分拆方程"
+}

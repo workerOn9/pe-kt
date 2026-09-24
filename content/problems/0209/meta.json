@@ -1,0 +1,15 @@
+{
+  "answer": 15964587728784,
+  "bruteForceBaselineMs": 1,
+  "difficulty": 39,
+  "difficultyLevel": "Level 15",
+  "fetchedAt": "2026-09-24",
+  "hasVisualization": false,
+  "id": 209,
+  "optimizedBaselineMs": 1,
+  "solvedBy": 3272,
+  "sourceUrl": "https://projecteuler.net/problem=209",
+  "tags": ["graph-theory", "independent-sets", "cycle-decomposition", "lucas-numbers", "boolean-functions"],
+  "title": "Circular Logic",
+  "titleZh": "循环逻辑"
+}

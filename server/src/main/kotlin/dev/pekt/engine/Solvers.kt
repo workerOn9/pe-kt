@@ -231,6 +231,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     203 to ::solve203,
     204 to ::solve204,
     205 to ::solve205,
+    206 to ::solve206,
+    207 to ::solve207,
+    208 to ::solve208,
+    209 to ::solve209,
+    210 to ::solve210,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -8006,3 +8011,137 @@ private fun solve205(): Long {
     return (win * 10_000_000L * 2 + tot) / (2 * tot)
 }
 
+/** PE 206 — Concealed Square：19 位数字模式定区间 [1e9, ⌊√(2·10^18)⌋]，升序扫描 + 奇数位校验剪枝。 */
+private fun solve206(): Long {
+    fun check19(s0: Long): Boolean {
+        var s = s0
+        var digit = 0L
+        for (k in 0..9) {
+            if (s % 10 != digit) return false
+            s /= 100
+            digit = if (digit == 0L) 9L else digit - 1
+        }
+        return true
+    }
+    var n = 1_000_000_000L
+    val nMax = 1_414_213_562L
+    while (n <= nMax) {
+        if (check19(n * n)) return n
+        n++
+    }
+    error("no concealed square found")
+}
+
+/** PE 207 — Integer Partition Equations：x=2^t 换元后比例 = c/(x-1)，整数不等式 c·12345 < x-1 求首个 x。 */
+private fun solve207(): Long {
+    var perfect = 0L
+    var x = 2L
+    while (true) {
+        if (x and (x - 1) == 0L) perfect++
+        if (perfect * 12345L < x - 1) return x * (x - 1)
+        x++
+    }
+}
+
+/** PE 208 — Robot Walks：闭合 ⟺ mod-5 剩余类计数均匀（各 n/5 次），DP 计数 (r,c1..c4) 状态。 */
+private fun solve208(): Long {
+    val n = 70
+    val half = n / 5
+    fun encode(r: Int, c1: Int, c2: Int, c3: Int, c4: Int): Long =
+        (r.toLong() shl 20) or (c1.toLong() shl 15) or (c2.toLong() shl 10) or
+            (c3.toLong() shl 5) or c4.toLong()
+    var dp = HashMap<Long, Long>()
+    dp[encode(0, 0, 0, 0, 0)] = 1L
+    for (j in 1..n) {
+        val nd = HashMap<Long, Long>()
+        for ((key, v) in dp) {
+            val r = ((key shr 20) and 0xF).toInt()
+            val c1 = ((key shr 15) and 0xF).toInt()
+            val c2 = ((key shr 10) and 0xF).toInt()
+            val c3 = ((key shr 5) and 0xF).toInt()
+            val c4 = (key and 0xF).toInt()
+            for (t in 0..1) {                      // 部分和模型：δ∈{0,1}，S_{j+1} = (S_j + t) mod 5
+                val r2 = (r + t) % 5
+                var a1 = c1; var a2 = c2; var a3 = c3; var a4 = c4
+                when (r2) {
+                    1 -> a1++; 2 -> a2++; 3 -> a3++; 4 -> a4++
+                }
+                if (a1 > half || a2 > half || a3 > half || a4 > half) continue
+                val c0 = j - (a1 + a2 + a3 + a4)
+                if (c0 > half || c0 < 0) continue
+                nd.merge(encode(r2, a1, a2, a3, a4), v, Long::plus)
+            }
+        }
+        dp = nd
+    }
+    var total = 0L
+    for ((key, v) in dp) {
+        val c1 = ((key shr 15) and 0xF).toInt()
+        val c2 = ((key shr 10) and 0xF).toInt()
+        val c3 = ((key shr 5) and 0xF).toInt()
+        val c4 = (key and 0xF).toInt()
+        if (c1 == half && c2 == half && c3 == half && c4 == half) total += v
+    }
+    return total
+}
+
+/** PE 209 — Circular Logic：σ 置换环分解，每环独立集数 = F_{L-1} + F_{L+1}，答案为各环乘积。 */
+private fun solve209(): Long {
+    fun sigma(s: Int): Int {
+        val a = s shr 5 and 1
+        val b = s shr 4 and 1
+        val c = s shr 3 and 1
+        val d = s shr 2 and 1
+        val e = s shr 1 and 1
+        val f = s and 1
+        return (b shl 5) or (c shl 4) or (d shl 3) or (e shl 2) or (f shl 1) or (a xor (b and c))
+    }
+    // 环长 L 的独立集数 = F_{L-1} + F_{L+1}
+    fun lucas(L: Int): Long {
+        fun fibAt(k: Int): Long {
+            if (k <= 0) return 0
+            var f0 = 0L; var f1 = 1L
+            for (i in 2..k) { val t = f0 + f1; f0 = f1; f1 = t }
+            return if (k == 1) 1L else f1
+        }
+        return fibAt(L - 1) + fibAt(L + 1)
+    }
+    val seen = BooleanArray(64)
+    var ans = 1L
+    for (s in 0..63) {
+        if (seen[s]) continue
+        var x = s; var len = 0
+        while (!seen[x]) { seen[x] = true; x = sigma(x); len++ }
+        ans *= lucas(len)
+    }
+    return ans
+}
+
+/** PE 210 — Obtuse Angled Triangles：三区域点积判据（互斥）+ 对称性闭式化简 + 精确圆盘点数。 */
+private fun solve210(): Long {
+    val r = 1_000_000_000L
+    val c = r / 4
+    // ∠O 钝：x + y < 0（扣掉与 OC 共线的 x = y < 0 的 ⌊r/2⌋ 个点）
+    val t = 2 * r * r + 2 * r + 1
+    val a = (t - (2 * (r / 2) + 1)) / 2 - r / 2
+    // ∠C 钝：x + y > r/2，按层求和闭式 8c²+c（r = 4c），扣掉共线的 x = y > c 的 c 个点
+    val b = 8 * c * c + c - maxOf(0L, r / 2 - c)
+    // ∠B 钝：x² + y² < c(x+y) ⟺ U² + V² < c²/2（U = x−c/2, V = y−c/2），按列精确数圆盘点
+    val radius2 = c * c / 2
+    var disc = 0L
+    var u = 0L
+    while (u * u < radius2) {
+        val m = isqrt64(radius2 - u * u - 1)          // #{V : V² < R²−U²} = 2m+1
+        disc += (2 * m + 1) * if (u == 0L) 1L else 2L
+        u++
+    }
+    return a + b + (disc - (c - 1))
+}
+
+/** ⌊√n⌋：double 估算 + 整数校正（3×10¹⁶ 量级 double 已不能精确表示整数）。 */
+private fun isqrt64(n: Long): Long {
+    var x = Math.sqrt(n.toDouble()).toLong()
+    while (x > 0 && x * x > n) x--
+    while ((x + 1) * (x + 1) <= n) x++
+    return x
+}

@@ -1,0 +1,15 @@
+{
+  "answer": 1389019170,
+  "bruteForceBaselineMs": 80,
+  "difficulty": 6,
+  "difficultyLevel": "Level 2",
+  "fetchedAt": "2026-09-24",
+  "hasVisualization": false,
+  "id": 206,
+  "optimizedBaselineMs": 70,
+  "solvedBy": 28547,
+  "sourceUrl": "https://projecteuler.net/problem=206",
+  "tags": ["number-theory", "integer-square-root", "digit-pattern", "search-space-pruning"],
+  "title": "Concealed Square",
+  "titleZh": "伪装的平方数"
+}

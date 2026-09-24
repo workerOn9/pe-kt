@@ -1,0 +1,15 @@
+{
+  "answer": 1598174770174689458,
+  "bruteForceBaselineMs": 19,
+  "difficulty": 74,
+  "difficultyLevel": "Level 29",
+  "fetchedAt": "2026-09-24",
+  "hasVisualization": false,
+  "id": 210,
+  "optimizedBaselineMs": 260,
+  "solvedBy": 2304,
+  "sourceUrl": "https://projecteuler.net/problem=210",
+  "tags": ["computational-geometry", "lattice-point-counting", "gauss-circle-problem", "obtuse-triangle", "closed-form"],
+  "title": "Obtuse Angled Triangles",
+  "titleZh": "钝角三角形"
+}

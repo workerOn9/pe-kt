@@ -1,0 +1,15 @@
+{
+  "answer": 331951449665644800,
+  "bruteForceBaselineMs": 50,
+  "difficulty": 40,
+  "difficultyLevel": "Level 15",
+  "fetchedAt": "2026-09-24",
+  "hasVisualization": false,
+  "id": 208,
+  "optimizedBaselineMs": 450,
+  "solvedBy": 2403,
+  "sourceUrl": "https://projecteuler.net/problem=208",
+  "tags": ["combinatorics", "dp", "roots-of-unity", "random-walk", "modular-counting"],
+  "title": "Robot Walks",
+  "titleZh": "机器人行走"
+}
