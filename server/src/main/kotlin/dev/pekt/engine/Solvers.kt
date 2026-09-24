@@ -241,6 +241,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     213 to ::solve213,
     214 to ::solve214,
     215 to ::solve215,
+    216 to ::solve216,
+    217 to ::solve217,
+    218 to ::solve218,
+    219 to ::solve219,
+    220 to ::solve220,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -8447,4 +8452,364 @@ private fun solve215(): Long {
     var total = 0L
     for (v in dp) total += v
     return total
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PE 216–220（批量新增）
+// ─────────────────────────────────────────────────────────────────────────────
+
+/** 整数平方根（Newton 迭代兜底）。 */
+private fun isqrt216(v: Long): Long {
+    if (v < 2L) return if (v < 0L) -1L else v
+    var x = kotlin.math.sqrt(v.toDouble()).toLong()
+    while (x * x > v) x--
+    while ((x + 1) * (x + 1) <= v) x++
+    return x
+}
+
+private fun powMod216(a: Long, e: Long, m: Long): Long {
+    var base = a % m
+    var exp = e
+    var r = 1L
+    while (exp > 0) {
+        if (exp and 1L == 1L) r = r * base % m
+        base = base * base % m
+        exp = exp shr 1
+    }
+    return r
+}
+
+/** Tonelli–Shanks：返回 x² ≡ a (mod p) 的一个根（p 为奇素数、a 为二次剩余）。 */
+private fun tonelli216(a: Long, p: Long): Long {
+    if (p % 4 == 3L) return powMod216(a, (p + 1) / 4, p)
+    var q = p - 1
+    var s = 0
+    while (q % 2 == 0L) {
+        q /= 2
+        s++
+    }
+    var z = 2L
+    while (powMod216(z, (p - 1) / 2, p) != p - 1L) z++
+    var m = s
+    var c = powMod216(z, q, p)
+    var t = powMod216(a, q, p)
+    var r = powMod216(a, (q + 1) / 2, p)
+    while (t != 1L) {
+        var i = 0
+        var t2 = t
+        while (t2 != 1L) {
+            t2 = t2 * t2 % p
+            i++
+        }
+        val b = powMod216(c, 1L shl (m - i - 1), p)
+        m = i
+        c = b * b % p
+        t = t * c % p
+        r = r * b % p
+    }
+    return r
+}
+
+/**
+ * PE 216 — The Primality of 2n² − 1：数 n ≤ 5×10⁷ 中使 t(n) = 2n²-1 为素数的 n 的个数。
+ * 与 content/problems/0216/solution.kt 的二次剩余分段筛一致：合数的最小素因子 ≤ √(2N²-1) ≈ 7.07×10⁷，
+ * 先筛出该范围内的素数，再用 t(n) ≡ 0 (mod p) ⇔ n² ≡ (p+1)/2 (mod p) 划掉合数。
+ * 本机实测约 2.2 s（RUN_TIMEOUT_MS = 10 s），故直接实算；答案 = 5437849。
+ */
+private fun solve216(): Long {
+    val nMax = 50_000_000L
+    val limit = isqrt216(2 * nMax * nMax - 1)
+    val lim = limit.toInt()
+    val composite = BooleanArray(lim + 1)
+    composite[0] = true
+    composite[1] = true
+    var i = 2
+    while (i.toLong() * i <= limit) {
+        if (!composite[i]) {
+            var j = i * i
+            while (j <= lim) {
+                composite[j] = true
+                j += i
+            }
+        }
+        i++
+    }
+    var pc = 0
+    for (v in 2..lim) if (!composite[v]) pc++
+    val primes = IntArray(pc)
+    val roots = IntArray(pc) { -1 }          // -1：该素数不可能整除任何 t(n)
+    var idx = 0
+    for (v in 2..lim) if (!composite[v]) primes[idx++] = v
+    for (k in 0 until pc) {
+        val p = primes[k].toLong()
+        if (p == 2L) continue
+        val half = (p + 1) / 2
+        if (powMod216(half, (p - 1) / 2, p) != 1L) continue
+        roots[k] = tonelli216(half, p).toInt()
+    }
+    var count = 0L
+    val seg = 4_000_000
+    var lo = 2L
+    while (lo <= nMax) {
+        val hi = minOf(lo + seg - 1, nMax)
+        val alive = BooleanArray((hi - lo + 1).toInt()) { true }
+        for (k in 0 until pc) {
+            val r = roots[k]
+            if (r < 0) continue
+            val p = primes[k].toLong()
+            val off = lo % p
+            var n0 = lo + ((r - off) % p + p) % p
+            while (n0 <= hi) {
+                alive[(n0 - lo).toInt()] = false
+                n0 += p
+            }
+            val r2 = p - r
+            var n1 = lo + ((r2 - off) % p + p) % p
+            while (n1 <= hi) {
+                alive[(n1 - lo).toInt()] = false
+                n1 += p
+            }
+        }
+        for (b in alive) if (b) count++
+        lo = hi + 1
+    }
+    // 补回被误标的 t(n) = p 自身（此时 t(n) 是素数）
+    var n = 2L
+    while (2 * n * n - 1 <= limit) {
+        if (!composite[(2 * n * n - 1).toInt()]) count++
+        n++
+    }
+    return count
+}
+
+private const val MOD217 = 14_348_907L       // 3^15
+private const val MAXSUM217 = 207            // 9 × 23
+
+/** 长度 len 的数字串按数字和分组的 (个数, 数值和)，均 mod 3^15。 */
+private fun half217(len: Int, lead: Boolean): Pair<LongArray, LongArray> {
+    var cnt = LongArray(MAXSUM217 + 1)
+    var sum = LongArray(MAXSUM217 + 1)
+    cnt[0] = 1L
+    var weight = 1L
+    for (pos in 0 until len) {
+        val nc = LongArray(MAXSUM217 + 1)
+        val ns = LongArray(MAXSUM217 + 1)
+        val lo = if (pos == len - 1 && lead) 1 else 0
+        for (s in 0..MAXSUM217) {
+            val c = cnt[s]
+            if (c == 0L) continue
+            val base = sum[s]
+            for (d in lo..9) {
+                val t = s + d
+                if (t > MAXSUM217) continue
+                nc[t] = (nc[t] + c) % MOD217
+                ns[t] = (ns[t] + base + c * d % MOD217 * weight) % MOD217
+            }
+        }
+        cnt = nc
+        sum = ns
+        weight = weight * 10 % MOD217
+    }
+    return cnt to sum
+}
+
+private fun pow10Mod217(e: Int): Long {
+    var r = 1L
+    repeat(e) { r = r * 10 % MOD217 }
+    return r
+}
+
+/**
+ * PE 217 — Balanced Numbers：T(n) 为所有小于 10^n 的平衡数之和，求 T(47) mod 3^15。
+ * 与 content/problems/0217/solution.kt 一致：奇数长度的中间位在两段里各算一次因而抵消，
+ * 于是约束统一为「高 m 位数字和 = 低 m 位数字和」，按数字和配对合成。答案 = 6273134。
+ */
+private fun solve217(): Long {
+    var total = 0L
+    for (k in 1..47) {
+        val m = k / 2
+        val uc = LongArray(MAXSUM217 + 1)
+        val uv = LongArray(MAXSUM217 + 1)
+        if (m == 0) {
+            uc[0] = 1L
+        } else {
+            val h = half217(m, true)
+            h.first.copyInto(uc)
+            h.second.copyInto(uv)
+        }
+        val (lc, lv) = half217(m, false)
+        val odd = k % 2 == 1
+        val p10 = pow10Mod217(if (odd) m + 1 else m)
+        val mid = pow10Mod217(m)
+        val mc = if (odd) 10L else 1L
+        for (s in 0..MAXSUM217) {
+            if (uc[s] == 0L || lc[s] == 0L) continue
+            total = (total + p10 * uv[s] % MOD217 * mc % MOD217 * lc[s]) % MOD217
+            if (odd) total = (total + mid * 45 % MOD217 * uc[s] % MOD217 * lc[s]) % MOD217
+            total = (total + lv[s] * mc % MOD217 * uc[s]) % MOD217
+        }
+    }
+    return total
+}
+
+private fun gcdInt(a: Int, b: Int): Int {
+    var x = a
+    var y = b
+    while (y != 0) {
+        val t = x % y
+        x = y
+        y = t
+    }
+    return x
+}
+
+/**
+ * PE 218 — Perfect Right-angled Triangles：数 c ≤ 10^16 中不是超完美的完美三角形个数。
+ * 与 content/problems/0218/solution.kt 一致：完美 ⇒ (m,n,√c) 也是本原勾股三元组 ⇒
+ * m = 2uv、n = u²−v²、c = (u²+v²)²，枚举 u ≤ 10⁴、v < u、互素且奇偶相异，
+ * 面积 mn|m²−n²| 可达 10³²（超 Long），按模 84 判定。答案 = 0（可证明 84 恒整除面积）。
+ */
+private fun solve218(): Long {
+    var notSuper = 0L
+    val uMax = 10_000
+    val limit = 100_000_000
+    for (u in 2..uMax) {
+        var vMax = isqrt216((limit - u * u).toLong()).toInt()
+        if (vMax >= u) vMax = u - 1
+        var v = if (u % 2 == 0) 1 else 2
+        while (v <= vMax) {
+            if (gcdInt(u, v) == 1) {
+                val mm = (2L * u * v) % 84L
+                val nn = (1L * u * u - 1L * v * v) % 84L
+                val diff = ((mm * mm - nn * nn) % 84L + 84L) % 84L
+                if (mm * nn % 84L * diff % 84L != 0L) notSuper++
+            }
+            v += 2
+        }
+    }
+    return notSuper
+}
+
+/**
+ * PE 219 — Skew-cost Coding：n 个码字的最小总代价 Cost(n)，求 Cost(10^9)。
+ * 与 content/problems/0219/solution.kt 一致：反复劈开当前最便宜的叶子（代价 c 的叶子劈成
+ * c+1 与 c+4，总代价增加 c+5）；因每层的叶子数只由第 c−1、c−4 层决定，可整层批量劈开。
+ * 答案 = 64564225042。
+ */
+private fun solve219(): Long {
+    val splits = 1_000_000_000L - 1
+    val leaves = HashMap<Int, Long>()
+    leaves[0] = 1L
+    var done = 0L
+    var c = 0
+    var total = 0L
+    while (done < splits) {
+        val k = leaves[c] ?: 0L
+        if (k == 0L) {
+            c++
+            continue
+        }
+        val take = minOf(k, splits - done)
+        total += take * (c + 5)
+        done += take
+        if (take == k) {
+            leaves[c + 1] = (leaves[c + 1] ?: 0L) + k
+            leaves[c + 4] = (leaves[c + 4] ?: 0L) + k
+        }
+        c++
+    }
+    return total
+}
+
+/** 一个符号在某一层展开出的走法：F 个数、净位移、净转角（0..3，右转为 +1）。 */
+private class DragonPart(val cnt: Long, val dx: Long, val dy: Long, val dth: Int)
+
+private val DRAGON_DX = longArrayOf(0, 1, 0, -1)
+private val DRAGON_DY = longArrayOf(1, 0, -1, 0)
+
+private fun dragonRot(x: Long, y: Long, th: Int): LongArray = when (th and 3) {
+    0 -> longArrayOf(x, y)
+    1 -> longArrayOf(y, -x)
+    2 -> longArrayOf(-x, -y)
+    else -> longArrayOf(-y, x)
+}
+
+private fun dragonSeq(parts: List<DragonPart>): DragonPart {
+    var cnt = 0L
+    var dx = 0L
+    var dy = 0L
+    var th = 0
+    for (p in parts) {
+        val r = dragonRot(p.dx, p.dy, th)
+        dx += r[0]
+        dy += r[1]
+        th = (th + p.dth) and 3
+        cnt += p.cnt
+    }
+    return DragonPart(cnt, dx, dy, th)
+}
+
+/** tab[lev][0] = F、[1] = a、[2] = b。 */
+private fun buildDragonTable(): Array<Array<DragonPart>> {
+    val levels = 50
+    val tab = Array(levels + 1) { arrayOfNulls<DragonPart>(3) }
+    tab[0][0] = DragonPart(1, 0, 1, 0)
+    tab[0][1] = DragonPart(0, 0, 0, 0)
+    tab[0][2] = DragonPart(0, 0, 0, 0)
+    for (n in 1..levels) {
+        tab[n][0] = DragonPart(1, 0, 1, 0)
+        tab[n][1] = dragonSeq(listOf(tab[n - 1][1]!!, DragonPart(0, 0, 0, 1), tab[n - 1][2]!!, tab[n - 1][0]!!, DragonPart(0, 0, 0, 1)))
+        tab[n][2] = dragonSeq(listOf(DragonPart(0, 0, 0, 3), tab[n - 1][0]!!, tab[n - 1][1]!!, DragonPart(0, 0, 0, 3), tab[n - 1][2]!!))
+    }
+    @Suppress("UNCHECKED_CAST")
+    return Array(levels + 1) { n -> Array(3) { k -> tab[n][k] as DragonPart } }
+}
+
+/** 在 D_50 上走完 target 步后的 (x, y)。 */
+private fun navigateDragon(tab: Array<Array<DragonPart>>, target: Long): LongArray {
+    var x = 0L
+    var y = 0L
+    var o = 0
+    var rem = target
+    val stack = ArrayDeque<LongArray>()
+    stack.addLast(longArrayOf(1, 50))
+    stack.addLast(longArrayOf(0, 50))
+    while (stack.isNotEmpty() && rem > 0L) {
+        val top = stack.removeLast()
+        val sym = top[0].toInt()
+        val lev = top[1].toInt()
+        if (sym == -1) {
+            o = (o + 1) and 3
+            continue
+        }
+        if (sym == -2) {
+            o = (o + 3) and 3
+            continue
+        }
+        val p = tab[lev][sym]
+        if (p.cnt == 0L) continue
+        if (p.cnt <= rem) {
+            val r = dragonRot(p.dx, p.dy, o)
+            x += r[0]
+            y += r[1]
+            o = (o + p.dth) and 3
+            rem -= p.cnt
+            continue
+        }
+        val kids = if (sym == 1) intArrayOf(1, -1, 2, 0, -1) else intArrayOf(-2, 0, 1, -2, 2)
+        for (i in kids.indices.reversed()) stack.addLast(longArrayOf(kids[i].toLong(), (lev - 1).toLong()))
+    }
+    return longArrayOf(x, y, o.toLong())
+}
+
+/**
+ * PE 220 — Heighway Dragon：D_50 中走完 10^12 步后的光标位置。
+ * 与 content/problems/0220/solution.kt 一致：为 F/a/b 各缓存 (F 个数, 净位移, 净转角)，
+ * 50 层自底向上建表后自顶向下导航（整段可跳则跳，否则下沉一层）。
+ * 答案按 10^6 进制拼接：139776·10^6 + 963904 = 139776963904（原始格式 "139776,963904"）。
+ */
+private fun solve220(): Long {
+    val tab = buildDragonTable()
+    val r = navigateDragon(tab, 1_000_000_000_000L)
+    return r[0] * 1_000_000L + r[1]
 }

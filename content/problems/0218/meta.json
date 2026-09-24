@@ -1,0 +1,20 @@
+{
+  "answer": 0,
+  "bruteForceBaselineMs": 739,
+  "difficulty": 38,
+  "difficultyLevel": "Level 15",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 218,
+  "optimizedBaselineMs": 634,
+  "solvedBy": 3774,
+  "sourceUrl": "https://projecteuler.net/problem=218",
+  "tags": [
+    "number-theory",
+    "pythagorean-triples",
+    "divisibility",
+    "proof"
+  ],
+  "title": "Perfect Right-angled Triangles",
+  "titleZh": "完美直角三角形"
+}

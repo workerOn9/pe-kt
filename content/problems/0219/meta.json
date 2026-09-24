@@ -1,0 +1,20 @@
+{
+  "answer": 64564225042,
+  "bruteForceBaselineMs": 18,
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 219,
+  "optimizedBaselineMs": 1,
+  "solvedBy": 2013,
+  "sourceUrl": "https://projecteuler.net/problem=219",
+  "tags": [
+    "greedy",
+    "prefix-code",
+    "data-compression",
+    "priority-queue"
+  ],
+  "title": "Skew-cost Coding",
+  "titleZh": "偏斜代价编码"
+}

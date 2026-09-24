@@ -1,0 +1,20 @@
+{
+  "answer": 139776963904,
+  "bruteForceBaselineMs": 35,
+  "difficulty": 42,
+  "difficultyLevel": "Level 16",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 220,
+  "optimizedBaselineMs": 1,
+  "solvedBy": 2738,
+  "sourceUrl": "https://projecteuler.net/problem=220",
+  "tags": [
+    "fractal",
+    "string-rewriting",
+    "dragon-curve",
+    "lazy-expansion"
+  ],
+  "title": "Heighway Dragon",
+  "titleZh": "海威龙曲线"
+}
