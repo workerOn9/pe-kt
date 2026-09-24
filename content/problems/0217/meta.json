@@ -1,0 +1,20 @@
+{
+  "answer": 6273134,
+  "bruteForceBaselineMs": 17,
+  "difficulty": 46,
+  "difficultyLevel": "Level 18",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 217,
+  "optimizedBaselineMs": 2,
+  "solvedBy": 2110,
+  "sourceUrl": "https://projecteuler.net/problem=217",
+  "tags": [
+    "dynamic-programming",
+    "digit-dp",
+    "combinatorics",
+    "digit-sum"
+  ],
+  "title": "Balanced Numbers",
+  "titleZh": "平衡数"
+}
