@@ -1,0 +1,20 @@
+{
+  "answer": 330721154,
+  "bruteForceBaselineMs": 2359,
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 213,
+  "optimizedBaselineMs": 161,
+  "solvedBy": 3098,
+  "sourceUrl": "https://projecteuler.net/problem=213",
+  "tags": [
+    "probability",
+    "markov-chain",
+    "expected-value",
+    "random-walk"
+  ],
+  "title": "Flea Circus",
+  "titleZh": "跳蚤马戏团"
+}

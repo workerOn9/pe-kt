@@ -236,6 +236,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     208 to ::solve208,
     209 to ::solve209,
     210 to ::solve210,
+    211 to ::solve211,
+    212 to ::solve212,
+    213 to ::solve213,
+    214 to ::solve214,
+    215 to ::solve215,
 )
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
@@ -8144,4 +8149,302 @@ private fun isqrt64(n: Long): Long {
     while (x > 0 && x * x > n) x--
     while ((x + 1) * (x + 1) <= n) x++
     return x
+}
+
+/** PE 211 — Divisor Square Sum：sigma_2 积性 + 分段筛（每块只留余因子与累乘值），512 MB 工作堆内可跑。 */
+private fun solve211(): Long {
+    val limit = 64_000_000
+    val block = 1_000_000
+    val root = 8_000
+    val composite = BooleanArray(root + 1)
+    val primes = ArrayList<Int>(1200)
+    for (p in 2..root) {
+        if (composite[p]) continue
+        primes.add(p)
+        var j = p.toLong() * p
+        while (j <= root) {
+            composite[j.toInt()] = true
+            j += p
+        }
+    }
+    val rest = IntArray(block)
+    val sigma = LongArray(block)
+    var total = 0L
+    var lo = 1
+    while (lo < limit) {
+        val hi = minOf(lo + block, limit)
+        val size = hi - lo
+        for (i in 0 until size) {
+            rest[i] = lo + i
+            sigma[i] = 1L
+        }
+        for (p in primes) {
+            var i = ((lo + p - 1) / p) * p - lo
+            while (i < size) {
+                if (rest[i] % p == 0) {
+                    var m = rest[i]
+                    var e = 0
+                    while (m % p == 0) {
+                        m /= p
+                        e++
+                    }
+                    rest[i] = m
+                    val p2 = p.toLong() * p
+                    var term = 1L
+                    var factor = 1L
+                    repeat(e) {
+                        term *= p2
+                        factor += term
+                    }
+                    sigma[i] *= factor
+                }
+                i += p
+            }
+        }
+        for (i in 0 until size) {
+            val value = if (rest[i] > 1) {
+                val q = rest[i].toLong()
+                sigma[i] * (q * q + 1L)
+            } else {
+                sigma[i]
+            }
+            var r = Math.sqrt(value.toDouble()).toLong()
+            while (r * r > value) r--
+            while ((r + 1) * (r + 1) <= value) r++
+            if (r * r == value) total += lo + i
+        }
+        lo = hi
+    }
+    return total
+}
+
+/** PE 212 — 长方体并集体积：z 轴事件扫描 + 线段树求每个截面的矩形并集面积。半开区间约定（体积 = dx*dy*dz）。 */
+private class P212CoverTree(private val strips: Int, yLen: LongArray) {
+    private val cover = IntArray(4 * strips)
+    private val covered = LongArray(4 * strips)
+    private val yPrefix = LongArray(strips + 1).also { p ->
+        for (i in 0 until strips) p[i + 1] = p[i] + yLen[i]
+    }
+
+    fun reset() {
+        java.util.Arrays.fill(cover, 0)
+        java.util.Arrays.fill(covered, 0L)
+    }
+
+    fun update(node: Int, lo: Int, hi: Int, ql: Int, qr: Int, delta: Int) {
+        if (qr <= lo || hi <= ql) return
+        if (ql <= lo && hi <= qr) {
+            cover[node] += delta
+        } else {
+            val mid = (lo + hi) ushr 1
+            if (ql < mid) update(node * 2, lo, mid, ql, qr, delta)
+            if (mid < qr) update(node * 2 + 1, mid, hi, ql, qr, delta)
+        }
+        covered[node] = when {
+            cover[node] > 0 -> yPrefix[hi] - yPrefix[lo]
+            hi - lo == 1 -> 0L
+            else -> covered[node * 2] + covered[node * 2 + 1]
+        }
+    }
+
+    fun total(): Long = covered[1]
+}
+
+private fun solve212(): Long {
+    val n = 50_000
+    val s = IntArray(300_001)
+    for (k in 1..55) s[k] = ((100003L - 200003L * k + 300007L * k * k * k) % 1_000_000L).toInt()
+    for (k in 56..300_000) s[k] = (s[k - 24] + s[k - 55]) % 1_000_000
+
+    val x0 = IntArray(n); val y0 = IntArray(n); val z0 = IntArray(n)
+    val dx = IntArray(n); val dy = IntArray(n); val dz = IntArray(n)
+    for (i in 0 until n) {
+        val b = 6 * (i + 1)
+        x0[i] = s[b - 5] % 10_000; y0[i] = s[b - 4] % 10_000; z0[i] = s[b - 3] % 10_000
+        dx[i] = 1 + s[b - 2] % 399; dy[i] = 1 + s[b - 1] % 399; dz[i] = 1 + s[b] % 399
+    }
+
+    val yEnds = IntArray(2 * n)
+    for (i in 0 until n) {
+        yEnds[2 * i] = y0[i]
+        yEnds[2 * i + 1] = y0[i] + dy[i]
+    }
+    java.util.Arrays.sort(yEnds)
+    val yUnique = IntArray(2 * n)
+    var yCount = 0
+    for (v in yEnds) if (yCount == 0 || yUnique[yCount - 1] != v) yUnique[yCount++] = v
+    val yIndex = HashMap<Int, Int>(yCount * 2)
+    for (i in 0 until yCount) yIndex[yUnique[i]] = i
+    val strips = yCount - 1
+    val yLen = LongArray(strips) { (yUnique[it + 1] - yUnique[it]).toLong() }
+
+    // z 事件编码：z shl 17 | 长方体号 shl 1 | (0 加入 / 1 移除)
+    val events = IntArray(2 * n)
+    var e = 0
+    for (i in 0 until n) {
+        events[e++] = (z0[i] shl 17) or (i shl 1)
+        events[e++] = ((z0[i] + dz[i]) shl 17) or (i shl 1) or 1
+    }
+    java.util.Arrays.sort(events)
+
+    val tree = P212CoverTree(strips, yLen)
+    val active = IntArray(n)
+    val activeY1 = IntArray(n)
+    val activeY2 = IntArray(n)
+    val slabEvents = IntArray(2 * n)
+    var activeCount = 0
+
+    var volume = 0L
+    var previousZ = Int.MIN_VALUE
+    var index = 0
+    while (index < events.size) {
+        val z = events[index] ushr 17
+        if (activeCount > 0 && previousZ != Int.MIN_VALUE) {
+            var cnt = 0
+            for (a in 0 until activeCount) {
+                val i = active[a]
+                slabEvents[cnt++] = (x0[i] shl 17) or (a shl 1)
+                slabEvents[cnt++] = ((x0[i] + dx[i]) shl 17) or (a shl 1) or 1
+            }
+            java.util.Arrays.sort(slabEvents, 0, cnt)
+            tree.reset()
+            var area = 0L
+            var previousX = Int.MIN_VALUE
+            for (j in 0 until cnt) {
+                val enc = slabEvents[j]
+                val x = enc ushr 17
+                if (previousX != Int.MIN_VALUE) area += tree.total() * (x - previousX).toLong()
+                previousX = x
+                val a = (enc shr 1) and 0x7FFF
+                val delta = if (enc and 1 == 0) 1 else -1
+                tree.update(1, 0, strips, activeY1[a], activeY2[a], delta)
+            }
+            volume += area * (z - previousZ).toLong()
+        }
+        previousZ = z
+        while (index < events.size && (events[index] ushr 17) == z) {
+            val enc = events[index]
+            val i = (enc shr 1) and 0xFFFF
+            if (enc and 1 == 0) {
+                active[activeCount] = i
+                activeY1[activeCount] = yIndex[y0[i]]!!
+                activeY2[activeCount] = yIndex[y0[i] + dy[i]]!!
+                activeCount++
+            } else {
+                for (a in 0 until activeCount) {
+                    if (active[a] == i) {
+                        activeCount--
+                        active[a] = active[activeCount]
+                        activeY1[a] = activeY1[activeCount]
+                        activeY2[a] = activeY2[activeCount]
+                        break
+                    }
+                }
+            }
+            index++
+        }
+    }
+    return volume
+}
+
+/** PE 213 — 跳蚤马戏团：900 状态随机游走 50 步，空格概率为各跳蚤不落在该格的独立乘积。返回 round(期望 * 10^6)。 */
+private fun solve213(): Long {
+    val side = 30
+    val cells = side * side
+    val deg = IntArray(cells)
+    val nbr = Array(cells) { IntArray(4) }
+    for (i in 0 until side) {
+        for (j in 0 until side) {
+            val c = i * side + j
+            var d = 0
+            if (i > 0) nbr[c][d++] = c - side
+            if (i < side - 1) nbr[c][d++] = c + side
+            if (j > 0) nbr[c][d++] = c - 1
+            if (j < side - 1) nbr[c][d++] = c + 1
+            deg[c] = d
+        }
+    }
+    val empty = DoubleArray(cells) { 1.0 }
+    var p = DoubleArray(cells)
+    var q = DoubleArray(cells)
+    for (start in 0 until cells) {
+        java.util.Arrays.fill(p, 0.0)
+        p[start] = 1.0
+        repeat(50) {
+            java.util.Arrays.fill(q, 0.0)
+            for (c in 0 until cells) {
+                val value = p[c]
+                if (value == 0.0) continue
+                val share = value / deg[c]
+                val nb = nbr[c]
+                for (k in 0 until deg[c]) q[nb[k]] += share
+            }
+            val swap = p; p = q; q = swap
+        }
+        for (t in 0 until cells) empty[t] *= 1.0 - p[t]
+    }
+    var expectation = 0.0
+    for (t in 0 until cells) expectation += empty[t]
+    return Math.round(expectation * 1_000_000.0)
+}
+
+/** PE 214 — 欧拉函数链：phi 筛 + 链长线性递推，n < 4*10^7 且链长 25 的素数之和 = 1677366278943。 */
+private fun solve214(): Long {
+    val limit = 40_000_000
+    val phi = IntArray(limit) { it }
+    for (p in 2 until limit) {
+        if (phi[p] != p) continue
+        var j = p
+        while (j < limit) {
+            phi[j] -= phi[j] / p
+            j += p
+        }
+    }
+    val chain = ByteArray(limit)
+    chain[1] = 1
+    var sum = 0L
+    for (n in 2 until limit) {
+        val length = (chain[phi[n]] + 1).toByte()
+        chain[n] = length
+        if (length == 25.toByte() && phi[n] == n - 1) sum += n
+    }
+    return sum
+}
+
+/** PE 215 — 无通缝的墙：层枚举成缝隙掩码，相容判据为按位与为 0，层数 DP 求 W(32,10)。 */
+private fun solve215(): Long {
+    val width = 32
+    val layers = 10
+    val rowsList = ArrayList<Int>(4096)
+    fun rec(pos: Int, mask: Int) {
+        if (pos == width) {
+            rowsList.add(mask)
+            return
+        }
+        for (len in intArrayOf(2, 3)) {
+            val next = pos + len
+            if (next > width) continue
+            rec(next, if (next < width) mask or (1 shl next) else mask)
+        }
+    }
+    rec(0, 0)
+    val rows = rowsList.toIntArray()
+    val r = rows.size
+    var dp = LongArray(r) { 1L }
+    var next = LongArray(r)
+    repeat(layers - 1) {
+        java.util.Arrays.fill(next, 0L)
+        for (j in 0 until r) {
+            var sum = 0L
+            val maskJ = rows[j]
+            for (i in 0 until r) if (rows[i] and maskJ == 0) sum += dp[i]
+            next[j] = sum
+        }
+        val swap = dp
+        dp = next
+        next = swap
+    }
+    var total = 0L
+    for (v in dp) total += v
+    return total
 }

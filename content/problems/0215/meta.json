@@ -1,0 +1,20 @@
+{
+  "answer": 806844323190414,
+  "bruteForceBaselineMs": 92,
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 215,
+  "optimizedBaselineMs": 139,
+  "solvedBy": 4565,
+  "sourceUrl": "https://projecteuler.net/problem=215",
+  "tags": [
+    "dynamic-programming",
+    "combinatorics",
+    "bitmask",
+    "state-compression"
+  ],
+  "title": "Crack-free Walls",
+  "titleZh": "无通缝的墙"
+}

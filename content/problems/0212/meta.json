@@ -1,0 +1,21 @@
+{
+  "answer": 328968937309,
+  "bruteForceBaselineMs": 240,
+  "difficulty": 51,
+  "difficultyLevel": "Level 20",
+  "fetchedAt": "2026-09-25",
+  "hasVisualization": false,
+  "id": 212,
+  "optimizedBaselineMs": 4100,
+  "solvedBy": 1922,
+  "sourceUrl": "https://projecteuler.net/problem=212",
+  "tags": [
+    "computational-geometry",
+    "sweep-line",
+    "coordinate-compression",
+    "segment-tree",
+    "union-volume"
+  ],
+  "title": "Combined Volume of Cuboids",
+  "titleZh": "长方体并集体积"
+}
