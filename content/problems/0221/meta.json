@@ -1,0 +1,20 @@
+{
+  "id": 221,
+  "title": "Alexandrian Integers",
+  "titleZh": "亚历山大整数",
+  "difficulty": 46,
+  "difficultyLevel": "Level 18",
+  "tags": [
+    "number-theory",
+    "divisors",
+    "factorization",
+    "sieve"
+  ],
+  "answer": 1884161251122450,
+  "solvedBy": 2815,
+  "bruteForceBaselineMs": 8000,
+  "optimizedBaselineMs": 5200,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=221",
+  "fetchedAt": "2026-09-26"
+}

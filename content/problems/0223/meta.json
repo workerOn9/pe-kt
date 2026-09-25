@@ -1,0 +1,20 @@
+{
+  "id": 223,
+  "title": "Almost Right-angled Triangles I",
+  "titleZh": "几乎直角三角形 I",
+  "difficulty": 62,
+  "difficultyLevel": "Level 24",
+  "tags": [
+    "number-theory",
+    "diophantine",
+    "tree-enumeration",
+    "geometry"
+  ],
+  "answer": 61614848,
+  "solvedBy": 2129,
+  "bruteForceBaselineMs": 946,
+  "optimizedBaselineMs": 1115,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=223",
+  "fetchedAt": "2026-09-26"
+}

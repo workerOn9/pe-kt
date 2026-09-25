@@ -1,0 +1,20 @@
+{
+  "id": 226,
+  "title": "A Scoop of Blancmange",
+  "titleZh": "一勺奶冻",
+  "difficulty": 48,
+  "difficultyLevel": "Level 18",
+  "tags": [
+    "fractal",
+    "numerical-integration",
+    "takagi-function",
+    "geometry"
+  ],
+  "answer": 11316017,
+  "solvedBy": 2326,
+  "bruteForceBaselineMs": 1068,
+  "optimizedBaselineMs": 60,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=226",
+  "fetchedAt": "2026-09-26"
+}

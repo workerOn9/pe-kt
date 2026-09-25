@@ -246,7 +246,312 @@ val solvers: Map<Int, () -> Long> = mapOf(
     218 to ::solve218,
     219 to ::solve219,
     220 to ::solve220,
+    221 to ::solve221,
+    222 to ::solve222,
+    223 to ::solve223,
+    224 to ::solve224,
+    225 to ::solve225,
+    226 to ::solve226,
 )
+
+/** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
+private fun solve221(): Long {
+    val xHard = 310_000
+    val isP = BooleanArray(xHard + 1) { true }
+    isP[0] = false
+    isP[1] = false
+    var i = 2
+    while (i * i <= xHard) {
+        if (isP[i]) {
+            var j = i * i
+            while (j <= xHard) { isP[j] = false; j += i }
+        }
+        i++
+    }
+    fun powMod(b: Long, e: Long, m: Long): Long {
+        var base = b % m
+        var exp = e
+        var acc = 1L
+        while (exp > 0L) {
+            if (exp and 1L == 1L) acc = acc * base % m
+            base = base * base % m
+            exp = exp shr 1
+        }
+        return acc
+    }
+    // 把「q | x²+1」的 x 登记到 marks[x]（q ≡ 1 mod 4，roots 为 x² ≡ -1 的两个根）
+    val marks = Array(xHard + 1) { ArrayList<Long>(2) }
+    var q = 5L
+    while (q <= xHard) {
+        if (isP[q.toInt()] && q % 4L == 1L) {
+            var a = 2L
+            while (powMod(a, (q - 1) / 2, q) != q - 1L) a++
+            val r0 = powMod(a, (q - 1) / 4, q)
+            for (base in longArrayOf(r0, q - r0)) {
+                var x = base % q
+                if (x == 0L) x = q
+                while (x <= xHard) { marks[x.toInt()].add(q); x += q }
+            }
+        }
+        q++
+    }
+    val answers = ArrayList<Long>(220_000)
+    val cap = 3_000_000_000_000_000L
+    var x = 1L
+    while (x <= xHard) {
+        val xsq1 = x * x + 1
+        var n = xsq1
+        val facs = HashMap<Long, Int>()
+        if (x % 2L == 1L) { facs[2L] = 1; n /= 2 }
+        for (p in marks[x.toInt()]) {
+            if (n % p == 0L) {
+                var e = 0
+                while (n % p == 0L) { n /= p; e++ }
+                facs[p] = (facs[p] ?: 0) + e
+            }
+        }
+        if (n > 1L) {
+            var d = 2L
+            var prime = true
+            while (d * d <= n) { if (n % d == 0L) { prime = false; break }; d++ }
+            check(prime) { "剩余部分不是素数：x=$x" }
+            facs[n] = 1
+        }
+        val divs = ArrayList<Long>(16)
+        divs.add(1L)
+        for ((p, e) in facs) {
+            val base = divs.size
+            var pe = 1L
+            repeat(e) {
+                pe *= p
+                for (k in 0 until base) divs.add(divs[k] * pe)
+            }
+        }
+        divs.sort()
+        for (s in divs) {
+            if (s * s >= xsq1) break
+            val t = xsq1 / s
+            val m1 = x * (x + s)
+            if (m1 > cap / (x + t)) continue     // 预除防 Long 溢出
+            answers.add(m1 * (x + t))
+        }
+        x++
+    }
+    answers.sort()
+    check(answers.size >= 150_000) { "生成项数不足：${answers.size}" }
+    return answers[149_999]
+}
+
+/** PE 222 — 球体装管：边权只依赖 r_i + r_j，最优排布是「大球降序段 + 小球升序段」的摆锤结构；枚举 2²¹ 种分段。 */
+private fun solve222(): Long {
+    val r = (30..50).map { it.toDouble() }
+    val n = r.size
+    val dz = Array(n) { a -> DoubleArray(n) { b -> kotlin.math.sqrt(200.0 * (r[a] + r[b] - 50.0)) } }
+    val di = IntArray(n)
+    val ai = IntArray(n)
+    var best = Double.MAX_VALUE
+    for (mask in 0 until (1 shl n)) {
+        var nd = 0
+        var na = 0
+        var bit = 1 shl (n - 1)
+        for (k in n - 1 downTo 0) {
+            if (mask and bit != 0) di[nd++] = k
+            bit = bit shr 1
+        }
+        bit = 1
+        for (k in 0 until n) {
+            if (mask and bit == 0) ai[na++] = k
+            bit = bit shl 1
+        }
+        if (nd == 0 || na == 0) continue
+        var len = r[di[0]] + r[ai[na - 1]]
+        for (k in 0 until nd - 1) len += dz[di[k]][di[k + 1]]
+        for (k in 0 until na - 1) len += dz[ai[k]][ai[k + 1]]
+        len += dz[di[nd - 1]][ai[0]]
+        if (len < best) best = len
+    }
+    return Math.round(best * 1000.0)
+}
+
+/** PE 223 — 几乎直角三角形 I：Q = a²+b²-c² = 1 的解沿三个 Berggren 矩阵成树（根 (1,1,1)、(1,2,2)），数周长 ≤ 2.5e7 的节点。 */
+private fun solve223(): Long =
+    berggrenTreeCount(25_000_000L, arrayOf(longArrayOf(1, 1, 1), longArrayOf(1, 2, 2)))
+
+/** PE 224 — 几乎直角三角形 II：同一组矩阵作用于 Q = -1，唯一根 (2,2,3)，周长 ≤ 7.5e7 的节点数。 */
+private fun solve224(): Long =
+    berggrenTreeCount(75_000_000L, arrayOf(longArrayOf(2, 2, 3)))
+
+/** PE 225 — Tribonacci 非因子：转移矩阵行列式为 1 ⇒ 模 n 轨道纯周期；第 124 个奇数非因子 = 2009。 */
+private fun solve225(): Long {
+    var found = 0
+    var n = 3
+    while (true) {
+        if (!pe225Divides(n)) {
+            found++
+            if (found == 124) return n.toLong()
+        }
+        n += 2
+    }
+}
+
+/** n 是否整除 Tribonacci 序列的某一项（模 n 迭代，回到初态即无零）。 */
+private fun pe225Divides(n: Int): Boolean {
+    var x = 1 % n
+    var y = x
+    var z = x
+    if (x == 0) return true
+    while (true) {
+        val t = (x + y + z) % n
+        x = y
+        y = z
+        z = t
+        if (x == 0 || y == 0 || z == 0) return true
+        if (x == 1 && y == 1 && z == 1) return false
+    }
+}
+
+/** PE 226 — 一勺奶冻：按二进制自相似区间解析积分，m = 20 时面积 0.113160169518 ⇒ round(×1e8) = 11316017。 */
+private fun solve226(): Long = Math.round(pe226ScoopArea(20) * 1e8)
+
+/** 三个 Berggren 矩阵（行展开）。 */
+private val BERGER_MATS = arrayOf(
+    longArrayOf(1, -2, 2, 2, -1, 2, 2, -2, 3),   // A
+    longArrayOf(1, 2, 2, 2, 1, 2, 2, 2, 3),      // B
+    longArrayOf(-1, 2, 2, -2, 1, 2, -2, 2, 3),   // C
+)
+
+/** 统计 a² + b² - c² = Q 的解（a ≤ b ≤ c、非退化）中周长 ≤ n 的个数：从根出发沿矩阵 DFS，去重后剪枝。 */
+private fun berggrenTreeCount(n: Long, roots: Array<LongArray>): Long {
+    var cap = 1 shl 10
+    var sa = LongArray(cap)
+    var sb = LongArray(cap)
+    var sc = LongArray(cap)
+    var sp = 0
+    for (r in roots) { sa[sp] = r[0]; sb[sp] = r[1]; sc[sp] = r[2]; sp++ }
+    val ca = LongArray(3)
+    val cb = LongArray(3)
+    val cc = LongArray(3)
+    val ok = BooleanArray(3)
+    var total = 0L
+    while (sp > 0) {
+        sp--
+        val a = sa[sp]
+        val b = sb[sp]
+        val c = sc[sp]
+        total++
+        for (m in 0 until 3) {
+            ok[m] = false
+            val mat = BERGER_MATS[m]
+            var x = mat[0] * a + mat[1] * b + mat[2] * c
+            var y = mat[3] * a + mat[4] * b + mat[5] * c
+            var z = mat[6] * a + mat[7] * b + mat[8] * c
+            if (x < 1L || y < 1L || z < 1L) continue
+            if (x > y) { val t = x; x = y; y = t }
+            if (y > z) { val t = y; y = z; z = t }
+            if (x > y) { val t = x; x = y; y = t }
+            if (x + y <= z) continue
+            ca[m] = x
+            cb[m] = y
+            cc[m] = z
+            ok[m] = true
+        }
+        for (m in 0 until 3) {
+            if (!ok[m]) continue
+            var dup = false
+            for (k in 0 until m) {
+                if (ok[k] && ca[k] == ca[m] && cb[k] == cb[m] && cc[k] == cc[m]) { dup = true; break }
+            }
+            if (dup) continue
+            if (ca[m] + cb[m] + cc[m] <= n) {
+                if (sp == cap) {
+                    cap *= 2
+                    sa = sa.copyOf(cap); sb = sb.copyOf(cap); sc = sc.copyOf(cap)
+                }
+                sa[sp] = ca[m]; sb[sp] = cb[m]; sc[sp] = cc[m]; sp++
+            }
+        }
+    }
+    return total
+}
+
+/** 奶冻曲线 B(x) = Σ s(2^n x)/2^n。 */
+private fun pe226Blancmange(x0: Double): Double {
+    var r = x0 - kotlin.math.floor(x0)
+    var s = 0.0
+    var w = 1.0
+    for (i in 0 until 120) {
+        s += (if (r <= 0.5) r else 1.0 - r) * w
+        w *= 0.5
+        r *= 2.0
+        if (r >= 1.0) r -= 1.0
+        if (r == 0.0) break
+    }
+    return s
+}
+
+/** 圆下半弧 h(x) = sqrt(1/16 - (x-1/4)²)（圆外取 0）。 */
+private fun pe226CircleLower(x: Double): Double {
+    val t = 0.0625 - (x - 0.25) * (x - 0.25)
+    return if (t > 0.0) kotlin.math.sqrt(t) else 0.0
+}
+
+/** ∫ h dx 的原函数。 */
+private fun pe226CircleLowerIntegral(x: Double): Double {
+    val r = 0.25
+    val t = (x - 0.25).coerceIn(-r, r)
+    return 0.5 * t * kotlin.math.sqrt(kotlin.math.max(0.0, r * r - t * t)) +
+        0.5 * r * r * kotlin.math.asin(t / r)
+}
+
+/** 被圆围住的曲线下方面积（m 为二进制区间层数，20 已达 1e-12）。 */
+private fun pe226ScoopArea(m: Int): Double {
+    val intervals = 1 shl (m - 1)
+    val hh = Math.pow(2.0, -m.toDouble())
+    val tailBound = (2.0 / 3.0) * hh
+    var total = 0.0
+    for (k in 0 until intervals) {
+        val x0 = k * hh
+        val x1 = x0 + hh
+        var r = x0
+        var v = 0.0
+        var w = 1.0
+        var plus = 0
+        for (i in 0 until m) {
+            v += (if (r <= 0.5) r else 1.0 - r) * w
+            if (r < 0.5) plus++
+            w *= 0.5
+            r *= 2.0
+            if (r >= 1.0) r -= 1.0
+        }
+        val b = (2 * plus - m).toDouble()
+        val f0 = v + pe226CircleLower(x0) - 0.5
+        val f1 = v + b * hh + pe226CircleLower(x1) - 0.5
+        val fmin = kotlin.math.min(f0, f1)
+        var fmax = kotlin.math.max(f0, f1)
+        val xc = 0.25 + 0.25 * b / kotlin.math.sqrt(1.0 + b * b)
+        if (xc > x0 && xc < x1) {
+            fmax = kotlin.math.max(fmax, v + b * (xc - x0) + pe226CircleLower(xc) - 0.5)
+        }
+        if (fmax + tailBound < 0.0) continue
+        if (fmin > 0.0) {
+            total += v * hh + b * hh * hh / 2.0 +
+                (pe226CircleLowerIntegral(x1) - pe226CircleLowerIntegral(x0)) - 0.5 * hh + hh * hh / 2.0
+        } else {
+            val steps = 256
+            val sub = hh / steps
+            var acc = 0.0
+            for (j in 0..steps) {
+                val xx = x0 + j * sub
+                var g = pe226Blancmange(xx) + pe226CircleLower(xx) - 0.5
+                if (g < 0.0) g = 0.0
+                val wt = if (j == 0 || j == steps) 1 else if (j % 2 == 0) 2 else 4
+                acc += wt * g
+            }
+            total += acc * sub / 3.0
+        }
+    }
+    return total
+}
 
 /** PE 001 — 容斥原理 + 等差数列求和，1000 以内 3 或 5 的倍数之和 = 233168。O(1)。 */
 private fun solve001(): Long {
