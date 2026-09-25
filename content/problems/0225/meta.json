@@ -1,0 +1,20 @@
+{
+  "id": 225,
+  "title": "Tribonacci Non-divisors",
+  "titleZh": "Tribonacci 非因子",
+  "difficulty": 23,
+  "difficultyLevel": "Level 9",
+  "tags": [
+    "number-theory",
+    "recurrence",
+    "divisibility",
+    "cycle-detection"
+  ],
+  "answer": 2009,
+  "solvedBy": 5517,
+  "bruteForceBaselineMs": 231,
+  "optimizedBaselineMs": 13,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=225",
+  "fetchedAt": "2026-09-26"
+}

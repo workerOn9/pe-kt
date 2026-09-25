@@ -1,0 +1,20 @@
+{
+  "id": 224,
+  "title": "Almost Right-angled Triangles II",
+  "titleZh": "几乎直角三角形 II",
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "tags": [
+    "number-theory",
+    "diophantine",
+    "recursion",
+    "counting"
+  ],
+  "answer": 4137330,
+  "solvedBy": 1769,
+  "bruteForceBaselineMs": 952,
+  "optimizedBaselineMs": 100,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=224",
+  "fetchedAt": "2026-09-26"
+}
