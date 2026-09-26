@@ -1,0 +1,20 @@
+{
+  "id": 229,
+  "title": "Four Representations Using Squares",
+  "titleZh": "平方数的四种表示",
+  "difficulty": 47,
+  "difficultyLevel": "Level 18",
+  "tags": [
+    "number-theory",
+    "quadratic-forms",
+    "bitset",
+    "enumeration"
+  ],
+  "answer": 11325263,
+  "solvedBy": 1979,
+  "bruteForceBaselineMs": 212,
+  "optimizedBaselineMs": 5183,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=229",
+  "fetchedAt": "2026-09-27"
+}

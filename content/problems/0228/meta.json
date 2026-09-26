@@ -1,0 +1,20 @@
+{
+  "id": 228,
+  "title": "Minkowski Sums",
+  "titleZh": "闵可夫斯基和",
+  "difficulty": 51,
+  "difficultyLevel": "Level 20",
+  "tags": [
+    "geometry",
+    "minkowski-sum",
+    "totient-function",
+    "computational-geometry"
+  ],
+  "answer": 86226,
+  "solvedBy": 1860,
+  "bruteForceBaselineMs": 10,
+  "optimizedBaselineMs": 1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=228",
+  "fetchedAt": "2026-09-27"
+}

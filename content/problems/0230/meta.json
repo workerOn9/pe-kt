@@ -1,0 +1,20 @@
+{
+  "id": 230,
+  "title": "Fibonacci Words",
+  "titleZh": "斐波那契词",
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "fibonacci",
+    "string-compression",
+    "random-access",
+    "recursion"
+  ],
+  "answer": 850481152593119296,
+  "solvedBy": 3564,
+  "bruteForceBaselineMs": 1,
+  "optimizedBaselineMs": 1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=230",
+  "fetchedAt": "2026-09-27"
+}
