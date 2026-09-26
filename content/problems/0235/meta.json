@@ -1,0 +1,20 @@
+{
+  "id": 235,
+  "title": "An Arithmetic Geometric Sequence",
+  "titleZh": "等差-等比序列",
+  "difficulty": 28,
+  "difficultyLevel": "Level 10",
+  "tags": [
+    "numerical-analysis",
+    "binary-search",
+    "geometric-series",
+    "floating-point"
+  ],
+  "answer": 1002322108633,
+  "solvedBy": 5975,
+  "bruteForceBaselineMs": 80,
+  "optimizedBaselineMs": 5,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=235",
+  "fetchedAt": "2026-09-27"
+}
