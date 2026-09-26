@@ -1,0 +1,20 @@
+{
+  "id": 236,
+  "title": "Luxury Hampers",
+  "titleZh": "豪华礼篮",
+  "difficulty": 76,
+  "difficultyLevel": "Level 30",
+  "tags": [
+    "simpson-paradox",
+    "diophantine-equation",
+    "extended-euclid",
+    "number-theory"
+  ],
+  "answer": 123000059,
+  "solvedBy": 1380,
+  "bruteForceBaselineMs": 316361,
+  "optimizedBaselineMs": 4959,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=236",
+  "fetchedAt": "2026-09-27"
+}

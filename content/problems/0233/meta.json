@@ -1,0 +1,20 @@
+{
+  "id": 233,
+  "title": "Lattice Points on a Circle",
+  "titleZh": "圆上的格点",
+  "difficulty": 78,
+  "difficultyLevel": "Level 31",
+  "tags": [
+    "number-theory",
+    "sum-of-two-squares",
+    "multiplicative-function",
+    "prime-sieve"
+  ],
+  "answer": 271204031455541309,
+  "solvedBy": 3017,
+  "bruteForceBaselineMs": 1500,
+  "optimizedBaselineMs": 2604,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=233",
+  "fetchedAt": "2026-09-27"
+}

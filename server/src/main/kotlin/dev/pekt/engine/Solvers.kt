@@ -257,6 +257,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     229 to ::solve229,
     230 to ::solve230,
     231 to ::solve231,
+    232 to ::solve232,
+    233 to ::solve233,
+    234 to ::solve234,
+    235 to ::solve235,
+    236 to ::solve236,
 )
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
@@ -9342,4 +9347,396 @@ private fun solve231(): Long {
         p++
     }
     return total
+}
+
+/**
+ * PE 232 — The Race：状态 = (玩家 1 还差 a 分, 玩家 2 还差 b 分)，求玩家 2 的最优胜率。
+ * F[a][b]（轮到玩家 1）与 G[a][b]（轮到玩家 2）互相引用**同一格**，不能顺序填表；
+ * 把 F = (H+G)/2 代回 G 得 G = (2P·J + (1-P)H)/(1+P)，再回代 F = (H+G)/2。
+ * T ≤ 8 已完备（2^7 = 128 ≥ 100 可一次到位，且命中概率随 T 递减）。
+ * 答案 = round(0.836485555846947 × 10^8) = 83648556。
+ */
+private fun solve232(): Long {
+    val th = 100
+    val f = Array(th + 1) { DoubleArray(th + 1) }
+    val g = Array(th + 1) { DoubleArray(th + 1) }
+    for (a in 1..th) {
+        for (b in 1..th) {
+            val h = if (a <= 1) 0.0 else g[a - 1][b]
+            var best = -1.0
+            for (t in 1..8) {
+                val prob = Math.pow(2.0, -t.toDouble())
+                val gain = 1 shl (t - 1)
+                val j = if (gain >= b) 1.0 else f[a][b - gain]
+                val v = (2.0 * prob * j + (1.0 - prob) * h) / (1.0 + prob)
+                if (v > best) best = v
+            }
+            g[a][b] = best
+            f[a][b] = 0.5 * (h + best)
+        }
+    }
+    return Math.round(f[th][th] * 1e8)
+}
+
+/**
+ * PE 233 — Lattice Points on a Circle：f(N) = 4·∏_{p≡1(4)}(2e+1)，要求 = 420 即 ∏(2e+1) = 105。
+ * 于是 N = 2^a · M · T：M 是 1 mod 4 的「核」（指数模式 {1,2,3}/{7,3}/{10,2}），
+ * T 只含 3 mod 4 的素因子。最小核 5³·13²·17 = 359125 ⟹ T ≤ 10¹¹/359125 = 278454，
+ * 这个半群可以整表枚举（39626 个）并用前缀和 + 二分回答内层求和。
+ * 核用规范枚举（A<B<C × 6 种指数分派、A<B × 2 种顺序），避免重复计数。答案 271204031455541309。
+ */
+private fun solve233(): Long {
+    val limit = 100_000_000_000L
+    val sieveMax = 5_600_000
+    val composite = BooleanArray(sieveMax + 1)
+    run {
+        var i = 2
+        while (i.toLong() * i <= sieveMax) {
+            if (!composite[i]) {
+                var j = i * i
+                while (j <= sieveMax) { composite[j] = true; j += i }
+            }
+            i++
+        }
+    }
+    val p1 = ArrayList<Int>()
+    for (x in 5..sieveMax) if (!composite[x] && x % 4 == 1) p1.add(x)
+    val p1a = p1.toIntArray()
+    val xMax = (limit / 359_125L).toInt()
+    val p3 = ArrayList<Int>()
+    for (x in 3..xMax) if (!composite[x] && x % 4 == 3) p3.add(x)
+
+    val sList = ArrayList<Long>()
+    fun gen(start: Int, cur: Long) {
+        sList.add(cur)
+        var j = start
+        while (j < p3.size) {
+            val q = p3[j].toLong()
+            if (cur > xMax / q) break
+            var v = cur * q
+            while (v <= xMax) {
+                gen(j + 1, v)
+                if (v > xMax / q) break
+                v *= q
+            }
+            j++
+        }
+    }
+    gen(0, 1L)
+    val s = sList.toLongArray()
+    java.util.Arrays.sort(s)
+    val sPref = LongArray(s.size + 1)
+    for (k in s.indices) sPref[k + 1] = sPref[k] + s[k]
+
+    fun pw(base: Long, e: Int): Long {
+        var r = 1L
+        repeat(e) { r *= base }
+        return r
+    }
+
+    fun iroot(x: Long, k: Int): Long {
+        if (k == 1) return x
+        var r = Math.pow(x.toDouble(), 1.0 / k).toLong() + 2
+        while (r > 0 && pw(r, k) > x) r--
+        while (pw(r + 1, k) <= x) r++
+        return r
+    }
+
+    var total = 0L
+    fun addCore(m: Long) {
+        if (m < 1L || m > limit) return
+        var v = m
+        while (v <= limit) {
+            val x = limit / v
+            var lo = 0
+            var hi = s.size
+            while (lo < hi) {
+                val mid = (lo + hi) ushr 1
+                if (s[mid] <= x) lo = mid + 1 else hi = mid
+            }
+            total += v * sPref[lo]
+            v = v shl 1
+        }
+    }
+
+    for (e in arrayOf(
+        intArrayOf(1, 2, 3), intArrayOf(1, 3, 2), intArrayOf(2, 1, 3),
+        intArrayOf(2, 3, 1), intArrayOf(3, 1, 2), intArrayOf(3, 2, 1),
+    )) {
+        val eA = e[0]; val eB = e[1]; val eC = e[2]
+        var ia = 0
+        while (ia < p1a.size) {
+            val aA = pw(p1a[ia].toLong(), eA)
+            if (aA > limit) break
+            var ib = ia + 1
+            while (ib < p1a.size) {
+                val bB = aA * pw(p1a[ib].toLong(), eB)
+                if (bB > limit) break
+                val lim = limit / bB
+                if (eC == 1) {
+                    var ic = ib + 1
+                    while (ic < p1a.size && p1a[ic].toLong() <= lim) {
+                        addCore(bB * p1a[ic]); ic++
+                    }
+                } else {
+                    val cMax = iroot(lim, eC)
+                    var ic = ib + 1
+                    while (ic < p1a.size && p1a[ic].toLong() <= cMax) {
+                        addCore(bB * pw(p1a[ic].toLong(), eC)); ic++
+                    }
+                }
+                ib++
+            }
+            ia++
+        }
+    }
+    for (ee in arrayOf(intArrayOf(7, 3), intArrayOf(3, 7), intArrayOf(10, 2), intArrayOf(2, 10))) {
+        val e1 = ee[0]; val e2 = ee[1]
+        var ia = 0
+        while (ia < p1a.size) {
+            val aA = pw(p1a[ia].toLong(), e1)
+            if (aA > limit) break
+            var ib = ia + 1
+            while (ib < p1a.size) {
+                val m = aA * pw(p1a[ib].toLong(), e2)
+                if (m > limit) break
+                addCore(m)
+                ib++
+            }
+            ia++
+        }
+    }
+    return total
+}
+
+/**
+ * PE 234 — Semidivisible Numbers：相邻素数对 (p,q) 在开区间 (p²,q²) 内
+ * lps(n) = p、ups(n) = q，恰有一个整除的求和 = S(p) + S(q) − 2·S(pq)（等差数列求和）。
+ * n = p² 处 lps = ups = p，天然被开区间排除。答案 1259187438574927161。
+ */
+private fun solve234(): Long {
+    val target = 999_966_663_333L
+    val sp = 1_000_050
+    val composite = BooleanArray(sp + 1)
+    run {
+        var i = 2
+        while (i * i <= sp) {
+            if (!composite[i]) {
+                var j = i * i
+                while (j <= sp) { composite[j] = true; j += i }
+            }
+            i++
+        }
+    }
+    val primes = ArrayList<Int>()
+    for (x in 2..sp) if (!composite[x]) primes.add(x)
+
+    fun multSum(d: Long, lo: Long, hi: Long): Long {
+        if (hi <= lo) return 0
+        val first = lo / d + 1
+        val last = hi / d
+        if (first > last) return 0
+        return d * (first + last) * (last - first + 1) / 2
+    }
+
+    var total = 0L
+    var idx = 0
+    while (idx + 1 < primes.size) {
+        val p = primes[idx].toLong()
+        val q = primes[idx + 1].toLong()
+        if (p * p > target) break
+        val lo = p * p
+        val hi = minOf(q * q - 1, target)
+        if (hi > lo) {
+            total += multSum(p, lo, hi) + multSum(q, lo, hi) - 2 * multSum(p * q, lo, hi)
+        }
+        idx++
+    }
+    return total
+}
+
+/**
+ * PE 235 — An Arithmetic Geometric Sequence：s(n,r) = Σ(900−3k)r^{k−1} 关于 r 严格递减，
+ * 在 [1, 1.5] 上二分；求值用 Horner 回代（中间量与结果同阶，避免抵消）。
+ * 答案 = round(1.002322108632876 × 10^12) = 1002322108633。
+ */
+private fun solve235(): Long {
+    val target = -600_000_000_000.0
+    var lo = 1.0
+    var hi = 1.5
+    repeat(200) {
+        val mid = (lo + hi) / 2
+        var acc = 0.0
+        for (k in 5000 downTo 1) acc = acc * mid + (900 - 3 * k)
+        if (acc > target) lo = mid else hi = mid
+    }
+    return Math.round((lo + hi) / 2 * 1e12)
+}
+
+/**
+ * PE 236 — Luxury Hampers：b_i/B_i = m·a_i/A_i 与整体条件化为 Σ D_i·k_i = 0（1 ≤ k_i ≤ cap_i）。
+ * 候选集：1 < m < √(246·41/(295·5)) = 2.6149；因 G_i | a'_i·b'_i，(41,59) 组 G_i ≤ 59 给出 v ≤ 9056，
+ * 而 41 | u 且 59 | v 时 p_i 可取到 v/59，v 上限为 70500，需单独扫 u = 41u'、v = 59v'。
+ * 判定：D 除以公因数 → 同系数项合并成连续区间 → 小区间先枚举 → 最后两项用扩展 gcd 精确判定。
+ * 共 35 个 m（与题面自述一致），最大 123/59；编码 u×10⁶ + v = 123000059。
+ */
+private fun solve236(): Long {
+    val prods = arrayOf(
+        longArrayOf(41, 5, 128), longArrayOf(41, 59, 32), longArrayOf(41, 59, 64),
+        longArrayOf(90, 59, 64), longArrayOf(41, 59, 96),
+    )
+    val sumA = 18880L
+    val sumB = 15744L
+    val mMaxNum = 2614L
+    val mMaxDen = 1000L
+
+    fun gcdOf(a: Long, b: Long): Long {
+        var x = Math.abs(a)
+        var y = Math.abs(b)
+        while (y != 0L) { val t = x % y; x = y; y = t }
+        return x
+    }
+
+    fun egcd(a: Long, b: Long): LongArray {
+        if (b == 0L) return longArrayOf(a, 1L, 0L)
+        val r = egcd(b, a % b)
+        return longArrayOf(r[0], r[2], r[1] - (a / b) * r[2])
+    }
+
+    fun cdiv(a: Long, b: Long): Long = -Math.floorDiv(-a, b)
+
+    /** 是否存在 k1 ∈ [l1,h1]、k2 ∈ [l2,h2] 使 d1k1 + d2k2 = rem */
+    fun twoVar(d1: Long, l1: Long, h1: Long, d2: Long, l2: Long, h2: Long, rem: Long): Boolean {
+        if (d1 == 0L && d2 == 0L) return rem == 0L
+        if (d1 == 0L) return if (rem % d2 == 0L) rem / d2 in l2..h2 else false
+        if (d2 == 0L) return if (rem % d1 == 0L) rem / d1 in l1..h1 else false
+        val g = gcdOf(d1, d2)
+        if (rem % g != 0L) return false
+        val a2 = d1 / g
+        val b2 = d2 / g
+        val r2 = rem / g
+        val e = egcd(Math.abs(a2), Math.abs(b2))
+        val x0 = if (a2 < 0L) -e[1] else e[1]
+        val y0 = if (b2 < 0L) -e[2] else e[2]
+        val t0 = x0 * r2
+        val t1 = y0 * r2
+        var lo = Long.MIN_VALUE / 4
+        var hi = Long.MAX_VALUE / 4
+        if (b2 > 0L) {
+            lo = maxOf(lo, cdiv(l1 - t0, b2)); hi = minOf(hi, Math.floorDiv(h1 - t0, b2))
+        } else if (b2 < 0L) {
+            lo = maxOf(lo, cdiv(h1 - t0, b2)); hi = minOf(hi, Math.floorDiv(l1 - t0, b2))
+        } else if (t0 < l1 || t0 > h1) return false
+        if (a2 > 0L) {
+            lo = maxOf(lo, cdiv(t1 - h2, a2)); hi = minOf(hi, Math.floorDiv(t1 - l2, a2))
+        } else if (a2 < 0L) {
+            lo = maxOf(lo, cdiv(t1 - l2, a2)); hi = minOf(hi, Math.floorDiv(t1 - h2, a2))
+        } else if (t1 < l2 || t1 > h2) return false
+        return lo <= hi
+    }
+
+    /** 是否存在 k_i ∈ [1, cap_i] 使 Σ D_i·k_i = 0 */
+    fun feasible(d0: LongArray, cap0: LongArray): Boolean {
+        var g = 0L
+        for (x in d0) g = gcdOf(g, x)
+        val d = LongArray(5) { if (g > 1L) d0[it] / g else d0[it] }
+        val ds = ArrayList<Long>()
+        val los = ArrayList<Long>()
+        val his = ArrayList<Long>()
+        for (i in 0..4) {
+            if (d[i] == 0L) continue
+            var merged = false
+            for (j in ds.indices) {
+                if (ds[j] == d[i]) { los[j] += 1L; his[j] += cap0[i]; merged = true; break }
+            }
+            if (!merged) { ds.add(d[i]); los.add(1L); his.add(cap0[i]) }
+        }
+        val n = ds.size
+        if (n == 0) return true
+        if (n == 1) return false
+        val order = (0 until n).sortedBy { his[it] - los[it] }
+        val dd = LongArray(n) { ds[order[it]] }
+        val ll = LongArray(n) { los[order[it]] }
+        val hh = LongArray(n) { his[order[it]] }
+
+        fun remMin(i: Int): Long {
+            var acc = 0L
+            for (j in i until n) acc += if (dd[j] > 0L) dd[j] * ll[j] else dd[j] * hh[j]
+            return acc
+        }
+
+        fun remMax(i: Int): Long {
+            var acc = 0L
+            for (j in i until n) acc += if (dd[j] > 0L) dd[j] * hh[j] else dd[j] * ll[j]
+            return acc
+        }
+
+        fun rec(i: Int, acc: Long): Boolean {
+            if (i == n) return acc == 0L
+            if (i == n - 2) return twoVar(dd[i], ll[i], hh[i], dd[i + 1], ll[i + 1], hh[i + 1], -acc)
+            if (acc + remMin(i) > 0L || acc + remMax(i) < 0L) return false
+            var k = ll[i]
+            while (k <= hh[i]) {
+                if (rec(i + 1, acc + dd[i] * k)) return true
+                k++
+            }
+            return false
+        }
+        return if (n == 2) twoVar(dd[0], ll[0], hh[0], dd[1], ll[1], hh[1], 0L) else rec(0, 0L)
+    }
+
+    fun analyse(u: Long, v: Long): Array<LongArray>? {
+        val d = LongArray(5)
+        val cap = LongArray(5)
+        var sumP = 0L
+        var sumS = 0L
+        for (i in 0..4) {
+            val a1 = prods[i][0]
+            val b1 = prods[i][1]
+            val g = prods[i][2]
+            val gg = gcdOf(v * a1, u * b1)
+            val p = v * a1 / gg
+            val s = u * b1 / gg
+            val c = minOf(g * a1 / p, g * b1 / s, sumA / p, sumB / s)
+            if (c < 1L) return null
+            sumP += p
+            if (sumP > sumA) return null
+            sumS += s
+            if (sumS > sumB) return null
+            cap[i] = c
+            d[i] = 246L * v * p - 295L * u * s
+        }
+        var pos = false
+        var neg = false
+        for (x in d) { if (x > 0L) pos = true; if (x < 0L) neg = true }
+        if (!pos || !neg) return null
+        return arrayOf(d, cap)
+    }
+
+    var bestU = 0L
+    var bestV = 1L
+    fun scan(u: Long, v: Long) {
+        if (gcdOf(u, v) != 1L) return
+        if (u <= v || u * mMaxDen >= mMaxNum * v) return
+        val a = analyse(u, v) ?: return
+        if (!feasible(a[0], a[1])) return
+        if (u * bestV > bestU * v) { bestU = u; bestV = v }
+    }
+
+    for (v in 1L..9060L) {
+        var u = v + 1
+        val uMax = mMaxNum * v / mMaxDen
+        while (u <= uMax) { scan(u, v); u++ }
+    }
+    var v = 59L
+    while (v <= 70500L) {
+        var u = 41L
+        val uMax = mMaxNum * v / mMaxDen
+        while (u <= uMax) {
+            if (u > v) scan(u, v)
+            u += 41
+        }
+        v += 59
+    }
+    return bestU * 1_000_000L + bestV
 }

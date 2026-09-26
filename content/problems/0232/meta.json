@@ -1,0 +1,20 @@
+{
+  "id": 232,
+  "title": "The Race",
+  "titleZh": "赛跑",
+  "difficulty": 62,
+  "difficultyLevel": "Level 24",
+  "tags": [
+    "probability",
+    "dynamic-programming",
+    "game-theory",
+    "markov-decision-process"
+  ],
+  "answer": 83648556,
+  "solvedBy": 2392,
+  "bruteForceBaselineMs": 1302,
+  "optimizedBaselineMs": 1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=232",
+  "fetchedAt": "2026-09-27"
+}

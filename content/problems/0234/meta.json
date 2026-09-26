@@ -1,0 +1,20 @@
+{
+  "id": 234,
+  "title": "Semidivisible Numbers",
+  "titleZh": "半可除数",
+  "difficulty": 27,
+  "difficultyLevel": "Level 10",
+  "tags": [
+    "number-theory",
+    "prime-sieve",
+    "arithmetic-series",
+    "inclusion-exclusion"
+  ],
+  "answer": 1259187438574927161,
+  "solvedBy": 4010,
+  "bruteForceBaselineMs": 1500,
+  "optimizedBaselineMs": 60,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=234",
+  "fetchedAt": "2026-09-27"
+}
