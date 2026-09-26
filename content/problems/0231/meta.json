@@ -1,0 +1,20 @@
+{
+  "id": 231,
+  "title": "Prime Factorisation of Binomial Coefficients",
+  "titleZh": "二项式系数的素因数分解",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [
+    "number-theory",
+    "legendre-formula",
+    "prime-sieve",
+    "combinatorics"
+  ],
+  "answer": 7526965179680,
+  "solvedBy": 6780,
+  "bruteForceBaselineMs": 115,
+  "optimizedBaselineMs": 70,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=231",
+  "fetchedAt": "2026-09-27"
+}

@@ -252,6 +252,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     224 to ::solve224,
     225 to ::solve225,
     226 to ::solve226,
+    227 to ::solve227,
+    228 to ::solve228,
+    229 to ::solve229,
+    230 to ::solve230,
+    231 to ::solve231,
 )
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
@@ -9117,4 +9122,224 @@ private fun solve220(): Long {
     val tab = buildDragonTable()
     val r = navigateDragon(tab, 1_000_000_000_000L)
     return r[0] * 1_000_000L + r[1]
+}
+
+// ---------------------------------------------------------------------------
+// PE 227–231（批量新增）
+// ---------------------------------------------------------------------------
+
+/**
+ * PE 227 — The Chase：两枚骰子持有者之间的最短间隔 d ∈ {1, …, 50} 的期望吸收时间。
+ * 一回合两枚骰子各掷一次，间隔增量 Δ = X₂ - X₁ 取自 (1,4,1)/6 与自身的卷积，
+ * 即 P(Δ = -2,-1,0,1,2) = (1,8,18,8,1)/36（两枚骰子同时开奖，互不影响）；
+ * 新间隔 = min((d+Δ) mod 100, 100 - (d+Δ) mod 100)，d = 0 即吸收。
+ * E_d = 1 + Σ p_Δ·E_{min(…)} 是 50 阶线性方程组，用 Double 高斯消元解，初值 d = 50。
+ * 答案 = round(E × 10^8) = 378061862178（E = 3780.61862178… 与 Python 分数精确解一致）。
+ */
+private fun solve227(): Long {
+    val n = 100
+    val m = n / 2
+    val w = intArrayOf(1, 4, 1)
+    val off = intArrayOf(-1, 0, 1)
+    val dProb = IntArray(5)
+    for (i in off.indices) for (j in off.indices) dProb[off[i] - off[j] + 2] += w[i] * w[j]
+    val a = Array(m) { DoubleArray(m) }
+    val b = DoubleArray(m)
+    for (i in 0 until m) {
+        val d = i + 1
+        a[i][i] = 1.0
+        b[i] = 1.0
+        for (k in 0 until 5) {
+            val p = dProb[k] / 36.0
+            if (p == 0.0) continue
+            val x = ((d + k - 2) % n + n) % n
+            val dd = minOf(x, n - x)
+            if (dd == 0) continue
+            a[i][dd - 1] -= p
+        }
+    }
+    for (col in 0 until m) {
+        var piv = col
+        while (piv < m && kotlin.math.abs(a[piv][col]) < 1e-12) piv++
+        val ta = a[col]; a[col] = a[piv]; a[piv] = ta
+        val tb = b[col]; b[col] = b[piv]; b[piv] = tb
+        val pv = a[col][col]
+        for (j in col until m) a[col][j] /= pv
+        b[col] /= pv
+        for (r in 0 until m) {
+            if (r != col && a[r][col] != 0.0) {
+                val f = a[r][col]
+                for (j in col until m) a[r][j] -= f * a[col][j]
+                b[r] -= f * b[col]
+            }
+        }
+    }
+    return Math.round(b[m - 1] * 1e8)
+}
+
+/**
+ * PE 228 — Minkowski Sums：S_1864 ⊕ … ⊕ S_1909 的边数 = 出现过的边方向总数。
+ * 正 n 边形边方向角为 (2k)·180°/n，既约后分母 q | n 的方向共 φ(q) 个，
+ * 故答案 = Σ φ(q)，q 取遍 1864…1909 全部数的因子（共 239 个不同分母）= 86226。
+ */
+private fun solve228(): Long {
+    val denoms = HashSet<Int>()
+    for (n in 1864..1909) {
+        var q = 1
+        while (q * q <= n) {
+            if (n % q == 0) { denoms.add(q); denoms.add(n / q) }
+            q++
+        }
+    }
+    var total = 0L
+    for (q in denoms) {
+        var r = q
+        var x = q
+        var p = 2
+        while (p * p <= x) {
+            if (x % p == 0) { r -= r / p; while (x % p == 0) x /= p }
+            p++
+        }
+        if (x > 1) r -= r / x
+        total += r.toLong()
+    }
+    return total
+}
+
+/**
+ * PE 229 — Four Representations Using Squares：n ≤ 2×10^9 且四种二次型
+ * a² + k b²（k = 1,2,3,7，a,b ≥ 1）都能表示。与 content/problems/0229/solution.kt 一致：
+ * 分块位图（2^26 bit/块，8 MB × 2 张，适配 -Xmx512m），每块只枚举落在块内的 (a, b)——
+ * 固定 k、b 时 a ∈ [⌈√(lo - kb²)⌉, ⌊√(hi - kb²)⌋]，故每个 (a,b) 恰好访问一次，
+ * 总置位量 O(N·Σ1/√k) ≈ 4.2×10^9，本机实测约 5.2 s；四张位图求交后 popcount 得 11325263。
+ */
+private fun solve229(): Long {
+    val ks = intArrayOf(1, 2, 3, 7)
+    val limit = 2_000_000_000L
+    val blockBits = 1 shl 26
+    val words = (blockBits ushr 6) + 1
+    val acc = LongArray(words)
+    val cur = LongArray(words)
+    var total = 0L
+    var lo = 1L
+    while (lo <= limit) {
+        val hi = minOf(lo + blockBits - 1, limit)
+        java.util.Arrays.fill(acc, -1L)
+        for (k in ks) {
+            java.util.Arrays.fill(cur, 0L)
+            var b = 1L
+            while (k * b * b + 1 <= hi) {
+                val base = k * b * b
+                val aHi = isqrtLong(hi - base)
+                val aLo = if (base >= lo) 1L else ceilSqrtLong(lo - base)
+                var a = aLo
+                while (a <= aHi) {
+                    val off = (base + a * a - lo).toInt()
+                    cur[off ushr 6] = cur[off ushr 6] or (1L shl (off and 63))
+                    a++
+                }
+                b++
+            }
+            for (i in 0 until words) acc[i] = acc[i] and cur[i]
+        }
+        for (w in acc) total += java.lang.Long.bitCount(w)
+        lo = hi + 1
+    }
+    return total
+}
+
+/** ⌊√x⌋（x ≥ 0），浮点开方后用整数乘法校正。 */
+private fun isqrtLong(x: Long): Long {
+    if (x <= 0) return 0
+    var r = Math.sqrt(x.toDouble()).toLong()
+    while (r > 0 && r * r > x) r--
+    while ((r + 1) * (r + 1) <= x) r++
+    return r
+}
+
+/** 最小满足 a² ≥ x 的 a（x ≥ 1）。 */
+private fun ceilSqrtLong(x: Long): Long {
+    if (x <= 1) return 1
+    val r = isqrtLong(x)
+    return if (r * r >= x) r else r + 1
+}
+
+/**
+ * PE 230 — Fibonacci Words：D_{A,B}(n) 是 F 中第一个位数 ≥ n 的项的第 n 位。
+ * 项长按 L[0]=L[1]=100、L[k]=L[k-1]+L[k-2] 增长，最大下标 (127+19·17)·7^17 ≈ 1.05×10^17，
+ * 故先找最小 k 使 L[k] ≥ n，再按 T_k = T_{k-2}+T_{k-1}（题面顺序，反了会得到 8 而非示例的 9）
+ * 自顶向下递降，落到 T_0 = A 或 T_1 = B 后取字符。
+ * 答案 = Σ 10^n·D((127+19n)·7^n) = 850481152593119296。
+ */
+private fun solve230(): Long {
+    val a = "14159265358979323846264338327950288419716939937510" +
+        "58209749445923078164062862089986280348253421170679"
+    val b = "82148086513282306647093844609550582231725359408128" +
+        "48111745028410270193852110555964462294895493038196"
+    val len = ArrayList<Long>()
+    len.add(a.length.toLong())
+    len.add(b.length.toLong())
+    val maxIndex = (127 + 19 * 17) * powLong(7L, 17)
+    while (len[len.size - 1] < maxIndex) len.add(len[len.size - 1] + len[len.size - 2])
+    fun digitAt(n: Long): Int {
+        var k = 0
+        while (len[k] < n) k++
+        var pos = n
+        while (k > 1) {
+            if (pos <= len[k - 2]) k -= 2 else { pos -= len[k - 2]; k -= 1 }
+        }
+        val s = if (k == 0) a else b
+        return s[(pos - 1).toInt()] - '0'
+    }
+    var total = 0L
+    var place = 1L
+    for (n in 0..17) {
+        total += place * digitAt((127 + 19 * n) * powLong(7L, n))
+        place *= 10
+    }
+    return total
+}
+
+/** Long 的非负整数幂（指数 ≤ 17，结果 < 2^63）。 */
+private fun powLong(base: Long, e: Int): Long {
+    var r = 1L
+    repeat(e) { r *= base }
+    return r
+}
+
+/**
+ * PE 231 — Prime Factorisation of Binomial Coefficients：C(2×10^7, 1.5×10^7) 的素因子和。
+ * 不真算出这个 ~1.8×10^6 位的数，而是用 Legendre 公式取每个素数的指数：
+ * e_p = Σ_q (⌊n/q⌋ - ⌊k/q⌋ - ⌊m/q⌋)（q = p, p², p³, …），答案 = Σ p·e_p。
+ * 埃氏筛 2×10^7（20 MB ByteArray）后逐个素数累加，实测约 70 ms，答案 7526965179680
+ * （其中 p > 1.5×10^7 的部分是 5246155169981，即 1.5e7 与 2e7 之间的素数和）。
+ */
+private fun solve231(): Long {
+    val n = 20_000_000
+    val k = 15_000_000
+    val m = n - k
+    val composite = ByteArray(n + 1)
+    var i = 2
+    while (i * i <= n) {
+        if (composite[i].toInt() == 0) {
+            var j = i * i
+            while (j <= n) { composite[j] = 1; j += i }
+        }
+        i++
+    }
+    var total = 0L
+    var p = 2
+    while (p <= n) {
+        if (composite[p].toInt() == 0) {
+            var e = 0
+            var q = p.toLong()
+            while (q <= n) {
+                e += (n / q).toInt() - (k / q).toInt() - (m / q).toInt()
+                q *= p
+            }
+            if (e != 0) total += p.toLong() * e
+        }
+        p++
+    }
+    return total
 }

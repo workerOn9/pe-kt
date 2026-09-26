@@ -1,0 +1,20 @@
+{
+  "id": 227,
+  "title": "The Chase",
+  "titleZh": "追逐",
+  "difficulty": 46,
+  "difficultyLevel": "Level 18",
+  "tags": [
+    "markov-chain",
+    "linear-algebra",
+    "expected-value",
+    "symmetry"
+  ],
+  "answer": 378061862178,
+  "solvedBy": 2806,
+  "bruteForceBaselineMs": 43,
+  "optimizedBaselineMs": 1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=227",
+  "fetchedAt": "2026-09-27"
+}
