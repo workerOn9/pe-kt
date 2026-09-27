@@ -1,0 +1,20 @@
+{
+  "id": 239,
+  "title": "Twenty-two Foolish Primes",
+  "titleZh": "二十二个鲁莽的素数",
+  "difficulty": 72,
+  "difficultyLevel": "Level 28",
+  "tags": [
+    "combinatorics",
+    "inclusion-exclusion",
+    "permutation",
+    "exact-arithmetic"
+  ],
+  "answer": 1887854841,
+  "solvedBy": 2402,
+  "bruteForceBaselineMs": 30,
+  "optimizedBaselineMs": 20,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=239",
+  "fetchedAt": "2026-09-27"
+}

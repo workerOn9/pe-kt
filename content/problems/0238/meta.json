@@ -1,0 +1,20 @@
+{
+  "id": 238,
+  "title": "Infinite String Tour",
+  "titleZh": "无限字符串之旅",
+  "difficulty": 64,
+  "difficultyLevel": "Level 25",
+  "tags": [
+    "bitset",
+    "modular-arithmetic",
+    "multiplicative-order",
+    "prefix-sum"
+  ],
+  "answer": 9922545104535661,
+  "solvedBy": 1390,
+  "bruteForceBaselineMs": 50,
+  "optimizedBaselineMs": 710,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=238",
+  "fetchedAt": "2026-09-27"
+}

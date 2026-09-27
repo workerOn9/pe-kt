@@ -262,6 +262,10 @@ val solvers: Map<Int, () -> Long> = mapOf(
     234 to ::solve234,
     235 to ::solve235,
     236 to ::solve236,
+    237 to ::solve237,
+    238 to ::solve238,
+    239 to ::solve239,
+    240 to ::solve240,
 )
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
@@ -9739,4 +9743,329 @@ private fun solve236(): Long {
         v += 59
     }
     return bestU * 1_000_000L + bestV
+}
+
+/**
+ * PE 237 — Tours on a 4×N Playing Board：4×N 棋盘上从左上到左下的 Hamilton 路径数。
+ * 定宽 4 的前缘状态转移消元后，T(n) 满足四阶递推 T(n)=2T(n-1)+2T(n-2)−2T(n-3)+T(n-4)，
+ * 初值 T(1..4)=1,1,4,8（题面 T(10)=2329 复核）。写成 4×4 伴随矩阵 A，
+ * X_N = A^(N−4)·[8,4,1,1]ᵀ，快速幂 O(log N)。mod 10⁸。
+ * 答案 T(10¹²) mod 10⁸ = 5836928。
+ */
+private fun solve237(): Long {
+    val mod = 100_000_000L
+    val n = 1_000_000_000_000L
+    val a = Array(4) { LongArray(4) }
+    a[0] = longArrayOf(2, 2, mod - 2, 1)   // −2 取模成 MOD−2
+    a[1] = longArrayOf(1, 0, 0, 0)
+    a[2] = longArrayOf(0, 1, 0, 0)
+    a[3] = longArrayOf(0, 0, 1, 0)
+    val x4 = longArrayOf(8, 4, 1, 1)
+
+    fun mul(p: Array<LongArray>, q: Array<LongArray>): Array<LongArray> {
+        val r = Array(4) { LongArray(4) }
+        for (i in 0..3) for (k in 0..3) {
+            val aik = p[i][k]
+            if (aik == 0L) continue
+            for (j in 0..3) r[i][j] = (r[i][j] + aik * q[k][j]) % mod
+        }
+        return r
+    }
+
+    var base = a
+    var acc = Array(4) { LongArray(4) }.also { for (i in 0..3) it[i][i] = 1L }
+    var e = n - 4
+    while (e > 0L) {
+        if (e and 1L == 1L) acc = mul(acc, base)
+        e = e shr 1
+        if (e > 0L) base = mul(base, base)
+    }
+    var s = 0L
+    for (j in 0..3) s = (s + acc[0][j] * x4[j]) % mod
+    return s
+}
+
+/**
+ * PE 238 — Infinite String Tour：BBS 递推 s_{n+1}=s_n² mod 20300713（=4127·4919）纯周期。
+ * ord_M(s_0)=5072917=2063·2459，s_n 的周期 = ord_{ord₁}(2) = 2534198，
+ * 一周期 18886117 位、数位和 T=80846691。子串数位和按 T 平移不变 ⇒ p(k) 只与 k mod T 有关。
+ * 把「一周期内出现过的前缀和（mod T）」做成 T 位位集，从位置 1 起扫，
+ * rot 位集右移当前前缀和位即得该起点的可达集；unknown & rot 里首次出现的位 k 有 p(k)=i。
+ * 位置 89 处全部 T 个 k 覆盖完毕。答案 = (K/T)·Σ_{1..T} p(k) + Σ_{1..K mod T} p(k)，K=2×10¹⁵。
+ */
+private fun solve238(): Long {
+    val s0 = 14025256L
+    val m = 20300713L
+    val kTarget = 2_000_000_000_000_000L
+
+    fun gcd(x0: Long, y0: Long): Long {
+        var x = kotlin.math.abs(x0); var y = kotlin.math.abs(y0)
+        while (y != 0L) { val t = x % y; x = y; y = t }
+        return x
+    }
+
+    fun factorize(n0: Long): Map<Long, Int> {
+        var x = n0
+        val out = LinkedHashMap<Long, Int>()
+        var d = 2L
+        while (d * d <= x) {
+            while (x % d == 0L) { out.merge(d, 1) { a, b -> a + b }; x /= d }
+            d = if (d == 2L) 3L else d + 2L
+        }
+        if (x > 1L) out.merge(x, 1) { a, b -> a + b }
+        return out
+    }
+
+    fun totient(f: Map<Long, Int>): Long {
+        var n = 1L
+        for ((p, e) in f) repeat(e) { n *= p }
+        var phi = n
+        for (p in f.keys) phi = phi / p * (p - 1)
+        return phi
+    }
+
+    fun modPow(a: Long, e: Long, mod: Long): Long {
+        var b = a % mod; var x = e; var r = 1L
+        while (x > 0L) {
+            if (x and 1L == 1L) r = r * b % mod
+            b = b * b % mod
+            x = x shr 1
+        }
+        return r
+    }
+
+    fun order(a: Long, mod: Long, groupOrder: Long): Long {
+        var ord = groupOrder
+        for (p in factorize(groupOrder).keys) {
+            while (ord % p == 0L && modPow(a, ord / p, mod) == 1L) ord /= p
+        }
+        return ord
+    }
+
+    // 分解 m = p·q，λ(m) = lcm(p−1, q−1)
+    var p = 0L; var q = 0L; var tmp = m; var d = 2L
+    while (d * d <= tmp) {
+        if (tmp % d == 0L) { p = d; q = tmp / d; break }
+        d = if (d == 2L) 3L else d + 2L
+    }
+    val lam = (p - 1) * (q - 1) / gcd(p - 1, q - 1)
+    val ordS0 = order(s0, m, lam)
+    val period = order(2L, ordS0, totient(factorize(ordS0)))
+
+    // 一周期的数字流与数位和
+    val buf = ByteArray(period.toInt() * 8)
+    var ptr = 0; var s = s0; var t = 0
+    for (i in 0 until period) {
+        for (ch in s.toString()) { buf[ptr++] = (ch - '0').toByte(); t += ch - '0' }
+        s = (s * s) % m
+    }
+    check(s == s0) { "BBS 周期不合法" }
+    val digits = buf.copyOf(ptr)
+    val bigT = t.toInt()
+
+    val wordLen = (bigT + 63) ushr 6
+    val tailMask = if (bigT % 64 == 0) -1L else (1L shl (bigT % 64)) - 1L
+
+    // present：bit i 表示「前缀和 mod T = i」，约定 bit 0 代表 T
+    val present = LongArray(wordLen)
+    present[0] = 1L
+    var pre = 0
+    for (b in digits) {
+        pre += b.toInt()
+        val idx = if (pre == bigT) 0 else pre
+        present[idx ushr 6] = present[idx ushr 6] or (1L shl (idx and 63))
+    }
+
+    // [1, count] 位为 1 的窗口掩码（bit 0 不属于任何 1..count 窗口）
+    fun window(count: Int): LongArray {
+        val w = LongArray(wordLen)
+        if (count <= 0) return w
+        val fullW = count ushr 6
+        val remB = count and 63
+        for (i in 0 until fullW) w[i] = -1L
+        w[fullW] = if (remB == 63) -1L else (1L shl (remB + 1)) - 1L
+        w[0] = w[0] and (-2L)
+        return w
+    }
+
+    val k1000 = minOf(1000, bigT)
+    val mask1000 = window(k1000)
+    val n1000 = ((k1000 + 63) ushr 6) + 1
+    val rem = (kTarget % bigT).toInt()
+    val maskRem = window(rem)
+    val nRem = ((rem + 63) ushr 6) + 1
+    val nFull = ((k1000 + 63) ushr 6) + 1
+
+    // T 位环的右循环移位：先按 64 位对齐旋转，再单独处理 [T−d, T−1] 的回卷
+    fun rotate(src: LongArray, dst: LongArray, shift: Int) {
+        if (shift == 0) { System.arraycopy(src, 0, dst, 0, wordLen); return }
+        val dl = shift ushr 6
+        val db = shift and 63
+        if (db == 0) {
+            for (i in 0 until wordLen) dst[i] = src[(i + dl) % wordLen]
+        } else {
+            val hi = 64 - db
+            for (i in 0 until wordLen) {
+                dst[i] = (src[(i + dl) % wordLen] ushr db) or (src[(i + dl + 1) % wordLen] shl hi)
+            }
+        }
+        if (tailMask != -1L) dst[wordLen - 1] = dst[wordLen - 1] and tailMask
+        val startPos = bigT - shift
+        val startWord = startPos ushr 6
+        val startBit = startPos and 63
+        val endWord = (bigT - 1) ushr 6
+        val endBit = (bigT - 1) and 63
+        if (startWord == endWord) {
+            val num = endBit - startBit + 1
+            val msk = ((1L shl num) - 1L) shl startBit
+            dst[startWord] = (dst[startWord] and msk.inv()) or ((src[0] and ((1L shl num) - 1L)) shl startBit)
+        } else {
+            val n1 = 64 - startBit
+            dst[startWord] = (dst[startWord] and ((-1L) shl startBit).inv()) or
+                ((src[0] and ((1L shl n1) - 1L)) shl startBit)
+            for (i in (startWord + 1) until endWord) dst[i] = src[i - startWord]
+            val off = endWord - startWord
+            val mask2 = (1L shl (endBit + 1)) - 1L
+            dst[endWord] = (dst[endWord] and mask2.inv()) or (src[off] and mask2)
+        }
+        if (tailMask != -1L) dst[wordLen - 1] = dst[wordLen - 1] and tailMask
+    }
+
+    val unknown = LongArray(wordLen).also { it.fill(-1L); if (tailMask != -1L) it[wordLen - 1] = tailMask }
+    val rotA = LongArray(wordLen).also { System.arraycopy(present, 0, it, 0, wordLen) }
+    val rotB = LongArray(wordLen)
+    var cur = rotA
+    var nxt = rotB
+    val fresh = LongArray(wordLen)
+
+    var totalAll = 0L
+    var total1000 = 0L
+    var totalRem = 0L
+    for (i in digits.indices) {
+        var pc = 0L; var pc1000 = 0L; var pcRem = 0L
+        for (j in 0 until wordLen) {
+            val bits = unknown[j] and cur[j]
+            fresh[j] = bits
+            pc += java.lang.Long.bitCount(bits)
+            if (j < n1000) pc1000 += java.lang.Long.bitCount(bits and mask1000[j])
+            if (j < nRem) pcRem += java.lang.Long.bitCount(bits and maskRem[j])
+        }
+        if (pc > 0L) {
+            val w = (i + 1).toLong()
+            totalAll += w * pc
+            total1000 += w * pc1000
+            totalRem += w * pcRem
+            var allZero = true
+            for (j in 0 until wordLen) {
+                unknown[j] = unknown[j] xor fresh[j]
+                if (unknown[j] != 0L) allZero = false
+            }
+            if (allZero) break
+        }
+        val dv = digits[i].toInt()
+        if (dv != 0) {
+            rotate(cur, nxt, dv)
+            val tmp = cur
+            cur = nxt
+            nxt = tmp
+        }
+    }
+    check(total1000 == 4742L) { "题面校验值不吻合：$total1000" }
+    return (kTarget / bigT) * totalAll + totalRem
+}
+
+/**
+ * PE 239 — Twenty-two Foolish Primes：1..100 有 25 个素数盘。
+ * 「恰有 22 个素数盘不在原位」=「恰有 3 个素数盘在原位」，非素数盘位置不受约束。
+ * 计数 = C(25,3) · A / 100!，其中 A = Σ_{j=0..22}(−1)^j C(22,j)(97−j)! 是「97 元排列中
+ * 那 22 个素数盘全部不固定」的排列数（容斥）。分母是 100! 而非 97!——C(25,3) 已替代
+ * 那 3 个盘自身的位置安排；用 97! 会算出 >1 的概率，check 里守这条。
+ * 答案小数点后 12 位 0.001887854841，按仓库约定去掉前导零存为 Long = 1887854841。
+ */
+private fun solve239(): Long {
+    val nDisks = 100
+    val nDisplaced = 22
+    val isPrime = BooleanArray(nDisks + 1) { true }
+    isPrime[0] = false; isPrime[1] = false
+    var i = 2
+    while (i.toLong() * i <= nDisks) {
+        if (isPrime[i]) { var j = i * i; while (j <= nDisks) { isPrime[j] = false; j += i } }
+        i++
+    }
+    val nPrimes = (2..nDisks).count { isPrime[it] }
+    val nPinned = nPrimes - nDisplaced
+    val free = nDisks - nPinned
+
+    val fact = HashMap<Int, java.math.BigInteger>()
+    fun f(n: Int): java.math.BigInteger = fact.getOrPut(n) {
+        if (n <= 1) java.math.BigInteger.ONE
+        else java.math.BigInteger.valueOf(n.toLong()).multiply(f(n - 1))
+    }
+    fun bc(n: Int, k: Int): java.math.BigInteger = f(n).divide(f(k)).divide(f(n - k))
+
+    var good = java.math.BigInteger.ZERO
+    for (j in 0..nDisplaced) {
+        val term = bc(nDisplaced, j).multiply(f(free - j))
+        good = if (j % 2 == 0) good.add(term) else good.subtract(term)
+    }
+    val numerator = bc(nPrimes, nPinned).multiply(good)
+    val prob = java.math.BigDecimal(numerator)
+        .divide(java.math.BigDecimal(f(nDisks)), java.math.MathContext(20))
+    check(prob > java.math.BigDecimal.ZERO && prob < java.math.BigDecimal.ONE) { "概率越界：$prob" }
+    val digits = prob.setScale(12, java.math.RoundingMode.HALF_UP)
+        .toPlainString().removePrefix("0.")
+    check(digits.length == 12) { "答案位数不对：$digits" }
+    return digits.toLong()
+}
+
+/**
+ * PE 240 — Top Dice：20 个 12 面骰中「最大的 10 个点数之和 = 70」的投法数。
+ * 「最大的 k 个」只依赖多重集：按面值 12→1 降序处理，已填入 top-k 的格子数 filled
+ * 决定这一批 c_v 中 take = min(k − filled, c_v) 个进入 top-k。
+ * 权重取 C(20 − total, c_v)（从剩余有标号骰子里挑出 c_v 个），连乘 = 20!/Πc_v!，
+ * 全程整数。剪枝 filled > k 或 topSum > 70。答案 7448717393364181966（< 2⁶³−1，Long 够用）。
+ */
+private fun solve240(): Long {
+    val nDice = 20
+    val nSides = 12
+    val nTop = 10
+    val target = 70
+
+    fun bc(n: Int, k: Int): Long {
+        if (k < 0 || k > n) return 0L
+        var r = 1L
+        for (t in 0 until k) r = r * (n - t) / (t + 1)
+        return r
+    }
+
+    // 状态 (filled, topSum, total) 打包成一个 Int 键：HashMap 对数组按引用比较，
+    // 用 LongArray 当键会让每条转移都变成新键、状态数爆炸而 OOM。
+    fun key(filled: Int, topSum: Int, total: Int) = (filled * 1000 + topSum) * 1000 + total
+
+    var cur = HashMap<Int, Long>()
+    cur[key(0, 0, 0)] = 1L
+    for (v in nSides downTo 1) {
+        val next = HashMap<Int, Long>()
+        for ((packed, w) in cur) {
+            val total = packed % 1000
+            val rest = packed / 1000
+            val topSum = rest % 1000
+            val filled = rest / 1000
+            val rem = nDice - total
+            for (c in 0..rem) {
+                val take = minOf(nTop - filled, c)
+                val nf = filled + take
+                val ns = topSum + take * v
+                if (nf > nTop || ns > target) continue
+                val k = key(nf, ns, total + c)
+                next[k] = (next[k] ?: 0L) + w * bc(rem, c)
+            }
+        }
+        cur = next
+    }
+    var answer = 0L
+    for ((packed, w) in cur) {
+        if (packed == key(nTop, target, nDice)) answer += w
+    }
+    return answer
 }

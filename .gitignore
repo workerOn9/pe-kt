@@ -21,3 +21,6 @@ web/dist/
 # Kotlin
 .kotlin/
 server/bin/
+
+# 本机无 kotlinc，scripts/kotlinc-shim.sh 只是本地编译 shim，不入库
+scripts/
