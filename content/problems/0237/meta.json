@@ -1,0 +1,20 @@
+{
+  "id": 237,
+  "title": "Tours on a 4 x n Playing Board",
+  "titleZh": "4×N 棋盘上的旅游",
+  "difficulty": 42,
+  "difficultyLevel": "Level 16",
+  "tags": [
+    "transfer-matrix",
+    "linear-recurrence",
+    "matrix-exponentiation",
+    "hamiltonian-path"
+  ],
+  "answer": 15836928,
+  "solvedBy": 2161,
+  "bruteForceBaselineMs": 30,
+  "optimizedBaselineMs": 20,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=237",
+  "fetchedAt": "2026-09-27"
+}

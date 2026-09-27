@@ -1,0 +1,20 @@
+{
+  "id": 240,
+  "title": "Top Dice",
+  "titleZh": "最大的骰子",
+  "difficulty": 43,
+  "difficultyLevel": "Level 17",
+  "tags": [
+    "dynamic-programming",
+    "combinatorics",
+    "multiset-coefficient",
+    "top-k"
+  ],
+  "answer": 7448717393364181966,
+  "solvedBy": 2822,
+  "bruteForceBaselineMs": 10,
+  "optimizedBaselineMs": 20,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=240",
+  "fetchedAt": "2026-09-27"
+}
