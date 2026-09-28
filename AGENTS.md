@@ -28,6 +28,9 @@
 
 ## 单题生产流水线（每题 9 步，缺一不可）
 
+> **动手前第一件事：`git branch --show-current`。在 `main` 上就先切出新分支再干活**——
+> `main` 已设为受保护分支，禁止直接 push，所有改动必须走 PR（详见「提交规范」）。
+
 以题号 N=26 为例（目录统一 4 位数字：`content/problems/0026/`）：
 
 1. **抓题面**：用户 Chrome 已登录 PE（经 Kimi WebBridge 插件，daemon 在
@@ -86,9 +89,15 @@ curl -s localhost:8080/health
 
 ## 提交规范
 
+- **先查分支，再开工（硬性）**：每批工作开始前执行 `git branch --show-current`；若在 `main` 上，
+  **先切出新分支再动手**。`main` 已设为受保护分支（GitHub 规则），禁止直接 push，改动一律走 PR。
+  分支命名：题库存量扩充 `feat/problems-XXX-YYY`（如 `feat/problems-251-260`），
+  文档/维护 `docs/...`、修复 `fix/...`。
+- **PR 流程**：分支完成后 push（`git push -u origin <branch>`）并用 `gh pr create` 开 PR
+  （中文标题与描述，正文写清本批内容与验收结果）；**由用户 review 并合并，Agent 不自行合并、不直推 main**。
 - 中文提交信息，风格照 git log：`feat: 题库扩充 026–050——……`。
 - 每批（25 题或用户指定范围）一个提交。
-- 影响面大的改动（部署、构建、依赖源）走功能分支（如 `feat/vercel-deploy`），确认无误后再合回 `main`。
+- 影响面大的改动（部署、构建、依赖源）同样走功能分支（如 `feat/vercel-deploy`），确认无误后经 PR 合回 `main`。
 - 工作区保持干净，构建产物（`build/`、`web/dist/`、`node_modules/`）不提交。
 
 ## 可视化动画（可选，不凑数）
