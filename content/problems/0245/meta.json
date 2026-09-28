@@ -1,0 +1,22 @@
+{
+  "id": 245,
+  "title": "Coresilience",
+  "titleZh": "核心韧性",
+  "difficulty": 94,
+  "difficultyLevel": "Level 37",
+  "tags": [
+    "number-theory",
+    "euler-totient",
+    "unit-fraction",
+    "pollard-rho",
+    "miller-rabin",
+    "depth-first-search"
+  ],
+  "answer": 288084712410001,
+  "solvedBy": 1274,
+  "bruteForceBaselineMs": 166.4,
+  "optimizedBaselineMs": 340,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=245",
+  "fetchedAt": "2026-09-28"
+}

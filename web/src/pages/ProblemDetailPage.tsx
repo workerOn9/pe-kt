@@ -212,9 +212,9 @@ export function ProblemDetailPage() {
 
       <section className="problem-body">
         {bodyTab === 'statement' ? (
-          <Markdown>{statementBody}</Markdown>
+          <Markdown assetBase={`/api/problems/${detail.id}/assets`}>{statementBody}</Markdown>
         ) : (
-          <Markdown>{analysisBody}</Markdown>
+          <Markdown assetBase={`/api/problems/${detail.id}/assets`}>{analysisBody}</Markdown>
         )}
       </section>
 

@@ -1,0 +1,22 @@
+{
+  "id": 241,
+  "title": "Perfection Quotients",
+  "titleZh": "完美商",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [
+    "number-theory",
+    "divisor-sum",
+    "perfection-quotient",
+    "pollard-rho",
+    "miller-rabin",
+    "backtracking"
+  ],
+  "answer": 482316491800641154,
+  "solvedBy": 1393,
+  "bruteForceBaselineMs": 842.4,
+  "optimizedBaselineMs": 3007,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=241",
+  "fetchedAt": "2026-09-28"
+}

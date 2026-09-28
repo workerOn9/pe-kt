@@ -80,6 +80,14 @@
   - 容器内没有前端产物、不注入 `PEKT_WEB_DIST`，Ktor 启动时会打印「静态托管未启用」，这是预期状态；
   - 监听端口改由 `Application.kt` 的 `resolvePort()` 读取 `PORT` 环境变量（缺省 8080），`Dockerfile.vercel` 声明 `PORT=80` 对齐 Vercel 容器服务的默认流量端口。
 
+## D-09 题面静态资源（图片）托管：内容目录 + API 资产路由
+
+- **背景**：0244 的题面需要展示滑块初始/目标/示例局面三张图，这是题库首次出现图片资源；此前 Markdown 渲染只处理文本与公式，没有任何图片托管路径，相对路径会被 SPA fallback 吞掉（返回 index.html，图片裂开）。
+- **选项**：图片放进 `web/public/` 走前端构建 / 在题目目录内保留图片、由后端 API 托管 / 上传第三方图床。
+- **决定**：图片留在 `content/problems/XXXX/`（与题面同源，便于校验与搬运），后端新增 `GET /api/problems/{id}/assets/{name}`，只托管题目目录内的单段文件名（字母数字与 `. _ -`，杜绝目录穿越）；前端 `Markdown` 组件新增 `assetBase` 参数，把相对 `src` 改写为资产路由，绝对地址（协议/`//`/`/` 开头）原样保留。
+- **理由**：内容资产归属 content 目录，避免二进制在 `web/` 与 `content/` 出现双份；Vercel 部署下 `/api/*` 已路由到容器服务（D-08），图片随 API 一并可达，无需额外配置；本地单端口同样直接可用。
+- **后果**：`ContentValidationTest` 增加「题面引用的相对图片必须存在且不越界」校验；资产路由只支持单段文件名（不支持子目录），Content-Type 由 Ktor 按扩展名推断。
+
 ## 待决策（Open Questions）
 
 | # | 问题 | 阻塞于 |

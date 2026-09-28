@@ -1,0 +1,21 @@
+{
+  "id": 242,
+  "title": "Odd Triplets",
+  "titleZh": "奇三元组",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [
+    "combinatorics",
+    "lucas-theorem",
+    "bit-dp",
+    "parity",
+    "binomial-mod-4"
+  ],
+  "answer": 997104142249036713,
+  "solvedBy": 1509,
+  "bruteForceBaselineMs": 465.0,
+  "optimizedBaselineMs": 0.0001,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=242",
+  "fetchedAt": "2026-09-27"
+}
