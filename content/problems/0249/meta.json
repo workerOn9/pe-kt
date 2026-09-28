@@ -1,0 +1,21 @@
+{
+  "id": 249,
+  "title": "Prime Subset Sums",
+  "titleZh": "素子集和",
+  "difficulty": 33,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "dynamic-programming",
+    "knapsack-counting",
+    "subset-sum",
+    "prime-sieve",
+    "modular-arithmetic"
+  ],
+  "answer": 9275262564250418,
+  "solvedBy": 3287,
+  "bruteForceBaselineMs": null,
+  "optimizedBaselineMs": 1367,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=249",
+  "fetchedAt": "2026-09-28"
+}
