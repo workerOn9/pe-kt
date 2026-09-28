@@ -85,6 +85,32 @@ class ContentValidationTest {
     }
 
     /**
+     * statement.md 里引用的相对图片必须真实存在于题目目录内（由
+     * GET /api/problems/{id}/assets/{name} 托管）；绝对地址（http(s):、data:、以 / 开头）不检查。
+     */
+    @Test
+    fun `题面引用的相对图片资源存在且不越界`() {
+        val pattern = Regex("""!\[[^\]]*]\(([^)\s]+)(?:\s+"[^"]*")?\)""")
+        for (dir in problemDirs) {
+            val statement = File(dir, "statement.md")
+            if (!statement.isFile) continue
+            for (match in pattern.findAll(statement.readText())) {
+                val src = match.groupValues[1].trim()
+                if (src.startsWith("http://") || src.startsWith("https://") ||
+                    src.startsWith("data:") || src.startsWith("/")
+                ) {
+                    continue
+                }
+                val file = File(dir, src).canonicalFile
+                assertTrue(
+                    file.isFile && file.parentFile == dir.canonicalFile,
+                    "${dir.name}: statement 引用的图片不存在或越界：$src",
+                )
+            }
+        }
+    }
+
+    /**
      * 显示公式围栏（`$$`）两端必须独占一行。`remark-math` 沿用 micromark 的代码围栏语义：
      * `$$` 后若在同一行跟了内容，那段内容会被当作围栏信息串丢弃，公式块还会一路吞到下一个
      * 独占一行的 `$$`，整页渲染成红字原文（0065 等 7 题踩过）。单行 `$$…$$` 合法但解析为

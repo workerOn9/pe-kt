@@ -1,7 +1,9 @@
 package dev.pekt
 
 import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsBytes
 import io.ktor.client.statement.bodyAsText
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.testing.testApplication
 import kotlinx.serialization.json.Json
@@ -65,5 +67,21 @@ class ProblemsApiTest {
 
         val body = json.parseToJsonElement(response.bodyAsText()).jsonObject
         assertTrue(body.getValue("solution").jsonPrimitive.content.contains("sumOfMultiples"))
+    }
+
+    @Test
+    fun `problem asset route serves statement images and rejects traversal`() = testApplication {
+        application { module() }
+        val ok = client.get("/api/problems/244/assets/start.png")
+        assertEquals(HttpStatusCode.OK, ok.status)
+        assertTrue(
+            ok.headers[HttpHeaders.ContentType]?.startsWith("image/png") == true,
+            "资源响应 Content-Type 应为 image/png，实际 ${ok.headers[HttpHeaders.ContentType]}",
+        )
+        assertTrue(ok.bodyAsBytes().size > 1000, "PNG 资源不应为空")
+
+        assertEquals(HttpStatusCode.NotFound, client.get("/api/problems/244/assets/nope.png").status)
+        assertEquals(HttpStatusCode.NotFound, client.get("/api/problems/244/assets/..%2Fmeta.json").status)
+        assertEquals(HttpStatusCode.NotFound, client.get("/api/problems/999/assets/start.png").status)
     }
 }

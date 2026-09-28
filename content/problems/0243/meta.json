@@ -1,0 +1,21 @@
+{
+  "id": 243,
+  "title": "Resilience",
+  "titleZh": "韧性",
+  "difficulty": 27,
+  "difficultyLevel": "Level 10",
+  "tags": [
+    "number-theory",
+    "euler-totient",
+    "primorial",
+    "sieve",
+    "exact-rational-comparison"
+  ],
+  "answer": 892371480,
+  "solvedBy": 11209,
+  "bruteForceBaselineMs": 5300,
+  "optimizedBaselineMs": 0.00021,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=243",
+  "fetchedAt": "2026-09-27"
+}

@@ -14,6 +14,7 @@ import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.log
 import io.ktor.server.response.respond
+import io.ktor.server.response.respondFile
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.Route
 import io.ktor.server.routing.RoutingCall
@@ -22,6 +23,10 @@ import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
+import java.io.File
+
+/** 题面资源文件名白名单：单段、不以点开头（杜绝目录穿越）。 */
+private val ASSET_NAME = Regex("[A-Za-z0-9][A-Za-z0-9._-]*")
 
 /** 统一错误格式：{ "error": "code", "message": "..." }（见 docs/02-architecture.md）。 */
 @Serializable
@@ -76,6 +81,21 @@ fun Route.problemRoutes(index: ContentIndex) {
             call.guarded {
                 val content = call.requireProblem(index)
                 call.respond(SolutionResponse(content.meta.id, content.solution, content.bruteForce))
+            }
+        }
+
+        // 题面引用的静态资源（图片等）：GET /api/problems/{id}/assets/{name}
+        // 只允许题目目录内的单段文件名（字母数字与 . _ -），目录穿越与不存在的文件一律 404。
+        get("/{id}/assets/{name}") {
+            call.guarded {
+                val content = call.requireProblem(index)
+                val name = call.parameters["name"].orEmpty()
+                val dir = index.problemDir(content.meta.id)?.canonicalFile
+                val file = if (dir != null && ASSET_NAME.matches(name)) File(dir, name).canonicalFile else null
+                if (file == null || file.parentFile != dir || !file.isFile) {
+                    throw ProblemNotFoundException("${content.meta.id}/assets/$name")
+                }
+                call.respondFile(file)
             }
         }
 

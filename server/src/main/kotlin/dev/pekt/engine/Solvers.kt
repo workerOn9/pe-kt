@@ -266,6 +266,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     238 to ::solve238,
     239 to ::solve239,
     240 to ::solve240,
+    241 to ::solve241,
+    242 to ::solve242,
+    243 to ::solve243,
+    244 to ::solve244,
+    245 to ::solve245,
 )
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
@@ -10068,4 +10073,653 @@ private fun solve240(): Long {
         if (packed == key(nTop, target, nDice)) answer += w
     }
     return answer
+}
+
+/**
+ * PE 241 — 完美商（Perfection Quotients）：p(n) = σ(n)/n = k + 1/2 ⟺ 2σ(n)/n 是奇整数。
+ * n 必为偶数，写 n = 2^a·t；素数供给链（D = 2^{a+1}−1 与已定部分 σ 的分解）做集合式 DFS。
+ * 与 content/problems/0241/solution.kt 逻辑一致。答案 482316491800641154（22 个解）。
+ */
+private fun solve241(): Long {
+    val nm = BigInteger.TEN.pow(18)
+    val two = BigInteger.valueOf(2)
+    val one = BigInteger.ONE
+    val qList = intArrayOf(3, 5, 7, 9, 11, 13)
+    val smallPrimes = intArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
+    val maxPrime = 1_000_000_000_000_000_000L
+
+    fun mulMod(a: Long, b: Long, m: Long): Long {
+        if (m <= (1L shl 40)) {
+            val b1 = b ushr 19
+            val b0 = b and ((1L shl 19) - 1)
+            return (((a * b0) % m) + (((a * b1) % m) shl 19)) % m
+        }
+        return BigInteger.valueOf(a).multiply(BigInteger.valueOf(b))
+            .mod(BigInteger.valueOf(m)).toLong()
+    }
+
+    fun modPow(b: Long, e: Long, m: Long): Long {
+        var r = 1L
+        var base = b % m
+        var exp = e
+        while (exp > 0) {
+            if (exp and 1L == 1L) r = mulMod(r, base, m)
+            base = mulMod(base, base, m)
+            exp = exp shr 1
+        }
+        return r
+    }
+
+    fun isPrime(n: Long): Boolean {
+        if (n < 2) return false
+        for (p in smallPrimes) {
+            if (n == p.toLong()) return true
+            if (n % p == 0L) return false
+        }
+        val n1 = n - 1
+        var d = n1
+        var s = 0
+        while (d % 2L == 0L) { d /= 2L; s++ }
+        for (a in smallPrimes) {
+            var x = modPow(a.toLong(), d, n)
+            if (x == 1L || x == n1) continue
+            var hit = false
+            for (i in 1 until s) {
+                x = mulMod(x, x, n)
+                if (x == n1) { hit = true; break }
+            }
+            if (!hit) return false
+        }
+        return true
+    }
+
+    fun gcd(a: Long, b: Long): Long {
+        var x = if (a < 0) -a else a
+        var y = b
+        while (y != 0L) { val t = x % y; x = y; y = t }
+        return x
+    }
+
+    fun pollardRho(n: Long): Long {
+        if (n % 2L == 0L) return 2L
+        val rnd = java.util.concurrent.ThreadLocalRandom.current()
+        while (true) {
+            val c = rnd.nextLong(1, n - 1)
+            var x = 2L
+            var y = 2L
+            var d = 1L
+            while (d == 1L) {
+                x = (mulMod(x, x, n) + c) % n
+                y = (mulMod(y, y, n) + c) % n
+                y = (mulMod(y, y, n) + c) % n
+                d = gcd(x - y, n)
+            }
+            if (d != n) return d
+        }
+    }
+
+    val factCache = HashMap<Long, LongArray>()
+
+    fun factorRec(x: Long, out: ArrayList<Long>) {
+        if (x <= 1L) return
+        if (isPrime(x)) { out += x; return }
+        val d = pollardRho(x)
+        factorRec(d, out)
+        factorRec(x / d, out)
+    }
+
+    fun factor(n: Long): LongArray {
+        if (n <= 1L) return LongArray(0)
+        factCache[n]?.let { return it }
+        val raw = ArrayList<Long>()
+        var x = n
+        for (p in smallPrimes) {
+            val pl = p.toLong()
+            while (x % pl == 0L) { raw += pl; x /= pl }
+        }
+        if (x > 1L) factorRec(x, raw)
+        raw.sort()
+        val keep = ArrayList<Long>(raw.size)
+        var i = 0
+        while (i < raw.size) {
+            val p = raw[i]
+            var c = 0
+            while (i < raw.size && raw[i] == p) { c++; i++ }
+            if (p <= maxPrime) { keep += p; keep += c.toLong() }
+        }
+        val res = keep.toLongArray()
+        factCache[n] = res
+        return res
+    }
+
+    fun factorBI(n: BigInteger): LongArray = factor(n.toLong())
+
+    fun mergeFacs(a: LongArray, b: LongArray): LongArray {
+        var i = 0
+        var j = 0
+        val out = ArrayList<Long>(a.size + b.size + 4)
+        while (i < a.size && j < b.size) {
+            when {
+                a[i] < b[j] -> { out += a[i]; out += a[i + 1]; i += 2 }
+                a[i] > b[j] -> { out += b[j]; out += b[j + 1]; j += 2 }
+                else -> { out += a[i]; out += a[i + 1] + b[j + 1]; i += 2; j += 2 }
+            }
+        }
+        while (i < a.size) { out += a[i]; out += a[i + 1]; i += 2 }
+        while (j < b.size) { out += b[j]; out += b[j + 1]; j += 2 }
+        return out.toLongArray()
+    }
+
+    fun insertUsed(used: LongArray, p: Long): LongArray {
+        var lo = 0
+        var hi = used.size / 2
+        while (lo < hi) {
+            val mid = (lo + hi) ushr 1
+            if (used[mid * 2] < p) lo = mid + 1 else hi = mid
+        }
+        if (lo < used.size / 2 && used[lo * 2] == p) return used
+        val out = LongArray(used.size + 2)
+        System.arraycopy(used, 0, out, 0, lo * 2)
+        out[lo * 2] = p
+        System.arraycopy(used, lo * 2, out, lo * 2 + 2, used.size - lo * 2)
+        return out
+    }
+
+    fun usedContains(used: LongArray, p: Long): Boolean {
+        var lo = 0
+        var hi = used.size / 2 - 1
+        while (lo <= hi) {
+            val mid = (lo + hi) ushr 1
+            val v = used[mid * 2]
+            when {
+                v == p -> return true
+                v < p -> lo = mid + 1
+                else -> hi = mid - 1
+            }
+        }
+        return false
+    }
+
+    fun sigmaOf(n: BigInteger): BigInteger {
+        var sig = one
+        val f = factorBI(n)
+        var i = 0
+        while (i < f.size) {
+            val p = f[i].toBigInteger()
+            val e = f[i + 1].toInt()
+            var pw = one
+            var geo = one
+            for (k in 0 until e) { pw = pw.multiply(p); geo = geo.add(pw) }
+            sig = sig.multiply(geo)
+            i += 2
+        }
+        return sig
+    }
+
+    // ---- DFS 状态（与 solution.kt 的模块级变量一一对应）----
+    var qCur = 0L
+    var pow2aL = 0L
+    var dCur = one
+    var tMax = nm
+    var facD = LongArray(0)
+    val solutions = ArrayList<BigInteger>()
+
+    fun mergeCandidates(fs: LongArray): LongArray {
+        val set = java.util.TreeMap<Long, Int>()
+        var i = 0
+        while (i < facD.size) { set.merge(facD[i], facD[i + 1].toInt(), Int::plus); i += 2 }
+        i = 0
+        while (i < fs.size) { set.merge(fs[i], fs[i + 1].toInt(), Int::plus); i += 2 }
+        val out = LongArray(set.size * 2)
+        var j = 0
+        for ((p, e) in set) { out[j] = p; out[j + 1] = e.toLong(); j += 2 }
+        return out
+    }
+
+    fun dfs(m: BigInteger, fs: LongArray, used: LongArray, aVal: BigInteger, bVal: BigInteger) {
+        if (aVal == one && bVal == one) {
+            val n = pow2aL.toBigInteger().multiply(m)
+            val twoSigN = two.multiply(dCur).multiply(sigmaOf(m))
+            if (twoSigN == BigInteger.valueOf(qCur).multiply(n)) solutions += n
+            return
+        }
+        if (m.multiply(bVal) > tMax) return
+        val cand = mergeCandidates(fs)
+        var i = 0
+        while (i < cand.size) {
+            val p = cand[i]
+            val pl = BigInteger.valueOf(p)
+            if ((p and 1L) == 1L && !usedContains(used, p)) {
+                val pm1 = pl.subtract(one)
+                var pPow = one
+                var pw = one
+                while (true) {
+                    pPow = pPow.multiply(pl)
+                    pw = pw.multiply(pl)
+                    if (m.multiply(pw) > tMax) break
+                    val pPow1 = pPow.multiply(pl)
+                    val geoSum = pPow1.subtract(one).divide(pm1)
+                    val num = aVal.multiply(pPow).multiply(pm1)
+                    val den = bVal.multiply(pPow1.subtract(one))
+                    if (num < den) break
+                    val g = num.gcd(den)
+                    val a2 = num.divide(g)
+                    val b2 = den.divide(g)
+                    val m2 = m.multiply(pw)
+                    if (m2.multiply(b2) > tMax) continue
+                    if (b2.gcd(m) != one) continue
+                    val fs2 = mergeFacs(fs, factorBI(geoSum))
+                    val used2 = insertUsed(used, p)
+                    dfs(m2, fs2, used2, a2, b2)
+                }
+            }
+            i += 2
+        }
+    }
+
+    fun solve(limit: BigInteger): List<BigInteger> {
+        solutions.clear()
+        for (qi in qList) {
+            qCur = qi.toLong()
+            for (a in 1..59) {
+                val pow2a = 1L shl a
+                if (pow2a > limit.toLong()) break
+                tMax = limit.divide(pow2a.toBigInteger())
+                val dCurL = (1L shl (a + 1)) - 1
+                dCur = dCurL.toBigInteger()
+                if (dCur > tMax) break
+                val a0 = qCur.toBigInteger().multiply((1L shl (a - 1)).toBigInteger())
+                if (a0 < dCur) continue
+                facD = factor(dCurL)
+                val g = a0.gcd(dCur)
+                pow2aL = pow2a
+                dfs(one, LongArray(0), LongArray(0), a0.divide(g), dCur.divide(g))
+            }
+        }
+        return solutions.distinct().sorted()
+    }
+
+    return solve(nm).fold(BigInteger.ZERO) { acc, x -> acc.add(x) }.toLong()
+}
+
+/**
+ * PE 242 — 奇三元组：f(n,k) 为奇 ⟺ m=(n−1)/2 偶且 C(m,r) 奇（r=(k−1)/2），
+ * Lucas 定理给出合法 r 是 m 的二进制子掩码，共 2^{popcount(m)} 个；
+ * 答案 = Σ_{j ≤ (N−1)/4} 2^{popcount(j)}，MSB→LSB 位 DP（每位自由权重 1+2=3）。答案 997104142249036713。
+ */
+private fun solve242(): Long {
+    val nMax = 1_000_000_000_000L
+    val bound = (nMax - 1) / 4
+    val bits = if (bound == 0L) 0 else 64 - java.lang.Long.numberOfLeadingZeros(bound)
+    val pow3 = LongArray(bits + 1)
+    pow3[0] = 1L
+    for (i in 1..bits) pow3[i] = pow3[i - 1] * 3L
+    var total = 0L
+    var prefix = 1L
+    for (i in bits - 1 downTo 0) {
+        if ((bound ushr i) and 1L == 1L) {
+            total += prefix * pow3[i]
+            prefix *= 2L
+        }
+    }
+    return total + prefix
+}
+
+/**
+ * PE 243 — 韧性：R(d) = φ(d)/(d−1) < A/B；φ(d)/d 只依赖素因子集合，最小 k 个素因子的
+ * 阶乘 P_k 给出下界，答案 = m·P_k，m 由 B·φ(d) < A·(d−1) 反解（m 需 k-光滑）。答案 892371480。
+ */
+private fun solve243(): Long {
+    val primes = primesUpTo(1000)
+    fun primorial(k: Int): Pair<Long, Long> {
+        var p = 1L
+        var ph = 1L
+        for (i in 0 until k) { p *= primes[i]; ph *= primes[i] - 1 }
+        return p to ph
+    }
+    fun isKSmooth(v0: Long, k: Int): Boolean {
+        var v = v0
+        for (i in 0 until k) {
+            val p = primes[i]
+            while (v % p == 0L) v /= p
+        }
+        return v == 1L
+    }
+    val a = 15499L
+    val b = 94744L
+    var k = 1
+    while (true) {
+        val (p, ph) = primorial(k)
+        if (b * ph < a * p) break
+        k++
+    }
+    val (base, phiBase) = primorial(k)
+    val delta = a * base - b * phiBase
+    var m = a / delta + 1
+    while (m * delta <= a || !isKSmooth(m, k)) m++
+    return m * base
+}
+
+/**
+ * PE 244 — 滑块：局面位打包（低 4 位空位、高 16 位红块掩码），BFS 求最短路，
+ * 再按 BFS 出队顺序在最短路 DAG 上聚合「最短路条数 × checksum」。
+ * 与 content/problems/0244/solution.kt 逻辑一致。答案 96356848。
+ */
+private fun solve244(): Long {
+    val mod = 100000007
+    val moves = intArrayOf('L'.code, 'R'.code, 'U'.code, 'D'.code)
+    val startRows = arrayOf("KRBB", "RRBB", "RRBB", "RRBB")
+    val targetRows = arrayOf("KBRB", "BRBR", "RBRB", "BRBR")
+    val table = 1 shl 20
+
+    fun encode(rows: Array<String>): Int {
+        var blank = 0
+        var mask = 0
+        for (r in 0 until 4) for (c in 0 until 4) {
+            when (rows[r][c]) {
+                'K' -> blank = r * 4 + c
+                'R' -> mask = mask or (1 shl (r * 4 + c))
+            }
+        }
+        return blank or (mask shl 4)
+    }
+
+    fun push(state: Int, m: Int): Int {
+        val blank = state and 15
+        val mask = state ushr 4
+        val r = blank shr 2
+        val c = blank and 3
+        val nr = when (m) {
+            'L'.code -> r
+            'R'.code -> r
+            'U'.code -> r + 1
+            else -> r - 1
+        }
+        val nc = when (m) {
+            'L'.code -> c + 1
+            'R'.code -> c - 1
+            'U'.code -> c
+            else -> c
+        }
+        if (nr < 0 || nr > 3 || nc < 0 || nc > 3) return -1
+        val to = nr * 4 + nc
+        val nm = mask and (1 shl to).inv()
+        val newMask = if ((mask ushr to) and 1 == 1) nm or (1 shl blank) else nm
+        return to or (newMask shl 4)
+    }
+
+    val start = encode(startRows)
+    val target = encode(targetRows)
+    val dist = IntArray(table) { -1 }
+    val order = IntArray(table)
+    var head = 0
+    var tail = 1
+    dist[start] = 0
+    order[0] = start
+    while (head < tail) {
+        val u = order[head++]
+        val d = dist[u] + 1
+        for (m in moves) {
+            val v = push(u, m)
+            if (v >= 0 && dist[v] < 0) {
+                dist[v] = d
+                order[tail++] = v
+            }
+        }
+    }
+    val paths = LongArray(table)
+    val sumCk = IntArray(table)
+    paths[start] = 1L
+    for (i in 0 until tail) {
+        val u = order[i]
+        val p = paths[u]
+        if (p == 0L) continue
+        val su = sumCk[u]
+        val want = dist[u] + 1
+        for (m in moves) {
+            val v = push(u, m)
+            if (v < 0 || dist[v] != want) continue
+            paths[v] += p
+            sumCk[v] = ((sumCk[v].toLong() + 243L * su + m.toLong() * p) % mod).toInt()
+        }
+    }
+    return sumCk[target].toLong()
+}
+
+/**
+ * PE 245 — 核心韧性：n−1 = K(n−φ(n))，n 奇、无平方因子、素因子全部 > K。
+ * 二元解由 (p−K)(q−K) = K²−K+1 枚举（固定 p，分解 p²−p+1 取约数）；
+ * 多元解固定素因子个数 j，DFS 枚举 j−1 个递增素数前缀（前缀不必是解！），
+ * 末位素数 r 由 u=K−1 的连续区间唯一确定：r = (φ(m)(u+1)+1)/(φ(m)−u(m−φ(m)))。
+ * 与 content/problems/0245/solution.kt 逻辑一致。答案 288084712410001（4877 个解）。
+ */
+private fun solve245(): Long {
+    val nMax = 200_000_000_000L
+    val smallPrimes = intArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
+
+    fun mulMod(a: Long, b: Long, m: Long): Long {
+        val b1 = b ushr 19
+        val b0 = b and ((1L shl 19) - 1)
+        return (((a * b0) % m) + (((a * b1) % m) shl 19)) % m
+    }
+
+    fun powMod(b: Long, e: Long, m: Long): Long {
+        var r = 1L
+        var bb = b % m
+        var ee = e
+        while (ee > 0) {
+            if (ee and 1L == 1L) r = mulMod(r, bb, m)
+            bb = mulMod(bb, bb, m)
+            ee = ee ushr 1
+        }
+        return r
+    }
+
+    fun isPrime(n: Long): Boolean {
+        if (n < 2) return false
+        for (p in smallPrimes) {
+            if (n == p.toLong()) return true
+            if (n % p == 0L) return false
+        }
+        var d = n - 1
+        var r = 0
+        while (d and 1L == 0L) { d = d ushr 1; r++ }
+        for (a in longArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)) {
+            var x = powMod(a, d, n)
+            if (x == 1L || x == n - 1) continue
+            var composite = true
+            for (i in 1 until r) {
+                x = mulMod(x, x, n)
+                if (x == n - 1) { composite = false; break }
+            }
+            if (composite) return false
+        }
+        return true
+    }
+
+    fun gcdOf(a: Long, b: Long): Long {
+        var x = a
+        var y = b
+        while (y != 0L) { val t = x % y; x = y; y = t }
+        return x
+    }
+
+    fun pollardBrent(n: Long): Long {
+        if (n and 1L == 0L) return 2
+        val rnd = java.util.concurrent.ThreadLocalRandom.current()
+        while (true) {
+            val c = rnd.nextLong(1, n)
+            var y = rnd.nextLong(0, n)
+            var g = 1L
+            var r = 1L
+            var q = 1L
+            var x = 0L
+            var ys = 0L
+            while (g == 1L) {
+                x = y
+                repeat(r.toInt()) { y = (mulMod(y, y, n) + c) % n }
+                var k = 0L
+                while (k < r && g == 1L) {
+                    ys = y
+                    val lim = minOf(128L, r - k)
+                    for (i in 0 until lim) {
+                        y = (mulMod(y, y, n) + c) % n
+                        val d = x - y
+                        q = mulMod(q, if (d < 0) -d else d, n)
+                    }
+                    g = gcdOf(q, n)
+                    k += 128L
+                }
+                r *= 2
+            }
+            if (g == n) {
+                g = 1
+                do {
+                    ys = (mulMod(ys, ys, n) + c) % n
+                    val d = x - ys
+                    g = gcdOf(if (d < 0) -d else d, n)
+                } while (g == 1L)
+            }
+            if (g != n) return g
+        }
+    }
+
+    fun factorize(n0: Long): MutableMap<Long, Int> {
+        val out = LinkedHashMap<Long, Int>()
+        var rest = n0
+        for (p in smallPrimes) {
+            if (rest % p == 0L) {
+                var e = 0
+                while (rest % p == 0L) { rest /= p; e++ }
+                out[p.toLong()] = e
+            }
+            if (rest == 1L) return out
+        }
+        val stack = ArrayDeque<Long>()
+        if (rest > 1) stack.addLast(rest)
+        while (stack.isNotEmpty()) {
+            val v = stack.removeLast()
+            if (v == 1L) continue
+            if (isPrime(v)) { out[v] = (out[v] ?: 0) + 1; continue }
+            val d = pollardBrent(v)
+            stack.addLast(d)
+            stack.addLast(v / d)
+        }
+        return out
+    }
+
+    fun allDivisors(f: Map<Long, Int>): List<Long> {
+        var divs = listOf(1L)
+        for ((p, e) in f) {
+            val next = ArrayList<Long>()
+            var mul = 1L
+            repeat(e) {
+                mul *= p
+                for (d in divs) next.add(d * mul)
+            }
+            divs = divs + next
+        }
+        return divs
+    }
+
+    fun isqrt(x: Long): Long {
+        var r = Math.sqrt(x.toDouble()).toLong()
+        while (r > 0 && r * r > x) r--
+        while ((r + 1) * (r + 1) <= x) r++
+        return r
+    }
+
+    fun powLe(a: Long, k: Int, x: Long): Boolean {
+        var prod = 1L
+        repeat(k) {
+            if (prod > x / a) return false
+            prod *= a
+        }
+        return prod <= x
+    }
+
+    fun iroot(x: Long, k: Int): Long {
+        if (k == 1) return x
+        if (k == 2) return isqrt(x)
+        var r = Math.pow(x.toDouble(), 1.0 / k).toLong()
+        if (r < 1) r = 1
+        while (r > 1 && !powLe(r, k, x)) r--
+        while (powLe(r + 1, k, x)) r++
+        return r
+    }
+
+    val oddPrimes = primesUpTo(isqrt(nMax).toInt() + 1).filter { it > 2L }.map { it.toInt() }.toIntArray()
+    val solutions = ArrayList<Long>()
+
+    // 2 个素因子：固定 p，A = p²−p+1 的约数 d = p−K 给出 q = A/d − p + 1
+    val root = isqrt(nMax)
+    for (p1 in oddPrimes) {
+        val p = p1.toLong()
+        if (p > root) break
+        val a = p * p - p + 1
+        for (d in allDivisors(factorize(a))) {
+            val q = a / d - p + 1
+            if (q <= p || p * q > nMax) continue
+            if (isPrime(q)) solutions.add(p * q)
+        }
+    }
+
+    // j ≥ 3 个素因子：前缀 (m, φ(m)) DFS + 末位素数由 u 区间确定
+    fun collectWithJ(j: Int) {
+        fun tryLast(m: Long, a: Long, lastP: Long) {
+            val d = m - a
+            if (d <= 0) return
+            val rMax = nMax / m
+            if (rMax <= lastP) return
+            val numMin = a * (lastP - 1) - 1
+            val denMin = a + lastP * d
+            var uMin = numMin / denMin + 1
+            if (uMin < 1) uMin = 1
+            val numMax = a * (rMax - 1) - 1
+            if (numMax < 0) return
+            var uMax = numMax / (a + rMax * d)
+            val cap = (a - 1) / d
+            if (uMax > cap) uMax = cap
+            var u = uMin
+            while (u <= uMax) {
+                val denom = a - u * d
+                if (denom <= 0) break
+                val numer = a * (u + 1) + 1
+                if (numer % denom == 0L) {
+                    val r = numer / denom
+                    if (r > lastP && m * r <= nMax && isPrime(r)) {
+                        val n = m * r
+                        val phi = a * (r - 1)
+                        if ((n - 1) % (n - phi) == 0L) solutions.add(n)
+                    }
+                }
+                u++
+            }
+        }
+
+        fun dfs(start: Int, remaining: Int, m: Long, a: Long, lastP: Long) {
+            if (remaining == 0) { tryLast(m, a, lastP); return }
+            val maxP = iroot(nMax / m, remaining + 1)
+            var i = start
+            while (i < oddPrimes.size) {
+                val p = oddPrimes[i].toLong()
+                if (p > maxP) break
+                dfs(i + 1, remaining - 1, m * p, a * (p - 1), p)
+                i++
+            }
+        }
+
+        dfs(0, j - 1, 1L, 1L, 2L)
+    }
+
+    var maxJ = 0
+    var prod = 1L
+    for (p in oddPrimes) {
+        if (prod * p > nMax) break
+        prod *= p
+        maxJ++
+    }
+    for (j in 3..maxJ) collectWithJ(j)
+
+    return solutions.distinct().sum()
 }

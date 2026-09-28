@@ -1,0 +1,20 @@
+{
+  "id": 244,
+  "title": "Sliders",
+  "titleZh": "滑块",
+  "difficulty": 48,
+  "difficultyLevel": "Level 19",
+  "tags": [
+    "breadth-first-search",
+    "shortest-path-dag",
+    "dynamic-programming",
+    "state-encoding"
+  ],
+  "answer": 96356848,
+  "solvedBy": 1808,
+  "bruteForceBaselineMs": 108,
+  "optimizedBaselineMs": 8,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=244",
+  "fetchedAt": "2026-09-27"
+}

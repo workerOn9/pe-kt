@@ -20,13 +20,23 @@ data class ProblemContent(
 /**
  * 内容索引：启动时扫描 content/problems/ 下所有题目目录并加载进内存（D-05：v1 无数据库）。
  */
-class ContentIndex private constructor(private val problems: Map<Int, ProblemContent>) {
+class ContentIndex private constructor(
+    private val problems: Map<Int, ProblemContent>,
+    private val rootDir: File,
+) {
 
     /** 题目列表（仅元数据），按 id 升序。 */
     fun list(): List<ProblemMeta> = problems.values.map { it.meta }.sortedBy { it.id }
 
     /** 按题号取完整内容，不存在返回 null。 */
     fun get(id: Int): ProblemContent? = problems[id]
+
+    /**
+     * 题目目录（用于托管题面引用的图片等静态资源），题目不存在时返回 null。
+     * 目录名统一为四位数字，与 content/problems/XXXX 的约定一致。
+     */
+    fun problemDir(id: Int): File? =
+        problems[id]?.let { File(rootDir, "problems/%04d".format(id)) }
 
     companion object {
         /**
@@ -71,7 +81,7 @@ class ContentIndex private constructor(private val problems: Map<Int, ProblemCon
                     )
                 }
                 .associateBy { it.meta.id }
-            return ContentIndex(problems)
+            return ContentIndex(problems, root)
         }
     }
 }
