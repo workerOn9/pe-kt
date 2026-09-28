@@ -1,0 +1,22 @@
+{
+  "id": 247,
+  "title": "Squares Under a Hyperbola",
+  "titleZh": "双曲线下的正方形",
+  "difficulty": 32,
+  "difficultyLevel": "Level 12",
+  "tags": [
+    "geometry",
+    "greedy",
+    "binary-tree",
+    "pruning",
+    "floating-point",
+    "depth-first-search"
+  ],
+  "answer": 782252,
+  "solvedBy": 2026,
+  "bruteForceBaselineMs": 126.9,
+  "optimizedBaselineMs": 13.2,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem/247",
+  "fetchedAt": "2026-09-28"
+}

@@ -271,6 +271,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     243 to ::solve243,
     244 to ::solve244,
     245 to ::solve245,
+    246 to ::solve246,
+    247 to ::solve247,
+    248 to ::solve248,
+    249 to ::solve249,
+    250 to ::solve250,
 )
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
@@ -10722,4 +10727,373 @@ private fun solve245(): Long {
     for (j in 3..maxJ) collectWithJ(j)
 
     return solutions.distinct().sum()
+}
+
+/**
+ * PE 246 — 椭圆的切线：与 G 和圆 c 等距的点满足 |PM| + |PG| = 15000，是以 M(−2000,1500)、
+ * G(8000,1500) 为焦点的椭圆（a² = 7500²、b² = 31 250 000）。从 (u,v) 引两切线的夹角满足
+ * θ = atan2(2√T, D)，θ > 45° ⟺ T > 0 且（D ≤ 0 或 4T > D²）。逐列 u 用整数二分 +
+ * 精确整数谓词（v² < E + 2√N ⟺ v² ≤ E 或 (v²−E)² < 4N）定出 v 的区间再求和。
+ * 与 content/problems/0246/solution.kt 逻辑一致。答案 810834388。
+ */
+private fun solve246(): Long {
+    val a2 = 56_250_000L     // a = 7500
+    val b2 = 31_250_000L     // b² = a² − c²，c = 5000
+
+    /** max{ v ≥ 0 : v² < r₂ }，r₂ = E + 2√N（无解返回 −1） */
+    fun maxVBelow(e: Long, n: Long): Long {
+        fun ok(v: Long): Boolean {
+            val d = v * v - e
+            return d <= 0L || d * d < 4 * n
+        }
+        if (n < 0) return -1
+        val cap = e + 2 * isqrtLong(n) + 2
+        if (cap <= 0) return -1
+        if (!ok(0)) return -1
+        var lo = 0L
+        var hi = isqrtLong(cap) + 1
+        while (lo < hi) {
+            val mid = (lo + hi + 1) shr 1
+            if (ok(mid)) lo = mid else hi = mid - 1
+        }
+        return lo
+    }
+
+    /** min{ v ≥ 0 : v² > r₁ }，r₁ = E − 2√N（调用前保证 r₁ ≥ 0） */
+    fun minVAbove(e: Long, n: Long): Long {
+        fun above(v: Long): Boolean {
+            val d = e - v * v
+            return d <= 0L || d * d < 4 * n
+        }
+        var lo = 0L
+        var hi = isqrtLong(e) + 1
+        while (lo < hi) {
+            val mid = (lo + hi) shr 1
+            if (above(mid)) hi = mid else lo = mid + 1
+        }
+        return lo
+    }
+
+    /** 固定 u 时满足 θ > 45° 的整数 v 个数 */
+    fun columnCount(u: Long): Long {
+        val delta = a2 - b2
+        val u2 = u * u
+        val e = 3 * a2 + b2 - u2
+        val n = 2 * a2 * a2 - delta * u2
+        if (n < 0) return 0L
+        val mTop = maxVBelow(e, n)
+        if (mTop < 0) return 0L
+        return if (u2 * delta < a2 * a2) {           // 椭圆是列内边界
+            if (u2 <= a2) {
+                val we = b2 * (a2 - u2)              // a²·v_e²
+                var ml = isqrtLong(we / a2)
+                while (a2 * (ml + 1) * (ml + 1) <= we) ml++
+                while (ml >= 0 && a2 * ml * ml > we) ml--
+                val c = mTop - ml                    // |v| ∈ {ml+1, …, mTop}
+                if (c > 0) 2 * c else 0L
+            } else {
+                2 * mTop + 1
+            }
+        } else {                                     // 内边界是 r₁，可能出现 v = 0 附近的空洞
+            if (e >= 0 && e * e >= 4 * n) {
+                val vMin = minVAbove(e, n)
+                val c = mTop - vMin + 1
+                if (c > 0) 2 * c else 0L
+            } else {
+                2 * mTop + 1
+            }
+        }
+    }
+
+    var total = 0L
+    var u = 0L
+    while (true) {
+        val c = columnCount(u)
+        if (c == 0L) break
+        total += if (u == 0L) c else 2 * c
+        u++
+    }
+    return total
+}
+
+/**
+ * PE 247 — 双曲线下的正方形：空位 gap(L,B) 放一个正方形后分裂成右侧（R）与上方（T）两个
+ * 子空位，整棵树按边长递减编号；索引 = 祖先链上的 (R 个数, T 个数)。(3,3) 只有 C(6,3) = 20
+ * 条路径，入列最晚者就是末端边长最小者，再剪枝 DFS 数出边长严格大于它的节点数 + 1。
+ * 与 content/problems/0247/solution.kt 逻辑一致。答案 782252。
+ */
+private fun solve247(): Long {
+    /** 空位 (l,b) 里最大正方形边长：s = 2(1−lb) / (√((l+b)²+4(1−lb)) + (l+b))，有理化防相消 */
+    fun sideOf(l: Double, b: Double): Double {
+        val c = 1.0 - l * b
+        if (c <= 0.0) return 0.0
+        val u = l + b
+        return 2.0 * c / (Math.sqrt(u * u + 4.0 * c) + u)
+    }
+
+    /** 沿路径（R/T 串）走到末端空位，返回末端边长 */
+    fun gapSide(path: String): Double {
+        var l = 1.0
+        var b = 0.0
+        for (ch in path) {
+            val s = sideOf(l, b)
+            if (ch == 'R') l += s else b += s
+        }
+        return sideOf(l, b)
+    }
+
+    /** 数边长严格大于阈值 th 的节点数（子空位是父空位的一部分，边长必严格更小，可整棵剪掉） */
+    fun countAbove(th: Double): Long {
+        var stackL = DoubleArray(64)
+        var stackB = DoubleArray(64)
+        var top = 0
+        stackL[top] = 1.0
+        stackB[top] = 0.0
+        top++
+        var count = 0L
+        while (top > 0) {
+            top--
+            val l = stackL[top]
+            val b = stackB[top]
+            val s = sideOf(l, b)
+            if (s <= th) continue
+            count++
+            if (top + 2 > stackL.size) {
+                stackL = stackL.copyOf(stackL.size * 2)
+                stackB = stackB.copyOf(stackB.size * 2)
+            }
+            stackL[top] = l + s; stackB[top] = b; top++        // R 子空位
+            stackL[top] = l; stackB[top] = b + s; top++         // T 子空位
+        }
+        return count
+    }
+
+    val candidates = (0 until 64)
+        .filter { Integer.bitCount(it) == 3 }
+        .map { mask ->
+            val path = buildString { for (i in 0 until 6) append(if (mask shr i and 1 == 1) 'R' else 'T') }
+            path to gapSide(path)
+        }
+        .sortedBy { it.second }
+    check(candidates[0].first == "RRRTTT") { "(3,3) 候选最小者应为 RRRTTT，实际 ${candidates[0].first}" }
+    return countAbove(candidates[0].second) + 1
+}
+
+/**
+ * PE 248 — 欧拉函数等于 13!：逆欧拉枚举。候选素数 p 满足 (p−1) | 13!，指数 e 满足
+ * p^{e−1}(p−1) | 剩余 rem；按素因子严格递增 DFS 天然去重，全部解排序后取第 150000 个。
+ * 素性判定用 12 底数确定性 Miller–Rabin（n ≤ 8·13! < 2³⁷），中间量全在 Long 内。
+ * 与 content/problems/0248/solution.kt 逻辑一致。答案 23507044290。
+ */
+private fun solve248(): Long {
+    val m = 6_227_020_800L     // 13!
+    val bases = longArrayOf(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
+
+    /** 模乘，模 < 2³³：拆成 16 位高低块，中间量 < 2⁵⁰ */
+    fun mulMod(a: Long, b: Long, md: Long): Long {
+        val b1 = b ushr 16
+        val b0 = b and 0xFFFFL
+        return (((a * b0) % md) + (((a * b1) % md) shl 16)) % md
+    }
+
+    fun powMod(base: Long, exp: Long, md: Long): Long {
+        var r = 1L
+        var x = base % md
+        var e = exp
+        while (e > 0) {
+            if (e and 1L == 1L) r = mulMod(r, x, md)
+            x = mulMod(x, x, md)
+            e = e ushr 1
+        }
+        return r
+    }
+
+    /** 12 个底数覆盖 n < 3.3×10²⁴，确定性 */
+    fun isPrimeMR(n: Long): Boolean {
+        if (n < 2) return false
+        for (p in bases) {
+            if (n == p) return true
+            if (n % p == 0L) return false
+        }
+        var d = n - 1
+        var r = 0
+        while (d and 1L == 0L) { d = d ushr 1; r++ }
+        for (a in bases) {
+            var x = powMod(a, d, n)
+            if (x == 1L || x == n - 1) continue
+            var composite = true
+            for (i in 1 until r) {
+                x = mulMod(x, x, n)
+                if (x == n - 1) { composite = false; break }
+            }
+            if (composite) return false
+        }
+        return true
+    }
+
+    fun divisorsOf(x0: Long): LongArray {
+        var x = x0
+        var divs = longArrayOf(1L)
+        var p = 2L
+        while (p <= x / p) {
+            if (x % p == 0L) {
+                var mul = 1L
+                val add = ArrayList<Long>()
+                while (x % p == 0L) {
+                    x /= p
+                    mul *= p
+                    for (d in divs) add.add(d * mul)
+                }
+                divs += add
+            }
+            p++
+        }
+        if (x > 1L) {
+            val add = ArrayList<Long>(divs.size)
+            for (d in divs) add.add(d * x)
+            divs += add
+        }
+        divs.sort()
+        return divs
+    }
+
+    val divs = divisorsOf(m)
+    val shiftPrime = HashMap<Long, Boolean>(divs.size * 2)
+    for (d in divs) shiftPrime[d] = isPrimeMR(d + 1)
+    val divsOf = HashMap<Long, LongArray>(divs.size * 2)
+    for (r in divs) {
+        val list = ArrayList<Long>()
+        for (d in divs) {
+            if (d > r) break
+            if (r % d == 0L) list.add(d)
+        }
+        divsOf[r] = list.toLongArray()
+    }
+
+    val solutions = ArrayList<Long>(1 shl 18)
+    fun dfs(rem: Long, minP: Long, n: Long) {
+        if (rem == 1L) { solutions.add(n); return }
+        for (d in divsOf[rem]!!) {                    // d = p − 1 的候选
+            val p = d + 1
+            if (p <= minP) continue                   // 保持素因子严格递增
+            if (shiftPrime[d] != true) continue
+            var q = d                                 // q = p^{e−1}(p−1)
+            var pe = p                                // pe = p^e
+            while (q <= rem && rem % q == 0L) {
+                val nr = rem / q
+                val nn = n * pe
+                check(nn > 0L && nn <= 8L * m) { "中间量越界：n = $nn" }
+                if (nr == 1L) solutions.add(nn) else dfs(nr, p, nn)
+                if (q > rem / p) break                // 下一个 q 必 > rem；防乘溢出
+                q *= p
+                pe *= p
+            }
+        }
+    }
+    dfs(m, 1L, 1L)
+    solutions.sort()
+    return solutions[149_999]
+}
+
+/**
+ * PE 249 — 素子集和：669 个素数、元素和 1 548 136 的 0/1 背包计数，全程模 10^16
+ * （每项 < 10^16，一次加法 < 2×10^16，Long 不溢出），最后对「和为素数」的位置累加。
+ * 与 content/problems/0249/solution.kt 逻辑一致。答案 9275262564250418。
+ */
+private fun solve249(): Long {
+    val mod = 10_000_000_000_000_000L
+    val primeFlag = sieve(5000)
+    val primes = ArrayList<Int>()
+    for (i in 2 until 5000) if (primeFlag[i]) primes.add(i)
+    var maxSum = 0
+    for (p in primes) maxSum += p
+    val dp = LongArray(maxSum + 1)
+    dp[0] = 1L
+    var reach = 0
+    for (p in primes) {
+        for (s in reach + p downTo p) {
+            val v = dp[s] + dp[s - p]
+            dp[s] = if (v >= mod) v - mod else v
+        }
+        reach += p
+    }
+    val sumIsPrime = sieve(maxSum)
+    var total = 0L
+    for (s in 2..maxSum) {
+        if (sumIsPrime[s]) {
+            total += dp[s]
+            if (total >= mod) total -= mod
+        }
+    }
+    return total
+}
+
+/**
+ * PE 250 — 250250：f(k) = k^k mod 250（最小正周期 500，250 不行）。统计 1..250250 每个余数 r
+ * 的出现次数 c_r 后，在循环群 Z/250 上做 dp ← dp·(1+x^r)（原地沿 i ↦ i+r 的环扫描），
+ * r = 0 的因子等价于逐次翻倍；dp[x^0] 含空集，减 1 即答案。
+ * 与 content/problems/0250/solution.kt 方法 A 一致。答案 1425480602091519。
+ */
+private fun solve250(): Long {
+    val mod = 10_000_000_000_000_000L
+    val states = 250
+    val nMax = 250_250
+
+    /** f(k) = k^k mod 250 */
+    fun fk(k: Int): Int {
+        var r = 1
+        var b = k % 250
+        var e = k
+        while (e > 0) {
+            if (e and 1 == 1) r = r * b % 250
+            b = b * b % 250
+            e = e shr 1
+        }
+        return r
+    }
+
+    fun gcdInt(a: Int, b: Int): Int {
+        var x = a
+        var y = b
+        while (y != 0) { val t = x % y; x = y; y = t }
+        return x
+    }
+
+    val c = LongArray(states)
+    for (k in 1..nMax) c[fk(k)]++
+
+    val dp = LongArray(states)
+    dp[0] = 1L
+    for (r in 1 until states) {
+        if (c[r] == 0L) continue
+        val g = gcdInt(r, states)
+        val len = states / g
+        repeat(c[r].toInt()) {
+            for (s in 0 until g) {
+                var prev = dp[(s + (len - 1) * r) % states]   // 环尾 = 环首的前驱
+                var pos = s
+                var j = 0
+                while (j < len) {
+                    val cur = dp[pos]
+                    var v = cur + prev
+                    if (v >= mod) v -= mod
+                    dp[pos] = v
+                    prev = cur
+                    pos += r
+                    if (pos >= states) pos -= states
+                    j++
+                }
+            }
+        }
+    }
+    var left = c[0]                                        // (1+x^0)^{c_0} = 2^{c_0} 是整体数乘
+    while (left > 0) {
+        for (i in 0 until states) {
+            var v = dp[i] + dp[i]
+            if (v >= mod) v -= mod
+            dp[i] = v
+        }
+        left--
+    }
+    return (dp[0] - 1 + mod) % mod
 }

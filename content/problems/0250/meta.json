@@ -1,0 +1,21 @@
+{
+  "id": 250,
+  "title": "250250",
+  "titleZh": "250250 的子集和",
+  "difficulty": 35,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "periodicity",
+    "cyclic-group",
+    "generating-functions",
+    "dynamic-programming",
+    "modular-arithmetic"
+  ],
+  "answer": 1425480602091519,
+  "solvedBy": 3923,
+  "bruteForceBaselineMs": 90.5,
+  "optimizedBaselineMs": 71.4,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=250",
+  "fetchedAt": "2026-09-28"
+}

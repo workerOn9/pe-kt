@@ -1,0 +1,22 @@
+{
+  "id": 248,
+  "title": "Euler's Totient Function Equals 13!",
+  "titleZh": "欧拉函数等于 13!",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [
+    "number-theory",
+    "euler-totient",
+    "inverse-totient",
+    "divisor-enumeration",
+    "depth-first-search",
+    "miller-rabin"
+  ],
+  "answer": 23507044290,
+  "solvedBy": 1811,
+  "bruteForceBaselineMs": 1350,
+  "optimizedBaselineMs": 200,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=248",
+  "fetchedAt": "2026-09-28"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 246,
+  "title": "Tangents to an Ellipse",
+  "titleZh": "椭圆的切线",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [
+    "conic-sections",
+    "lattice-point-counting",
+    "computational-geometry",
+    "exact-arithmetic",
+    "geometry"
+  ],
+  "answer": 810834388,
+  "solvedBy": 1259,
+  "bruteForceBaselineMs": 2494,
+  "optimizedBaselineMs": 1.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=246",
+  "fetchedAt": "2026-09-28"
+}
