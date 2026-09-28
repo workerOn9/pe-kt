@@ -1,0 +1,22 @@
+{
+  "id": 257,
+  "title": "Angular Bisectors",
+  "titleZh": "角平分线",
+  "difficulty": 90,
+  "difficultyLevel": "Level 35",
+  "tags": [
+    "geometry",
+    "angle-bisector",
+    "rational-parametrization",
+    "conic-sections",
+    "diophantine-equations",
+    "counting"
+  ],
+  "answer": 139012411,
+  "solvedBy": 1071,
+  "bruteForceBaselineMs": 1793.5,
+  "optimizedBaselineMs": 1566.1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=257",
+  "fetchedAt": "2026-09-28"
+}

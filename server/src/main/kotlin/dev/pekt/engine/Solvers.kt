@@ -276,7 +276,47 @@ val solvers: Map<Int, () -> Long> = mapOf(
     248 to ::solve248,
     249 to ::solve249,
     250 to ::solve250,
+    251 to ::solve251,
+    252 to ::solve252,
+    253 to ::solve253,
+    254 to ::solve254,
+    255 to ::solve255,
+    256 to ::solve256,
+    257 to ::solve257,
+    258 to ::solve258,
+    259 to ::solve259,
+    260 to ::solve260,
 )
+
+/** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
+private fun solve251(): Long = solve0251Impl()
+
+/** PE 252 — 凸空穴：空凸多边形 DP，500 点最大面积 104924.0（双倍面积 209848，编码 ×10^8 = 10492400000000）。 */
+private fun solve252(): Long = solve0252Impl()
+
+/** PE 253 — 整理毛毛虫：最大段数分布由相邻对 max(t_p,t_{p+1}) 的多重集决定，精确有理数求平均 → 11.492847（编码 1149284700）。 */
+private fun solve253(): Long = solve0253Impl()
+
+/** PE 254 — 数位阶乘和：g(i) 最小整数 + 数位和，Σsg(1..150) = 8184523820510。 */
+private fun solve254(): Long = solve0254Impl()
+
+/** PE 255 — 四舍五入的平方根：14 位整数 Heron 迭代平均步数 = 4.4474011180（10 位小数编码 ×10^10 = 44474011180）。 */
+private fun solve255(): Long = solve0255Impl()
+
+/** PE 256 — 无榻榻米房间：T(s) 计数（a×b tatami-free 的 Hickerson 刻画），最小 T(s)=200 的 s = 85765680。 */
+private fun solve256(): Long = solve0256Impl()
+
+/** PE 257 — 角平分线：area(ABC)/area(AEG) = (a+b)(a+c)/(bc) ∈ {2,3,4}，有理参数化计数 = 139012411。 */
+private fun solve257(): Long = solve0257Impl()
+
+/** PE 258 — 滞后斐波那契 g_k = g_{k−2000} + g_{k−1999} 初值全 1：Kitamasa（x^k mod x^2000−x^1999−1 系数和），g_{10^18} mod 20092010 = 12747994。 */
+private fun solve258(): Long = solve0258Impl()
+
+/** PE 259 — 可达数：1..9 顺序拼接 + 四则运算的区间 DP（精确有理数集合），全部正可达整数之和 = 20101196798。 */
+private fun solve259(): Long = solve0259Impl()
+
+/** PE 260 — 取石子游戏：每次从 1/2/3 堆各取相同 N 颗，Z ≤ 1000 的全部必败局面坐标和 = 167542057。 */
+private fun solve260(): Long = solve0260Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

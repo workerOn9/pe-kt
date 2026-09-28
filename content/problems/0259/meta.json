@@ -1,0 +1,21 @@
+{
+  "id": 259,
+  "title": "Reachable Numbers",
+  "titleZh": "可达数",
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "dynamic-programming",
+    "interval-dp",
+    "rational-numbers",
+    "exact-arithmetic",
+    "hash-set"
+  ],
+  "answer": 20101196798,
+  "solvedBy": 2038,
+  "bruteForceBaselineMs": 91.8,
+  "optimizedBaselineMs": 675.5,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=259",
+  "fetchedAt": "2026-09-28"
+}

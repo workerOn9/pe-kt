@@ -1,0 +1,21 @@
+{
+  "id": 251,
+  "title": "Cardano Triplets",
+  "titleZh": "卡尔达诺三元组",
+  "difficulty": 62,
+  "difficultyLevel": "Level 24",
+  "tags": [
+    "number-theory",
+    "diophantine-equations",
+    "divisor-enumeration",
+    "modular-arithmetic",
+    "prime-sieve"
+  ],
+  "answer": 18946051,
+  "solvedBy": 1933,
+  "bruteForceBaselineMs": 133.1,
+  "optimizedBaselineMs": 1784.3,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=251",
+  "fetchedAt": "2026-09-28"
+}

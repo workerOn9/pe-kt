@@ -1,0 +1,21 @@
+{
+  "id": 254,
+  "title": "Sums of Digit Factorials",
+  "titleZh": "数位阶乘和",
+  "difficulty": 65,
+  "difficultyLevel": "Level 25",
+  "tags": [
+    "digit-factorials",
+    "mixed-radix",
+    "greedy-algorithm",
+    "digit-enumeration",
+    "combinatorics"
+  ],
+  "answer": 8184523820510,
+  "solvedBy": 1392,
+  "bruteForceBaselineMs": 164.3,
+  "optimizedBaselineMs": 43.5,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=254",
+  "fetchedAt": "2026-09-28"
+}

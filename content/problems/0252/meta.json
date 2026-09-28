@@ -1,0 +1,21 @@
+{
+  "id": 252,
+  "title": "Convex Holes",
+  "titleZh": "凸空穴",
+  "difficulty": 79,
+  "difficultyLevel": "Level 31",
+  "tags": [
+    "computational-geometry",
+    "convex-polygon",
+    "dynamic-programming",
+    "angular-sweep",
+    "lattice-points"
+  ],
+  "answer": 10492400000000,
+  "solvedBy": 1253,
+  "bruteForceBaselineMs": 642.2,
+  "optimizedBaselineMs": 591.3,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=252",
+  "fetchedAt": "2026-09-28"
+}

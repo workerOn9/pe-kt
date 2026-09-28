@@ -1,0 +1,21 @@
+{
+  "id": 258,
+  "title": "A Lagged Fibonacci Sequence",
+  "titleZh": "滞后斐波那契数列",
+  "difficulty": 51,
+  "difficultyLevel": "Level 20",
+  "tags": [
+    "linear-recurrence",
+    "kitamasa",
+    "bostan-mori",
+    "polynomial-exponentiation",
+    "modular-arithmetic"
+  ],
+  "answer": 12747994,
+  "solvedBy": 2179,
+  "bruteForceBaselineMs": 122.1,
+  "optimizedBaselineMs": 54.6,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=258",
+  "fetchedAt": "2026-09-28"
+}

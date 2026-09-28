@@ -1,0 +1,21 @@
+{
+  "id": 255,
+  "title": "Rounded Square Roots",
+  "titleZh": "四舍五入的平方根",
+  "difficulty": 54,
+  "difficultyLevel": "Level 21",
+  "tags": [
+    "newton-method",
+    "integer-square-root",
+    "interval-partition",
+    "iterative-convergence",
+    "exact-arithmetic"
+  ],
+  "answer": 44474011180,
+  "solvedBy": 1269,
+  "bruteForceBaselineMs": 274.0,
+  "optimizedBaselineMs": 1345.1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=255",
+  "fetchedAt": "2026-09-28"
+}

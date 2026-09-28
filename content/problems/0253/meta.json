@@ -1,0 +1,22 @@
+{
+  "id": 253,
+  "title": "Tidying Up A",
+  "titleZh": "整理毛毛虫",
+  "difficulty": 64,
+  "difficultyLevel": "Level 25",
+  "tags": [
+    "permutations",
+    "dynamic-programming",
+    "motzkin-paths",
+    "transfer-matrix",
+    "expected-value",
+    "exact-arithmetic"
+  ],
+  "answer": 1149284700,
+  "solvedBy": 1481,
+  "bruteForceBaselineMs": 1190.3,
+  "optimizedBaselineMs": 0.9,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=253",
+  "fetchedAt": "2026-09-28"
+}

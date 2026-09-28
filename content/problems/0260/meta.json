@@ -1,0 +1,21 @@
+{
+  "id": 260,
+  "title": "Stone Game",
+  "titleZh": "取石子游戏",
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "game-theory",
+    "impartial-game",
+    "dynamic-programming",
+    "retrograde-analysis",
+    "wythoff-game"
+  ],
+  "answer": 167542057,
+  "solvedBy": 1789,
+  "bruteForceBaselineMs": 812.9,
+  "optimizedBaselineMs": 221.1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=260",
+  "fetchedAt": "2026-09-28"
+}
