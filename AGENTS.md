@@ -19,7 +19,9 @@
    Vercel（D-08），公开暴露的只是中文意译；要彻底消除英文底稿的公开副本，需把仓库转为
    私有或把 `statement.en.md` 移出版本库。
 2. **答案必须实跑验证**：每题的 `meta.json.answer` 必须来自求解器真实运行输出，
-   禁止从网页/记忆抄答案填进去。条件允许时用用户已登录的 Chrome 向 PE 官网提交做最终确认。
+   禁止从网页/记忆抄答案填进去。**不要向 PE 官网提交答案**（也不要预填答案表单）：
+   官网提交由用户自己完成——用户会自己慢慢看题、自己输入，出问题再来找我们修复。
+   我们的验证到「本机实跑 + 双方法互证 + 公开官方答案表对照」为止。
 3. **解析不许注水**：每题 `analysis.md` 保持「思路推导（含数学公式）→ 复杂度对比 → 实测耗时」结构，
    参考 `content/problems/0025/analysis.md` 的密度。写不出有信息量的解析就先不要做这道题。
 4. **危险/不可逆操作先问用户**（删文件、改 git 历史、`docker rm` 以外的清理等）。
@@ -40,7 +42,9 @@
    `server/src/main/kotlin/dev/pekt/math/`）。**数位数禁止用 toString() 数**，用阈值比较（见 025 的教训）。
    需要暴力对照时另写 `brute-force.kt`（同时是耗时对比图的数据来源）。
 5. **独立验证**：用 kotlinc 单独编译运行 `solution.kt`，输出必须与预期一致。
-   预期来源优先级：PE 官网提交确认 > 题面样例外推 > 数学双方法互证（如 025 的通项公式旁证）。
+   预期来源优先级：题面样例外推 > 数学双方法互证（如 025 的通项公式旁证）> 公开官方
+   答案表对照（作为旁证；meta.answer 仍必须是本机实跑输出）。官网提交确认留给用户，不作为
+   我们的验证手段。
 6. **`analysis.md`**：中文解析，结构 = 思路推导 → （有旁证给旁证）→ 答案加粗 →
    「复杂度对比」表（含 JIT 预热后实测毫秒数）→ 关键教训。数学用 KaTeX。
 7. **`applications.md`**（现实应用板块，可选但默认要写）：中文 150–350 字，
@@ -109,6 +113,7 @@ curl -s localhost:8080/health
 - 前端约束：`--content-width: min(80vw, 1600px)`；列表触底自动加载（20/屏）；表头 sticky。
   改前端后本机要重跑 `npm run build` + 重建镜像才在 8080 生效；Vercel 上则是 push 后自动重建。
 - PE 账号：用户 Chrome 已登录（howardch1993），所有官网交互通过 WebBridge，不要另存凭据。
+  **只用于抓题面/题目配图等读取操作**；不要提交答案、不要预填答案表单、不要代为点击 Check。
 - **本机没有 `kotlinc`**：独立编译验证 `solution.kt` 要自己搭 shim——用 Gradle 缓存里的
   `kotlin-compiler-embeddable-2.1.21.jar` + `kotlin-stdlib-2.1.21.jar` + `kotlinx-coroutines-core-jvm`
   当 classpath 跑 `org.jetbrains.kotlin.cli.jvm.K2JVMCompiler`，编译时加 `-no-stdlib -classpath <stdlib>`
