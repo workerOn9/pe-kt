@@ -1,0 +1,21 @@
+{
+  "id": 268,
+  "title": "At Least Four Distinct Prime Factors Less Than 100",
+  "titleZh": "至少被 4 个小于 100 的相异素数整除",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [
+    "inclusion-exclusion",
+    "binomial-inversion",
+    "number-theory",
+    "divisibility-counting",
+    "meet-in-the-middle"
+  ],
+  "answer": 785478606870985,
+  "solvedBy": 2000,
+  "bruteForceBaselineMs": 491.9,
+  "optimizedBaselineMs": 27.9,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=268",
+  "fetchedAt": "2026-09-29"
+}

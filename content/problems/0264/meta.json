@@ -1,0 +1,21 @@
+{
+  "id": 264,
+  "title": "Triangle Centres",
+  "titleZh": "三角形的中心",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [
+    "geometry",
+    "lattice-points",
+    "diophantine-equation",
+    "modular-arithmetic",
+    "high-precision"
+  ],
+  "answer": 28164171055,
+  "solvedBy": 925,
+  "bruteForceBaselineMs": 541.7,
+  "optimizedBaselineMs": 507.5,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=264",
+  "fetchedAt": "2026-09-29"
+}

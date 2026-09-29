@@ -1,0 +1,20 @@
+{
+  "id": 263,
+  "title": "An Engineers' Dream Come True",
+  "titleZh": "工程师的天堂",
+  "difficulty": 35,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "number-theory",
+    "practical-numbers",
+    "prime-constellations",
+    "segmented-sieve"
+  ],
+  "answer": 2039506520,
+  "solvedBy": 1478,
+  "bruteForceBaselineMs": 745.6,
+  "optimizedBaselineMs": 2156.6,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=263",
+  "fetchedAt": "2026-09-29"
+}

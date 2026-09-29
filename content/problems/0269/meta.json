@@ -1,0 +1,21 @@
+{
+  "id": 269,
+  "title": "Polynomials with at Least One Integer Root",
+  "titleZh": "至少有一个整数根的多项式",
+  "difficulty": 78,
+  "difficultyLevel": "Level 31",
+  "tags": [
+    "digit-dp",
+    "rational-root-theorem",
+    "polynomial-roots",
+    "inclusion-exclusion",
+    "state-compression"
+  ],
+  "answer": 1311109198529286,
+  "solvedBy": 1178,
+  "bruteForceBaselineMs": 890.6,
+  "optimizedBaselineMs": 26.6,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=269",
+  "fetchedAt": "2026-09-29"
+}

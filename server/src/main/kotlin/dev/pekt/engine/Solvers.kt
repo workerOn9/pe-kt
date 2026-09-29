@@ -286,6 +286,16 @@ val solvers: Map<Int, () -> Long> = mapOf(
     258 to ::solve258,
     259 to ::solve259,
     260 to ::solve260,
+    261 to ::solve261,
+    262 to ::solve262,
+    263 to ::solve263,
+    264 to ::solve264,
+    265 to ::solve265,
+    266 to ::solve266,
+    267 to ::solve267,
+    268 to ::solve268,
+    269 to ::solve269,
+    270 to ::solve270,
 )
 
 /** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
@@ -317,6 +327,36 @@ private fun solve259(): Long = solve0259Impl()
 
 /** PE 260 — 取石子游戏：每次从 1/2/3 堆各取相同 N 颗，Z ≤ 1000 的全部必败局面坐标和 = 167542057。 */
 private fun solve260(): Long = solve0260Impl()
+
+/** PE 261 — 关键平方和：平方和闭式化为 Pell 型方程 βd²−αb²=1，m ≤ 70710 的轨道枚举 + 排序去重，≤10¹⁰ 的 distinct square-pivot 之和 = 238890850232021。 */
+private fun solve261(): Long = solve0261Impl()
+
+/** PE 262 — 山脉：二分 + 栅格连通性求最小可行海拔 f_min = 10396.462193…，再沿等高线求最短路径 2531.204679…，三位小数编码 ×10³ = 2531205。 */
+private fun solve262(): Long = solve0262Impl()
+
+/** PE 263 — 工程师的天堂：practical number（σ 链判定）+ sexy 三元对（间隔全为 6），前四个 paradise 之和 = 2039506520。 */
+private fun solve263(): Long = solve0263Impl()
+
+/** PE 264 — 三角形的中心：外心在原点时垂心 = 顶点向量和 ⇒ A+B+C=(5,0)；圆上整点参数化枚举，周长 ≤10⁵ 的 155 个三角形周长和 2816417.1055（四位小数编码 ×10⁴ = 28164171055）。 */
+private fun solve264(): Long = solve0264Impl()
+
+/** PE 265 — 二进制圆圈：de Bruijn 图 B(2,5) 的欧拉回路即圆排列，全零边规范化后唯一编码，S(5) = 209110240768。 */
+private fun solve265(): Long = solve0265Impl()
+
+/** PE 266 — 伪平方根：<190 的 42 个素数之积 p（73 位），PSR(p) = 不超过 √p 的最大子集乘积（折半枚举），PSR(p) mod 10¹⁶ = 1096883702440585。 */
+private fun solve266(): Long = solve0266Impl()
+
+/** PE 267 — 亿万富翁：最优 f 区间内需 ≥432 次正面，最大概率 = P(H≥432) = 0.999992836187（12 位小数编码 ×10¹² = 999992836187）。 */
+private fun solve267(): Long = solve0267Impl()
+
+/** PE 268 — 至少被 4 个 <100 的相异素数整除：二项式反演权重 (−1)^{j−4}·C(j−1,3) + 乘积子集 DFS（959 万项），n < 10¹⁶ 的计数 = 785478606870985。 */
+private fun solve268(): Long = solve0268Impl()
+
+/** PE 269 — 至少有一个整数根的多项式：有理根定理把候选根压到末位数字的约数（|r| ≤ 9），按末位拆类做数位 DP，Z(10¹⁶) = 1311109198529286。 */
+private fun solve269(): Long = solve0269Impl()
+
+/** PE 270 — 切正方形：极大非交叉割线集 ⟺ 合法对角线的三角剖分，O(M³) 区间 DP（M = 4N），C(30) mod 10⁸ = 82282080。 */
+private fun solve270(): Long = solve0270Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

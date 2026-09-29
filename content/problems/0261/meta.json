@@ -1,0 +1,21 @@
+{
+  "id": 261,
+  "title": "Pivotal Square Sums",
+  "titleZh": "关键平方和",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [
+    "number-theory",
+    "pell-equation",
+    "continued-fractions",
+    "squarefree-parts",
+    "deduplication"
+  ],
+  "answer": 238890850232021,
+  "solvedBy": 1083,
+  "bruteForceBaselineMs": 185.4,
+  "optimizedBaselineMs": 9.7,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=261",
+  "fetchedAt": "2026-09-29"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 265,
+  "title": "Binary Circles",
+  "titleZh": "二进制圆圈",
+  "difficulty": 15,
+  "difficultyLevel": "Level 5",
+  "tags": [
+    "de-bruijn-sequence",
+    "eulerian-circuit",
+    "dfs",
+    "backtracking",
+    "combinatorics"
+  ],
+  "answer": 209110240768,
+  "solvedBy": 5194,
+  "bruteForceBaselineMs": 683.4,
+  "optimizedBaselineMs": 0.5,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=265",
+  "fetchedAt": "2026-09-29"
+}

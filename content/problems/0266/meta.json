@@ -1,0 +1,20 @@
+{
+  "id": 266,
+  "title": "Pseudo Square Root",
+  "titleZh": "伪平方根",
+  "difficulty": 63,
+  "difficultyLevel": "Level 25",
+  "tags": [
+    "number-theory",
+    "meet-in-the-middle",
+    "subset-product",
+    "big-integer"
+  ],
+  "answer": 1096883702440585,
+  "solvedBy": 2294,
+  "bruteForceBaselineMs": 487.1,
+  "optimizedBaselineMs": 1682.6,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=266",
+  "fetchedAt": "2026-09-29"
+}

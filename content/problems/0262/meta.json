@@ -1,0 +1,21 @@
+{
+  "id": 262,
+  "title": "Mountain Range",
+  "titleZh": "山脉",
+  "difficulty": 78,
+  "difficultyLevel": "Level 30",
+  "tags": [
+    "computational-geometry",
+    "level-set",
+    "bottleneck-path",
+    "shortest-path",
+    "tangent-hugging"
+  ],
+  "answer": 2531205,
+  "solvedBy": 1088,
+  "bruteForceBaselineMs": 396.0,
+  "optimizedBaselineMs": 775.0,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=262",
+  "fetchedAt": "2026-09-29"
+}

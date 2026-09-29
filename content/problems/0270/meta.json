@@ -1,0 +1,21 @@
+{
+  "id": 270,
+  "title": "Cutting Squares",
+  "titleZh": "切正方形",
+  "difficulty": 76,
+  "difficultyLevel": "Level 30",
+  "tags": [
+    "combinatorics",
+    "dynamic-programming",
+    "polygon-triangulation",
+    "non-crossing",
+    "counting"
+  ],
+  "answer": 82282080,
+  "solvedBy": 980,
+  "bruteForceBaselineMs": 1798.0,
+  "optimizedBaselineMs": 0.7,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=270",
+  "fetchedAt": "2026-09-29"
+}
