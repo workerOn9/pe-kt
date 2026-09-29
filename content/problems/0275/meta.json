@@ -1,0 +1,21 @@
+{
+  "id": 275,
+  "title": "Balanced Sculptures",
+  "titleZh": "平衡雕塑",
+  "difficulty": 75,
+  "difficultyLevel": "Level 29",
+  "tags": [
+    "polyomino",
+    "enumeration",
+    "branch-and-bound",
+    "symmetry-reduction",
+    "counting"
+  ],
+  "answer": 15030564,
+  "solvedBy": 941,
+  "bruteForceBaselineMs": 1309.5,
+  "optimizedBaselineMs": 21041.9,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem/275",
+  "fetchedAt": "2026-09-29"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 277,
+  "title": "A Modified Collatz Sequence",
+  "titleZh": "修改版 Collatz 序列",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [
+    "number-theory",
+    "modular-arithmetic",
+    "collatz",
+    "crt",
+    "simulation"
+  ],
+  "answer": 1125977393124310,
+  "solvedBy": 4079,
+  "bruteForceBaselineMs": 342.3,
+  "optimizedBaselineMs": 0.073,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=277",
+  "fetchedAt": "2026-09-29"
+}

@@ -1,0 +1,21 @@
+{
+  "id": 280,
+  "title": "Ant and Seeds",
+  "titleZh": "蚂蚁与种子",
+  "difficulty": 35,
+  "difficultyLevel": "Level 13",
+  "tags": [
+    "probability",
+    "expected-value",
+    "markov-chain",
+    "linear-algebra",
+    "simulation"
+  ],
+  "answer": 430088247,
+  "solvedBy": 1496,
+  "bruteForceBaselineMs": 116.4,
+  "optimizedBaselineMs": 2.1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=280",
+  "fetchedAt": "2026-09-29"
+}

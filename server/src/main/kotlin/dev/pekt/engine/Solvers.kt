@@ -296,6 +296,16 @@ val solvers: Map<Int, () -> Long> = mapOf(
     268 to ::solve268,
     269 to ::solve269,
     270 to ::solve270,
+    271 to ::solve271,
+    272 to ::solve272,
+    273 to ::solve273,
+    274 to ::solve274,
+    275 to ::solve275,
+    276 to ::solve276,
+    277 to ::solve277,
+    278 to ::solve278,
+    279 to ::solve279,
+    280 to ::solve280,
 )
 
 /** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
@@ -357,6 +367,36 @@ private fun solve269(): Long = solve0269Impl()
 
 /** PE 270 — 切正方形：极大非交叉割线集 ⟺ 合法对角线的三角剖分，O(M³) 区间 DP（M = 4N），C(30) mod 10⁸ = 82282080。 */
 private fun solve270(): Long = solve0270Impl()
+
+/** PE 271 — 模立方 I：x³ ≡ 1 (mod n) 的根和；n = 43# 有 3⁶ = 729 个根，CRT 逐素因子幂求根后求和 = 4617456485273129588。 */
+private fun solve271(): Long = solve0271Impl()
+
+/** PE 272 — 模立方 II：C(n) = 3^{k+[9|n]} − 1（k 为 ≡ 1 (mod 3) 的素因子个数），n ≤ 10¹¹ 中 C(n) = 242 者按 m/s 分类求和 = 8495585919506151122。 */
+private fun solve272(): Long = solve0272Impl()
+
+/** PE 273 — 平方和：高斯整数分解递推表示集（16 个 4k+1 素数全部子集，Σ 3^k/2 次扩张），Σ S(N) = 2032447591196869022。 */
+private fun solve273(): Long = solve0273Impl()
+
+/** PE 274 — 整除乘数：m ≡ 10⁻¹ (mod p)，p < 10⁷ 与 10 互素的素数乘数和 = 1601912348822。 */
+private fun solve274(): Long = solve0274Impl()
+
+/** PE 275 — 平衡雕塑：镜像等价类 Redelmeier 规范枚举 + 力矩剪枝（引擎路径并行化适配 10s 熔断），n = 18 的雕塑数 = 15030564。 */
+private fun solve275(): Long = solve0275Impl()
+
+/** PE 276 — 本原整数边三角形：c = μ ∗ T，P(n) = Σ_{d≤n} μ(d)·F(n/d) 流式求和，周长 ≤ 10⁷ 的本原三角形数 = 5777137137739632912。 */
+private fun solve276(): Long = solve0276Impl()
+
+/** PE 277 — 修改版 Collatz：步串前缀约束 ⟺ 模 3^k 的剩余类，> 10¹⁵ 的最小可行 a₁ = 1125977393124310。 */
+private fun solve277(): Long = solve0277Impl()
+
+/** PE 278 — 半素数的线性组合：g(pq, pr, qr) = 2pqr − pq − pr − qr，Newton 恒等式聚合素数三元组 = 1228215747273908452。 */
+private fun solve278(): Long = solve0278Impl()
+
+/** PE 279 — 整数边整数角三角形：Niven 定理压到 60°/90°/120° 三类（30-60-90 无整数实现，三类互不重叠），参数化计数 = 416577688。 */
+private fun solve279(): Long = solve0279Impl()
+
+/** PE 280 — 蚂蚁与种子：阶段 (R,O,c) 构成 DAG，每阶段解 25 元方程组，期望步数 = 430.088247（编码 ×10⁶）→ 430088247。 */
+private fun solve280(): Long = solve0280Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

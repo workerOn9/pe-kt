@@ -1,0 +1,21 @@
+{
+  "id": 278,
+  "title": "Linear Combinations of Semiprimes",
+  "titleZh": "半素数的线性组合",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": [
+    "number-theory",
+    "diophantine",
+    "closed-form",
+    "prime-sieve",
+    "coin-change"
+  ],
+  "answer": 1228215747273908452,
+  "solvedBy": 1494,
+  "bruteForceBaselineMs": 30.8,
+  "optimizedBaselineMs": 0.465,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=278",
+  "fetchedAt": "2026-09-29"
+}

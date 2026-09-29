@@ -1,0 +1,22 @@
+{
+  "id": 272,
+  "title": "Modular Cubes, Part 2",
+  "titleZh": "模立方 II",
+  "difficulty": 66,
+  "difficultyLevel": "Level 26",
+  "tags": [
+    "number-theory",
+    "modular-arithmetic",
+    "crt",
+    "roots-of-unity",
+    "dfs",
+    "search-space-pruning"
+  ],
+  "answer": 8495585919506151122,
+  "solvedBy": 1439,
+  "bruteForceBaselineMs": 1160.3,
+  "optimizedBaselineMs": 137.1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=272",
+  "fetchedAt": "2026-09-29"
+}

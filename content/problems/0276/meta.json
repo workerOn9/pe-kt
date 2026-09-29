@@ -1,0 +1,21 @@
+{
+  "id": 276,
+  "title": "Primitive Triangles",
+  "titleZh": "本原整数边三角形",
+  "difficulty": 84,
+  "difficultyLevel": "Level 33",
+  "tags": [
+    "number-theory",
+    "mobius-inversion",
+    "divisor-sieve",
+    "counting",
+    "closed-form"
+  ],
+  "answer": 5777137137739632912,
+  "solvedBy": 1517,
+  "bruteForceBaselineMs": 1322.0,
+  "optimizedBaselineMs": 67.9,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=276",
+  "fetchedAt": "2026-09-29"
+}

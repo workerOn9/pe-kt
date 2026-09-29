@@ -1,0 +1,21 @@
+{
+  "id": 271,
+  "title": "Modular Cubes, Part 1",
+  "titleZh": "模立方 I",
+  "difficulty": 20,
+  "difficultyLevel": "Level 7",
+  "tags": [
+    "number-theory",
+    "modular-arithmetic",
+    "crt",
+    "roots-of-unity",
+    "primorial"
+  ],
+  "answer": 4617456485273129588,
+  "solvedBy": 3156,
+  "bruteForceBaselineMs": 114.4,
+  "optimizedBaselineMs": 0.2,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=271",
+  "fetchedAt": "2026-09-29"
+}
