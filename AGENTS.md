@@ -172,6 +172,9 @@ curl -s localhost:8080/health
   （scope 为 Vercel 账号/团队标识，按本机登录账号自行填写，不写进仓库）。
   **必须保留当前生产部署对应提交 SHA 的镜像**（删掉会让生产冷启动拉不到镜像），其余旧镜像可删；
   建议每次批次合并后顺手把水位清到 ≤ 10，不够用后在 Vercel 面板点 Redeploy 触发重建。
+- **275 的引擎实现很重（已知性能特征）**：本地 8 核约 4 s，但 Vercel 函数容器约 1 vCPU，实测约 33 s；
+  结果正确、请求能返回（枚举是纯 CPU 无挂起，10 s 熔断不会打断它），别误以为是 bug；
+  若未来要收敛，需要换 transfer-matrix / 剖分 DP 级算法，不是常数优化能解决的。
 - **PE 题面的 DOM 位置**：正文在 `.problem_content`；MathJax 的 LaTeX 原文在
   `mjx-container [data-mml-node="math"]` 的 `data-latex` 属性上（`display="true"` 表示独立公式，其余为行内），
   把 `mjx-container` 节点替换成 `$...$` / `$$...$$` 文本再取 `innerText` 即可还原题面。
