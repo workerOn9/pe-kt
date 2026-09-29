@@ -1,0 +1,21 @@
+{
+  "id": 273,
+  "title": "Sum of Squares",
+  "titleZh": "平方和",
+  "difficulty": 49,
+  "difficultyLevel": "Level 19",
+  "tags": [
+    "number-theory",
+    "gaussian-integers",
+    "sum-of-two-squares",
+    "subset-enumeration",
+    "exact-arithmetic"
+  ],
+  "answer": 2032447591196869022,
+  "solvedBy": 1894,
+  "bruteForceBaselineMs": 605.5,
+  "optimizedBaselineMs": 55.8,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=273",
+  "fetchedAt": "2026-09-29"
+}

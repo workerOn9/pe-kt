@@ -1,0 +1,21 @@
+{
+  "id": 279,
+  "title": "Triangles with Integral Sides and an Integral Angle",
+  "titleZh": "整数边整数角三角形",
+  "difficulty": 72,
+  "difficultyLevel": "Level 28",
+  "tags": [
+    "geometry",
+    "number-theory",
+    "diophantine",
+    "parametrization",
+    "counting"
+  ],
+  "answer": 416577688,
+  "solvedBy": 1111,
+  "bruteForceBaselineMs": 185.3,
+  "optimizedBaselineMs": 95.7,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=279",
+  "fetchedAt": "2026-09-29"
+}

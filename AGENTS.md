@@ -121,7 +121,7 @@ curl -s localhost:8080/health
   监听端口读 `PORT` 环境变量（`Dockerfile.vercel` 声明 `PORT=80`，对齐 Vercel 容器默认流量端口）。
 - 前端约束：`--content-width: min(80vw, 1600px)`；列表触底自动加载（20/屏）；表头 sticky。
   改前端后本机要重跑 `npm run build` + 重建镜像才在 8080 生效；Vercel 上则是 push 后自动重建。
-- PE 账号：用户 Chrome 已登录（howardch1993），所有官网交互通过 WebBridge，不要另存凭据。
+- PE 账号：用户 Chrome 已登录 PE 官网（用户名不记录进仓库），所有官网交互通过 WebBridge，不要另存凭据。
   **只用于抓题面/题目配图等读取操作**；不要提交答案、不要预填答案表单、不要代为点击 Check。
 - **本机没有 `kotlinc`**：独立编译验证 `solution.kt` 要自己搭 shim——用 Gradle 缓存里的
   `kotlin-compiler-embeddable-2.1.21.jar` + `kotlin-stdlib-2.1.21.jar` + `kotlinx-coroutines-core-jvm`
@@ -163,6 +163,18 @@ curl -s localhost:8080/health
 - **PE 官网会整体 403**：在 `evaluate` 里用 `fetch()` 批量拉题会被反爬判定，之后该 IP 上整个站
   （包括用户已登录的会话）都返回 `403 Request forbidden by administrative rules`。批量抓题必须用
   `navigate` + 读 DOM，每题间隔 3–4 秒；真被 403 了等 1–2 分钟即可自行恢复，别连续重试加重判定。
+- **Vercel 容器镜像仓库（VCR）有数量上限**：Hobby 计划每个仓库（pe-kt 的 `server`）最多 50 个镜像，
+  每次部署（含 PR 分支的 preview）都会推入一个以提交 SHA 为 tag 的镜像，累积到上限后部署报
+  `denied: repository has reached the maximum allowed number of images`，**应用照常跑但新内容上不去**。
+  清理（本机执行；未登录先 `npx vercel@latest login` 走设备码在浏览器里确认，`vercel whoami` 查当前账号）：
+  `vercel vcr image ls server --project pe-kt --scope <账号 scope> --format json` 列出镜像，
+  `vercel vcr image rm server <image-id> --yes --project pe-kt --scope <账号 scope>` 逐个删除
+  （scope 为 Vercel 账号/团队标识，按本机登录账号自行填写，不写进仓库）。
+  **必须保留当前生产部署对应提交 SHA 的镜像**（删掉会让生产冷启动拉不到镜像），其余旧镜像可删；
+  建议每次批次合并后顺手把水位清到 ≤ 10，不够用后在 Vercel 面板点 Redeploy 触发重建。
+- **275 的引擎实现很重（已知性能特征）**：本地 8 核约 4 s，但 Vercel 函数容器约 1 vCPU，实测约 33 s；
+  结果正确、请求能返回（枚举是纯 CPU 无挂起，10 s 熔断不会打断它），别误以为是 bug；
+  若未来要收敛，需要换 transfer-matrix / 剖分 DP 级算法，不是常数优化能解决的。
 - **PE 题面的 DOM 位置**：正文在 `.problem_content`；MathJax 的 LaTeX 原文在
   `mjx-container [data-mml-node="math"]` 的 `data-latex` 属性上（`display="true"` 表示独立公式，其余为行内），
   把 `mjx-container` 节点替换成 `$...$` / `$$...$$` 文本再取 `innerText` 即可还原题面。

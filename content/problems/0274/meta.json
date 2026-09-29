@@ -1,0 +1,21 @@
+{
+  "id": 274,
+  "title": "Divisibility Multipliers",
+  "titleZh": "整除乘数",
+  "difficulty": 16,
+  "difficultyLevel": "Level 6",
+  "tags": [
+    "number-theory",
+    "modular-arithmetic",
+    "modular-inverse",
+    "prime-sieve",
+    "divisibility"
+  ],
+  "answer": 1601912348822,
+  "solvedBy": 2071,
+  "bruteForceBaselineMs": 785.9,
+  "optimizedBaselineMs": 25.5,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=274",
+  "fetchedAt": "2026-09-29"
+}
