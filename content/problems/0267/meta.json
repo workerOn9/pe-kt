@@ -1,0 +1,21 @@
+{
+  "id": 267,
+  "title": "Billionaire",
+  "titleZh": "亿万富翁",
+  "difficulty": 21,
+  "difficultyLevel": "Level 8",
+  "tags": [
+    "probability",
+    "binomial-distribution",
+    "optimization",
+    "exact-arithmetic",
+    "big-integer"
+  ],
+  "answer": 999992836187,
+  "solvedBy": 4244,
+  "bruteForceBaselineMs": 28.0,
+  "optimizedBaselineMs": 0.6,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=267",
+  "fetchedAt": "2026-09-29"
+}
