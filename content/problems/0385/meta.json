@@ -1,0 +1,13 @@
+{
+  "id": 385,
+  "title": "Ellipses Inside Triangles",
+  "titleZh": "三角形内的椭圆",
+  "difficulty": 84,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 505,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=385",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 376,
+  "title": "Nontransitive Sets of Dice",
+  "titleZh": "非传递骰子",
+  "difficulty": 75,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 495,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=376",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

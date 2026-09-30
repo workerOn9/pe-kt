@@ -1,0 +1,13 @@
+{
+  "id": 395,
+  "title": "Pythagorean Tree",
+  "titleZh": "毕达哥拉斯树",
+  "difficulty": 54,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 987,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=395",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

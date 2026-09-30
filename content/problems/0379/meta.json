@@ -1,0 +1,13 @@
+{
+  "id": 379,
+  "title": "Least Common Multiple Count",
+  "titleZh": "最小公倍数求和",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 800,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=379",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

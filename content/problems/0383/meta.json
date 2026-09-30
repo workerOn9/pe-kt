@@ -1,0 +1,13 @@
+{
+  "id": 383,
+  "title": "Divisibility Comparison Between Factorials",
+  "titleZh": "阶乘中 5 的幂次比较",
+  "difficulty": 39,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 738,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=383",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

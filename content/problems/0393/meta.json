@@ -1,0 +1,13 @@
+{
+  "id": 393,
+  "title": "Migrating Ants",
+  "titleZh": "迁徙的蚂蚁",
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 1090,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=393",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
