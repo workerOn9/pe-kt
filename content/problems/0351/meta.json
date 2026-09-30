@@ -1,0 +1,13 @@
+{
+  "id": 351,
+  "title": "Hexagonal Orchards",
+  "titleZh": "六边形果园",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 3356,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=351",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

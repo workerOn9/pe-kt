@@ -1,0 +1,13 @@
+{
+  "id": 369,
+  "title": "Badugi",
+  "titleZh": "Badugi 组合",
+  "difficulty": 52,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 729,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=369",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

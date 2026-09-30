@@ -1,0 +1,13 @@
+{
+  "id": 366,
+  "title": "Stone Game III",
+  "titleZh": "取石游戏 III",
+  "difficulty": 68,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 978,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=366",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

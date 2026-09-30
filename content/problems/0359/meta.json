@@ -1,0 +1,13 @@
+{
+  "id": 359,
+  "title": "Hilbert's New Hotel",
+  "titleZh": "希尔伯特的新旅馆",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 2001,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=359",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

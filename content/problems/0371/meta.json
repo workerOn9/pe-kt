@@ -1,0 +1,13 @@
+{
+  "id": 371,
+  "title": "Licence Plates",
+  "titleZh": "车牌",
+  "difficulty": 46,
+  "difficultyLevel": "Level 18",
+  "tags": [],
+  "solvedBy": 2169,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=371",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

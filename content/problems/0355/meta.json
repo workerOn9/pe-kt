@@ -1,0 +1,13 @@
+{
+  "id": 355,
+  "title": "Maximal Coprime Subset",
+  "titleZh": "极大互素子集",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 836,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=355",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

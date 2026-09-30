@@ -1,0 +1,13 @@
+{
+  "id": 363,
+  "title": "Bézier Curves",
+  "titleZh": "贝塞尔曲线",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 1571,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=363",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

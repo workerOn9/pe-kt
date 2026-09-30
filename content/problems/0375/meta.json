@@ -1,0 +1,13 @@
+{
+  "id": 375,
+  "title": "Minimum of Subsequences",
+  "titleZh": "子序列的最小值",
+  "difficulty": 37,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 1230,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=375",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
