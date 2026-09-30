@@ -27,4 +27,9 @@ application {
 
 tasks.test {
     useJUnitPlatform()
+    // ContentValidationTest 直接读取仓库根的 content/；不声明为输入的话，
+    // 只改内容资产的批次（如预抓取）会让 test 误判 UP-TO-DATE 而跳过校验。
+    inputs.dir(rootProject.layout.projectDirectory.dir("content"))
+        .withPropertyName("contentAssets")
+        .withPathSensitivity(PathSensitivity.RELATIVE)
 }

@@ -215,10 +215,27 @@ a:hover {
 }
 
 .problem-link {
-  display: block;
+  display: inline-block;
   font-weight: 600;
   font-size: 15px;
   border-bottom: none;
+}
+
+/* 「待解析」状态徽标（列表与详情页共用）：虚线边框示意内容尚未完成 */
+.draft-badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  padding: 1px 8px;
+  border: 1px dashed var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.col-title .draft-badge {
+  margin-left: 6px;
+  vertical-align: 1px;
 }
 
 .problem-title-en {
@@ -340,6 +357,17 @@ a:hover {
    是解析中的临时提醒，保持正文大小） */
 .problem-body .markdown > blockquote:first-child {
   font-size: 15px;
+}
+
+/* 待解析题的说明条：题面之后、本该是解析/运行/代码区的位置 */
+.draft-note {
+  margin: 32px 0 8px;
+  padding: 14px 18px;
+  border: 1px dashed var(--color-border);
+  border-radius: 4px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--color-text-muted);
 }
 
 /* ---------- Tab 切换 ---------- */

@@ -1,5 +1,8 @@
 /** 后端 API 数据模型（与 Ktor 端 DTO 对齐） */
 
+/** 内容状态：solved（解析/代码/答案齐备）/ draft（已抓题待解析，仅题面） */
+export type ProblemStatus = 'solved' | 'draft'
+
 export interface ProblemMeta {
   id: number
   title: string
@@ -7,14 +10,16 @@ export interface ProblemMeta {
   difficulty: number
   difficultyLevel: string
   tags: string[]
-  /** 标准答案（字符串：多数题为十进制数字；如 284 以 base-14 小写字母给出原文形式） */
-  answer: string
+  /** 标准答案（多数题为十进制数字；如 284 以 base-14 小写字母给出原文形式）；待解析题为 null */
+  answer: string | null
   solvedBy: number
   bruteForceBaselineMs: number | null
   optimizedBaselineMs: number | null
   hasVisualization: boolean
   sourceUrl: string
   fetchedAt: string
+  /** 内容状态：solved（完整）/ draft（已抓题待解析） */
+  status: ProblemStatus
 }
 
 export interface ProblemDetail extends ProblemMeta {

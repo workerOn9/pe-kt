@@ -55,10 +55,10 @@
 content/
 └── problems/
     └── 0001/
-        ├── meta.json        # 题号、标题、难度、标签、答案、耗时基线
+        ├── meta.json        # 题号、标题、难度、标签、答案、耗时基线、内容状态（status: solved/draft）
         ├── statement.md     # 题面：中文意译为主（公开渲染）；英文原文仅作编写底稿，不直接渲染，附 PE 原文链接
-        ├── analysis.md      # 解析：思路推导、复杂度、暴力 vs 优化对比
-        ├── solution.kt      # 参考实现（可独立运行）
+        ├── analysis.md      # 解析：思路推导、复杂度、暴力 vs 优化对比（draft 题暂缺）
+        ├── solution.kt      # 参考实现（可独立运行；draft 题暂缺）
         ├── brute-force.kt   # （可选）暴力解，用于对比教学
         └── visualize.json   # （可选）可视化配置 + 分步数据
 ```
@@ -78,6 +78,9 @@ content/
   "hasVisualization": false
 }
 ```
+
+`meta.json` 的 `status` 字段区分两种内容状态（D-11）：`solved`（缺省，题面/解析/代码/答案齐备）
+与 `draft`（预抓取待解析，仅有 meta 与中英题面，`answer` 为空，站点以「待解析」展示）。
 
 ## API 设计草案（v1）
 

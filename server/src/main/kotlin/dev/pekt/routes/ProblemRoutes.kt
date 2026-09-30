@@ -99,11 +99,12 @@ fun Route.problemRoutes(index: ContentIndex) {
             }
         }
 
-        // 执行求解：进程内 + 超时熔断（D-04 v1）
+        // 执行求解：进程内 + 超时熔断（D-04 v1）；待解析题没有答案，与未注册解法同码 501
         post("/{id}/run") {
             call.guarded {
                 val content = call.requireProblem(index)
-                call.respond(RunEngine.run(content.meta.id, content.meta.answer))
+                val expected = content.meta.answer ?: throw NoSolverException(content.meta.id)
+                call.respond(RunEngine.run(content.meta.id, expected))
             }
         }
 
