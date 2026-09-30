@@ -1,0 +1,21 @@
+{
+  "id": 288,
+  "title": "An Enormous Factorial",
+  "titleZh": "巨大的阶乘",
+  "difficulty": 32,
+  "difficultyLevel": "Level 12",
+  "tags": [
+    "number-theory",
+    "modular-arithmetic",
+    "p-adic-valuation",
+    "legendre-formula",
+    "big-integer"
+  ],
+  "answer": "605857431263981935",
+  "solvedBy": 2293,
+  "bruteForceBaselineMs": 680.7,
+  "optimizedBaselineMs": 165.9,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=288",
+  "fetchedAt": "2026-09-30"
+}

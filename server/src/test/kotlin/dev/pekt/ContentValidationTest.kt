@@ -3,7 +3,6 @@ package dev.pekt
 import dev.pekt.content.ContentIndex
 import dev.pekt.content.ProblemMeta
 import dev.pekt.engine.RunEngine
-import dev.pekt.engine.solvers
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.jsonArray
@@ -21,7 +20,7 @@ import kotlin.test.assertTrue
  */
 class ContentValidationTest {
 
-    private val json = Json { ignoreUnknownKeys = true }
+    private val json = Json { ignoreUnknownKeys = true; isLenient = true }
 
     private val problemsDir: File by lazy {
         File(ContentIndex.resolveContentDir(), "problems").also {
@@ -165,7 +164,7 @@ class ContentValidationTest {
     @Test
     fun `已注册解法的答案与引擎实跑结果一致`() = runBlocking {
         for ((dir, meta) in metas) {
-            if (meta.id !in solvers) continue // 无 solver 的题目跳过（允许）
+            if (!RunEngine.hasSolver(meta.id)) continue // 无 solver 的题目跳过（允许）
             val result = RunEngine.run(meta.id, meta.answer)
             assertTrue(
                 result.correct,

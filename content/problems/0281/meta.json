@@ -1,0 +1,22 @@
+{
+  "id": 281,
+  "title": "Pizza Toppings",
+  "titleZh": "比萨配料",
+  "difficulty": 44,
+  "difficultyLevel": "Level 17",
+  "tags": [
+    "combinatorics",
+    "cyclic-group",
+    "symmetry",
+    "euler-totient",
+    "multinomial",
+    "big-integer"
+  ],
+  "answer": "1485776387445623",
+  "solvedBy": 1433,
+  "bruteForceBaselineMs": 0.451,
+  "optimizedBaselineMs": 0.144,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=281",
+  "fetchedAt": "2026-09-30"
+}

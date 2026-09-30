@@ -54,8 +54,8 @@ class RunApiTest {
             assertEquals(HttpStatusCode.OK, response.status, "problem $id should run")
 
             val body = json.parseToJsonElement(response.bodyAsText()).jsonObject
-            assertEquals(expected, body.getValue("answer").jsonPrimitive.long, "problem $id answer")
-            assertEquals(expected, body.getValue("expected").jsonPrimitive.long, "problem $id expected")
+            assertEquals("$expected", body.getValue("answer").jsonPrimitive.content, "problem $id answer")
+            assertEquals("$expected", body.getValue("expected").jsonPrimitive.content, "problem $id expected")
             assertTrue(body.getValue("correct").jsonPrimitive.boolean, "problem $id should be correct")
             // 正常题目应在超时上限（10s）内完成，不触发熔断
             assertTrue(body.getValue("durationMs").jsonPrimitive.long < 10_000L, "problem $id duration")

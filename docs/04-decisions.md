@@ -88,6 +88,14 @@
 - **理由**：内容资产归属 content 目录，避免二进制在 `web/` 与 `content/` 出现双份；Vercel 部署下 `/api/*` 已路由到容器服务（D-08），图片随 API 一并可达，无需额外配置；本地单端口同样直接可用。
 - **后果**：`ContentValidationTest` 增加「题面引用的相对图片必须存在且不越界」校验；资产路由只支持单段文件名（不支持子目录），Content-Type 由 Ktor 按扩展名推断。
 
+## D-10 答案类型：统一为字符串（2026-09-30）
+
+- **背景**：281–290 批次中 PE 284 要求以 base-14 小写字母形式给出答案（形如 `5a411d7b`），而 `ProblemMeta.answer` / `RunResult.answer` 此前是 `Long`，无法表示非十进制答案。（013 的十位数字曾以 JSON 字符串存放，被 lenient 解析容忍，但数值型字段本身表达不了字母。）
+- **选项**：给 284 加一个字符串旁路字段 / 把 answer 全面改为字符串 / 跳过该题。
+- **决定**：全面改为字符串。`ProblemMeta.answer: String`（解析侧 `Json { isLenient = true }` 兼容存量 meta.json 的 JSON 数字）；`RunResult.answer` / `expected: String`；引擎注册表保持 `solvers: Map<Int, () -> Long>`（数值题统一输出十进制字符串），新增 `stringSolvers: Map<Int, () -> String>` 承载非数值答案题（284 为首个）。
+- **理由**：改动面小（服务端 4 个文件 + 前端类型 + 测试断言 + 文档示例），一次性解决未来同类题；避免把 284 的答案编码成误导性的「base-14 数值」。
+- **后果**：`POST /api/problems/{id}/run` 响应中 answer/expected 由 JSON 数字变为字符串（前端仅展示，无逻辑差异）；`ContentValidationTest` 的注册表检查改用 `RunEngine.hasSolver`；`Solved` 判定仍为字符串相等比较。
+
 ## 待决策（Open Questions）
 
 | # | 问题 | 阻塞于 |

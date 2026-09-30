@@ -72,7 +72,7 @@ content/
   "titleZh": "3 或 5 的倍数",
   "difficulty": 5,
   "tags": ["math", "inclusion-exclusion"],
-  "answer": 233168,
+  "answer": "233168",
   "bruteForceBaselineMs": 5,
   "optimizedBaselineMs": 0.1,
   "hasVisualization": false

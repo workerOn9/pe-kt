@@ -306,6 +306,24 @@ val solvers: Map<Int, () -> Long> = mapOf(
     278 to ::solve278,
     279 to ::solve279,
     280 to ::solve280,
+    281 to ::solve281,
+    282 to ::solve282,
+    283 to ::solve283,
+    285 to ::solve285,
+    286 to ::solve286,
+    287 to ::solve287,
+    288 to ::solve288,
+    289 to ::solve289,
+    290 to ::solve290,
+)
+
+/**
+ * 字符串答案题的求解器注册表：题目要求非十进制数字形式答案的题目（如 PE 284 的 base-14
+ * 小写字母表示）。与 [solvers]（数值答案，统一转十进制字符串）共同构成完整注册表，
+ * 执行引擎 [RunEngine.hasSolver] / [RunEngine.solverOf] 同时检查两者。
+ */
+val stringSolvers: Map<Int, () -> String> = mapOf(
+    284 to ::solve284,
 )
 
 /** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
@@ -397,6 +415,36 @@ private fun solve279(): Long = solve0279Impl()
 
 /** PE 280 — 蚂蚁与种子：阶段 (R,O,c) 构成 DAG，每阶段解 25 元方程组，期望步数 = 430.088247（编码 ×10⁶）→ 430088247。 */
 private fun solve280(): Long = solve0280Impl()
+
+/** PE 281 — 比萨配料：环形 Burnside（旋转同一、反射不同，m 种配料各恰用 n 块），Σ_{f(m,n) ≤ 10¹⁵} f(m,n) = 1485776387445623。 */
+private fun solve281(): Long = solve0281Impl()
+
+/** PE 282 — 阿克曼函数：A(m,n) = 2 ↑^{m−2} (n+3) − 3，两个巨塔模 2⁸/7⁸ 经 φ 链稳定段 + CRT 重组，Σ_{n≤6} A(n,n) mod 14⁸ = 1098988351。 */
+private fun solve282(): Long = solve0282Impl()
+
+/** PE 283 — 整数边三角形与整数面积周长比：切线长参数化 xyz = r²(x+y+z)（面积/周长 = r/2），r 取 ≤ 2000 的偶数，周长之和 = 28038042525570324。 */
+private fun solve283(): Long = solve0283Impl()
+
+/** PE 284 — 稳定平方数（14 进制）：幂等元 mod 14ⁿ 恰有 4 支，Hensel 逐位提升统计 1..10000 位全部 n 位解的数位和，答案（base-14 小写）= 5a411d7b。 */
+private fun solve284(): String = solve0284Impl()
+
+/** PE 285 — 勾股概率：圆环与正方形交面积的闭式积分（k 轮得分期望），k = 1..10⁵ 总期望 = 157055.80999（编码 ×10⁵ → 15705580999）。 */
+private fun solve285(): Long = solve0285Impl()
+
+/** PE 286 — 投篮得分概率：恰得 20 分 = Σ_{|S|=20} Π_{i∈S}(1−i/q)·Π_{i∉S}(i/q)，二分 + 高精度求根 q = 52.6494571953（编码 ×10¹⁰ → 526494571953）。 */
+private fun solve286(): Long = solve0286Impl()
+
+/** PE 287 — 四叉树编码：圆盘 D₂₄ 的最小序列长度 = 7S+2（S 为混合正方形数，逐层行扫描 + 前缀和），= 313135496。 */
+private fun solve287(): Long = solve0287Impl()
+
+/** PE 288 — 巨大的阶乘：勒让德 NF = (N − s_p(N))/(p−1)，流式 Horner 配 128 位乘模，NF(61,10⁷) mod 61¹⁰ = 605857431263981935。 */
+private fun solve288(): Long = solve0288Impl()
+
+/** PE 289 — 欧拉回路：非自交叉欧拉回路的轮廓 DP（切面宽度 6 + 转置互证），L(6,10) mod 10¹⁰ = 6567944538。 */
+private fun solve289(): Long = solve0289Impl()
+
+/** PE 290 — 数字签名：逐位乘法 (进位, 数位和差) 数位 DP，0 ≤ n < 10¹⁸ 中 digitSum(n) = digitSum(137n) 的计数 = 20444710234716473。 */
+private fun solve290(): Long = solve0290Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

@@ -1,0 +1,21 @@
+{
+  "id": 283,
+  "title": "Integer Sided Triangles with Integral Area/perimeter Ratio",
+  "titleZh": "整数边三角形与整数面积周长比",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [
+    "geometry",
+    "number-theory",
+    "diophantine-equation",
+    "divisor-enumeration",
+    "counting"
+  ],
+  "answer": "28038042525570324",
+  "solvedBy": 965,
+  "bruteForceBaselineMs": 10380.3,
+  "optimizedBaselineMs": 1094.7,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=283",
+  "fetchedAt": "2026-09-30"
+}
