@@ -1,0 +1,13 @@
+{
+  "id": 301,
+  "title": "Nim",
+  "titleZh": "尼姆游戏",
+  "difficulty": 15,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 8122,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=301",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

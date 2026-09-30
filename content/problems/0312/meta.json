@@ -1,0 +1,13 @@
+{
+  "id": 312,
+  "title": "Cyclic Paths on Sierpiński Graphs",
+  "titleZh": "谢尔宾斯基图上的环路",
+  "difficulty": 52,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 1233,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=312",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

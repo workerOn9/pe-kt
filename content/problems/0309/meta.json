@@ -1,0 +1,13 @@
+{
+  "id": 309,
+  "title": "Integer Ladders",
+  "titleZh": "整数梯子",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 1218,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=309",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
