@@ -1,0 +1,20 @@
+{
+  "id": 300,
+  "title": "Protein Folding",
+  "titleZh": "蛋白质折叠",
+  "difficulty": 53,
+  "difficultyLevel": "Level 20",
+  "tags": [
+    "self-avoiding-walk",
+    "lattice-protein-model",
+    "bitmask-dedup",
+    "symmetry-reduction"
+  ],
+  "answer": "8.0540771484375",
+  "solvedBy": 1518,
+  "bruteForceBaselineMs": 485400.0,
+  "optimizedBaselineMs": 574.76,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=300",
+  "fetchedAt": "2026-09-30"
+}

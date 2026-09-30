@@ -315,6 +315,14 @@ val solvers: Map<Int, () -> Long> = mapOf(
     288 to ::solve288,
     289 to ::solve289,
     290 to ::solve290,
+    291 to ::solve291,
+    292 to ::solve292,
+    293 to ::solve293,
+    294 to ::solve294,
+    295 to ::solve295,
+    296 to ::solve296,
+    297 to ::solve297,
+    299 to ::solve299,
 )
 
 /**
@@ -324,6 +332,8 @@ val solvers: Map<Int, () -> Long> = mapOf(
  */
 val stringSolvers: Map<Int, () -> String> = mapOf(
     284 to ::solve284,
+    298 to ::solve298,
+    300 to ::solve300,
 )
 
 /** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
@@ -445,6 +455,36 @@ private fun solve289(): Long = solve0289Impl()
 
 /** PE 290 — 数字签名：逐位乘法 (进位, 数位和差) 数位 DP，0 ≤ n < 10¹⁸ 中 digitSum(n) = digitSum(137n) 的计数 = 20444710234716473。 */
 private fun solve290(): Long = solve0290Impl()
+
+/** PE 291 — 帕奈托波尔素数：约简为 2k²+2k+1 后对 k 做二次剩余筛（q ≡ 1 mod 4），k ≤ 49999999，计数 = 4037526。 */
+private fun solve291(): Long = solve0291Impl()
+
+/** PE 293 — 伪幸运数：偶数约束下 admissible = 从 2 起的素数前缀幂积，DFS 枚举 6656 个，M 去重求和 = 2209。 */
+private fun solve293(): Long = solve0293Impl()
+
+/** PE 294 — 数位和体验 #23：位权按 ord₂₃(10)=22 分组 + 隔板容斥系数 + 24×23 卷积 DP，S(11¹²) mod 10⁹ = 789184709。 */
+private fun solve294(): Long = solve0294Impl()
+
+/** PE 297 — Zeckendorf 表示：按 B 的 1 位秩分解 + Fibonacci 闭式表，Σz(n)（n < 10^17）= 2252639041804718029。 */
+private fun solve297(): Long = solve0297Impl()
+
+/** PE 292 — 勾股多边形：凸多边形 ⇔ 方向集 + 倍数闭合成环，极角序 (x,y,周长) 背包 DP 去退化，P(120) = 3600060866。 */
+private fun solve292(): Long = solve0292Impl()
+
+/** PE 295 — 透镜孔：交点弦参数化 + 阈值 M(u,v) 公式，按 4r² 归组做容斥去重，L(100000) = 4884650818。 */
+private fun solve295(): Long = solve0295Impl()
+
+/** PE 296 — 角平分线与切线：引理 BE = ac/(a+b) ⇒ (a+b) | ac；对称化闭式（莫比乌斯反演）计数 = 1137208419。 */
+private fun solve296(): Long = solve0296Impl()
+
+/** PE 298 — 选择性失忆：439 个对称类状态上 50 步精确 DP 求 E|L−R|，答案字符串 = 1.76882294。 */
+private fun solve298(): String = solve0298Impl()
+
+/** PE 299 — 三个相似三角形：条件化为 uv = 2pq 的两族参数化 + 分商归并，b+d < 10^8 计数 = 549936643。 */
+private fun solve299(): Long = solve0299Impl()
+
+/** PE 300 — 蛋白质折叠：593611 条规范化折叠 → 12495 个接触掩码，逐串取最优，n = 15 平均 = 8.0540771484375。 */
+private fun solve300(): String = solve0300Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

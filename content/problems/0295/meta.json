@@ -1,0 +1,20 @@
+{
+  "id": 295,
+  "title": "Lenticular Holes",
+  "titleZh": "双凸透镜孔",
+  "difficulty": 93,
+  "difficultyLevel": "Level 36",
+  "tags": [
+    "lattice-geometry",
+    "number-theory",
+    "inclusion-exclusion",
+    "counting"
+  ],
+  "answer": "4884650818",
+  "solvedBy": 750,
+  "bruteForceBaselineMs": 2036.4,
+  "optimizedBaselineMs": 46.198,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=295",
+  "fetchedAt": "2026-09-30"
+}

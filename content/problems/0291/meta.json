@@ -1,0 +1,20 @@
+{
+  "id": 291,
+  "title": "Panaitopol Primes",
+  "titleZh": "帕纳伊托波尔素数",
+  "difficulty": 28,
+  "difficultyLevel": "Level 11",
+  "tags": [
+    "prime-sieve",
+    "quadratic-residues",
+    "miller-rabin",
+    "montgomery-multiplication"
+  ],
+  "answer": "4037526",
+  "solvedBy": 2012,
+  "bruteForceBaselineMs": 591.2,
+  "optimizedBaselineMs": 1417.2,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=291",
+  "fetchedAt": "2026-09-30"
+}

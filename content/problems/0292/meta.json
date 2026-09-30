@@ -1,0 +1,21 @@
+{
+  "id": 292,
+  "title": "Pythagorean Polygons",
+  "titleZh": "毕达哥拉斯多边形",
+  "difficulty": 52,
+  "difficultyLevel": "Level 20",
+  "tags": [
+    "computational-geometry",
+    "lattice-polygons",
+    "dynamic-programming",
+    "pythagorean-triples",
+    "meet-in-the-middle"
+  ],
+  "answer": "3600060866",
+  "solvedBy": 891,
+  "bruteForceBaselineMs": 656.5,
+  "optimizedBaselineMs": 138.8,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=292",
+  "fetchedAt": "2026-09-30"
+}
