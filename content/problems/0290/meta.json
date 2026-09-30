@@ -1,0 +1,20 @@
+{
+  "id": 290,
+  "title": "Digital Signature",
+  "titleZh": "数字签名",
+  "difficulty": 48,
+  "difficultyLevel": "Level 19",
+  "tags": [
+    "digit-dp",
+    "counting",
+    "carry-propagation",
+    "meet-in-the-middle"
+  ],
+  "answer": "20444710234716473",
+  "solvedBy": 1419,
+  "bruteForceBaselineMs": 816.6,
+  "optimizedBaselineMs": 6.779,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=290",
+  "fetchedAt": "2026-09-30"
+}

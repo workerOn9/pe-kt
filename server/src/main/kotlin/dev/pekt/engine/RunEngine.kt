@@ -18,12 +18,16 @@ class NoSolverException(val problemId: Int) :
 class SolverTimeoutException(val problemId: Int) :
     RuntimeException("题目 $problemId 求解超时（>${RUN_TIMEOUT_MS}ms）")
 
-/** POST /api/problems/{id}/run 的响应体。 */
+/**
+ * POST /api/problems/{id}/run 的响应体。
+ * answer/expected 统一为字符串：绝大多数题是十进制数字（与 meta.json 一致），
+ * 少数题（如 PE 284 要求 base-14 小写字母）直接携带原文形式的答案。
+ */
 @Serializable
 data class RunResult(
     val id: Int,
-    val answer: Long,
-    val expected: Long,
+    val answer: String,
+    val expected: String,
     val correct: Boolean,
     val durationMs: Long,
 )
@@ -34,9 +38,16 @@ data class RunResult(
  */
 object RunEngine {
 
+    /** 统一查找解法：数值注册表 [solvers] 的结果转字符串，或字符串注册表 [stringSolvers]。 */
+    fun solverOf(problemId: Int): (() -> String)? =
+        solvers[problemId]?.let { numeric -> { numeric().toString() } } ?: stringSolvers[problemId]
+
+    /** 题号是否已注册解法（数值或字符串答案）。 */
+    fun hasSolver(problemId: Int): Boolean = problemId in solvers || problemId in stringSolvers
+
     /** 执行 [problemId] 的注册解法，[expected] 为 meta.json 中的标准答案用于比对。 */
-    suspend fun run(problemId: Int, expected: Long): RunResult {
-        val solver = solvers[problemId] ?: throw NoSolverException(problemId)
+    suspend fun run(problemId: Int, expected: String): RunResult {
+        val solver = solverOf(problemId) ?: throw NoSolverException(problemId)
         val timed = try {
             withContext(Dispatchers.Default) {
                 withTimeout(RUN_TIMEOUT_MS) { measureTimedValue { solver() } }

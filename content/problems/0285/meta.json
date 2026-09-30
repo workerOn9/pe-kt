@@ -1,0 +1,22 @@
+{
+  "id": 285,
+  "title": "Pythagorean Odds",
+  "titleZh": "勾股概率",
+  "difficulty": 49,
+  "difficultyLevel": "Level 19",
+  "tags": [
+    "probability",
+    "geometry",
+    "numerical-integration",
+    "floating-point",
+    "computational-geometry",
+    "expected-value"
+  ],
+  "answer": "15705580999",
+  "solvedBy": 1682,
+  "bruteForceBaselineMs": 47.1,
+  "optimizedBaselineMs": 1.064,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=285",
+  "fetchedAt": "2026-09-30"
+}

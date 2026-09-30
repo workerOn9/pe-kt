@@ -61,7 +61,8 @@ class ContentIndex private constructor(
 
         /** 扫描 [root]/problems 加载全部题目；缺 meta.json 或 meta.json 解析失败的目录跳过。 */
         fun load(root: File = resolveContentDir()): ContentIndex {
-            val json = Json { ignoreUnknownKeys = true }
+            // lenient：存量 meta.json 中 answer 是 JSON 数字，需读入 String 字段（新题也可写字符串）
+            val json = Json { ignoreUnknownKeys = true; isLenient = true }
             val problemsDir = File(root, "problems")
             val problems = problemsDir.listFiles()
                 ?.filter { it.isDirectory }

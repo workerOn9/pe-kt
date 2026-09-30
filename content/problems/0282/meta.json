@@ -1,0 +1,21 @@
+{
+  "id": 282,
+  "title": "The Ackermann Function",
+  "titleZh": "阿克曼函数",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [
+    "number-theory",
+    "modular-arithmetic",
+    "hyperoperation",
+    "euler-totient",
+    "chinese-remainder-theorem"
+  ],
+  "answer": "1098988351",
+  "solvedBy": 1491,
+  "bruteForceBaselineMs": 1.443,
+  "optimizedBaselineMs": 0.0031,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=282",
+  "fetchedAt": "2026-09-30"
+}

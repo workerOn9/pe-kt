@@ -1,0 +1,21 @@
+{
+  "id": 289,
+  "title": "Eulerian Cycles",
+  "titleZh": "欧拉回路",
+  "difficulty": 90,
+  "difficultyLevel": "Level 35",
+  "tags": [
+    "eulerian-circuit",
+    "non-crossing",
+    "transfer-matrix",
+    "dynamic-programming",
+    "planar-connectivity"
+  ],
+  "answer": "6567944538",
+  "solvedBy": 842,
+  "bruteForceBaselineMs": 255.8,
+  "optimizedBaselineMs": 20.9,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=289",
+  "fetchedAt": "2026-09-30"
+}

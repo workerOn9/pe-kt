@@ -16,7 +16,12 @@ data class ProblemMeta(
     val difficulty: Int = 0,
     val difficultyLevel: String = "",
     val tags: List<String> = emptyList(),
-    val answer: Long,
+    /**
+     * 题号的标准答案。绝大多数题为十进制数字字符串（如 "233168"）；
+     * 少数题以题目要求的原文形式存放（如 PE 284 的 base-14 小写字母 "5a411d7b"）。
+     * 存量 meta.json 中的 JSON 数字由解析侧的 lenient 模式读入为字符串。
+     */
+    val answer: String,
     val solvedBy: Long? = null,
     val bruteForceBaselineMs: Double? = null,
     val optimizedBaselineMs: Double? = null,

@@ -7,8 +7,8 @@ export interface ProblemMeta {
   difficulty: number
   difficultyLevel: string
   tags: string[]
-  /** 数字答案；server 端为非空 Long（缺答案的题目加载时即被跳过），前端恒有值 */
-  answer: number
+  /** 标准答案（字符串：多数题为十进制数字；如 284 以 base-14 小写字母给出原文形式） */
+  answer: string
   solvedBy: number
   bruteForceBaselineMs: number | null
   optimizedBaselineMs: number | null
@@ -36,8 +36,8 @@ export interface Solution {
 
 export interface RunResult {
   id: number
-  answer: number
-  expected: number
+  answer: string
+  expected: string
   correct: boolean
   durationMs: number
 }

@@ -1,0 +1,21 @@
+{
+  "id": 284,
+  "title": "Steady Squares",
+  "titleZh": "稳定平方数",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [
+    "modular-arithmetic",
+    "chinese-remainder-theorem",
+    "hensel-lifting",
+    "big-integer",
+    "base-conversion"
+  ],
+  "answer": "5a411d7b",
+  "solvedBy": 1714,
+  "bruteForceBaselineMs": 997.7,
+  "optimizedBaselineMs": 123.1,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=284",
+  "fetchedAt": "2026-09-30"
+}

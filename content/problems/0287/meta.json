@@ -1,0 +1,21 @@
+{
+  "id": 287,
+  "title": "Quadtree Encoding (a Simple Compression Algorithm)",
+  "titleZh": "四叉树编码（一种简单的压缩算法）",
+  "difficulty": 28,
+  "difficultyLevel": "Level 10",
+  "tags": [
+    "quadtree",
+    "divide-and-conquer",
+    "geometry",
+    "recursion",
+    "counting"
+  ],
+  "answer": "313135496",
+  "solvedBy": 1954,
+  "bruteForceBaselineMs": 63.8,
+  "optimizedBaselineMs": 115.4,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem/287",
+  "fetchedAt": "2026-09-30"
+}

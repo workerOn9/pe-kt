@@ -1,0 +1,21 @@
+{
+  "id": 286,
+  "title": "Scoring Probabilities",
+  "titleZh": "投篮得分概率",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": [
+    "probability",
+    "binary-search",
+    "polynomial",
+    "big-integer",
+    "exact-arithmetic"
+  ],
+  "answer": "526494571953",
+  "solvedBy": 2826,
+  "bruteForceBaselineMs": 1742.3,
+  "optimizedBaselineMs": 0.097,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=286",
+  "fetchedAt": "2026-09-30"
+}
