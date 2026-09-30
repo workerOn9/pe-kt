@@ -1,0 +1,13 @@
+{
+  "id": 331,
+  "title": "Cross Flips",
+  "titleZh": "十字翻转",
+  "difficulty": 91,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 751,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=331",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

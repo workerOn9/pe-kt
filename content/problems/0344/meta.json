@@ -1,0 +1,13 @@
+{
+  "id": 344,
+  "title": "Silver Dollar Game",
+  "titleZh": "银币游戏",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 626,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=344",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

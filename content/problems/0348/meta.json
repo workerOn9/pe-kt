@@ -1,0 +1,13 @@
+{
+  "id": 348,
+  "title": "Sum of a Square and a Cube",
+  "titleZh": "平方加立方",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 4011,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=348",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

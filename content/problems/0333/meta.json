@@ -1,0 +1,13 @@
+{
+  "id": 333,
+  "title": "Special Partitions",
+  "titleZh": "特殊拆分",
+  "difficulty": 21,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 1713,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=333",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

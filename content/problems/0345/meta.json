@@ -1,0 +1,13 @@
+{
+  "id": 345,
+  "title": "Matrix Sum",
+  "titleZh": "矩阵和",
+  "difficulty": 16,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 7167,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=345",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

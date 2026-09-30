@@ -1,0 +1,13 @@
+{
+  "id": 328,
+  "title": "Lowest-cost Search",
+  "titleZh": "最优猜数成本",
+  "difficulty": 90,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 749,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=328",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
