@@ -1,0 +1,22 @@
+{
+  "id": 298,
+  "title": "Selective Amnesia",
+  "titleZh": "选择性遗忘",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [
+    "dynamic-programming",
+    "markov-chain",
+    "state-compression",
+    "expected-value",
+    "simulation",
+    "exact-arithmetic"
+  ],
+  "answer": "1.76882294",
+  "solvedBy": 1001,
+  "bruteForceBaselineMs": 2060.7,
+  "optimizedBaselineMs": 13.798,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=298",
+  "fetchedAt": "2026-09-30"
+}

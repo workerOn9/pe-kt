@@ -1,0 +1,20 @@
+{
+  "id": 294,
+  "title": "Sum of Digits - Experience #23",
+  "titleZh": "数位和体验 #23",
+  "difficulty": 51,
+  "difficultyLevel": "Level 20",
+  "tags": [
+    "digit-dp",
+    "modular-arithmetic",
+    "combinatorics",
+    "counting"
+  ],
+  "answer": "789184709",
+  "solvedBy": 1333,
+  "bruteForceBaselineMs": 390.0,
+  "optimizedBaselineMs": 3.321,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=294",
+  "fetchedAt": "2026-09-30"
+}

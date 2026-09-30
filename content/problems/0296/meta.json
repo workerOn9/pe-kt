@@ -1,0 +1,22 @@
+{
+  "id": 296,
+  "title": "Angular Bisector and Tangent",
+  "titleZh": "角平分线与切线",
+  "difficulty": 69,
+  "difficultyLevel": "Level 27",
+  "tags": [
+    "geometry",
+    "number-theory",
+    "lattice-point-counting",
+    "mobius-inversion",
+    "symmetry-reduction",
+    "closed-form"
+  ],
+  "answer": "1137208419",
+  "solvedBy": 1000,
+  "bruteForceBaselineMs": 1928.3,
+  "optimizedBaselineMs": 11.164,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=296",
+  "fetchedAt": "2026-09-30"
+}

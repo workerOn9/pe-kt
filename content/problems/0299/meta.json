@@ -1,0 +1,22 @@
+{
+  "id": 299,
+  "title": "Three Similar Triangles",
+  "titleZh": "三个相似三角形",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [
+    "geometry",
+    "number-theory",
+    "diophantine",
+    "parametrization",
+    "squarefree",
+    "lattice-points"
+  ],
+  "answer": "549936643",
+  "solvedBy": 937,
+  "bruteForceBaselineMs": 1849.6,
+  "optimizedBaselineMs": 28.657,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=299",
+  "fetchedAt": "2026-09-30"
+}

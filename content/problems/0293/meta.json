@@ -1,0 +1,20 @@
+{
+  "id": 293,
+  "title": "Pseudo-Fortunate Numbers",
+  "titleZh": "伪幸运数",
+  "difficulty": 16,
+  "difficultyLevel": "Level 6",
+  "tags": [
+    "number-theory",
+    "primes",
+    "miller-rabin",
+    "smooth-numbers"
+  ],
+  "answer": "2209",
+  "solvedBy": 3841,
+  "bruteForceBaselineMs": 202.5,
+  "optimizedBaselineMs": 13.472,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=293",
+  "fetchedAt": "2026-09-30"
+}

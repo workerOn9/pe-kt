@@ -1,0 +1,20 @@
+{
+  "id": 297,
+  "title": "Zeckendorf Representation",
+  "titleZh": "Zeckendorf 表示",
+  "difficulty": 17,
+  "difficultyLevel": "Level 6",
+  "tags": [
+    "fibonacci",
+    "digit-dp",
+    "combinatorics",
+    "counting"
+  ],
+  "answer": "2252639041804718029",
+  "solvedBy": 3620,
+  "bruteForceBaselineMs": 826.4,
+  "optimizedBaselineMs": 0.0426,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=297",
+  "fetchedAt": "2026-09-30"
+}
