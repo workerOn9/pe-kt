@@ -1,0 +1,13 @@
+{
+  "id": 313,
+  "title": "Sliding Game",
+  "titleZh": "滑块游戏",
+  "difficulty": 15,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 2255,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=313",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

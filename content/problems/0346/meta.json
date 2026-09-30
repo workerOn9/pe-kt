@@ -1,0 +1,13 @@
+{
+  "id": 346,
+  "title": "Strong Repunits",
+  "titleZh": "强循环单位数",
+  "difficulty": 13,
+  "difficultyLevel": "Level 4",
+  "tags": [],
+  "solvedBy": 5638,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=346",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

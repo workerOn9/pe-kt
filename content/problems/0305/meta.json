@@ -1,0 +1,13 @@
+{
+  "id": 305,
+  "title": "Reflexive Position",
+  "titleZh": "自反位置",
+  "difficulty": 89,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 920,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=305",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

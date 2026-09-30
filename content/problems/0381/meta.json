@@ -1,0 +1,13 @@
+{
+  "id": 381,
+  "title": "Factorial",
+  "titleZh": "素数阶乘之和模 p",
+  "difficulty": 12,
+  "difficultyLevel": "Level 4",
+  "tags": [],
+  "solvedBy": 5617,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=381",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

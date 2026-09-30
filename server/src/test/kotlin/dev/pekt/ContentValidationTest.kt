@@ -17,6 +17,9 @@ import kotlin.test.assertTrue
  * 内容资产校验：遍历 content/problems/ 每个题目目录，保证
  * 目录命名、meta.json 字段、必备文件、meta.id 一致性全部成立；
  * 有注册解法的题目实跑一遍引擎，断言结果与 meta.answer 一致。
+ *
+ * 支持两种内容状态：`solved`（缺省，解析/代码/答案齐备）与
+ * `draft`（预抓取待解析，仅 meta + 中英题面，不注册解法、不得有答案）。
  */
 class ContentValidationTest {
 
@@ -58,9 +61,26 @@ class ContentValidationTest {
             assertTrue(meta.id > 0, "${dir.name}: id 必须为正数")
             assertTrue(meta.title.isNotBlank(), "${dir.name}: title 为空")
             assertTrue(meta.titleZh.isNotBlank(), "${dir.name}: titleZh 为空")
-            assertTrue(meta.tags.isNotEmpty(), "${dir.name}: tags 为空")
+            assertTrue(
+                meta.status == ProblemMeta.STATUS_SOLVED || meta.status == ProblemMeta.STATUS_DRAFT,
+                "${dir.name}: status 非法（${meta.status}）",
+            )
             val dirNumber = dir.name.toInt()
             assertEquals(dirNumber, meta.id, "${dir.name}: meta.id 与目录名数字不一致")
+            if (meta.status == ProblemMeta.STATUS_SOLVED) {
+                assertTrue(meta.tags.isNotEmpty(), "${dir.name}: tags 为空")
+                assertTrue(!meta.answer.isNullOrBlank(), "${dir.name}: 已解题缺 answer")
+            } else {
+                assertTrue(meta.answer == null, "${dir.name}: 待解析题不应有 answer")
+                assertTrue(meta.difficulty > 0, "${dir.name}: 待解析题缺官方难度")
+                assertTrue(meta.solvedBy != null, "${dir.name}: 待解析题缺解题人数")
+                assertEquals(
+                    "https://projecteuler.net/problem=${meta.id}",
+                    meta.sourceUrl,
+                    "${dir.name}: 待解析题 sourceUrl 应为 PE 官方题面链接",
+                )
+                assertTrue(meta.fetchedAt.isNotBlank(), "${dir.name}: 待解析题缺 fetchedAt")
+            }
         }
         // id 全局唯一
         val ids = metas.values.map { it.id }
@@ -68,13 +88,28 @@ class ContentValidationTest {
     }
 
     @Test
-    fun `statement、analysis、solution 文件存在且非空`() {
-        for (dir in problemDirs) {
-            for (name in listOf("statement.md", "analysis.md", "solution.kt")) {
-                val file = File(dir, name)
-                assertTrue(file.isFile, "${dir.name}: 缺 $name")
-                assertTrue(file.readText().isNotBlank(), "${dir.name}: $name 内容为空")
+    fun `题面必填、解析与代码按状态齐备`() {
+        for ((dir, meta) in metas) {
+            val statement = File(dir, "statement.md")
+            assertTrue(statement.isFile, "${dir.name}: 缺 statement.md")
+            assertTrue(statement.readText().isNotBlank(), "${dir.name}: statement.md 内容为空")
+
+            if (meta.status == ProblemMeta.STATUS_SOLVED) {
+                for (name in listOf("analysis.md", "solution.kt")) {
+                    val file = File(dir, name)
+                    assertTrue(file.isFile, "${dir.name}: 缺 $name")
+                    assertTrue(file.readText().isNotBlank(), "${dir.name}: $name 内容为空")
+                }
+            } else {
+                // 待解析题：解析与参考实现尚未产出，出现即视为"半成品"混入
+                for (name in listOf("analysis.md", "solution.kt")) {
+                    assertTrue(!File(dir, name).exists(), "${dir.name}: 待解析题不应有 $name")
+                }
+                val en = File(dir, "statement.en.md")
+                assertTrue(en.isFile, "${dir.name}: 待解析题缺 statement.en.md（解题底稿）")
+                assertTrue(en.readText().isNotBlank(), "${dir.name}: statement.en.md 内容为空")
             }
+
             // applications.md（现实应用）为可选板块；存在时必须非空
             val applications = File(dir, "applications.md")
             if (applications.isFile) {
@@ -164,11 +199,18 @@ class ContentValidationTest {
     @Test
     fun `已注册解法的答案与引擎实跑结果一致`() = runBlocking {
         for ((dir, meta) in metas) {
+            if (meta.status == ProblemMeta.STATUS_DRAFT) {
+                // 待解析题在解题（翻状态）之前不得注册解法，防止"半成品"混入
+                assertTrue(!RunEngine.hasSolver(meta.id), "${dir.name}: 待解析题不应注册解法")
+                continue
+            }
             if (!RunEngine.hasSolver(meta.id)) continue // 无 solver 的题目跳过（允许）
-            val result = RunEngine.run(meta.id, meta.answer)
+            val expected = meta.answer.orEmpty()
+            assertTrue(expected.isNotBlank(), "${dir.name}: 已解题缺 answer")
+            val result = RunEngine.run(meta.id, expected)
             assertTrue(
                 result.correct,
-                "${dir.name}: 引擎答案 ${result.answer} != meta.answer ${meta.answer}（耗时 ${result.durationMs}ms）",
+                "${dir.name}: 引擎答案 ${result.answer} != meta.answer $expected（耗时 ${result.durationMs}ms）",
             )
         }
     }

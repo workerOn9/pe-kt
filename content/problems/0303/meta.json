@@ -1,0 +1,13 @@
+{
+  "id": 303,
+  "title": "Multiples with Small Digits",
+  "titleZh": "小数字倍数",
+  "difficulty": 20,
+  "difficultyLevel": "Level 7",
+  "tags": [],
+  "solvedBy": 4582,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=303",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,11 +1,12 @@
 # AGENT.md — pe-kt 续作规范（给后续会话的 Agent）
 
 你是 pe-kt 项目的续作 Agent。本项目是 Kotlin 全栈的 Project Euler 学习展示平台，
-当前已完成 1–150 题。**2026-09-13 起主仓库是 GitHub 的 `workerOn9/pe-kt`**（本地路径
+当前已完成 1–300 题，301–400 已预抓取入库（状态 draft，待解析——见决策 D-11）。
+**2026-09-13 起主仓库是 GitHub 的 `workerOn9/pe-kt`**（本地路径
 `~/Documents/github/pe-kt`），由旧仓库搬迁而来且**不带 git 历史**——`m0-foundation` …
 `m6-problems-51-100` 这批里程碑 tag 只存在于旧仓库 `~/Documents/pe/pe-kt`，查历史去那边；
-101–150 这批直接提交在主仓库的分支上，没有对应 tag。
-你的任务通常是**按既有标准继续扩充题库（151 题起）**，或在此基础上的维护工作。
+101–300 这批直接提交在主仓库的分支上，没有对应 tag。
+你的任务通常是**按既有标准继续扩充题库（301 题起）**，或在此基础上的维护工作。
 
 先读 `docs/01-vision.md`、`docs/02-architecture.md`、`docs/04-decisions.md` 了解全局，
 本文件是**作业层面的硬约束与工艺流程**。任何与本文件冲突的"想当然"，以本文件 + 仓库现状为准。
@@ -19,55 +20,72 @@
    Vercel（D-08），公开暴露的只是中文意译；要彻底消除英文底稿的公开副本，需把仓库转为
    私有或把 `statement.en.md` 移出版本库。
 2. **答案必须实跑验证**：每题的 `meta.json.answer` 必须来自求解器真实运行输出，
-   禁止从网页/记忆抄答案填进去。**不要向 PE 官网提交答案**（也不要预填答案表单）：
+   禁止从网页/记忆抄答案填进去；预抓取的 draft 题**不得**带 `answer`（答案只能出现在已解题）。
+   **不要向 PE 官网提交答案**（也不要预填答案表单）：
    官网提交由用户自己完成——用户会自己慢慢看题、自己输入，出问题再来找我们修复。
    我们的验证到「本机实跑 + 双方法互证 + 公开官方答案表对照」为止。
 3. **解析不许注水**：每题 `analysis.md` 保持「思路推导（含数学公式）→ 复杂度对比 → 实测耗时」结构，
    参考 `content/problems/0025/analysis.md` 的密度。写不出有信息量的解析就先不要做这道题。
 4. **危险/不可逆操作先问用户**（删文件、改 git 历史、`docker rm` 以外的清理等）。
 
-## 单题生产流水线（每题 9 步，缺一不可）
+## 两段式生产流水线（D-11）
+
+题库工作分两类，**每批 25 题（或用户指定范围）一个提交**；动手前先查分支：
 
 > **动手前第一件事：`git branch --show-current`。在 `main` 上就先切出新分支再干活**——
 > `main` 已设为受保护分支，禁止直接 push，所有改动必须走 PR（详见「提交规范」）。
 
-以题号 N=26 为例（目录统一 4 位数字：`content/problems/0026/`）：
+### A. 预抓取批次（扒题，不解题）
 
-1. **抓题面**：用户 Chrome 已登录 PE（经 Kimi WebBridge 插件，daemon 在
-   `http://127.0.0.1:10086/command`，沿用 session `pe-fetch-problems`）。
-   navigate 到 `https://projecteuler.net/problem=26`，evaluate 抽取题面正文、
-   官方难度百分比、解题人数（solvedBy）。抓不到就停下让用户检查登录态，不要编造。
-2. **`statement.en.md`**：题面原文存档（仅参考用）。
-3. **`statement.md`**：中文意译题面，忠实但不必逐字；KaTeX 公式（`$...$` / `$$...$$`）。
-4. **解题 + `solution.kt`**：可独立运行的 Kotlin 文件，头部注释块格式固定
+把机械抓取与翻译从解题流水线里剥离，一次建一段跑道；以后解题批次不再碰官网。
+
+- **A1 机械抓取**：`node scripts/fetch-pe.mjs --from 301 --to 325`。脚本经 Kimi WebBridge
+  （daemon `http://127.0.0.1:10086/command`，session `pe-fetch-problems`）逐题 navigate + 读 DOM，
+  每题间隔 3.5s，写入 `statement.en.md`、草稿 `meta.json`（`status: "draft"`、`titleZh` 留空）
+  与题面图片；已抓过的题目自动跳过（断点续抓）。若脚本报"页面无题面内容"= 未登录/403/题号
+  不存在，停下让用户检查登录态，不要编造。**禁止用页面内 `fetch()` 批量拉题**（会触发 403）。
+- **A2 中文翻译**：逐题产出 `statement.md`（格式照既有题目：`# N · 标题` + 中文意译来源说明 +
+  正文，公式用 KaTeX）与 `meta.titleZh`；图片引用用脚本落盘的本地文件名。英文原文不得进入
+  `statement.md`（绝对红线 1）。
+- **A3 自查**：多行 `$$` 两端独占一行（ContentValidationTest 会把关）；`cd web && npm run check:math`。
+- **A4 校验与提交**：`./gradlew :server:test`（draft 走放宽分支：只要求 meta + 中英题面，
+  禁止解析/代码/答案/求解器注册）。提交信息例：`feat: 预抓取 301–325——……（待解析）`。
+
+### B. 解题批次（从既有 draft 底稿出发，不再抓题）
+
+以题号 N 为例（目录统一 4 位数字：`content/problems/0301/`）：
+
+1. **读底稿**：`statement.en.md`（编写参考）、`statement.md`（题面）与 `meta.json` 的
+   官方难度/解题人数。
+2. **解题 + `solution.kt`**：可独立运行的 Kotlin 文件，头部注释块格式固定
    （题号/标题/思路/复杂度/`kotlinc solution.kt -include-runtime -d solution.jar && java -jar solution.jar`）。
    优先复用 `dev.pekt.math` 工具库（素数筛、gcd/lcm、组合数、模运算、BigInteger 扩展等，见
    `server/src/main/kotlin/dev/pekt/math/`）。**数位数禁止用 toString() 数**，用阈值比较（见 025 的教训）。
    需要暴力对照时另写 `brute-force.kt`（同时是耗时对比图的数据来源）。
-5. **独立验证**：用 kotlinc 单独编译运行 `solution.kt`，输出必须与预期一致。
+3. **独立验证**：用 kotlinc 单独编译运行 `solution.kt`，输出必须与预期一致。
    预期来源优先级：题面样例外推 > 数学双方法互证（如 025 的通项公式旁证）> 公开官方
    答案表对照（作为旁证；meta.answer 仍必须是本机实跑输出）。官网提交确认留给用户，不作为
    我们的验证手段。
-6. **`analysis.md`**：中文解析，结构 = 思路推导 → （有旁证给旁证）→ 答案加粗 →
+4. **`analysis.md`**：中文解析，结构 = 思路推导 → （有旁证给旁证）→ 答案加粗 →
    「复杂度对比」表（含 JIT 预热后实测毫秒数）→ 关键教训。数学用 KaTeX。
-7. **`applications.md`**（现实应用板块，可选但默认要写）：中文 150–350 字，
+5. **`applications.md`**（现实应用板块，可选但默认要写）：中文 150–350 字，
    **文件内不带标题**（前端自渲染 `<h2>现实应用</h2>`），讲题目涉及的数学结构/算法技术在
    现实工程与科学中的真实应用；技术迁移是合理写法，禁止把题目本身吹嘘成有直接工业用途、
    禁止编造具体软件或研究。参考 `content/problems/0015/applications.md` 的写法与密度。
    实在没有可写内容的题才省略该文件（前端自动不渲染）。
-8. **`meta.json`**：字段格式照抄已有题目（看 `content/problems/0025/meta.json`）：
-   `id/title/titleZh/difficulty(官方百分比数字)/difficultyLevel/tags(kebab-case)/answer/
-   solvedBy/bruteForceBaselineMs/optimizedBaselineMs/hasVisualization/sourceUrl/fetchedAt`。
-   两个 baseline 是**本机 JIT 预热后**的实测毫秒数（与 analysis.md 表格数据一致）。
-9. **注册求解器**：在 `server/src/main/kotlin/dev/pekt/engine/Solvers.kt` 的 `solvers` map
-   加一行 `26 to ::solve026,` 并实现 `private fun solve026(): Long`，
-   逻辑与 `content/problems/0026/solution.kt` 保持一致（通用步骤换用 math 工具库）。
+6. **`meta.json`**：补 `answer`/`tags`(kebab-case)/`bruteForceBaselineMs`/`optimizedBaselineMs`
+   （两个 baseline 是**本机 JIT 预热后**实测毫秒数，与 analysis.md 表格数据一致），并把
+   `status` 删除（缺省即 solved）；`titleZh` 若预抓取批次已写就则校对正确性。
+7. **注册求解器**：在 `server/src/main/kotlin/dev/pekt/engine/Solvers.kt` 的 `solvers` map
+   加一行 `301 to ::solve301,` 并实现 `private fun solve301(): Long`，
+   逻辑与 `content/problems/0301/solution.kt` 保持一致（通用步骤换用 math 工具库）。
    注意返回值是 `Long`，确实超 Long 的题（罕见）要先停下来和用户讨论方案。
+   **draft 题不得注册求解器**（ContentValidationTest 会拦）。
 
 ## 验收门禁（每批做完必须全绿才算完）
 
 ```bash
-./gradlew :server:test        # ContentValidationTest 逐题校验 meta/题面/解析/代码并实跑比对答案
+./gradlew :server:test        # ContentValidationTest 逐题校验 meta/题面/解析/代码并实跑比对答案（draft 题走放宽分支）
 cd web && npm run check:math  # 全库公式过一遍 KaTeX，报错即红字原文（已挂在 npm run build 前面）
 cd web && npm run build       # 前端构建
 ./gradlew :server:installDist # 打 Docker 镜像前必须重跑！jar 过期会导致静态资源 404/白屏（D-07 教训）
@@ -75,6 +93,10 @@ docker build -t pe-kt . && docker rm -f pe-kt && docker run -d --name pe-kt -p 8
 curl -s localhost:8080/health # {"status":"ok"}
 curl -s localhost:8080/api/problems | python3 -c "import json,sys;print(len(json.load(sys.stdin)))"
 ```
+
+**预抓取批次（A）**只动 content：最低跑 `:server:test` + `npm run check:math` + `npm run build`；
+分支收尾（发 PR 前）再跑完整门禁（installDist + docker + 浏览器实测）。
+**解题批次（B）**与代码/部署改动执行上面全量。
 
 浏览器实测（WebBridge，同 session）：navigate `http://localhost:8080/`，
 screenshot + evaluate 检查新题出现在列表、详情页解析渲染、公式无裸 `$` 残留。

@@ -1,0 +1,13 @@
+{
+  "id": 386,
+  "title": "Maximum Length of an Antichain",
+  "titleZh": "反链的最大长度",
+  "difficulty": 65,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 1061,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=386",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

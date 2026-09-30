@@ -1,0 +1,13 @@
+{
+  "id": 356,
+  "title": "Largest Roots of Cubic Polynomials",
+  "titleZh": "三次多项式的最大根",
+  "difficulty": 73,
+  "difficultyLevel": "Level 28",
+  "tags": [],
+  "solvedBy": 916,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=356",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 384,
+  "title": "Rudin-Shapiro Sequence",
+  "titleZh": "Rudin-Shapiro 数列",
+  "difficulty": 69,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 529,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=384",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 308,
+  "title": "An Amazing Prime-generating Automaton",
+  "titleZh": "神奇的素数生成自动机",
+  "difficulty": 66,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 1121,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=308",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

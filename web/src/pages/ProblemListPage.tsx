@@ -205,6 +205,7 @@ export function ProblemListPage() {
                   <Link to={`/problem/${p.id}`} className="problem-link">
                     {p.titleZh}
                   </Link>
+                  {p.status === 'draft' && <span className="draft-badge">待解析</span>}
                   <span className="problem-title-en">{p.title}</span>
                 </td>
                 <td className="col-difficulty">

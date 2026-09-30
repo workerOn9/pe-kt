@@ -1,0 +1,13 @@
+{
+  "id": 325,
+  "title": "Stone Game II",
+  "titleZh": "取石游戏 II",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 949,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=325",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

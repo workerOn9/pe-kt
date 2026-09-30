@@ -1,0 +1,13 @@
+{
+  "id": 400,
+  "title": "Fibonacci Tree Game",
+  "titleZh": "斐波那契树游戏",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 723,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=400",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 377,
+  "title": "Sum of Digits - Experience #13",
+  "titleZh": "数位和等于 13 的幂",
+  "difficulty": 37,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 1115,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=377",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 380,
+  "title": "Amazing Mazes!",
+  "titleZh": "迷宫计数",
+  "difficulty": 58,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 775,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=380",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

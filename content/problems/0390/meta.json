@@ -1,0 +1,13 @@
+{
+  "id": 390,
+  "title": "Triangles with Non Rational Sides and Integral Area",
+  "titleZh": "无理数边长与整数面积的三角形",
+  "difficulty": 83,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 811,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=390",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 330,
+  "title": "Euler's Number",
+  "titleZh": "欧拉常数递推",
+  "difficulty": 69,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 817,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=330",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 311,
+  "title": "Biclinic Integral Quadrilaterals",
+  "titleZh": "双斜整数四边形",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 705,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=311",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

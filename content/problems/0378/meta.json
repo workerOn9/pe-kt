@@ -1,0 +1,13 @@
+{
+  "id": 378,
+  "title": "Triangle Triples",
+  "titleZh": "三角形数的因数三元组",
+  "difficulty": 47,
+  "difficultyLevel": "Level 18",
+  "tags": [],
+  "solvedBy": 1245,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=378",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 396,
+  "title": "Weak Goodstein Sequence",
+  "titleZh": "弱 Goodstein 数列",
+  "difficulty": 56,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 926,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=396",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 362,
+  "title": "Squarefree Factors",
+  "titleZh": "无平方因子分解",
+  "difficulty": 71,
+  "difficultyLevel": "Level 28",
+  "tags": [],
+  "solvedBy": 735,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=362",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

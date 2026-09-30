@@ -1,0 +1,13 @@
+{
+  "id": 361,
+  "title": "Subsequence of Thue-Morse Sequence",
+  "titleZh": "Thue-Morse 数列的子序列",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 579,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=361",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

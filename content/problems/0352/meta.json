@@ -1,0 +1,13 @@
+{
+  "id": 352,
+  "title": "Blood Tests",
+  "titleZh": "批量检测",
+  "difficulty": 53,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 903,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=352",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 357,
+  "title": "Prime Generating Integers",
+  "titleZh": "素数生成整数",
+  "difficulty": 15,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 9946,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=357",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

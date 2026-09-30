@@ -51,6 +51,16 @@ export function ProblemDetailPage() {
           setLoadError(e instanceof ApiError ? e : new ApiError(0, 'UNKNOWN', '加载题目详情失败'))
         }
       })
+    return () => {
+      cancelled = true
+    }
+  }, [id])
+
+  // 参考实现源码：待解析题（draft）尚未产出代码，不请求；
+  // 用 detail.id 与当前路由 id 对齐，避免切题瞬间用旧状态做判断
+  useEffect(() => {
+    if (!detail || detail.id !== id || detail.status !== 'solved') return
+    let cancelled = false
     fetchSolution(id)
       .then((s) => {
         if (!cancelled) setSolution(s)
@@ -63,7 +73,7 @@ export function ProblemDetailPage() {
     return () => {
       cancelled = true
     }
-  }, [id])
+  }, [detail, id])
 
   // 可视化数据：仅当 meta.hasVisualization 为 true 时拉取；
   // 404 no_visualization 或其他失败均静默处理（不渲染可视化区）
@@ -147,6 +157,8 @@ export function ProblemDetailPage() {
   // 正文首行是重复的题目名称（页头与 Tab 已经写明），渲染前摘掉；「中文意译」说明留在正文原处
   const statementBody = stripLeadingHeading(detail.statement)
   const analysisBody = stripLeadingHeading(detail.analysis)
+  // 待解析题：仅有题面，解析/运行/代码区整体不渲染
+  const isDraft = detail.status === 'draft'
 
   return (
     <article className="problem-detail">
@@ -181,6 +193,7 @@ export function ProblemDetailPage() {
         <h1>{detail.titleZh}</h1>
         <p className="problem-header__en">{detail.title}</p>
         <div className="problem-header__meta">
+          {isDraft && <span className="draft-badge">待解析</span>}
           <span className="difficulty-badge">难度 {detail.difficulty}%</span>
           {detail.tags.map((t) => (
             <span key={t} className="tag">
@@ -193,58 +206,68 @@ export function ProblemDetailPage() {
         </div>
       </header>
 
-      <nav className="tabs" aria-label="正文切换">
-        <button
-          type="button"
-          className={bodyTab === 'statement' ? 'tab tab--active' : 'tab'}
-          onClick={() => setBodyTab('statement')}
-        >
-          题面
-        </button>
-        <button
-          type="button"
-          className={bodyTab === 'analysis' ? 'tab tab--active' : 'tab'}
-          onClick={() => setBodyTab('analysis')}
-        >
-          解析
-        </button>
-      </nav>
+      {!isDraft && (
+        <nav className="tabs" aria-label="正文切换">
+          <button
+            type="button"
+            className={bodyTab === 'statement' ? 'tab tab--active' : 'tab'}
+            onClick={() => setBodyTab('statement')}
+          >
+            题面
+          </button>
+          <button
+            type="button"
+            className={bodyTab === 'analysis' ? 'tab tab--active' : 'tab'}
+            onClick={() => setBodyTab('analysis')}
+          >
+            解析
+          </button>
+        </nav>
+      )}
 
       <section className="problem-body">
-        {bodyTab === 'statement' ? (
+        {isDraft || bodyTab === 'statement' ? (
           <Markdown assetBase={`/api/problems/${detail.id}/assets`}>{statementBody}</Markdown>
         ) : (
           <Markdown assetBase={`/api/problems/${detail.id}/assets`}>{analysisBody}</Markdown>
         )}
       </section>
 
-      <section className="run-section">
-        <h2>运行</h2>
-        <button type="button" className="run-button" onClick={handleRun} disabled={running}>
-          {running ? '运行中…' : '▶ 运行参考实现'}
-        </button>
-        {runError && <ErrorMessage title="运行失败" message={runError} />}
-        {runResult && (
-          <dl className={runResult.correct ? 'run-result run-result--ok' : 'run-result run-result--bad'}>
-            <div>
-              <dt>答案</dt>
-              <dd>{runResult.answer}</dd>
-            </div>
-            <div>
-              <dt>期望答案</dt>
-              <dd>{runResult.expected}</dd>
-            </div>
-            <div>
-              <dt>结果</dt>
-              <dd>{runResult.correct ? '✓ 正确' : '✗ 不正确'}</dd>
-            </div>
-            <div>
-              <dt>耗时</dt>
-              <dd>{formatDuration(runResult.durationMs)}</dd>
-            </div>
-          </dl>
-        )}
-      </section>
+      {isDraft && (
+        <section className="draft-note">
+          <p>本题题面已收录；解析、参考实现与实测耗时正在制作中。</p>
+        </section>
+      )}
+
+      {!isDraft && (
+        <section className="run-section">
+          <h2>运行</h2>
+          <button type="button" className="run-button" onClick={handleRun} disabled={running}>
+            {running ? '运行中…' : '▶ 运行参考实现'}
+          </button>
+          {runError && <ErrorMessage title="运行失败" message={runError} />}
+          {runResult && (
+            <dl className={runResult.correct ? 'run-result run-result--ok' : 'run-result run-result--bad'}>
+              <div>
+                <dt>答案</dt>
+                <dd>{runResult.answer}</dd>
+              </div>
+              <div>
+                <dt>期望答案</dt>
+                <dd>{runResult.expected}</dd>
+              </div>
+              <div>
+                <dt>结果</dt>
+                <dd>{runResult.correct ? '✓ 正确' : '✗ 不正确'}</dd>
+              </div>
+              <div>
+                <dt>耗时</dt>
+                <dd>{formatDuration(runResult.durationMs)}</dd>
+              </div>
+            </dl>
+          )}
+        </section>
+      )}
 
       {(detail.bruteForceBaselineMs !== null || detail.optimizedBaselineMs !== null) && (
         <section className="timing-section">
@@ -263,39 +286,41 @@ export function ProblemDetailPage() {
         </section>
       )}
 
-      <section className="code-section">
-        <h2>参考实现</h2>
-        {solutionError && <ErrorMessage title="代码加载失败" message={solutionError} />}
-        {!solution && !solutionError && <p className="loading">代码加载中…</p>}
-        {solution && (
-          <>
-            {solution.bruteForce !== null && (
-              <nav className="tabs tabs--small" aria-label="代码版本切换">
-                <button
-                  type="button"
-                  className={codeTab === 'solution' ? 'tab tab--active' : 'tab'}
-                  onClick={() => setCodeTab('solution')}
-                >
-                  优化解 solution.kt
-                </button>
-                <button
-                  type="button"
-                  className={codeTab === 'bruteForce' ? 'tab tab--active' : 'tab'}
-                  onClick={() => setCodeTab('bruteForce')}
-                >
-                  暴力解 brute-force.kt
-                </button>
-              </nav>
-            )}
-            <CodeBlock
-              code={codeTab === 'bruteForce' && solution.bruteForce !== null
-                ? solution.bruteForce
-                : solution.solution}
-              title={codeTab === 'bruteForce' ? 'brute-force.kt' : 'solution.kt'}
-            />
-          </>
-        )}
-      </section>
+      {!isDraft && (
+        <section className="code-section">
+          <h2>参考实现</h2>
+          {solutionError && <ErrorMessage title="代码加载失败" message={solutionError} />}
+          {!solution && !solutionError && <p className="loading">代码加载中…</p>}
+          {solution && (
+            <>
+              {solution.bruteForce !== null && (
+                <nav className="tabs tabs--small" aria-label="代码版本切换">
+                  <button
+                    type="button"
+                    className={codeTab === 'solution' ? 'tab tab--active' : 'tab'}
+                    onClick={() => setCodeTab('solution')}
+                  >
+                    优化解 solution.kt
+                  </button>
+                  <button
+                    type="button"
+                    className={codeTab === 'bruteForce' ? 'tab tab--active' : 'tab'}
+                    onClick={() => setCodeTab('bruteForce')}
+                  >
+                    暴力解 brute-force.kt
+                  </button>
+                </nav>
+              )}
+              <CodeBlock
+                code={codeTab === 'bruteForce' && solution.bruteForce !== null
+                  ? solution.bruteForce
+                  : solution.solution}
+                title={codeTab === 'bruteForce' ? 'brute-force.kt' : 'solution.kt'}
+              />
+            </>
+          )}
+        </section>
+      )}
 
       {detail.applications !== null && (
         <section className="applications-section">

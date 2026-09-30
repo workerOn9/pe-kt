@@ -1,0 +1,13 @@
+{
+  "id": 387,
+  "title": "Harshad Numbers",
+  "titleZh": "Harshad 数",
+  "difficulty": 15,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 5816,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=387",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

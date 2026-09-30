@@ -1,0 +1,13 @@
+{
+  "id": 341,
+  "title": "Golomb's Self-describing Sequence",
+  "titleZh": "Golomb 自描述数列",
+  "difficulty": 52,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 1300,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=341",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

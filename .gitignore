@@ -22,5 +22,7 @@ web/dist/
 .kotlin/
 server/bin/
 
-# 本机无 kotlinc，scripts/kotlinc-shim.sh 只是本地编译 shim，不入库
-scripts/
+# 本机无 kotlinc，scripts/kotlinc-shim.sh 只是本地编译 shim，不入库；
+# scripts/fetch-pe.mjs 是预抓取流水线工具（AGENTS.md A1 引用），需要入库
+scripts/*
+!scripts/fetch-pe.mjs

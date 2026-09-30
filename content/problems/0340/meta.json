@@ -1,0 +1,13 @@
+{
+  "id": 340,
+  "title": "Crazy Function",
+  "titleZh": "疯狂函数",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 1588,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=340",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

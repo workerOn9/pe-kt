@@ -1,0 +1,13 @@
+{
+  "id": 399,
+  "title": "Squarefree Fibonacci Numbers",
+  "titleZh": "无平方因子的斐波那契数",
+  "difficulty": 44,
+  "difficultyLevel": "Level 17",
+  "tags": [],
+  "solvedBy": 868,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=399",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

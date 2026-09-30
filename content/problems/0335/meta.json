@@ -1,0 +1,13 @@
+{
+  "id": 335,
+  "title": "Gathering the Beans",
+  "titleZh": "收集豆子",
+  "difficulty": 36,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 810,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=335",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

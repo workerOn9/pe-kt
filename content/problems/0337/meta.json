@@ -1,0 +1,13 @@
+{
+  "id": 337,
+  "title": "Totient Stairstep Sequences",
+  "titleZh": "欧拉函数阶梯数列",
+  "difficulty": 56,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 831,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=337",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

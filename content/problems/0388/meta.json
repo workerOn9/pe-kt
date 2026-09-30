@@ -1,0 +1,13 @@
+{
+  "id": 388,
+  "title": "Distinct Lines",
+  "titleZh": "互不相同的直线",
+  "difficulty": 51,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 871,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=388",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

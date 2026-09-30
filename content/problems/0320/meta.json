@@ -1,0 +1,13 @@
+{
+  "id": 320,
+  "title": "Factorials Divisible by a Huge Integer",
+  "titleZh": "被巨大整数整除的阶乘",
+  "difficulty": 37,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 1292,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=320",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

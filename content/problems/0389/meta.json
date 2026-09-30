@@ -1,0 +1,13 @@
+{
+  "id": 389,
+  "title": "Platonic Dice",
+  "titleZh": "柏拉图骰子",
+  "difficulty": 36,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 2001,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=389",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
