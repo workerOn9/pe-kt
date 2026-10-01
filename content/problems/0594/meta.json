@@ -1,0 +1,13 @@
+{
+  "id": 594,
+  "title": "Rhombus Tilings",
+  "titleZh": "菱形铺砌",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 312,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=594",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

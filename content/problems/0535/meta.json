@@ -1,0 +1,13 @@
+{
+  "id": 535,
+  "title": "Fractal Sequence",
+  "titleZh": "分形序列",
+  "difficulty": 92,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 424,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=535",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

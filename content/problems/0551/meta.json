@@ -1,0 +1,13 @@
+{
+  "id": 551,
+  "title": "Sum of Digits Sequence",
+  "titleZh": "数位和序列",
+  "difficulty": 38,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 679,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=551",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 556,
+  "title": "Squarefree Gaussian Integers",
+  "titleZh": "无平方因子的高斯整数",
+  "difficulty": 75,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 409,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=556",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

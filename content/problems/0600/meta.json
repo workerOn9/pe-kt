@@ -1,0 +1,13 @@
+{
+  "id": 600,
+  "title": "Integer Sided Equiangular Hexagons",
+  "titleZh": "整数边等角六边形",
+  "difficulty": 45,
+  "difficultyLevel": "Level 17",
+  "tags": [],
+  "solvedBy": 852,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=600",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

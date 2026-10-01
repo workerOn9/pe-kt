@@ -1,0 +1,13 @@
+{
+  "id": 580,
+  "title": "Squarefree Hilbert Numbers",
+  "titleZh": "无平方因子的希尔伯特数",
+  "difficulty": 82,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 402,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=580",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

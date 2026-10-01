@@ -1,0 +1,13 @@
+{
+  "id": 539,
+  "title": "Odd Elimination",
+  "titleZh": "奇数剔除",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 1145,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=539",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 527,
+  "title": "Randomized Binary Search",
+  "titleZh": "随机二分查找",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 1050,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=527",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

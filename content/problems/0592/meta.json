@@ -1,0 +1,13 @@
+{
+  "id": 592,
+  "title": "Factorial Trailing Digits 2",
+  "titleZh": "阶乘末尾数字 2",
+  "difficulty": 68,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 447,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=592",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

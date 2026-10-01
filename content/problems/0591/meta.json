@@ -1,0 +1,13 @@
+{
+  "id": 591,
+  "title": "Best Approximations by Quadratic Integers",
+  "titleZh": "二次整数的最佳逼近",
+  "difficulty": 99,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 353,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=591",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 544,
+  "title": "Chromatic Conundrum",
+  "titleZh": "染色难题",
+  "difficulty": 73,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 415,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=544",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

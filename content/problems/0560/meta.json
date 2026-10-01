@@ -1,0 +1,13 @@
+{
+  "id": 560,
+  "title": "Coprime Nim",
+  "titleZh": "互素 Nim",
+  "difficulty": 61,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 514,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=560",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

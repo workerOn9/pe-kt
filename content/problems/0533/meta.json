@@ -1,0 +1,13 @@
+{
+  "id": 533,
+  "title": "Minimum Values of the Carmichael Function",
+  "titleZh": "卡迈克尔函数的最小值",
+  "difficulty": 55,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 492,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=533",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

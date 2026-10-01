@@ -1,0 +1,13 @@
+{
+  "id": 595,
+  "title": "Incremental Random Sort",
+  "titleZh": "增量随机排序",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 904,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=595",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 534,
+  "title": "Weak Queens",
+  "titleZh": "弱皇后",
+  "difficulty": 57,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 479,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=534",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 570,
+  "title": "Snowflakes",
+  "titleZh": "雪花",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 400,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=570",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

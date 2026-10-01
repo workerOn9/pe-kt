@@ -1,0 +1,13 @@
+{
+  "id": 540,
+  "title": "Counting Primitive Pythagorean Triples",
+  "titleZh": "本原勾股三元组计数",
+  "difficulty": 57,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 946,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=540",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

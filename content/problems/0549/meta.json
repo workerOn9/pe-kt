@@ -1,0 +1,13 @@
+{
+  "id": 549,
+  "title": "Divisibility of Factorials",
+  "titleZh": "阶乘的整除性",
+  "difficulty": 19,
+  "difficultyLevel": "Level 7",
+  "tags": [],
+  "solvedBy": 3641,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=549",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

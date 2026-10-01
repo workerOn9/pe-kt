@@ -1,0 +1,13 @@
+{
+  "id": 559,
+  "title": "Permuted Matrices",
+  "titleZh": "置换矩阵",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 369,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=559",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

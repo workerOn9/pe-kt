@@ -1,0 +1,13 @@
+{
+  "id": 561,
+  "title": "Divisor Pairs",
+  "titleZh": "约数对",
+  "difficulty": 24,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 1117,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=561",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

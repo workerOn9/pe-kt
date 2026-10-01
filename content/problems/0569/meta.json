@@ -1,0 +1,13 @@
+{
+  "id": 569,
+  "title": "Prime Mountain Range",
+  "titleZh": "素数山脉",
+  "difficulty": 41,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 570,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=569",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

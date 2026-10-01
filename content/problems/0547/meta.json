@@ -1,0 +1,13 @@
+{
+  "id": 547,
+  "title": "Distance of Random Points Within Hollow Square Laminae",
+  "titleZh": "空心方形薄板内随机点的距离",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 356,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=547",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
