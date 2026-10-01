@@ -1,0 +1,13 @@
+{
+  "id": 468,
+  "title": "Smooth Divisors of Binomial Coefficients",
+  "titleZh": "二项式系数的平滑因子",
+  "difficulty": 76,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 463,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=468",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 972,
+  "title": "Hyperbolic Plane",
+  "titleZh": "双曲平面",
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "tags": [],
+  "solvedBy": 291,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=972",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

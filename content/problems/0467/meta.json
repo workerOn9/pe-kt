@@ -1,0 +1,13 @@
+{
+  "id": 467,
+  "title": "Superinteger",
+  "titleZh": "超整数",
+  "difficulty": 39,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 678,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=467",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

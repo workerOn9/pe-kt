@@ -1,0 +1,13 @@
+{
+  "id": 506,
+  "title": "Clock Sequence",
+  "titleZh": "时钟序列",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 1255,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=506",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

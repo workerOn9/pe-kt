@@ -1,0 +1,13 @@
+{
+  "id": 516,
+  "title": "5-smooth Totients",
+  "titleZh": "5-光滑数的欧拉函数",
+  "difficulty": 23,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 2045,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=516",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 477,
+  "title": "Number Sequence Game",
+  "titleZh": "数列游戏",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 410,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=477",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

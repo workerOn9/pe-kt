@@ -1,0 +1,13 @@
+{
+  "id": 509,
+  "title": "Divisor Nim",
+  "titleZh": "约数尼姆",
+  "difficulty": 42,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 876,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=509",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 755,
+  "title": "Not Zeckendorf",
+  "titleZh": "非 Zeckendorf",
+  "difficulty": 20,
+  "difficultyLevel": "Level 7",
+  "tags": [],
+  "solvedBy": 1299,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=755",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 960,
+  "title": "Stone Game Solitaire",
+  "titleZh": "石子堆单人纸牌",
+  "difficulty": 57,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 262,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=960",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 999,
+  "title": "Alternating Recurrence",
+  "titleZh": "交替递推",
+  "difficulty": 93,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 209,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=999",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

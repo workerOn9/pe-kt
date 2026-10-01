@@ -1,0 +1,13 @@
+{
+  "id": 928,
+  "title": "Cribbage",
+  "titleZh": "克里比奇纸牌",
+  "difficulty": 62,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 323,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=928",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

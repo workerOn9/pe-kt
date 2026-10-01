@@ -1,0 +1,13 @@
+{
+  "id": 492,
+  "title": "Exploding Sequence",
+  "titleZh": "爆炸数列",
+  "difficulty": 60,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 536,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=492",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

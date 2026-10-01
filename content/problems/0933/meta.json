@@ -1,0 +1,13 @@
+{
+  "id": 933,
+  "title": "Paper Cutting",
+  "titleZh": "剪纸博弈",
+  "difficulty": 82,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 227,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=933",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

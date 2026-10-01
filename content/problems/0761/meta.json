@@ -1,0 +1,13 @@
+{
+  "id": 761,
+  "title": "Runner and Swimmer",
+  "titleZh": "跑者与游泳者",
+  "difficulty": 100,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 319,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=761",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 860,
+  "title": "Gold and Silver Coin Game",
+  "titleZh": "金银币博弈",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 705,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=860",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

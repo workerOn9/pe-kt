@@ -1,0 +1,13 @@
+{
+  "id": 711,
+  "title": "Binary Blackboard",
+  "titleZh": "二进制黑板",
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 506,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=711",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

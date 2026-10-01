@@ -1,0 +1,13 @@
+{
+  "id": 640,
+  "title": "Shut the Box",
+  "titleZh": "关盒子",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 522,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=640",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

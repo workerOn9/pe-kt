@@ -1,0 +1,13 @@
+{
+  "id": 926,
+  "title": "Total Roundness",
+  "titleZh": "总圆整度",
+  "difficulty": 28,
+  "difficultyLevel": "Level 11",
+  "tags": [],
+  "solvedBy": 950,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=926",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

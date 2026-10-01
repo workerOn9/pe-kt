@@ -1,0 +1,13 @@
+{
+  "id": 669,
+  "title": "The King's Banquet",
+  "titleZh": "国王的宴会",
+  "difficulty": 63,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 454,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=669",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

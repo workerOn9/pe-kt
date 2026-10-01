@@ -1,0 +1,13 @@
+{
+  "id": 628,
+  "title": "Open Chess Positions",
+  "titleZh": "开放的国际象棋局面",
+  "difficulty": 23,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 1105,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=628",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

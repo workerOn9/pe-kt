@@ -1,0 +1,13 @@
+{
+  "id": 904,
+  "title": "Pythagorean Angle",
+  "titleZh": "勾股中线夹角",
+  "difficulty": 76,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 315,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=904",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

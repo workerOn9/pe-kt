@@ -1,0 +1,13 @@
+{
+  "id": 783,
+  "title": "Urns",
+  "titleZh": "瓮",
+  "difficulty": 67,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 288,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=783",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

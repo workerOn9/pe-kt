@@ -1,0 +1,13 @@
+{
+  "id": 436,
+  "title": "Unfair Wager",
+  "titleZh": "不公平的赌局",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 681,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=436",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

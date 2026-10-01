@@ -1,0 +1,13 @@
+{
+  "id": 457,
+  "title": "A Polynomial Modulo the Square of a Prime",
+  "titleZh": "模素数平方的多项式",
+  "difficulty": 37,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 1159,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=457",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

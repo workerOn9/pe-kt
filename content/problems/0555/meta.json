@@ -1,0 +1,13 @@
+{
+  "id": 555,
+  "title": "McCarthy 91 Function",
+  "titleZh": "麦卡锡 91 函数",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 991,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=555",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

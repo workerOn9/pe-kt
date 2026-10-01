@@ -1,0 +1,13 @@
+{
+  "id": 894,
+  "title": "Spiral of Circles",
+  "titleZh": "圆之螺旋",
+  "difficulty": 70,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 457,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=894",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

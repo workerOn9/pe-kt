@@ -1,0 +1,13 @@
+{
+  "id": 638,
+  "title": "Weighted Lattice Paths",
+  "titleZh": "加权格路",
+  "difficulty": 45,
+  "difficultyLevel": "Level 17",
+  "tags": [],
+  "solvedBy": 545,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=638",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

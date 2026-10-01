@@ -1,0 +1,13 @@
+{
+  "id": 863,
+  "title": "Different Dice",
+  "titleZh": "用不同骰子模拟骰子",
+  "difficulty": 67,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 338,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=863",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

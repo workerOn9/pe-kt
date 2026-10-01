@@ -1,0 +1,13 @@
+{
+  "id": 520,
+  "title": "Simbers",
+  "titleZh": "Simber 数",
+  "difficulty": 40,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 655,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=520",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 998,
+  "title": "Squaring the Triangle",
+  "titleZh": "三角形外接正方形",
+  "difficulty": 94,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 178,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=998",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 849,
+  "title": "The Tournament",
+  "titleZh": "双循环赛积分",
+  "difficulty": 55,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 375,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=849",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 967,
+  "title": "B-Trivisible Numbers",
+  "titleZh": "B-可三整除数",
+  "difficulty": 58,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 313,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=967",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

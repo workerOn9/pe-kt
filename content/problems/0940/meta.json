@@ -1,0 +1,13 @@
+{
+  "id": 940,
+  "title": "Two-Dimensional Recurrence",
+  "titleZh": "二维递推",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 786,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=940",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

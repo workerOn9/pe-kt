@@ -1,0 +1,13 @@
+{
+  "id": 497,
+  "title": "Drunken Tower of Hanoi",
+  "titleZh": "醉汉汉诺塔",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 823,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=497",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

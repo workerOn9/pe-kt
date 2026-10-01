@@ -1,0 +1,13 @@
+{
+  "id": 780,
+  "title": "Toriangulations",
+  "titleZh": "环面三角剖分",
+  "difficulty": 99,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 309,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=780",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

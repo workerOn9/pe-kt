@@ -1,0 +1,13 @@
+{
+  "id": 577,
+  "title": "Counting Hexagons",
+  "titleZh": "数六边形",
+  "difficulty": 18,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 2074,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=577",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

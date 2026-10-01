@@ -1,0 +1,13 @@
+{
+  "id": 462,
+  "title": "Permutation of 3-smooth Numbers",
+  "titleZh": "3-平滑数的排列",
+  "difficulty": 53,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 539,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=462",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 851,
+  "title": "SOP and POS",
+  "titleZh": "积之和与和之积",
+  "difficulty": 99,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 266,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=851",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

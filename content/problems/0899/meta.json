@@ -1,0 +1,13 @@
+{
+  "id": 899,
+  "title": "DistribuNim I",
+  "titleZh": "分配尼姆博弈 I",
+  "difficulty": 24,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 767,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=899",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

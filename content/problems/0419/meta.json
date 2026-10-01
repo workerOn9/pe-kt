@@ -1,0 +1,13 @@
+{
+  "id": 419,
+  "title": "Look and Say Sequence",
+  "titleZh": "外观数列",
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "tags": [],
+  "solvedBy": 713,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=419",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

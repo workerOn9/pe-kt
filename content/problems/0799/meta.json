@@ -1,0 +1,13 @@
+{
+  "id": 799,
+  "title": "Pentagonal Puzzle",
+  "titleZh": "五边形数谜题",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 344,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=799",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

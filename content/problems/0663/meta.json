@@ -1,0 +1,13 @@
+{
+  "id": 663,
+  "title": "Sums of Subarrays",
+  "titleZh": "子数组之和",
+  "difficulty": 52,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 522,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=663",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 784,
+  "title": "Reciprocal Pairs",
+  "titleZh": "互逆数对",
+  "difficulty": 38,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 600,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=784",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

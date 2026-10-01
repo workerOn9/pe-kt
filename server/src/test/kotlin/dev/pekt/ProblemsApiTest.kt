@@ -51,7 +51,7 @@ class ProblemsApiTest {
     @Test
     fun `unknown problem returns 404 with unified error format`() = testApplication {
         application { module() }
-        val response = client.get("/api/problems/999")
+        val response = client.get("/api/problems/99999")
         assertEquals(HttpStatusCode.NotFound, response.status)
 
         val error = json.parseToJsonElement(response.bodyAsText()).jsonObject
@@ -82,6 +82,6 @@ class ProblemsApiTest {
 
         assertEquals(HttpStatusCode.NotFound, client.get("/api/problems/244/assets/nope.png").status)
         assertEquals(HttpStatusCode.NotFound, client.get("/api/problems/244/assets/..%2Fmeta.json").status)
-        assertEquals(HttpStatusCode.NotFound, client.get("/api/problems/999/assets/start.png").status)
+        assertEquals(HttpStatusCode.NotFound, client.get("/api/problems/99999/assets/start.png").status)
     }
 }

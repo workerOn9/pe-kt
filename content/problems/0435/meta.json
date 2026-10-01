@@ -1,0 +1,13 @@
+{
+  "id": 435,
+  "title": "Polynomials of Fibonacci Numbers",
+  "titleZh": "斐波那契数多项式",
+  "difficulty": 40,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 1567,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=435",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

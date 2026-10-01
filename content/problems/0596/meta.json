@@ -1,0 +1,13 @@
+{
+  "id": 596,
+  "title": "Number of Lattice Points in a Hyperball",
+  "titleZh": "超球中的格点数",
+  "difficulty": 52,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 540,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=596",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

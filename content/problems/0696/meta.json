@@ -1,0 +1,13 @@
+{
+  "id": 696,
+  "title": "Mahjong",
+  "titleZh": "麻将",
+  "difficulty": 98,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 375,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=696",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

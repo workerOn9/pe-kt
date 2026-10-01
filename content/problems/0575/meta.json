@@ -1,0 +1,13 @@
+{
+  "id": 575,
+  "title": "Wandering Robots",
+  "titleZh": "游荡的机器人",
+  "difficulty": 39,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 814,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=575",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

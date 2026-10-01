@@ -1,0 +1,13 @@
+{
+  "id": 856,
+  "title": "Waiting for a Pair",
+  "titleZh": "等待对子",
+  "difficulty": 41,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 879,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=856",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

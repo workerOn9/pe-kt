@@ -1,0 +1,13 @@
+{
+  "id": 801,
+  "title": "x^y \\equiv y^x",
+  "titleZh": "$x^y \\equiv y^x$",
+  "difficulty": 65,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 459,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=801",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

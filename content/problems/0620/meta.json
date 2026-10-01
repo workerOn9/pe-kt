@@ -1,0 +1,13 @@
+{
+  "id": 620,
+  "title": "Planetary Gears",
+  "titleZh": "行星齿轮",
+  "difficulty": 98,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 281,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=620",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

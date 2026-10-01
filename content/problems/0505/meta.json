@@ -1,0 +1,13 @@
+{
+  "id": 505,
+  "title": "Bidirectional Recurrence",
+  "titleZh": "双向递推",
+  "difficulty": 89,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 354,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=505",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

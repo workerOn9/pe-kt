@@ -1,0 +1,13 @@
+{
+  "id": 803,
+  "title": "Pseudorandom Sequence",
+  "titleZh": "伪随机序列",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 336,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=803",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

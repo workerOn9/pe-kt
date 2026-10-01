@@ -1,0 +1,13 @@
+{
+  "id": 916,
+  "title": "Restricted Permutations",
+  "titleZh": "受限置换",
+  "difficulty": 73,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 257,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=916",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

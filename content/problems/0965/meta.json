@@ -1,0 +1,13 @@
+{
+  "id": 965,
+  "title": "Expected Minimal Fractional Value",
+  "titleZh": "最小小数部分的期望值",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 716,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=965",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

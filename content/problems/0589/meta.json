@@ -1,0 +1,13 @@
+{
+  "id": 589,
+  "title": "Poohsticks Marathon",
+  "titleZh": "撑杆马拉松",
+  "difficulty": 84,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 339,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=589",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

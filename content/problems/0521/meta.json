@@ -1,0 +1,13 @@
+{
+  "id": 521,
+  "title": "Smallest Prime Factor",
+  "titleZh": "最小素因子",
+  "difficulty": 57,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 1066,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=521",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

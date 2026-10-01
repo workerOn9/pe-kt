@@ -1,0 +1,13 @@
+{
+  "id": 766,
+  "title": "Sliding Block Puzzle",
+  "titleZh": "滑动方块拼图",
+  "difficulty": 43,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 491,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=766",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

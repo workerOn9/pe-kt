@@ -1,0 +1,13 @@
+{
+  "id": 461,
+  "title": "Almost Pi",
+  "titleZh": "近似圆周率",
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 1643,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=461",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

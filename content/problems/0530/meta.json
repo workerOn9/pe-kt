@@ -1,0 +1,13 @@
+{
+  "id": 530,
+  "title": "GCD of Divisors",
+  "titleZh": "因子的最大公约数",
+  "difficulty": 60,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 663,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=530",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

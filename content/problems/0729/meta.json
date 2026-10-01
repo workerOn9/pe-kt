@@ -1,0 +1,13 @@
+{
+  "id": 729,
+  "title": "Range of Periodic Sequence",
+  "titleZh": "周期序列的极差",
+  "difficulty": 93,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 375,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=729",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

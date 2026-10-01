@@ -1,0 +1,13 @@
+{
+  "id": 407,
+  "title": "Idempotents",
+  "titleZh": "幂等元",
+  "difficulty": 22,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 3224,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=407",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

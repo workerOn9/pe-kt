@@ -1,0 +1,13 @@
+{
+  "id": 728,
+  "title": "Circle of Coins",
+  "titleZh": "硬币环",
+  "difficulty": 54,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 431,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=728",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

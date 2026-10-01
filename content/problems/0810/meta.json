@@ -1,0 +1,13 @@
+{
+  "id": 810,
+  "title": "XOR-Primes",
+  "titleZh": "异或素数",
+  "difficulty": 40,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 1024,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=810",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

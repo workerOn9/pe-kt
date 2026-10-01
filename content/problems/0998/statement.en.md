@@ -1,0 +1,11 @@
+The minimum bounding square of a triangle is the smallest square that can be drawn which fully covers the triangle.
+
+![0998_SquaringTriangle.jpg](0998_SquaringTriangle.jpg)
+
+Two examples are illustrated above: the $(3,4,5)$ triangle has a minimum bounding square with side length $\approx 3.88057$, which is not an integer; the $(10,13,13)$ triangle has a minimum bounding square with side length $12$, which is an integer.
+
+Define $T(n)$ to be the sum of the perimeters of all non-congruent integer-sided triangles whose minimum bounding square has integer side length not exceeding $n$.
+
+You are given $T(40)=346$, $T(400)=76402$, and $T(2000)=3237036$.
+
+Find $T(10^6)$.

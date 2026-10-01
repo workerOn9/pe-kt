@@ -1,0 +1,13 @@
+{
+  "id": 806,
+  "title": "Nim on Towers of Hanoi",
+  "titleZh": "汉诺塔上的 Nim",
+  "difficulty": 99,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 256,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=806",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

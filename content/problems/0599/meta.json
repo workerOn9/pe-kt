@@ -1,0 +1,13 @@
+{
+  "id": 599,
+  "title": "Distinct Colourings of a Rubik's Cube",
+  "titleZh": "魔方本质不同的着色",
+  "difficulty": 42,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 467,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=599",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

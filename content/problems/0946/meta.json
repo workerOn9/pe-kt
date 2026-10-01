@@ -1,0 +1,13 @@
+{
+  "id": 946,
+  "title": "Continued Fraction Fraction",
+  "titleZh": "连分数的连分数",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 374,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=946",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

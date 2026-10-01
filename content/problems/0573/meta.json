@@ -1,0 +1,13 @@
+{
+  "id": 573,
+  "title": "Unfair Race",
+  "titleZh": "不公平的赛跑",
+  "difficulty": 97,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 349,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=573",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

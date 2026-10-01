@@ -1,0 +1,13 @@
+{
+  "id": 724,
+  "title": "Drone Delivery",
+  "titleZh": "无人机配送",
+  "difficulty": 44,
+  "difficultyLevel": "Level 17",
+  "tags": [],
+  "solvedBy": 605,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=724",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 845,
+  "title": "Prime Digit Sum",
+  "titleZh": "素数数字和",
+  "difficulty": 18,
+  "difficultyLevel": "Level 7",
+  "tags": [],
+  "solvedBy": 1269,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=845",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

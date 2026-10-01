@@ -1,0 +1,13 @@
+{
+  "id": 590,
+  "title": "Sets with a Given Least Common Multiple",
+  "titleZh": "给定最小公倍数的集合",
+  "difficulty": 74,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 398,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=590",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

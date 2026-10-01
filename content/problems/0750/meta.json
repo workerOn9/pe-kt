@@ -1,0 +1,13 @@
+{
+  "id": 750,
+  "title": "Optimal Card Stacking",
+  "titleZh": "最优卡片堆叠",
+  "difficulty": 74,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 472,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=750",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

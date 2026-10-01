@@ -1,0 +1,13 @@
+{
+  "id": 471,
+  "title": "Triangle Inscribed in Ellipse",
+  "titleZh": "内接于椭圆的三角形",
+  "difficulty": 91,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 405,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=471",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 621,
+  "title": "Expressing an Integer as the Sum of Triangular Numbers",
+  "titleZh": "把整数表示为三角形数之和",
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "tags": [],
+  "solvedBy": 776,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=621",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

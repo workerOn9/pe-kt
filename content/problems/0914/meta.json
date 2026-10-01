@@ -1,0 +1,13 @@
+{
+  "id": 914,
+  "title": "Triangles inside Circles",
+  "titleZh": "圆内接直角三角形",
+  "difficulty": 43,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 701,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=914",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

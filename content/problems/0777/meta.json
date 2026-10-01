@@ -1,0 +1,13 @@
+{
+  "id": 777,
+  "title": "Lissajous Curves",
+  "titleZh": "利萨如曲线",
+  "difficulty": 90,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 230,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=777",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

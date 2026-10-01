@@ -1,0 +1,13 @@
+{
+  "id": 603,
+  "title": "Substring Sums of Prime Concatenations",
+  "titleZh": "素数拼接的子串和",
+  "difficulty": 93,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 606,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=603",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

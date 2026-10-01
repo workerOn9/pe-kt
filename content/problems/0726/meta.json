@@ -1,0 +1,13 @@
+{
+  "id": 726,
+  "title": "Falling Bottles",
+  "titleZh": "掉落的酒瓶",
+  "difficulty": 66,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 301,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=726",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

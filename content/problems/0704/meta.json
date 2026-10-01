@@ -1,0 +1,13 @@
+{
+  "id": 704,
+  "title": "Factors of Two in Binomial Coefficients",
+  "titleZh": "二项式系数中的因子二",
+  "difficulty": 17,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 1434,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=704",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

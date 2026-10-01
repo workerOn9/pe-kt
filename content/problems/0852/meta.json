@@ -1,0 +1,13 @@
+{
+  "id": 852,
+  "title": "Coins in a Box",
+  "titleZh": "箱中硬币",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 344,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=852",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

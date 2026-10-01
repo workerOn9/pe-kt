@@ -1,0 +1,13 @@
+{
+  "id": 762,
+  "title": "Amoebas in a 2D Grid",
+  "titleZh": "二维网格中的变形虫",
+  "difficulty": 55,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 350,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=762",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

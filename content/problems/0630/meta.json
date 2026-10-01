@@ -1,0 +1,13 @@
+{
+  "id": 630,
+  "title": "Crossed Lines",
+  "titleZh": "相交直线",
+  "difficulty": 21,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 1397,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=630",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

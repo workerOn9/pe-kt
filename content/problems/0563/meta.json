@@ -1,0 +1,13 @@
+{
+  "id": 563,
+  "title": "Robot Welders",
+  "titleZh": "机器人焊接工",
+  "difficulty": 41,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 504,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=563",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 970,
+  "title": "Kangaroo Hopping over Sixes",
+  "titleZh": "袋鼠跳过六",
+  "difficulty": 97,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 245,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=970",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

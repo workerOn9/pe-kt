@@ -1,0 +1,13 @@
+{
+  "id": 973,
+  "title": "Random Dealings",
+  "titleZh": "随机发牌",
+  "difficulty": 91,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 191,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=973",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

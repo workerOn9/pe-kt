@@ -1,0 +1,13 @@
+{
+  "id": 475,
+  "title": "Music Festival",
+  "titleZh": "音乐节",
+  "difficulty": 32,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 697,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=475",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

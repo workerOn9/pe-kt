@@ -1,0 +1,13 @@
+{
+  "id": 480,
+  "title": "The Last Question",
+  "titleZh": "最后一个问题",
+  "difficulty": 58,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 850,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=480",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

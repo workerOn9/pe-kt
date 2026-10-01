@@ -1,0 +1,13 @@
+{
+  "id": 550,
+  "title": "Divisor Game",
+  "titleZh": "因数游戏",
+  "difficulty": 61,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 523,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=550",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

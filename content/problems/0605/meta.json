@@ -1,0 +1,13 @@
+{
+  "id": 605,
+  "title": "Pairwise Coin-Tossing Game",
+  "titleZh": "相邻配对抛硬币游戏",
+  "difficulty": 26,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 1154,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=605",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

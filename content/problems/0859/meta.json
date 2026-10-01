@@ -1,0 +1,13 @@
+{
+  "id": 859,
+  "title": "Cookie Game",
+  "titleZh": "饼干博弈",
+  "difficulty": 74,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 330,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=859",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

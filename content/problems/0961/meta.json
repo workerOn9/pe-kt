@@ -1,0 +1,13 @@
+{
+  "id": 961,
+  "title": "Removing Digits",
+  "titleZh": "移除数位",
+  "difficulty": 18,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 1167,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=961",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 617,
+  "title": "Mirror Power Sequence",
+  "titleZh": "镜像幂序列",
+  "difficulty": 68,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 519,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=617",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

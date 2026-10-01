@@ -1,0 +1,13 @@
+{
+  "id": 907,
+  "title": "Stacking Cups",
+  "titleZh": "套杯叠塔",
+  "difficulty": 36,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 398,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=907",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

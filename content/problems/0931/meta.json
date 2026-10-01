@@ -1,0 +1,13 @@
+{
+  "id": 931,
+  "title": "Totient Graph",
+  "titleZh": "欧拉函数图",
+  "difficulty": 78,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 231,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=931",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

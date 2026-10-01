@@ -1,0 +1,13 @@
+{
+  "id": 947,
+  "title": "Fibonacci Residues",
+  "titleZh": "斐波那契余数序列",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 232,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=947",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

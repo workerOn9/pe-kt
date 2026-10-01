@@ -1,0 +1,13 @@
+{
+  "id": 802,
+  "title": "Iterated Composition",
+  "titleZh": "迭代复合",
+  "difficulty": 68,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 399,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=802",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

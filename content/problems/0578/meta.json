@@ -1,0 +1,13 @@
+{
+  "id": 578,
+  "title": "Integers with Decreasing Prime Powers",
+  "titleZh": "素数幂递减的整数",
+  "difficulty": 63,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 391,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=578",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

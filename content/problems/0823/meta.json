@@ -1,0 +1,13 @@
+{
+  "id": 823,
+  "title": "Factor Shuffle",
+  "titleZh": "因子洗牌",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 293,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=823",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

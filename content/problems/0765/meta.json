@@ -1,0 +1,13 @@
+{
+  "id": 765,
+  "title": "Trillionaire",
+  "titleZh": "万亿富翁",
+  "difficulty": 88,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 334,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=765",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

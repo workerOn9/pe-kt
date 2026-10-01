@@ -1,0 +1,13 @@
+{
+  "id": 969,
+  "title": "Kangaroo Hopping",
+  "titleZh": "袋鼠跳跃",
+  "difficulty": 53,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 374,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=969",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

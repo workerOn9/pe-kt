@@ -1,0 +1,13 @@
+{
+  "id": 980,
+  "title": "The Quaternion Group I",
+  "titleZh": "四元数群 I",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 493,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=980",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

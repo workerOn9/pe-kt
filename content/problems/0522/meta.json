@@ -1,0 +1,13 @@
+{
+  "id": 522,
+  "title": "Hilbert's Blackout",
+  "titleZh": "希尔伯特停电",
+  "difficulty": 93,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 421,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=522",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

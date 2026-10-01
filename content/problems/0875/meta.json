@@ -1,0 +1,13 @@
+{
+  "id": 875,
+  "title": "Quadruple Congruence",
+  "titleZh": "四元二次同余方程",
+  "difficulty": 55,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 319,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=875",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

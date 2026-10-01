@@ -1,0 +1,13 @@
+{
+  "id": 950,
+  "title": "Pirate Treasure",
+  "titleZh": "海盗分金",
+  "difficulty": 65,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 197,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=950",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

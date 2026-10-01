@@ -1,0 +1,13 @@
+{
+  "id": 495,
+  "title": "Writing \n as the Product of \n Distinct Positive Integers",
+  "titleZh": "写成 k 个互异正整数之积",
+  "difficulty": 96,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 593,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=495",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

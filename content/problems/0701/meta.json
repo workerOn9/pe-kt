@@ -1,0 +1,13 @@
+{
+  "id": 701,
+  "title": "Random Connected Area",
+  "titleZh": "随机连通区域",
+  "difficulty": 51,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 548,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=701",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

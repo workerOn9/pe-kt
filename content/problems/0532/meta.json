@@ -1,0 +1,13 @@
+{
+  "id": 532,
+  "title": "Nanobots on Geodesics",
+  "titleZh": "测地线上的纳米机器人",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 452,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=532",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

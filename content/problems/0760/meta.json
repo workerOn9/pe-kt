@@ -1,0 +1,13 @@
+{
+  "id": 760,
+  "title": "Sum over Bitwise Operators",
+  "titleZh": "按位算子求和",
+  "difficulty": 46,
+  "difficultyLevel": "Level 18",
+  "tags": [],
+  "solvedBy": 627,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=760",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

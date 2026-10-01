@@ -1,0 +1,13 @@
+{
+  "id": 405,
+  "title": "A Rectangular Tiling",
+  "titleZh": "矩形铺砌",
+  "difficulty": 38,
+  "difficultyLevel": "Level 14",
+  "tags": [],
+  "solvedBy": 916,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=405",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

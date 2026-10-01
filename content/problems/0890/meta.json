@@ -1,0 +1,13 @@
+{
+  "id": 890,
+  "title": "Binary Partitions",
+  "titleZh": "二进制拆分",
+  "difficulty": 72,
+  "difficultyLevel": "Level 28",
+  "tags": [],
+  "solvedBy": 324,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=890",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

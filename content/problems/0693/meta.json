@@ -1,0 +1,13 @@
+{
+  "id": 693,
+  "title": "Finite Sequence Generator",
+  "titleZh": "有限序列生成器",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 394,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=693",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

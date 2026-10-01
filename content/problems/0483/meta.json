@@ -1,0 +1,13 @@
+{
+  "id": 483,
+  "title": "Repeated Permutation",
+  "titleZh": "重复置换",
+  "difficulty": 97,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 491,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=483",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

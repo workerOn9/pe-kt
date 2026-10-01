@@ -1,0 +1,13 @@
+{
+  "id": 987,
+  "title": "Straight Eight",
+  "titleZh": "八副顺子",
+  "difficulty": 67,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 236,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=987",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

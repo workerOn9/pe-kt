@@ -1,0 +1,13 @@
+{
+  "id": 635,
+  "title": "Subset Sums",
+  "titleZh": "子集和",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": [],
+  "solvedBy": 563,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=635",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -58,13 +58,21 @@ export function ProblemListPage() {
 
   const list = useMemo(() => problems ?? [], [problems])
 
-  const allTags = useMemo(() => {
-    const set = new Set<string>()
+  const tagStats = useMemo(() => {
+    const counts = new Map<string, number>()
     for (const p of list) {
-      for (const t of p.tags) set.add(t)
+      for (const t of p.tags) {
+        counts.set(t, (counts.get(t) ?? 0) + 1)
+      }
     }
-    return [...set].sort((a, b) => a.localeCompare(b))
+    const tags = [...counts.entries()].map(([tag, count]) => ({ tag, count }))
+    tags.sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))
+    const maxCount = tags[0]?.count ?? 1
+    const minCount = tags[tags.length - 1]?.count ?? 1
+    return { tags, maxCount, minCount }
   }, [list])
+
+  const [expandedCloud, setExpandedCloud] = useState(false)
 
   // 搜索（题号 / 中文标题 / 英文标题）：不区分大小写，关键词按非字母数字切成若干段，
   // 全部命中才算匹配——英文标题多带逗号与连字符（"Triangular, Pentagonal, and Hexagonal"），
@@ -156,19 +164,49 @@ export function ProblemListPage() {
           ))}
         </select>
       </div>
-      <div className="list-toolbar__tags" role="group" aria-label="标签筛选">
-        {allTags.map((t) => (
-          <button
-            key={t}
-            type="button"
-            className={activeTag === t ? 'filter-chip filter-chip--active' : 'filter-chip'}
-            aria-pressed={activeTag === t}
-            onClick={() => setActiveTag(activeTag === t ? null : t)}
+      {tagStats.tags.length > 0 && (
+        <div className="tag-cloud" role="group" aria-label="主题词云与标签筛选">
+          <div
+            className={`tag-cloud__chips ${expandedCloud ? 'tag-cloud__chips--expanded' : ''}`}
           >
-            {t}
-          </button>
-        ))}
-      </div>
+            {tagStats.tags.map(({ tag, count }) => {
+              const active = activeTag === tag
+              const weight =
+                tagStats.maxCount === tagStats.minCount
+                  ? 0.5
+                  : (count - tagStats.minCount) / (tagStats.maxCount - tagStats.minCount)
+              const fontSize = 11 + Math.round(weight * 5) // 11px - 16px 范围
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  style={{ fontSize: `${fontSize}px` }}
+                  className={active ? 'filter-chip filter-chip--active' : 'filter-chip'}
+                  aria-pressed={active}
+                  onClick={() => setActiveTag(active ? null : tag)}
+                  title={`${tag} (${count} 题)`}
+                >
+                  <span>{tag}</span>
+                  <span className="filter-chip__count">{count}</span>
+                </button>
+              )
+            })}
+          </div>
+          {tagStats.tags.length > 25 && (
+            <div className="tag-cloud__footer">
+              <button
+                type="button"
+                className="tag-cloud__toggle"
+                onClick={() => setExpandedCloud((prev) => !prev)}
+              >
+                {expandedCloud
+                  ? '收起词云 ↑'
+                  : `展开全部词云 (${tagStats.tags.length} 个标签) ↓`}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       <p className="problem-list__summary">
         {filtering ? `筛选出 ${filtered.length} / 共 ${list.length} 题。` : `共 ${list.length} 题。`}

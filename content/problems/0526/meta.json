@@ -1,0 +1,13 @@
+{
+  "id": 526,
+  "title": "Largest Prime Factors of Consecutive Numbers",
+  "titleZh": "连续数的最大素因子",
+  "difficulty": 86,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 479,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=526",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

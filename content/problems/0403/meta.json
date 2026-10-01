@@ -1,0 +1,13 @@
+{
+  "id": 403,
+  "title": "Lattice Points Enclosed by Parabola and Line",
+  "titleZh": "抛物线与直线围成的区域内的格点",
+  "difficulty": 83,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 578,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=403",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

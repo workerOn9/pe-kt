@@ -1,0 +1,13 @@
+{
+  "id": 963,
+  "title": "Removing Trits",
+  "titleZh": "移除三进制位",
+  "difficulty": 100,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 196,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=963",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

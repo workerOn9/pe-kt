@@ -1,0 +1,13 @@
+{
+  "id": 433,
+  "title": "Steps in Euclid's Algorithm",
+  "titleZh": "欧几里得算法的步数",
+  "difficulty": 92,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 714,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=433",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

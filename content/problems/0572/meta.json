@@ -1,0 +1,13 @@
+{
+  "id": 572,
+  "title": "Idempotent Matrices",
+  "titleZh": "幂等矩阵",
+  "difficulty": 56,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 509,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=572",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

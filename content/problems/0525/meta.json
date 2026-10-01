@@ -1,0 +1,13 @@
+{
+  "id": 525,
+  "title": "Rolling Ellipse",
+  "titleZh": "滚动的椭圆",
+  "difficulty": 35,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 729,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=525",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 787,
+  "title": "Bézout's Game",
+  "titleZh": "贝祖游戏",
+  "difficulty": 60,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 305,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=787",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

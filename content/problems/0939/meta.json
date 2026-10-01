@@ -1,0 +1,13 @@
+{
+  "id": 939,
+  "title": "Partisan Nim",
+  "titleZh": "党派尼姆",
+  "difficulty": 72,
+  "difficultyLevel": "Level 28",
+  "tags": [],
+  "solvedBy": 202,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=939",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

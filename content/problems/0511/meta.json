@@ -1,0 +1,13 @@
+{
+  "id": 511,
+  "title": "Sequences with Nice Divisibility Properties",
+  "titleZh": "整除性质优良的序列",
+  "difficulty": 60,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 630,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=511",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

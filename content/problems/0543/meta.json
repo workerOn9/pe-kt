@@ -1,0 +1,13 @@
+{
+  "id": 543,
+  "title": "Prime-Sum Numbers",
+  "titleZh": "素数和数",
+  "difficulty": 34,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 1047,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=543",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 1001,
+  "title": "Connections I",
+  "titleZh": "上方连线 I",
+  "difficulty": 54,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 236,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=1001",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

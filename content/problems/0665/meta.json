@@ -1,0 +1,13 @@
+{
+  "id": 665,
+  "title": "Proportionate Nim",
+  "titleZh": "比例取子游戏",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 365,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=665",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 615,
+  "title": "The Millionth Number with at Least One Million Prime Factors",
+  "titleZh": "至少有一百万个质因数的一百万个数",
+  "difficulty": 63,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 826,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=615",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

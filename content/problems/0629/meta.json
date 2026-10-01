@@ -1,0 +1,13 @@
+{
+  "id": 629,
+  "title": "Scatterstone Nim",
+  "titleZh": "散石 Nim",
+  "difficulty": 78,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 361,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=629",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

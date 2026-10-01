@@ -1,0 +1,13 @@
+{
+  "id": 437,
+  "title": "Fibonacci Primitive Roots",
+  "titleZh": "斐波那契原根",
+  "difficulty": 20,
+  "difficultyLevel": "Level 7",
+  "tags": [],
+  "solvedBy": 1217,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=437",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

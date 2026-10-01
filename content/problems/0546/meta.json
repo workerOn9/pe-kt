@@ -1,0 +1,13 @@
+{
+  "id": 546,
+  "title": "The Floor's Revenge",
+  "titleZh": "向下取整的复仇",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 386,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=546",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

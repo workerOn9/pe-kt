@@ -1,0 +1,13 @@
+{
+  "id": 656,
+  "title": "Palindromic Sequences",
+  "titleZh": "回文序列",
+  "difficulty": 71,
+  "difficultyLevel": "Level 28",
+  "tags": [],
+  "solvedBy": 351,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=656",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

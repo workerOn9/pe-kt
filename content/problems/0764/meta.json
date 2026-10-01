@@ -1,0 +1,13 @@
+{
+  "id": 764,
+  "title": "Asymmetric Diophantine Equation",
+  "titleZh": "非对称丢番图方程",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 571,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=764",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

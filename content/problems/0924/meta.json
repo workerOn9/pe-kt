@@ -1,0 +1,13 @@
+{
+  "id": 924,
+  "title": "Larger Digit Permutation II",
+  "titleZh": "数位重排极大数 II",
+  "difficulty": 74,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 284,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=924",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

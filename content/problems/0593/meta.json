@@ -1,0 +1,13 @@
+{
+  "id": 593,
+  "title": "Fleeting Medians",
+  "titleZh": "转瞬即逝的中位数",
+  "difficulty": 32,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 780,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=593",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

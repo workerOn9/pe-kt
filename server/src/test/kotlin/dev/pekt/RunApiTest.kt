@@ -65,7 +65,7 @@ class RunApiTest {
     @Test
     fun `run unknown problem returns 404`() = testApplication {
         application { module() }
-        val response = client.post("/api/problems/999/run")
+        val response = client.post("/api/problems/99999/run")
         assertEquals(HttpStatusCode.NotFound, response.status)
 
         val error = json.parseToJsonElement(response.bodyAsText()).jsonObject

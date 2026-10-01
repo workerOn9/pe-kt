@@ -1,0 +1,13 @@
+{
+  "id": 966,
+  "title": "Triangle Circle Intersection",
+  "titleZh": "三角形与圆的相交面积",
+  "difficulty": 90,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 214,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=966",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
