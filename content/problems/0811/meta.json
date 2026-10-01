@@ -1,0 +1,13 @@
+{
+  "id": 811,
+  "title": "Bitwise Recursion",
+  "titleZh": "按位递推",
+  "difficulty": 66,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 358,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=811",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

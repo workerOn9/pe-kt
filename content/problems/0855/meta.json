@@ -1,0 +1,13 @@
+{
+  "id": 855,
+  "title": "Delphi Paper",
+  "titleZh": "德尔斐切纸博弈",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 222,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=855",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

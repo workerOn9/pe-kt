@@ -1,0 +1,13 @@
+{
+  "id": 808,
+  "title": "Reversible Prime Squares",
+  "titleZh": "可反转的素数平方",
+  "difficulty": 14,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 4313,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=808",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

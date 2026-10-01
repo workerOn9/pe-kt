@@ -1,0 +1,13 @@
+{
+  "id": 870,
+  "title": "Stone Game IV",
+  "titleZh": "取石子博弈 IV",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 223,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=870",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

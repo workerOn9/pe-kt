@@ -1,0 +1,13 @@
+{
+  "id": 891,
+  "title": "Ambiguous Clock",
+  "titleZh": "模糊的时钟",
+  "difficulty": 79,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 242,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=891",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

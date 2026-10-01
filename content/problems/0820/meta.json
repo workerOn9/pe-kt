@@ -1,0 +1,13 @@
+{
+  "id": 820,
+  "title": "Nth Digit of Reciprocals",
+  "titleZh": "倒数的小数第 n 位",
+  "difficulty": 15,
+  "difficultyLevel": "Level 5",
+  "tags": [],
+  "solvedBy": 1654,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=820",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

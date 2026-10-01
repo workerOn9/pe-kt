@@ -1,0 +1,13 @@
+{
+  "id": 816,
+  "title": "Shortest Distance Among Points",
+  "titleZh": "点间最短距离",
+  "difficulty": 17,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 3191,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=816",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

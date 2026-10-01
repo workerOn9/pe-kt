@@ -1,0 +1,13 @@
+{
+  "id": 805,
+  "title": "Shifted Multiples",
+  "titleZh": "移位倍数",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 275,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=805",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

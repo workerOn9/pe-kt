@@ -1,0 +1,13 @@
+{
+  "id": 876,
+  "title": "Triplet Tricks",
+  "titleZh": "三元变换的归零步数",
+  "difficulty": 98,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 197,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=876",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 838,
+  "title": "Not Coprime",
+  "titleZh": "互素",
+  "difficulty": 64,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 821,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=838",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

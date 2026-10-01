@@ -1,0 +1,13 @@
+{
+  "id": 844,
+  "title": "k-Markov Numbers",
+  "titleZh": "k-马尔可夫数",
+  "difficulty": 54,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 313,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=844",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 864,
+  "title": "Square + 1 = Squarefree",
+  "titleZh": "平方加一为无平方因子数",
+  "difficulty": 99,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 287,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=864",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

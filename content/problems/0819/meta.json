@@ -1,0 +1,13 @@
+{
+  "id": 819,
+  "title": "Iterative Sampling",
+  "titleZh": "迭代抽样",
+  "difficulty": 55,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 347,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=819",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

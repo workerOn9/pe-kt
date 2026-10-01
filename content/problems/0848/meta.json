@@ -1,0 +1,13 @@
+{
+  "id": 848,
+  "title": "Guessing with Sets",
+  "titleZh": "集合猜数游戏",
+  "difficulty": 86,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 301,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=848",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

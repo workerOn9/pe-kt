@@ -1,0 +1,13 @@
+{
+  "id": 867,
+  "title": "Tiling Dodecagon",
+  "titleZh": "密铺十二边形",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 245,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=867",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

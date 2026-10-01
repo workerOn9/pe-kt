@@ -1,0 +1,13 @@
+{
+  "id": 897,
+  "title": "Maximal n-gon in a region",
+  "titleZh": "区域内的最大 n 边形",
+  "difficulty": 69,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 565,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=897",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

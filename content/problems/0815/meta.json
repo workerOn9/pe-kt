@@ -1,0 +1,13 @@
+{
+  "id": 815,
+  "title": "Group by Value",
+  "titleZh": "按值分组",
+  "difficulty": 62,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 611,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=815",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

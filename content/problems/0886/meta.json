@@ -1,0 +1,13 @@
+{
+  "id": 886,
+  "title": "Coprime Permutations",
+  "titleZh": "互素排列",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 395,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=886",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

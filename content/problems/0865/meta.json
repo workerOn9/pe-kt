@@ -1,0 +1,13 @@
+{
+  "id": 865,
+  "title": "Triplicate Numbers",
+  "titleZh": "三连数字",
+  "difficulty": 56,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 401,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=865",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 884,
+  "title": "Removing Cubes",
+  "titleZh": "连减完全立方数",
+  "difficulty": 47,
+  "difficultyLevel": "Level 18",
+  "tags": [],
+  "solvedBy": 806,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=884",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

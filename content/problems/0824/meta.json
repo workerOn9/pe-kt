@@ -1,0 +1,13 @@
+{
+  "id": 824,
+  "title": "Chess Sliders",
+  "titleZh": "棋盘滑动子",
+  "difficulty": 100,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 253,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=824",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 842,
+  "title": "Irregular Star Polygons",
+  "titleZh": "非规则星形多边形",
+  "difficulty": 65,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 211,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=842",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

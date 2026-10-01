@@ -1,0 +1,13 @@
+{
+  "id": 804,
+  "title": "Counting Binary Quadratic Representations",
+  "titleZh": "二元二次型表示计数",
+  "difficulty": 27,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 976,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=804",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
