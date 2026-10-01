@@ -116,19 +116,8 @@ const EXTRACT_JS = `(() => {
   const diff = tip.match(/Difficulty:\\s*Level\\s*(\\d+)\\s*\\[(\\d+)%\\]/);
   const solved = tip.match(/solved by (\\d+)/);
   const h = document.querySelector('h2');
-  // 标题里的数字常被 MathJax 渲染（"$5$-smooth Totients"），mjx-container 的 innerText 是空的，
-  // 直接读会把开头数字整段吞掉（"5-smooth Totients" → "-smooth Totients"）。先换成 LaTeX 原文。
-  let title = null;
-  if (h) {
-    const clone = h.cloneNode(true);
-    clone.querySelectorAll('mjx-container').forEach((m) => {
-      const latex = (m.querySelector('[data-mml-node="math"]') || {}).getAttribute?.('data-latex') || '';
-      m.replaceWith(document.createTextNode(latex));
-    });
-    title = clone.textContent.replace(/\\s+/g, ' ').trim();
-  }
   return JSON.stringify({
-    title: title,
+    title: h ? h.innerText.trim() : null,
     level: diff ? Number(diff[1]) : null,
     percent: diff ? Number(diff[2]) : null,
     solvedBy: solved ? Number(solved[1]) : null,
