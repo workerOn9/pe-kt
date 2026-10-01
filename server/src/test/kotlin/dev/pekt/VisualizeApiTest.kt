@@ -166,7 +166,7 @@ class VisualizeApiTest {
     @Test
     fun `visualize unknown problem returns 404 not_found`() = testApplication {
         application { module() }
-        val response = client.get("/api/problems/999/visualize")
+        val response = client.get("/api/problems/99999/visualize")
         assertEquals(HttpStatusCode.NotFound, response.status)
 
         val error = json.parseToJsonElement(response.bodyAsText()).jsonObject
