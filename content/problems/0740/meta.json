@@ -1,0 +1,13 @@
+{
+  "id": 740,
+  "title": "Secret Santa",
+  "titleZh": "秘密圣诞老人",
+  "difficulty": 78,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 307,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=740",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

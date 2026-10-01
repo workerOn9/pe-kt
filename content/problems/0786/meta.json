@@ -1,0 +1,13 @@
+{
+  "id": 786,
+  "title": "Billiard",
+  "titleZh": "台球",
+  "difficulty": 98,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 254,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=786",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

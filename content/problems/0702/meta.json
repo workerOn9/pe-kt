@@ -1,0 +1,13 @@
+{
+  "id": 702,
+  "title": "Jumping Flea",
+  "titleZh": "跳跃的跳蚤",
+  "difficulty": 96,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 295,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=702",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

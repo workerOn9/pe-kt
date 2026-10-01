@@ -1,0 +1,13 @@
+{
+  "id": 738,
+  "title": "Counting Ordered Factorisations",
+  "titleZh": "计数有序因数分解",
+  "difficulty": 63,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 415,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=738",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

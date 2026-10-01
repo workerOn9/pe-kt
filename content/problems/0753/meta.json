@@ -1,0 +1,13 @@
+{
+  "id": 753,
+  "title": "Fermat Equation",
+  "titleZh": "费马方程",
+  "difficulty": 64,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 598,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=753",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

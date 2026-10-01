@@ -1,0 +1,13 @@
+{
+  "id": 798,
+  "title": "Card Stacking Game",
+  "titleZh": "叠牌游戏",
+  "difficulty": 100,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 262,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=798",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

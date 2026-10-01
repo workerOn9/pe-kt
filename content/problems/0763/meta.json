@@ -1,0 +1,13 @@
+{
+  "id": 763,
+  "title": "Amoebas in a 3D Grid",
+  "titleZh": "三维网格中的变形虫",
+  "difficulty": 99,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 385,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=763",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

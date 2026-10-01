@@ -1,0 +1,13 @@
+{
+  "id": 713,
+  "title": "Turán's Water Heating System",
+  "titleZh": "Turán 的热水系统",
+  "difficulty": 19,
+  "difficultyLevel": "Level 7",
+  "tags": [],
+  "solvedBy": 1042,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=713",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

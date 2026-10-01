@@ -1,0 +1,13 @@
+{
+  "id": 722,
+  "title": "Slowly Converging Series",
+  "titleZh": "缓慢收敛的级数",
+  "difficulty": 70,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 728,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=722",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 795,
+  "title": "Alternating GCD Sum",
+  "titleZh": "交错 GCD 和",
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "tags": [],
+  "solvedBy": 549,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=795",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

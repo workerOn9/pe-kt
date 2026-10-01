@@ -1,0 +1,13 @@
+{
+  "id": 735,
+  "title": "Divisors of 2n^2",
+  "titleZh": "2n² 的因数",
+  "difficulty": 91,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 359,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=735",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

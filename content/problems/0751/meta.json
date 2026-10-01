@@ -1,0 +1,13 @@
+{
+  "id": 751,
+  "title": "Concatenation Coincidence",
+  "titleZh": "连接巧合",
+  "difficulty": 16,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 3265,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=751",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

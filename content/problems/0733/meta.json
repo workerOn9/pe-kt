@@ -1,0 +1,13 @@
+{
+  "id": 733,
+  "title": "Ascending Subsequences",
+  "titleZh": "上升子序列",
+  "difficulty": 39,
+  "difficultyLevel": "Level 15",
+  "tags": [],
+  "solvedBy": 680,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=733",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

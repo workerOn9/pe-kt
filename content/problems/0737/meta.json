@@ -1,0 +1,13 @@
+{
+  "id": 737,
+  "title": "Coin Loops",
+  "titleZh": "硬币环圈",
+  "difficulty": 32,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 548,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=737",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 781,
+  "title": "Feynman Diagrams",
+  "titleZh": "费曼图",
+  "difficulty": 94,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 236,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=781",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

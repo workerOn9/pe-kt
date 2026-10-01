@@ -1,0 +1,13 @@
+{
+  "id": 770,
+  "title": "Delphi Flip",
+  "titleZh": "德尔斐翻转",
+  "difficulty": 35,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 761,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=770",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

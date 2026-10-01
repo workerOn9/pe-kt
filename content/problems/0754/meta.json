@@ -1,0 +1,13 @@
+{
+  "id": 754,
+  "title": "Product of Gauss Factorials",
+  "titleZh": "高斯阶乘之积",
+  "difficulty": 42,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 994,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=754",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

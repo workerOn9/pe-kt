@@ -1,0 +1,13 @@
+{
+  "id": 782,
+  "title": "Distinct Rows and Columns",
+  "titleZh": "不同的行与列",
+  "difficulty": 60,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 255,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=782",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

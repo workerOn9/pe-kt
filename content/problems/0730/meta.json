@@ -1,0 +1,13 @@
+{
+  "id": 730,
+  "title": "Shifted Pythagorean Triples",
+  "titleZh": "平移毕达哥拉斯三元组",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 278,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=730",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

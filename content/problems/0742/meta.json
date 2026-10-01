@@ -1,0 +1,13 @@
+{
+  "id": 742,
+  "title": "Minimum Area of a Convex Grid Polygon",
+  "titleZh": "凸格点多边形的最小面积",
+  "difficulty": 90,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 261,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=742",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 785,
+  "title": "Symmetric Diophantine Equation",
+  "titleZh": "对称丢番图方程",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 308,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=785",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 747,
+  "title": "Triangular Pizza",
+  "titleZh": "三角形披萨",
+  "difficulty": 91,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 311,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=747",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

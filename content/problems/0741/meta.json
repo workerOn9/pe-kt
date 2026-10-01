@@ -1,0 +1,13 @@
+{
+  "id": 741,
+  "title": "Binary Grid Colouring",
+  "titleZh": "二值网格着色",
+  "difficulty": 98,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 269,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=741",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
