@@ -1,0 +1,13 @@
+{
+  "id": 423,
+  "title": "Consecutive Die Throws",
+  "titleZh": "连续掷骰",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 771,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=423",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

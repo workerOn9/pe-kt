@@ -1,0 +1,13 @@
+{
+  "id": 442,
+  "title": "Eleven-free Integers",
+  "titleZh": "无 11 的幂的整数",
+  "difficulty": 65,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 634,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=442",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

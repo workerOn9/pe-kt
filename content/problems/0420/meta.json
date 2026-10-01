@@ -1,0 +1,13 @@
+{
+  "id": 420,
+  "title": "Positive Integer Matrix",
+  "titleZh": "正整数矩阵",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 692,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=420",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

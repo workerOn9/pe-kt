@@ -1,0 +1,13 @@
+{
+  "id": 432,
+  "title": "Totient Sum",
+  "titleZh": "欧拉函数求和",
+  "difficulty": 64,
+  "difficultyLevel": "Level 25",
+  "tags": [],
+  "solvedBy": 777,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=432",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

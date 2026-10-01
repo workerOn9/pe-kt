@@ -1,0 +1,13 @@
+{
+  "id": 440,
+  "title": "GCD and Tiling",
+  "titleZh": "最大公约数与铺砖",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 613,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=440",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

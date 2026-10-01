@@ -1,0 +1,13 @@
+{
+  "id": 460,
+  "title": "An Ant on the Move",
+  "titleZh": "行进中的蚂蚁",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 513,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=460",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

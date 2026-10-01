@@ -1,0 +1,13 @@
+{
+  "id": 444,
+  "title": "The Roundtable Lottery",
+  "titleZh": "圆桌彩票交易",
+  "difficulty": 80,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 509,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=444",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

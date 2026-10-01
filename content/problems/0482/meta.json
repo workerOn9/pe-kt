@@ -1,0 +1,13 @@
+{
+  "id": 482,
+  "title": "The Incenter of a Triangle",
+  "titleZh": "整数边三角形的内心距离",
+  "difficulty": 86,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 375,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=482",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

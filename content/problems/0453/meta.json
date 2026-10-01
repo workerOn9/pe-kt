@@ -1,0 +1,13 @@
+{
+  "id": 453,
+  "title": "Lattice Quadrilaterals",
+  "titleZh": "格点四边形",
+  "difficulty": 96,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 443,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=453",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

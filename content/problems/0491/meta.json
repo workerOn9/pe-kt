@@ -1,0 +1,13 @@
+{
+  "id": 491,
+  "title": "Double Pandigital Number Divisible by",
+  "titleZh": "可被 11 整除的重复全数字数",
+  "difficulty": 29,
+  "difficultyLevel": "Level 11",
+  "tags": [],
+  "solvedBy": 2750,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=491",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

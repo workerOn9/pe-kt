@@ -1,0 +1,13 @@
+{
+  "id": 449,
+  "title": "Chocolate Covered Candy",
+  "titleZh": "巧克力包裹的糖果",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": [],
+  "solvedBy": 1256,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=449",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

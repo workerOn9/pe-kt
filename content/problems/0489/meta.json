@@ -1,0 +1,13 @@
+{
+  "id": 489,
+  "title": "Common Factors Between Two Sequences",
+  "titleZh": "两序列的最大公因数",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 436,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=489",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

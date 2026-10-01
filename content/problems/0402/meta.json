@@ -1,0 +1,13 @@
+{
+  "id": 402,
+  "title": "Integer-valued Polynomials",
+  "titleZh": "整数值多项式",
+  "difficulty": 70,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 664,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=402",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

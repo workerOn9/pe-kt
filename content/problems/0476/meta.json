@@ -1,0 +1,13 @@
+{
+  "id": 476,
+  "title": "Circle Packing II",
+  "titleZh": "圆填充 II",
+  "difficulty": 61,
+  "difficultyLevel": "Level 24",
+  "tags": [],
+  "solvedBy": 585,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=476",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

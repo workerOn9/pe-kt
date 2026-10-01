@@ -1,0 +1,13 @@
+{
+  "id": 409,
+  "title": "Nim Extreme",
+  "titleZh": "尼姆极值",
+  "difficulty": 82,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 685,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=409",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

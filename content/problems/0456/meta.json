@@ -1,0 +1,13 @@
+{
+  "id": 456,
+  "title": "Triangles Containing the Origin II",
+  "titleZh": "包含原点的三角形 II",
+  "difficulty": 72,
+  "difficultyLevel": "Level 28",
+  "tags": [],
+  "solvedBy": 621,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=456",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

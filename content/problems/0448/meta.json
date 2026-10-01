@@ -1,0 +1,13 @@
+{
+  "id": 448,
+  "title": "Average Least Common Multiple",
+  "titleZh": "最小公倍数的平均值",
+  "difficulty": 75,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 573,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=448",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

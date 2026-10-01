@@ -1,0 +1,13 @@
+{
+  "id": 429,
+  "title": "Sum of Squares of Unitary Divisors",
+  "titleZh": "幺正因子平方和",
+  "difficulty": 18,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 3321,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=429",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

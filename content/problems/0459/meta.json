@@ -1,0 +1,13 @@
+{
+  "id": 459,
+  "title": "Flipping Game",
+  "titleZh": "翻硬币游戏",
+  "difficulty": 97,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 454,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=459",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

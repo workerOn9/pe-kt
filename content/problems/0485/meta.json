@@ -1,0 +1,13 @@
+{
+  "id": 485,
+  "title": "Maximum Number of Divisors",
+  "titleZh": "最大因子个数",
+  "difficulty": 19,
+  "difficultyLevel": "Level 7",
+  "tags": [],
+  "solvedBy": 1595,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=485",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

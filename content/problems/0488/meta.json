@@ -1,0 +1,13 @@
+{
+  "id": 488,
+  "title": "Unbalanced Nim",
+  "titleZh": "不平衡 Nim",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 375,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=488",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

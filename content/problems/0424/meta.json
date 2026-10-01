@@ -1,0 +1,13 @@
+{
+  "id": 424,
+  "title": "Kakuro",
+  "titleZh": "Kakuro 数字谜题",
+  "difficulty": 60,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 624,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=424",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

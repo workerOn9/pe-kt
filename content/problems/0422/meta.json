@@ -1,0 +1,13 @@
+{
+  "id": 422,
+  "title": "Sequence of Points on a Hyperbola",
+  "titleZh": "双曲线上的点列",
+  "difficulty": 82,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 488,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=422",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

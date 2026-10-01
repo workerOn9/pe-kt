@@ -1,0 +1,13 @@
+{
+  "id": 406,
+  "title": "Guessing Game",
+  "titleZh": "猜数字游戏",
+  "difficulty": 67,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 625,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=406",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

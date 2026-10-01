@@ -1,0 +1,13 @@
+{
+  "id": 426,
+  "title": "Box-Ball System",
+  "titleZh": "盒球系统",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 435,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=426",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

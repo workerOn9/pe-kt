@@ -1,0 +1,13 @@
+{
+  "id": 474,
+  "title": "Last Digits of Divisors",
+  "titleZh": "因子的末位数字",
+  "difficulty": 56,
+  "difficultyLevel": "Level 22",
+  "tags": [],
+  "solvedBy": 636,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=474",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 404,
+  "title": "Crisscross Ellipses",
+  "titleZh": "交叉的椭圆",
+  "difficulty": 76,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 541,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=404",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

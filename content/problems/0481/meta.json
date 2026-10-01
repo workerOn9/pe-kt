@@ -1,0 +1,13 @@
+{
+  "id": 481,
+  "title": "Chef Showdown",
+  "titleZh": "厨师竞技场",
+  "difficulty": 50,
+  "difficultyLevel": "Level 19",
+  "tags": [],
+  "solvedBy": 419,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=481",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

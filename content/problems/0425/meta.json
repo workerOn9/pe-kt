@@ -1,0 +1,13 @@
+{
+  "id": 425,
+  "title": "Prime Connection",
+  "titleZh": "素数相连",
+  "difficulty": 28,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 1991,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=425",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
