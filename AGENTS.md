@@ -39,10 +39,10 @@
 
 把机械抓取与翻译从解题流水线里剥离，一次建一段跑道；以后解题批次不再碰官网。
 
-- **A1 机械抓取**：`node scripts/fetch-pe.mjs --from 301 --to 325`。脚本经 Kimi WebBridge
+- **A1 机械抓取**：已完成 1–1001 全量抓取入库。抓取脚本经 Kimi WebBridge
   （daemon `http://127.0.0.1:10086/command`，session `pe-fetch-problems`）逐题 navigate + 读 DOM，
   每题间隔 3.5s，写入 `statement.en.md`、草稿 `meta.json`（`status: "draft"`、`titleZh` 留空）
-  与题面图片；已抓过的题目自动跳过（断点续抓）。若脚本报"页面无题面内容"= 未登录/403/题号
+  与题面图片；历史抓取逻辑见 git 记录。若脚本报"页面无题面内容"= 未登录/403/题号
   不存在，停下让用户检查登录态，不要编造。**禁止用页面内 `fetch()` 批量拉题**（会触发 403）。
 - **A2 中文翻译**：逐题产出 `statement.md`（格式照既有题目：`# N · 标题` + 中文意译来源说明 +
   正文，公式用 KaTeX）与 `meta.titleZh`；图片引用用脚本落盘的本地文件名。英文原文不得进入
