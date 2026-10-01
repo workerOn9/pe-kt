@@ -1,0 +1,13 @@
+{
+  "id": 606,
+  "title": "Gozinta Chains II",
+  "titleZh": "整除链 II",
+  "difficulty": 66,
+  "difficultyLevel": "Level 26",
+  "tags": [],
+  "solvedBy": 540,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=606",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

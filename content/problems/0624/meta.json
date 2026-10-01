@@ -1,0 +1,13 @@
+{
+  "id": 624,
+  "title": "Two Heads Are Better Than One",
+  "titleZh": "两个正面胜过一个",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": [],
+  "solvedBy": 882,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=624",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

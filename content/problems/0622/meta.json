@@ -1,0 +1,13 @@
+{
+  "id": 622,
+  "title": "Riffle Shuffles",
+  "titleZh": "鸽尾洗牌",
+  "difficulty": 31,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 2205,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=622",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

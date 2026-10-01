@@ -1,0 +1,13 @@
+{
+  "id": 650,
+  "title": "Divisors of Binomial Product",
+  "titleZh": "二项式系数乘积的因数",
+  "difficulty": 27,
+  "difficultyLevel": "Level 10",
+  "tags": [],
+  "solvedBy": 2278,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=650",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

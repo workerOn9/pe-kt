@@ -1,0 +1,13 @@
+{
+  "id": 642,
+  "title": "Sum of Largest Prime Factors",
+  "titleZh": "最大质因数之和",
+  "difficulty": 74,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 537,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=642",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

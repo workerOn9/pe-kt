@@ -1,0 +1,13 @@
+{
+  "id": 697,
+  "title": "Randomly Decaying Sequence",
+  "titleZh": "随机衰减序列",
+  "difficulty": 52,
+  "difficultyLevel": "Level 20",
+  "tags": [],
+  "solvedBy": 825,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=697",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 690,
+  "title": "Tom and Jerry",
+  "titleZh": "猫和老鼠",
+  "difficulty": 91,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 323,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=690",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 618,
+  "title": "Numbers with a Given Prime Factor Sum",
+  "titleZh": "给定质因数和之数",
+  "difficulty": 33,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 1397,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=618",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

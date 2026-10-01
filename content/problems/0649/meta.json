@@ -1,0 +1,13 @@
+{
+  "id": 649,
+  "title": "Low-Prime Chessboard Nim",
+  "titleZh": "低质数棋盘取子游戏",
+  "difficulty": 33,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 620,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=649",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

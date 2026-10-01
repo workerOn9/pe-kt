@@ -1,0 +1,13 @@
+{
+  "id": 631,
+  "title": "Constrained Permutations",
+  "titleZh": "受限排列",
+  "difficulty": 79,
+  "difficultyLevel": "Level 31",
+  "tags": [],
+  "solvedBy": 288,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=631",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

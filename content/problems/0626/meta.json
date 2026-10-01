@@ -1,0 +1,13 @@
+{
+  "id": 626,
+  "title": "Counting Binary Matrices",
+  "titleZh": "计数二进制矩阵",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 381,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=626",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

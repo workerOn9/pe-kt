@@ -1,0 +1,13 @@
+{
+  "id": 685,
+  "title": "Inverse Digit Sum II",
+  "titleZh": "反数位和 II",
+  "difficulty": 75,
+  "difficultyLevel": "Level 29",
+  "tags": [],
+  "solvedBy": 297,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=685",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

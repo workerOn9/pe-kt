@@ -1,0 +1,13 @@
+{
+  "id": 634,
+  "title": "Numbers of the Form a^2b^3",
+  "titleZh": "形如 a^2b^3 的数",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 866,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=634",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

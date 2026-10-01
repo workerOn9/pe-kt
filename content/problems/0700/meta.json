@@ -1,0 +1,13 @@
+{
+  "id": 700,
+  "title": "Eulercoin",
+  "titleZh": "欧拉硬币",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": [],
+  "solvedBy": 4732,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=700",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

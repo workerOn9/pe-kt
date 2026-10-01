@@ -1,0 +1,13 @@
+{
+  "id": 676,
+  "title": "Matching Digit Sums",
+  "titleZh": "数位和匹配",
+  "difficulty": 69,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 341,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=676",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

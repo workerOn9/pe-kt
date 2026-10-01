@@ -1,0 +1,13 @@
+{
+  "id": 666,
+  "title": "Polymorphic Bacteria",
+  "titleZh": "多态细菌",
+  "difficulty": 43,
+  "difficultyLevel": "Level 16",
+  "tags": [],
+  "solvedBy": 455,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=666",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 607,
+  "title": "Marsh Crossing",
+  "titleZh": "穿越沼泽",
+  "difficulty": 21,
+  "difficultyLevel": "Level 8",
+  "tags": [],
+  "solvedBy": 2202,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=607",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

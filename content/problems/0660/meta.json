@@ -1,0 +1,13 @@
+{
+  "id": 660,
+  "title": "Pandigital Triangles",
+  "titleZh": "全数字三角形",
+  "difficulty": 53,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 447,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=660",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

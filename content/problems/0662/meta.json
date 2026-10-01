@@ -1,0 +1,13 @@
+{
+  "id": 662,
+  "title": "Fibonacci Paths",
+  "titleZh": "斐波那契路径",
+  "difficulty": 32,
+  "difficultyLevel": "Level 12",
+  "tags": [],
+  "solvedBy": 1135,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=662",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

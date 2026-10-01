@@ -1,0 +1,13 @@
+{
+  "id": 684,
+  "title": "Inverse Digit Sum",
+  "titleZh": "反数位和",
+  "difficulty": 30,
+  "difficultyLevel": "Level 11",
+  "tags": [],
+  "solvedBy": 3543,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=684",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
