@@ -1,0 +1,13 @@
+{
+  "id": 992,
+  "title": "Another Frog Jumping",
+  "titleZh": "又一次青蛙跳跃",
+  "difficulty": 49,
+  "difficultyLevel": "Level 19",
+  "tags": [],
+  "solvedBy": 249,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=992",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

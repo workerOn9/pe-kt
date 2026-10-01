@@ -1,0 +1,13 @@
+{
+  "id": 988,
+  "title": "Non-attacking Frogs",
+  "titleZh": "互不攻击的青蛙",
+  "difficulty": 55,
+  "difficultyLevel": "Level 21",
+  "tags": [],
+  "solvedBy": 266,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=988",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

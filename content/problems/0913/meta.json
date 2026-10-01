@@ -1,0 +1,13 @@
+{
+  "id": 913,
+  "title": "Row-major vs Column-major",
+  "titleZh": "行主序与列主序",
+  "difficulty": 70,
+  "difficultyLevel": "Level 27",
+  "tags": [],
+  "solvedBy": 239,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=913",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

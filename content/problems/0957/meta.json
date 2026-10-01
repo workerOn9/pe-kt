@@ -1,0 +1,13 @@
+{
+  "id": 957,
+  "title": "Point Genesis",
+  "titleZh": "点之创生",
+  "difficulty": 100,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 243,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=957",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 985,
+  "title": "Telescoping Triangles",
+  "titleZh": "套叠三角形",
+  "difficulty": 33,
+  "difficultyLevel": "Level 13",
+  "tags": [],
+  "solvedBy": 480,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=985",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

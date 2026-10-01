@@ -1,0 +1,13 @@
+{
+  "id": 978,
+  "title": "Random Walk Skewness",
+  "titleZh": "随机游走偏度",
+  "difficulty": 25,
+  "difficultyLevel": "Level 9",
+  "tags": [],
+  "solvedBy": 547,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=978",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

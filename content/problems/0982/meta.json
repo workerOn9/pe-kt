@@ -1,0 +1,13 @@
+{
+  "id": 982,
+  "title": "The Third Dice",
+  "titleZh": "第三颗骰子",
+  "difficulty": 90,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 235,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=982",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

@@ -1,0 +1,13 @@
+{
+  "id": 986,
+  "title": "Another Infinite Game",
+  "titleZh": "又一个无限棋盘游戏",
+  "difficulty": 85,
+  "difficultyLevel": "Level 33",
+  "tags": [],
+  "solvedBy": 178,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=986",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

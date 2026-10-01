@@ -1,0 +1,13 @@
+{
+  "id": 952,
+  "title": "Order Modulo Factorial",
+  "titleZh": "阶乘模阶",
+  "difficulty": 77,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 402,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=952",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

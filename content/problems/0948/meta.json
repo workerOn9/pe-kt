@@ -1,0 +1,13 @@
+{
+  "id": 948,
+  "title": "Left vs Right",
+  "titleZh": "左右对弈",
+  "difficulty": 48,
+  "difficultyLevel": "Level 18",
+  "tags": [],
+  "solvedBy": 493,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=948",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

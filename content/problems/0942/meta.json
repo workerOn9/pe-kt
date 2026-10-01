@@ -1,0 +1,13 @@
+{
+  "id": 942,
+  "title": "Mersenne's Square Root",
+  "titleZh": "梅森数的平方根",
+  "difficulty": 98,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 228,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=942",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

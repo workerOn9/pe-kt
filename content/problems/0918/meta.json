@@ -1,0 +1,13 @@
+{
+  "id": 918,
+  "title": "Recursive Sequence Summation",
+  "titleZh": "递归序列求和",
+  "difficulty": 18,
+  "difficultyLevel": "Level 6",
+  "tags": [],
+  "solvedBy": 1730,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=918",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

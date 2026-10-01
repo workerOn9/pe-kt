@@ -1,0 +1,13 @@
+{
+  "id": 984,
+  "title": "Knights and Horses",
+  "titleZh": "骑士与马",
+  "difficulty": 72,
+  "difficultyLevel": "Level 28",
+  "tags": [],
+  "solvedBy": 179,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=984",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

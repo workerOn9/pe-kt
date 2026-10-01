@@ -1,0 +1,13 @@
+{
+  "id": 901,
+  "title": "Well Drilling",
+  "titleZh": "打井取水",
+  "difficulty": 82,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 691,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=901",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

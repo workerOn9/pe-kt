@@ -1,0 +1,13 @@
+{
+  "id": 902,
+  "title": "Permutation Powers",
+  "titleZh": "置换幂与字典序排名",
+  "difficulty": 93,
+  "difficultyLevel": "Level 36",
+  "tags": [],
+  "solvedBy": 265,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=902",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

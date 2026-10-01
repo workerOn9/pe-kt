@@ -1,0 +1,13 @@
+{
+  "id": 925,
+  "title": "Larger Digit Permutation III",
+  "titleZh": "数位重排极大数 III",
+  "difficulty": 89,
+  "difficultyLevel": "Level 35",
+  "tags": [],
+  "solvedBy": 240,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=925",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

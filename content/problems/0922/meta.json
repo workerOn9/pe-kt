@@ -1,0 +1,13 @@
+{
+  "id": 922,
+  "title": "Young's Game A",
+  "titleZh": "杨氏博弈 A",
+  "difficulty": 76,
+  "difficultyLevel": "Level 30",
+  "tags": [],
+  "solvedBy": 201,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=922",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

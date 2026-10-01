@@ -1,0 +1,13 @@
+{
+  "id": 945,
+  "title": "XOR-Equation C",
+  "titleZh": "异或方程 C",
+  "difficulty": 81,
+  "difficultyLevel": "Level 32",
+  "tags": [],
+  "solvedBy": 280,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=945",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

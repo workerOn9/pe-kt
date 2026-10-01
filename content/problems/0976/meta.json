@@ -1,0 +1,13 @@
+{
+  "id": 976,
+  "title": "XO Game",
+  "titleZh": "XO 游戏",
+  "difficulty": 96,
+  "difficultyLevel": "Level 38",
+  "tags": [],
+  "solvedBy": 179,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=976",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

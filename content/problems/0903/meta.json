@@ -1,0 +1,13 @@
+{
+  "id": 903,
+  "title": "Total Permutation Powers",
+  "titleZh": "全置换幂字典序之和",
+  "difficulty": 100,
+  "difficultyLevel": "Level 39",
+  "tags": [],
+  "solvedBy": 236,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=903",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

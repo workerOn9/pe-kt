@@ -1,0 +1,13 @@
+{
+  "id": 997,
+  "title": "Dice Box",
+  "titleZh": "骰子盒子",
+  "difficulty": 59,
+  "difficultyLevel": "Level 23",
+  "tags": [],
+  "solvedBy": 353,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=997",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

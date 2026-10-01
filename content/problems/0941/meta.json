@@ -1,0 +1,13 @@
+{
+  "id": 941,
+  "title": "de Bruijn's Combination Lock",
+  "titleZh": "德布鲁因密码锁",
+  "difficulty": 87,
+  "difficultyLevel": "Level 34",
+  "tags": [],
+  "solvedBy": 184,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=941",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}

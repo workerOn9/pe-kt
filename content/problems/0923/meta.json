@@ -1,0 +1,13 @@
+{
+  "id": 923,
+  "title": "Young's Game B",
+  "titleZh": "杨氏博弈 B",
+  "difficulty": 95,
+  "difficultyLevel": "Level 37",
+  "tags": [],
+  "solvedBy": 179,
+  "hasVisualization": false,
+  "sourceUrl": "https://projecteuler.net/problem=923",
+  "fetchedAt": "2026-09-30",
+  "status": "draft"
+}
