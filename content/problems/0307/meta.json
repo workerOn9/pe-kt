@@ -4,10 +4,18 @@
   "titleZh": "芯片缺陷",
   "difficulty": 33,
   "difficultyLevel": "Level 13",
-  "tags": [],
+  "tags": [
+    "probability",
+    "generating-function",
+    "occupancy",
+    "dynamic-programming",
+    "big-decimal"
+  ],
+  "answer": "0.7311720251",
   "solvedBy": 2213,
+  "bruteForceBaselineMs": 15.3462,
+  "optimizedBaselineMs": 5.9808,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=307",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }

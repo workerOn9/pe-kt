@@ -328,6 +328,9 @@ val solvers: Map<Int, () -> Long> = mapOf(
     303 to ::solve303,
     304 to ::solve304,
     305 to ::solve305,
+    306 to ::solve306,
+    309 to ::solve309,
+    310 to ::solve310,
 )
 
 /**
@@ -339,6 +342,7 @@ val stringSolvers: Map<Int, () -> String> = mapOf(
     284 to ::solve284,
     298 to ::solve298,
     300 to ::solve300,
+    307 to ::solve307,
 )
 
 /** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
@@ -491,6 +495,9 @@ private fun solve299(): Long = solve0299Impl()
 /** PE 300 — 蛋白质折叠：593611 条规范化折叠 → 12495 个接触掩码，逐串取最优，n = 15 平均 = 8.0540771484375。 */
 private fun solve300(): String = solve0300Impl()
 
+/** PE 307 — 芯片缺陷：p = 1 − A_k/n^k，A_j = k!·[x^j](1+x+x²/2)^n 的二阶整数递推（O(k)），p(20000,10⁶) 四舍五入到 10 位小数 = 0.7311720251。 */
+private fun solve307(): String = solve0307Impl()
+
 /** PE 301 — 尼姆游戏：X(n,2n,3n)=0 ⟺ n⊕2n=3n ⟺ 二进制无相邻 1；数位 DP 计数 = 2178309（= F₃₂ 旁证）。 */
 private fun solve301(): Long = solve0301Impl()
 
@@ -505,6 +512,15 @@ private fun solve304(): Long = solve0304Impl()
 
 /** PE 305 — 自反位置：Champernowne 串按起始位置计数 + 二分，Σ_{k=1}^{13} f(3^k) = 18174995535140。 */
 private fun solve305(): Long = solve0305Impl()
+
+/** PE 306 — 纸带游戏（Dawson's Kayles）：SG 序列最终周期 34（N0 = 53），周期块 34 项中 29 项先手必胜；闭式计数 42 + 29410×29 + 6 = 852938。 */
+private fun solve306(): Long = solve0306Impl()
+
+/** PE 309 — 整数梯子：h = ab/(a+b)（a=√(x²−w²) 已证必为整数），枚举斜边 < 10⁶ 的整数勾股数并按直角边 w 分桶配对，判 (a+b)|ab，0<x<y<10⁶ 共 210139 组。 */
+private fun solve309(): Long = solve0309Impl()
+
+/** PE 310 — 平方尼姆：平方取子 SG 表 + 按 SG 值分组的对称性计数（T = 6D+3E+Z）得必败局面数 = ANSWER310。 */
+private fun solve310(): Long = solve0310Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {
