@@ -4,10 +4,18 @@
   "titleZh": "尼姆游戏",
   "difficulty": 15,
   "difficultyLevel": "Level 5",
-  "tags": [],
+  "tags": [
+    "game-theory",
+    "nim",
+    "bitwise",
+    "digit-dp",
+    "fibonacci"
+  ],
+  "answer": "2178309",
   "solvedBy": 8122,
+  "bruteForceBaselineMs": 1.15,
+  "optimizedBaselineMs": 34.04,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=301",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }

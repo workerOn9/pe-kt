@@ -2,12 +2,21 @@
   "id": 304,
   "title": "Primonacci",
   "titleZh": "素数斐波那契",
-  "difficulty": 45,
+  "difficulty": 57,
   "difficultyLevel": "Level 17",
-  "tags": [],
+  "tags": [
+    "primes",
+    "segmented-sieve",
+    "fibonacci",
+    "fast-doubling",
+    "modular-arithmetic",
+    "overflow"
+  ],
+  "answer": "283988410192",
   "solvedBy": 2932,
+  "bruteForceBaselineMs": 3.83,
+  "optimizedBaselineMs": 127.8,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=304",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }

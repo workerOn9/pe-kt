@@ -323,6 +323,11 @@ val solvers: Map<Int, () -> Long> = mapOf(
     296 to ::solve296,
     297 to ::solve297,
     299 to ::solve299,
+    301 to ::solve301,
+    302 to ::solve302,
+    303 to ::solve303,
+    304 to ::solve304,
+    305 to ::solve305,
 )
 
 /**
@@ -485,6 +490,21 @@ private fun solve299(): Long = solve0299Impl()
 
 /** PE 300 — 蛋白质折叠：593611 条规范化折叠 → 12495 个接触掩码，逐串取最优，n = 15 平均 = 8.0540771484375。 */
 private fun solve300(): String = solve0300Impl()
+
+/** PE 301 — 尼姆游戏：X(n,2n,3n)=0 ⟺ n⊕2n=3n ⟺ 二进制无相邻 1；数位 DP 计数 = 2178309（= F₃₂ 旁证）。 */
+private fun solve301(): Long = solve0301Impl()
+
+/** PE 302 — 强阿基里斯数：强大数且非完全幂（S 与 φ(S) 皆是）；素因子 ≤ 10⁶ 的 DFS + φ 指数剪枝，≤ 10¹⁸ 计数 = 1170060。 */
+private fun solve302(): Long = solve0302Impl()
+
+/** PE 303 — 小数字倍数：余数图 BFS 求最小 {0,1,2} 数字倍数，Σ_{n=1}^{10000} f(n)/n = 1111981904675169。 */
+private fun solve303(): Long = solve0303Impl()
+
+/** PE 304 — 素数斐波那契：区间筛 [10¹⁴, 10¹⁴+4×10⁶] + fast doubling 逐素数算 F_p，Σ mod 1234567891011 = 283988410192。 */
+private fun solve304(): Long = solve0304Impl()
+
+/** PE 305 — 自反位置：Champernowne 串按起始位置计数 + 二分，Σ_{k=1}^{13} f(3^k) = 18174995535140。 */
+private fun solve305(): Long = solve0305Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

@@ -2,12 +2,21 @@
   "id": 302,
   "title": "Strong Achilles Numbers",
   "titleZh": "强阿基里斯数",
-  "difficulty": 54,
+  "difficulty": 71,
   "difficultyLevel": "Level 21",
-  "tags": [],
+  "tags": [
+    "achilles-number",
+    "powerful-number",
+    "euler-totient",
+    "dfs",
+    "pruning",
+    "number-theory"
+  ],
+  "answer": "1170060",
   "solvedBy": 1133,
+  "bruteForceBaselineMs": 198.0,
+  "optimizedBaselineMs": 356041.1,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=302",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }
