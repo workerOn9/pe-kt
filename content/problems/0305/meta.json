@@ -2,12 +2,20 @@
   "id": 305,
   "title": "Reflexive Position",
   "titleZh": "自反位置",
-  "difficulty": 89,
+  "difficulty": 108,
   "difficultyLevel": "Level 35",
-  "tags": [],
+  "tags": [
+    "string-matching",
+    "champernowne",
+    "counting",
+    "binary-search",
+    "digit-dp"
+  ],
+  "answer": "18174995535140",
   "solvedBy": 920,
+  "bruteForceBaselineMs": 1239.16,
+  "optimizedBaselineMs": 111.0,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=305",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }

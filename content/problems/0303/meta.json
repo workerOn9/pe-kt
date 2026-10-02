@@ -2,12 +2,20 @@
   "id": 303,
   "title": "Multiples with Small Digits",
   "titleZh": "小数字倍数",
-  "difficulty": 20,
+  "difficulty": 22,
   "difficultyLevel": "Level 7",
-  "tags": [],
+  "tags": [
+    "bfs",
+    "graph",
+    "modular-arithmetic",
+    "automaton",
+    "big-integer"
+  ],
+  "answer": "1111981904675169",
   "solvedBy": 4582,
+  "bruteForceBaselineMs": 953.25,
+  "optimizedBaselineMs": 368.13,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=303",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }
