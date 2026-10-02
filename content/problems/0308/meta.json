@@ -4,10 +4,18 @@
   "titleZh": "神奇的素数生成自动机",
   "difficulty": 66,
   "difficultyLevel": "Level 26",
-  "tags": [],
+  "tags": [
+    "fractran",
+    "automaton",
+    "trial-division",
+    "bitmask",
+    "simulation"
+  ],
+  "answer": "1539669807660924",
   "solvedBy": 1121,
+  "bruteForceBaselineMs": 7481.647,
+  "optimizedBaselineMs": 138800,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=308",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }

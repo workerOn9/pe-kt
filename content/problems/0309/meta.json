@@ -4,10 +4,18 @@
   "titleZh": "整数梯子",
   "difficulty": 31,
   "difficultyLevel": "Level 12",
-  "tags": [],
+  "tags": [
+    "pythagorean-triples",
+    "number-theory",
+    "divisibility",
+    "bucketing",
+    "integer-geometry"
+  ],
+  "answer": "210139",
   "solvedBy": 1218,
+  "bruteForceBaselineMs": 842.194,
+  "optimizedBaselineMs": 496.367,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=309",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }

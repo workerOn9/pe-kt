@@ -4,10 +4,18 @@
   "titleZh": "纸带游戏",
   "difficulty": 51,
   "difficultyLevel": "Level 20",
-  "tags": [],
+  "tags": [
+    "game-theory",
+    "sprague-grundy",
+    "mex",
+    "periodicity",
+    "dynamic-programming"
+  ],
+  "answer": "852938",
   "solvedBy": 1753,
+  "bruteForceBaselineMs": 120.71,
+  "optimizedBaselineMs": 4.869,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=306",
-  "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "fetchedAt": "2026-09-30"
 }
