@@ -4,10 +4,18 @@
   "titleZh": "月球上的老鼠",
   "difficulty": 83,
   "difficultyLevel": "Level 33",
-  "tags": [],
+  "tags": [
+    "geometry",
+    "lattice-polygon",
+    "dynamic-programming",
+    "parametric-search",
+    "convex-hull"
+  ],
   "solvedBy": 809,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=314",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "132.52756426",
+  "bruteForceBaselineMs": 97.499,
+  "optimizedBaselineMs": 8.3
 }

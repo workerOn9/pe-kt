@@ -4,10 +4,17 @@
   "titleZh": "2011 个 9",
   "difficulty": 36,
   "difficultyLevel": "Level 14",
-  "tags": [],
+  "tags": [
+    "diophantine-approximation",
+    "algebraic-conjugates",
+    "logarithm",
+    "catastrophic-cancellation"
+  ],
   "solvedBy": 1347,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=318",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "709313889",
+  "bruteForceBaselineMs": 11.59,
+  "optimizedBaselineMs": 2.872
 }

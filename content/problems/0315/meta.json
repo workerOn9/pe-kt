@@ -4,10 +4,18 @@
   "titleZh": "数根时钟",
   "difficulty": 17,
   "difficultyLevel": "Level 6",
-  "tags": [],
+  "tags": [
+    "simulation",
+    "digital-root",
+    "seven-segment-display",
+    "prime-numbers",
+    "bitwise-operations"
+  ],
   "solvedBy": 4241,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=315",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "13625242",
+  "bruteForceBaselineMs": 125.987,
+  "optimizedBaselineMs": 28.481
 }

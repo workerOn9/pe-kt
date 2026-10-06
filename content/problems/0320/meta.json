@@ -4,10 +4,18 @@
   "titleZh": "被巨大整数整除的阶乘",
   "difficulty": 37,
   "difficultyLevel": "Level 14",
-  "tags": [],
+  "tags": [
+    "number-theory",
+    "legendres-formula",
+    "factorial-divisibility",
+    "prime-factorization",
+    "monotonic-search"
+  ],
   "solvedBy": 1292,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=320",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "535603486780279315",
+  "bruteForceBaselineMs": 652.6,
+  "optimizedBaselineMs": 1143.1
 }
