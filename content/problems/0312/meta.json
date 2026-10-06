@@ -4,10 +4,19 @@
   "titleZh": "谢尔宾斯基图上的环路",
   "difficulty": 52,
   "difficultyLevel": "Level 20",
-  "tags": [],
+  "tags": [
+    "graph-theory",
+    "hamiltonian-cycle",
+    "sierpinski-gasket",
+    "euler-totient",
+    "chinese-remainder-theorem",
+    "tower-of-powers"
+  ],
   "solvedBy": 1233,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=312",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "324681947",
+  "bruteForceBaselineMs": 0.254,
+  "optimizedBaselineMs": 0.08
 }

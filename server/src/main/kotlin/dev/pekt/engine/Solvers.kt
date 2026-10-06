@@ -332,6 +332,14 @@ val solvers: Map<Int, () -> Long> = mapOf(
     308 to ::solve308,
     309 to ::solve309,
     310 to ::solve310,
+    311 to ::solve311,
+    312 to ::solve312,
+    313 to ::solve313,
+    315 to ::solve315,
+    316 to ::solve316,
+    318 to ::solve318,
+    319 to ::solve319,
+    320 to ::solve320,
 )
 
 /**
@@ -344,6 +352,8 @@ val stringSolvers: Map<Int, () -> String> = mapOf(
     298 to ::solve298,
     300 to ::solve300,
     307 to ::solve307,
+    314 to ::solve314,
+    317 to ::solve317,
 )
 
 /** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
@@ -525,6 +535,36 @@ private fun solve309(): Long = solve0309Impl()
 
 /** PE 310 — 平方尼姆：平方取子 SG 表 + 按 SG 值分组的对称性计数（T = 6D+3E+Z），0≤a≤b≤c≤10⁵ 的必败局面数 = 2586528661783。 */
 private fun solve310(): Long = solve0310Impl()
+
+/** PE 311 — 双斜整数四边形：中线公式化归平方和分解，4k+1 型光滑数枚举，B(10¹⁰) = 2466018557。 */
+private fun solve311(): Long = solve0311Impl()
+
+/** PE 312 — 谢尔宾斯基图上的环路：自相似分形哈密顿圈指数递推 + 欧拉降幂 CRT 阶梯，C(C(C(10⁴))) mod 13⁸ = 324681947。 */
+private fun solve312(): Long = solve0312Impl()
+
+/** PE 313 — 滑块游戏：状态空间步数闭式 S(m,n) + 不定方程区间计数，p < 10⁶ 的网格数 = 2057774861813004。 */
+private fun solve313(): Long = solve0313Impl()
+
+/** PE 314 — 月球上的老鼠：格点凸多边形等周优化，0-1 分式规划 + 凸链 DP，×10⁸ 编码 = 13252756426。 */
+private fun solve314(): String = solve0314Impl()
+
+/** PE 315 — 数根时钟：七段数码管位运算差分，2·popcount(U and V) 增量统计，总切换差值 = 13625242。 */
+private fun solve315(): Long = solve0315Impl()
+
+/** PE 316 — 小数展开中的数：停时期望定理 + KMP 边界链加速，Σ g(⌊10¹⁶/n⌋) = 542934735751917735。 */
+private fun solve316(): Long = solve0316Impl()
+
+/** PE 317 — 爆竹：弹道包络线安全旋转抛物面解析积分，×10⁴ 编码 = 18565328455。 */
+private fun solve317(): String = solve0317Impl()
+
+/** PE 318 — 2011 个 9：代数共轭式小数部分逼近 + 无抵消稳定对数，Σ N(p,q) = 709313889。 */
+private fun solve318(): Long = solve0318Impl()
+
+/** PE 319 — 有界数列：单实数底数表征 + 莫比乌斯反演换序 + 杜教筛整除分块，t(10¹⁰) mod 10⁹ = 268457129。 */
+private fun solve319(): Long = solve0319Impl()
+
+/** PE 320 — 被巨大整数整除的阶乘：勒让德公式 + 历史最大值稀疏推进，S(10⁶) mod 10¹⁸ = 535603486780279315。 */
+private fun solve320(): Long = solve0320Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

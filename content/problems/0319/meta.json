@@ -4,10 +4,18 @@
   "titleZh": "有界数列",
   "difficulty": 94,
   "difficultyLevel": "Level 37",
-  "tags": [],
+  "tags": [
+    "analytic-number-theory",
+    "mobius-inversion",
+    "mertens-function",
+    "du-sieve",
+    "divisor-sum"
+  ],
   "solvedBy": 697,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=319",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "268457129",
+  "bruteForceBaselineMs": 0.331,
+  "optimizedBaselineMs": 218.3
 }

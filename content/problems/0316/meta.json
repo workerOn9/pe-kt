@@ -4,10 +4,18 @@
   "titleZh": "小数展开中的数",
   "difficulty": 66,
   "difficultyLevel": "Level 26",
-  "tags": [],
+  "tags": [
+    "probability",
+    "expected-value",
+    "kmp-algorithm",
+    "string-borders",
+    "martingale"
+  ],
   "solvedBy": 990,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=316",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "542934735751917735",
+  "bruteForceBaselineMs": 48.245,
+  "optimizedBaselineMs": 38.369
 }
