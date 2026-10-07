@@ -4,10 +4,17 @@
   "titleZh": "交换棋子",
   "difficulty": 33,
   "difficultyLevel": "Level 13",
-  "tags": [],
+  "tags": [
+    "combinatorics",
+    "pell-equation",
+    "bfs",
+    "triangular-numbers"
+  ],
   "solvedBy": 2273,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=321",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "2470433131948040",
+  "bruteForceBaselineMs": 2443.669,
+  "optimizedBaselineMs": 0.007
 }

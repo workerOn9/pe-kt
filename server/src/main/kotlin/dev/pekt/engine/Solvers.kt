@@ -340,6 +340,14 @@ val solvers: Map<Int, () -> Long> = mapOf(
     318 to ::solve318,
     319 to ::solve319,
     320 to ::solve320,
+    321 to ::solve321,
+    322 to ::solve322,
+    324 to ::solve324,
+    325 to ::solve325,
+    326 to ::solve326,
+    327 to ::solve327,
+    328 to ::solve328,
+    330 to ::solve330,
 )
 
 /**
@@ -354,6 +362,8 @@ val stringSolvers: Map<Int, () -> String> = mapOf(
     307 to ::solve307,
     314 to ::solve314,
     317 to ::solve317,
+    323 to ::solve323,
+    329 to ::solve329,
 )
 
 /** PE 251 — 卡尔达诺三元组 ∛(a+b√c)+∛(a−b√c)=1：化为 27b²c=(a+1)²(8a−1) 后按 (q,r) 枚举计数，答案 = 18946051。 */
@@ -565,6 +575,36 @@ private fun solve319(): Long = solve0319Impl()
 
 /** PE 320 — 被巨大整数整除的阶乘：勒让德公式 + 历史最大值稀疏推进，S(10⁶) mod 10¹⁸ = 535603486780279315。 */
 private fun solve320(): Long = solve0320Impl()
+
+/** PE 321 — 交换棋子：M(n)=n²+2n 为三角形数 ⟺ 佩尔方程 x²−8y²=−7，两条轨道合并取前 40 项，和 = 2470433131948040。 */
+private fun solve321(): Long = solve0321Impl()
+
+/** PE 322 — 被 10 整除的二项式系数：Kummer + 2/5 数位约束 + CRT 计数，T(10¹⁸,10¹²−10) = 999998760323313995。 */
+private fun solve322(): Long = solve0322Impl()
+
+/** PE 324 — 搭一座塔：3×3×n 的轮廓 DP 转移矩阵 + Berlekamp–Massey + Kitamasa，f(10^10000) mod 100000007 = 96972774。 */
+private fun solve324(): Long = solve0324Impl()
+
+/** PE 325 — 取石游戏 II：必败态 y<φx，闭式化为 P/G/Q 三个 Beatty 和对偶递推，S(10¹⁶) mod 7¹⁰ = 54672965。 */
+private fun solve325(): Long = solve0325Impl()
+
+/** PE 326 — 模和配对：前缀和之差 + 模 6M 周期 + BigInteger，f(10¹²,10⁶) = 1966666166408794329。 */
+private fun solve326(): Long = solve0326Impl()
+
+/** PE 327 — 厄运之室：从右向左按「往返净搬运 C−2」递推，Σ_{C=3}^{40} M(C,30) = 34315549139516。 */
+private fun solve327(): Long = solve0327Impl()
+
+/** PE 328 — 最优猜数成本：区间 DP 压缩 + 平衡子树闭式估值，Σ_{n=1}^{200000} C(n) = 260511850222。 */
+private fun solve328(): Long = solve0328Impl()
+
+/** PE 330 — 欧拉常数递推：a(n) 的 e 系数 A(n) 的 EGF = 1/((1−x)(2−eˣ))，A(10⁹)+B(10⁹) mod 77777777 = 15955822。 */
+private fun solve330(): Long = solve0330Impl()
+
+/** PE 323 — 随机整数的按位或：E[N] = Σ(1 − (1−2^{−k})³²)，答案字符串 = 6.3551758451。 */
+private fun solve323(): String = solve0323Impl()
+
+/** PE 329 — 素数青蛙：位置概率 DP + 公共分母精确有理数，答案字符串 = 199740353/29386561536000。 */
+private fun solve329(): String = solve0329Impl()
 
 /** PE 221 — 亚历山大整数：A = x(x+s)(x+t)、s·t = x²+1；打标筛出 x²+1 的素因子，取第 150000 项 = 1884161251122450。 */
 private fun solve221(): Long {

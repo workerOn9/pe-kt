@@ -4,10 +4,17 @@
   "titleZh": "素数青蛙",
   "difficulty": 36,
   "difficultyLevel": "Level 14",
-  "tags": [],
+  "tags": [
+    "dynamic-programming",
+    "probability",
+    "markov-chain",
+    "exact-arithmetic"
+  ],
   "solvedBy": 3245,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=329",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "199740353/29386561536000",
+  "bruteForceBaselineMs": 242.1,
+  "optimizedBaselineMs": 0.5926
 }

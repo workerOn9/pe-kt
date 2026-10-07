@@ -4,10 +4,18 @@
   "titleZh": "模和配对",
   "difficulty": 53,
   "difficultyLevel": "Level 21",
-  "tags": [],
+  "tags": [
+    "prefix-sums",
+    "modular-arithmetic",
+    "periodic-sequence",
+    "combinatorics",
+    "bigint"
+  ],
   "solvedBy": 832,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=326",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "1966666166408794329",
+  "bruteForceBaselineMs": 1170.8,
+  "optimizedBaselineMs": 704.9
 }

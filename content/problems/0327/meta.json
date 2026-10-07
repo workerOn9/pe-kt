@@ -4,10 +4,16 @@
   "titleZh": "厄运之室",
   "difficulty": 23,
   "difficultyLevel": "Level 9",
-  "tags": [],
+  "tags": [
+    "greedy",
+    "simulation",
+    "recurrence"
+  ],
   "solvedBy": 1533,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=327",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "34315549139516",
+  "bruteForceBaselineMs": 1.198,
+  "optimizedBaselineMs": 0.0358
 }

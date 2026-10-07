@@ -4,10 +4,19 @@
   "titleZh": "取石游戏 II",
   "difficulty": 81,
   "difficultyLevel": "Level 32",
-  "tags": [],
+  "tags": [
+    "game-theory",
+    "euclid-game",
+    "golden-ratio",
+    "beatty-sequence",
+    "floor-sum",
+    "modular-arithmetic"
+  ],
   "solvedBy": 949,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=325",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "54672965",
+  "bruteForceBaselineMs": 2.461,
+  "optimizedBaselineMs": 0.584
 }

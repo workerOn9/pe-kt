@@ -4,10 +4,18 @@
   "titleZh": "最优猜数成本",
   "difficulty": 90,
   "difficultyLevel": "Level 35",
-  "tags": [],
+  "tags": [
+    "dynamic-programming",
+    "minimax",
+    "decision-tree",
+    "optimal-search",
+    "pruning"
+  ],
   "solvedBy": 749,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=328",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "260511850222",
+  "bruteForceBaselineMs": 19.0,
+  "optimizedBaselineMs": 1300.3
 }

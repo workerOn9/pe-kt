@@ -4,10 +4,19 @@
   "titleZh": "搭一座塔",
   "difficulty": 54,
   "difficultyLevel": "Level 21",
-  "tags": [],
+  "tags": [
+    "profile-dp",
+    "transfer-matrix",
+    "linear-recurrence",
+    "berlekamp-massey",
+    "kitamasa",
+    "domino-tilings"
+  ],
   "solvedBy": 1052,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=324",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "96972774",
+  "bruteForceBaselineMs": 5.55,
+  "optimizedBaselineMs": 527.29
 }

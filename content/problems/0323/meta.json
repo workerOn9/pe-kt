@@ -4,10 +4,17 @@
   "titleZh": "随机整数的按位或",
   "difficulty": 16,
   "difficultyLevel": "Level 6",
-  "tags": [],
+  "tags": [
+    "probability",
+    "expected-value",
+    "bitwise-operations",
+    "stopping-time"
+  ],
   "solvedBy": 4892,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=323",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "6.3551758451",
+  "bruteForceBaselineMs": 0.951,
+  "optimizedBaselineMs": 0.005
 }
