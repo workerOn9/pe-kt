@@ -4,10 +4,18 @@
   "titleZh": "被 10 整除的二项式系数",
   "difficulty": 65,
   "difficultyLevel": "Level 25",
-  "tags": [],
+  "tags": [
+    "kummer-theorem",
+    "binomial-coefficients",
+    "digit-dp",
+    "chinese-remainder-theorem",
+    "number-theory"
+  ],
   "solvedBy": 743,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=322",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "999998760323313995",
+  "bruteForceBaselineMs": 1.216,
+  "optimizedBaselineMs": 67.999
 }

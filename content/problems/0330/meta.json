@@ -4,10 +4,18 @@
   "titleZh": "欧拉常数递推",
   "difficulty": 69,
   "difficultyLevel": "Level 27",
-  "tags": [],
+  "tags": [
+    "generating-functions",
+    "fubini-numbers",
+    "stirling-numbers",
+    "chinese-remainder-theorem",
+    "modular-arithmetic"
+  ],
   "solvedBy": 817,
   "hasVisualization": false,
   "sourceUrl": "https://projecteuler.net/problem=330",
   "fetchedAt": "2026-09-30",
-  "status": "draft"
+  "answer": "15955822",
+  "bruteForceBaselineMs": 49.7,
+  "optimizedBaselineMs": 4.66
 }
